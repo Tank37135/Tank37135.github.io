@@ -1,0 +1,188 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #f1f1f1;
+}
+
+/* 头部 */
+.header {
+  padding: 50px;
+  text-align: left; /* 左对齐 */
+  background: rgba(255, 255, 255, 0.25); /* 半透明背景 */
+  backdrop-filter: blur(10px); /* 毛玻璃效果 */
+  border-radius: 12px; /* 添加圆角 */
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 10px; /* 添加阴影效果（可选） */
+}
+
+/* 头像样式 */
+.header img {
+  position: absolute;
+  top: 20px;
+  left: 20px; /* 修改为左侧 */
+  width: 70px; /* 可以根据需要调整大小 */
+  height: 70px; /* 保持头像为正方形 */
+  border-radius: 50%; /* 使头像变为圆形 */
+}
+
+/* 导航条 */
+.topnav {
+  overflow: hidden;
+  background: rgba(51, 51, 51, 0.5); /* 半透明背景 */
+  backdrop-filter: blur(10px); /* 毛玻璃效果 */
+  position: sticky; /* 设置为sticky */
+  top: 0; /* 固定在顶部 */
+  z-index: 1000; /* 确保其在其他内容上方 */
+  border-radius: 12px; /* 添加圆角 */
+  margin-top: 10px; /* 调整与头部的间距 */
+}
+
+/* 导航条链接 */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* 链接颜色修改 */
+.topnav a:hover {
+  background-color: rgba(221, 221, 221, 0.5); /* 半透明背景效果 */
+  color: black;
+}
+
+/* 创建两列 */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: calc(75% - 10px); /* 减去间隔的宽度 */
+  height: 100vh; /* 使左列高度占满视口 */
+  overflow-y: scroll; /* 允许左列内部滚动 */
+  scrollbar-width: none; /* Firefox 隐藏滚动条 */
+}
+
+/* 右侧栏 */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  background: rgba(255, 255, 255, 0.25); /* 修改为半透明背景 */
+  backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
+  height: 100vh; /* 右侧栏高度占满视口 */
+  overflow-y: scroll; /* 允许右侧栏内部滚动 */
+  padding-left: 20px;
+  border-radius: 12px; /* 添加圆角 */
+  box-shadow: rgba(142, 142, 142, 0.19) 0 6px 15px 0; /* 添加阴影效果（可选） */
+  margin-left: 10px; /* 添加左边距以创建间隔 */
+}
+
+/* 隐藏左栏滚动条 */
+.leftcolumn::-webkit-scrollbar {
+  display: none; /* Chrome, Safari 和 Opera */
+}
+
+/* 隐藏右栏滚动条 */
+.rightcolumn::-webkit-scrollbar {
+  display: none; /* Chrome, Safari 和 Opera */
+}
+
+/* 对于 Firefox */
+.rightcolumn {
+  scrollbar-width: none; /* Firefox 隐藏滚动条 */
+}
+
+
+/* 图像部分 */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* 文章卡片效果 */
+.card {
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0 6px 15px 0;
+  border-radius: 12px; /* 添加圆角 */
+  color: rgba(255, 255, 255, 0.75);
+  padding: 30px; /* 修改内边距为30像素 */
+  margin-top: 20px;
+}
+
+
+
+/* 列后面清除浮动 */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* 底部 */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+       body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #001f3f, #003366);
+            position: relative;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            padding: 10% 5%;
+        }
+        .firefly {
+            position: absolute;
+            width: 12px; /* Increased size */
+            height: 12px; /* Increased size */
+            background: rgba(255, 255, 255, 0.1); /* Brighter color */
+            border-radius: 50%;
+            filter: blur(2px) brightness(1.5); /* Added brightness */
+            animation: float 15s infinite ease-in-out, blink 2s infinite; /* Faster blink */
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(150px, 150px); }
+            50% { transform: translate(300px, 0); }
+            75% { transform: translate(150px, -150px); }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0.6; } /* Increased opacity */
+            50% { opacity: 1; }
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .firefly {
+                width: 10px; /* Adjusted for smaller screens */
+                height: 10px; /* Adjusted for smaller screens */
+            }
+            .content {
+                padding: 15% 3%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .firefly {
+                width: 8px; /* Adjusted for smaller screens */
+                height: 8px; /* Adjusted for smaller screens */
+            }
+            .content {
+                padding: 20% 2%;
+            }
+        }
