@@ -1,7 +1,89 @@
-<!doctype>
-<html>
-  <body>
-    <h1>404</h1>
-    <h3>NOT FOUND</h3>
-  </body>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404</title>
+  <style>
+    body {
+      padding: 2rem;
+      margin: 0;
+      background: linear-gradient(90deg, #edc0bf 0%, #c4caef 58%);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* 修改为 center，垂直居中 */
+      height: 100vh;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.7);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      position: relative;
+      margin-top: 2rem;
+      animation: fadeIn 0.5s ease-in;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .card-title {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 3rem; /* 增大标题字体 */
+      font-weight: bold;
+    }
+
+    h3 {
+      margin: 0;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    p, a {
+      font-size: 1rem;
+    }
+
+    a {
+      color: #4d4ae8;
+      text-decoration: none;
+      transition: color 0.3s, text-decoration 0.3s;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #3a3ae8;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 class="card-title">404</h1>
+    <h3>Not Found</h3>
+    <p>哎呀，博客开发时太饿了，把页面吃掉了</p>
+    <a href="index.html">返回主站</a>
+  </div>
+</body>
 </html>
