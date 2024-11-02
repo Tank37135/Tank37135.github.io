@@ -1072,3 +1072,42 @@ button:not(:disabled) {
         align-items: center !important
     }
 }
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+ .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+.nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+              .progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            height: 30px;
+            background-color: #4caf50;
+            text-align: center;
+            line-height: 30px; /* 使文本垂直居中 */
+            color: white;
+            width: 0; /* 初始宽度为0 */
+            transition: width 0.5s; /* 添加过渡效果 */
+        }

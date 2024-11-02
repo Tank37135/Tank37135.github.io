@@ -11,36 +11,64 @@
 <link href="style.css" rel="stylesheet">
 
     <style>
-.bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+body.loading {
+            background-color: black; /* 加载时的背景色 */
+            color: white; /* 加载时的字体色 */
+        }
+        .sk-cube-grid {
+            width: 16em;
+            height: 16em;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .sk-cube {
+            width: 33%;
+            height: 33%;
+            box-sizing: border-box;
+            animation: sk-cube-grid-scale-delay 1.3s infinite ease-in-out;
+            background-color: #007BFF; /* 统一蓝色 */
+        }
+        .sk-cube-1 { animation-delay: 0.2s; }
+        .sk-cube-2 { animation-delay: 0.3s; }
+        .sk-cube-3 { animation-delay: 0.4s; }
+        .sk-cube-4 { animation-delay: 0.1s; }
+        .sk-cube-5 { animation-delay: 0.2s; }
+        .sk-cube-6 { animation-delay: 0.3s; }
+        .sk-cube-7 { animation-delay: 0s; }
+        .sk-cube-8 { animation-delay: 0.1s; }
+        .sk-cube-9 { animation-delay: 0.2s; }
 
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
+        @keyframes sk-cube-grid-scale-delay {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(0); }
+        }
 
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* 默认隐藏 */
+        }
     </style>
     <link href="blog.css" rel="stylesheet">
   </head>
   <body>
-
+<div class="loader" id="loader" aria-label="加载中，请稍候">
+        <div class="sk-cube-grid">
+            <div class="sk-cube sk-cube-1"></div>
+            <div class="sk-cube sk-cube-2"></div>
+            <div class="sk-cube sk-cube-3"></div>
+            <div class="sk-cube sk-cube-4"></div>
+            <div class="sk-cube sk-cube-5"></div>
+            <div class="sk-cube sk-cube-6"></div>
+            <div class="sk-cube sk-cube-7"></div>
+            <div class="sk-cube sk-cube-8"></div>
+            <div class="sk-cube sk-cube-9"></div>
+        </div>
+    </div>
+    
+    
 <div class="container">
   <header class="border-bottom lh-1 py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
@@ -61,6 +89,7 @@
       <a class="nav-item nav-link link-body-emphasis" href="games/.html">游戏</a>
       <a class="nav-item nav-link link-body-emphasis" href="sundry/.html">杂的</a>
       <a class="nav-item nav-link link-body-emphasis" href="hatred/index.html">记仇</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">友情链接</a>
     </nav>
 </div>
 
@@ -239,19 +268,28 @@
 
     <div class="p-4">
       <h4 class="fst-italic">Timer</h4>
+      <h5 class="fst-italic">珍惜当下</h5>
       <ol class="list-unstyled mb-0">
-        <li><a href="#">2021年3月</a></li>
-        <li><a href="#">2021年2月</a></li>
-        <li><a href="#">2021年1月</a></li>
-        <li><a href="#">2020年12月</a></li>
-        <li><a href="#">2020年11月</a></li>
-        <li><a href="#">2020年10月</a></li>
-        <li><a href="#">2020年9月</a></li>
-        <li><a href="#">2020年8月</a></li>
-        <li><a href="#">2020年7月</a></li>
-        <li><a href="#">2020年6月</a></li>
-        <li><a href="#">2020年5月</a></li>
-        <li><a href="#">2020年4月</a></li>
+          <li><h2>这一分钟已经过去</h2></li>
+        <div class="progress-container">
+          <li><div class="progress-bar" id="minuteProgressBar">0%</div></li>
+        </div>
+
+           <li><h2>这个小时已经过去</h2></li>
+        <div class="progress-container">
+           <li><div class="progress-bar" id="hourProgressBar">0%</div></li>
+        </div>
+
+        <li><h2>这天以过去</h2></li>
+        <div class="progress-container">
+           <li><div class="progress-bar" id="hour24ProgressBar">0%</div></li>
+        </div>
+
+        <li><h2>本年已经过去</h2></li>
+        <div class="progress-container">
+          <li> <div class="progress-bar" id="yearProgressBar">0%</div></li>
+        </div>
+
       </ol>
     </div>
 
@@ -260,7 +298,7 @@
       <ol class="list-unstyled">
         <li><a href="https://github.com/tank37135">GitHub</a></li>
       </ol>
-      <h4 class="fst-italic">在其他地方</h4>
+      <h4 class="fst-italic">联系</h4>
       <ol class="list-unstyled">
         <li><a href="mailto:Tank37135@outlook.com?subject=我想给你些建议&body=我是你博客网站的访客，对于网站我想给你以下建议">电子邮箱</a>
       </ol>
@@ -275,7 +313,19 @@
     <a href="#">返回顶部</a>
   </p>
 </footer>
+<script>
+        // 页面加载时显示加载动画
+        document.body.classList.add('loading'); // 添加加载类
+        document.getElementById('loader').style.display = 'block'; // 显示加载动画
 
+        // 当页面加载完成时隐藏加载动画
+        window.addEventListener('load', function() {
+            document.getElementById('loader').style.display = 'none'; // 隐藏加载动画
+            document.body.classList.remove('loading'); // 移除加载类
+            document.body.style.overflow = 'auto'; // 允许滚动
+        });
+    </script>
+     <script src=script.js> </script>
 
     </body>
 </html>
