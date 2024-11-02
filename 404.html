@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
   <title>404</title>
   <style>
     body {
@@ -13,7 +13,7 @@
       font-family: 'Inter', sans-serif;
       display: flex;
       justify-content: center;
-      align-items: center; /* 修改为 center，垂直居中 */
+      align-items: center; /* 垂直居中 */
       height: 100vh;
     }
 
@@ -23,7 +23,6 @@
       padding: 2rem;
       border-radius: 1rem;
       background: rgba(255, 255, 255, 0.7);
-      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       position: relative;
@@ -60,6 +59,11 @@
       color: #3a3ae8;
     }
 
+    .countdown {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -80,10 +84,29 @@
 </head>
 <body>
   <div class="card">
-    <h1 class="card-title">404</h1>
-    <h3>Not Found</h3>
+    <h1 class="card-title" role="heading" aria-level="1">404</h1>
+    <h3 role="heading" aria-level="2">Not Found</h3>
     <p>哎呀，博客开发时太饿了，把页面吃掉了</p>
-    <a href="index.html">返回主站</a>
+    <a href="https://Tank37135.github.io" target="_self">返回首页</a>
+    <div class="countdown" id="countdown"></div>
   </div>
+
+  <script>
+    window.onload = function() {
+      let countdownElement = document.getElementById('countdown');
+      let countdown = 5; // 从5秒开始倒计时
+      
+      countdownElement.textContent = `${countdown}秒后自动返回上一页面`;
+
+      const timer = setInterval(() => {
+        countdown--;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          window.history.back(); // 返回上一页面
+        }
+        countdownElement.textContent = `${countdown}秒后自动返回上一页面`;
+      }, 1000);
+    };
+  </script>
 </body>
 </html>
