@@ -48,8 +48,10 @@ body.loading {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            display: none; /* 默认隐藏 */
+            display: none;
+            z-index: 1000; /* 确保在最上层 */
         }
+
     </style>
     <link href="blog.css" rel="stylesheet">
   </head>
