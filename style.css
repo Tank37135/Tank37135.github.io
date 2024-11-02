@@ -1111,3 +1111,6 @@ button:not(:disabled) {
             width: 0; /* 初始宽度为0 */
             transition: width 0.5s; /* 添加过渡效果 */
         }
+html {
+    scroll-behavior: smooth
+    }
