@@ -12,46 +12,62 @@
 
     <style>
 body.loading {
-            background-color: black; /* 加载时的背景色 */
-            color: white; /* 加载时的字体色 */
-        }
-        .sk-cube-grid {
-            width: 16em;
-            height: 16em;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .sk-cube {
-            width: 33%;
-            height: 33%;
-            box-sizing: border-box;
-            animation: sk-cube-grid-scale-delay 1.3s infinite ease-in-out;
-            background-color: #007BFF; /* 统一蓝色 */
-        }
-        .sk-cube-1 { animation-delay: 0.2s; }
-        .sk-cube-2 { animation-delay: 0.3s; }
-        .sk-cube-3 { animation-delay: 0.4s; }
-        .sk-cube-4 { animation-delay: 0.1s; }
-        .sk-cube-5 { animation-delay: 0.2s; }
-        .sk-cube-6 { animation-delay: 0.3s; }
-        .sk-cube-7 { animation-delay: 0s; }
-        .sk-cube-8 { animation-delay: 0.1s; }
-        .sk-cube-9 { animation-delay: 0.2s; }
+    background-color: white; /* 默认背景色 */
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    transition: color 0.5s; /* 颜色过渡 */
+}
 
-        @keyframes sk-cube-grid-scale-delay {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(0); }
-        }
+.loader {
+    position: fixed; /* 使用 fixed，使加载动画固定在视口 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* 默认隐藏 */
+    background-color: black; /* 不透明黑色背景 */
+    color: white; /* 加载文字颜色 */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* 纵向排列 */
+    z-index: 1000; /* 确保在最上层 */
+}
 
-        .loader {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-            z-index: 1000; /* 确保在最上层 */
-        }
+.sk-cube-grid {
+    width: 16em;
+    height: 16em;
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.sk-cube {
+    width: 33%;
+    height: 33%;
+    box-sizing: border-box;
+    animation: sk-cube-grid-scale-delay 1.3s infinite ease-in-out;
+    background-color: #007BFF;
+}
+
+/* 动画延迟类 */
+.sk-cube-1 { animation-delay: 0.2s; }
+.sk-cube-2 { animation-delay: 0.3s; }
+.sk-cube-3 { animation-delay: 0.4s; }
+.sk-cube-4 { animation-delay: 0.1s; }
+.sk-cube-5 { animation-delay: 0.2s; }
+.sk-cube-6 { animation-delay: 0.3s; }
+.sk-cube-7 { animation-delay: 0s; }
+.sk-cube-8 { animation-delay: 0.1s; }
+.sk-cube-9 { animation-delay: 0.2s; }
+
+@keyframes sk-cube-grid-scale-delay {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0); }
+}
     </style>
     <link href="blog.css" rel="stylesheet">
   </head>
@@ -68,6 +84,7 @@ body.loading {
             <div class="sk-cube sk-cube-8"></div>
             <div class="sk-cube sk-cube-9"></div>
         </div>
+        <div>加载中，请稍候...</div>
     </div>
     
     
@@ -82,15 +99,15 @@ body.loading {
 
 <div class="nav-scroller py-1 mb-3 border-bottom">
     <nav class="nav nav-underline justify-content-between">
-      <a class="nav-item nav-link link-body-emphasis" href="blog/index.html">博客</a>
-      <a class="nav-item nav-link link-body-emphasis" href="essay/index.html">文章</a>
-      <a class="nav-item nav-link link-body-emphasis" href="software/index">软件</a>
-      <a class="nav-item nav-link link-body-emphasis" href="video/index.html">视觉</a>
-      <a class="nav-item nav-link link-body-emphasis" href="Special/index.html">专题</a>
-      <a class="nav-item nav-link link-body-emphasis" href="tool/index.html">工具</a>
-      <a class="nav-item nav-link link-body-emphasis" href="games/.html">游戏</a>
-      <a class="nav-item nav-link link-body-emphasis" href="sundry/.html">杂的</a>
-      <a class="nav-item nav-link link-body-emphasis" href="hatreds/index.html">记仇</a>
+      <a class="nav-item nav-link link-body-emphasis" href="blog/">博客</a>
+      <a class="nav-item nav-link link-body-emphasis" href="essay/">文章</a>
+      <a class="nav-item nav-link link-body-emphasis" href="software/">软件</a>
+      <a class="nav-item nav-link link-body-emphasis" href="video/">视觉</a>
+      <a class="nav-item nav-link link-body-emphasis" href="Special/">专题</a>
+      <a class="nav-item nav-link link-body-emphasis" href="tool/">工具</a>
+      <a class="nav-item nav-link link-body-emphasis" href="games/">游戏</a>
+      <a class="nav-item nav-link link-body-emphasis" href="sundry/">杂的</a>
+      <a class="nav-item nav-link link-body-emphasis" href="hatreds/">记仇</a>
       <a class="nav-item nav-link link-body-emphasis" href="#">友情链接</a>
     </nav>
 </div>
