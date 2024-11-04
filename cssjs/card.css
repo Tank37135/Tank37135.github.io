@@ -1,233 +1,78 @@
-body.loading {
-    background-color: white; /* 默认背景色 */
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    overflow: hidden;
-    transition: color 0.5s; /* 颜色过渡 */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --border-radius: 1rem; /* 边角圆润程度 */
+    --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    --gap: 1.5rem;
+    --hover-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.image-container {
-    position: relative; /* 相对定位 */
-    width: calc(50% - 10px); /* 适应2列布局，减去间距 */
-    height: 200px; /* 设置高度，视需要调整 */
-    margin: 5px; /* 添加间距 */
-    background-color: black; /* 背景色 */
-    display: flex; /* 中心对齐 */
-    justify-content: center;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, #edc0bf 0%, #c4caef 58%);
+}
+
+.container {
+    max-width: 1200px; /* 更宽的容器 */
+    margin: auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 自适应卡牌宽度 */
+    gap: var(--gap); /* 卡牌间距 */
+}
+
+.card {
+    border: 1px solid rgba(255, 255, 255, 0.5); /* 半透明白色边框 */
+    border-radius: var(--border-radius); /* 圆角 */
+    backdrop-filter: blur(10px); /* 背景模糊效果 */
+    background: rgba(255, 255, 255, 0.7); /* 半透明白色背景 */
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none; /* 去掉链接下划线 */
+    color: inherit; /* 继承颜色 */
+    transition: transform 0.2s, box-shadow 0.2s; /* 添加动画效果 */
+}
+
+.img-container {
+    position: relative;
+    width: 100%;
+    height: 200px; /* 与图片最大高度一致 */
+    background-color: black; /* 黑色背景 */
+    display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .loader {
-    position: absolute; /* 绝对定位以覆盖图片 */
-    top: 0;
-    left: 0;
+    color: white; /* 加载中文字颜色 */
+    font-size: 1.2rem;
+    display: block;
+    z-index: 1; /* 确保加载中文本在上方 */
+}
+
+.card img {
     width: 100%;
-    height: 100%;
-    background-color: black; /* 不透明黑色背景 */
-    color: white; /* 加载文字颜色 */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* 确保在最上层 */
-    display: flex; /* 使用flex布局 */
+    height: auto;
+    max-height: 200px; /* 设置最大高度 */
+    border-radius: var(--border-radius);
+    object-fit: cover; /* 保持纵横比，同时裁剪多余部分 */
+    display: none; /* 初始隐藏 */
 }
 
-.sk-cube-grid {
-    width: 8em; /* 更改为适应2x6布局 */
-    height: 8em;
+.card h3 {
+    margin: 0.5rem 0;
 }
 
-
-.sk-cube {
-    width: 33%;
-    height: 33%;
-    box-sizing: border-box;
-    animation: sk-cube-grid-scale-delay 1.3s infinite ease-in-out;
-    background-color: #007BFF;
+.card time {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
 }
 
-/* 动画延迟类 */
-.sk-cube-1 { animation-delay: 0.2s; }
-.sk-cube-2 { animation-delay: 0.3s; }
-.sk-cube-3 { animation-delay: 0.4s; }
-.sk-cube-4 { animation-delay: 0.1s; }
-.sk-cube-5 { animation-delay: 0.2s; }
-.sk-cube-6 { animation-delay: 0.3s; }
-.sk-cube-7 { animation-delay: 0s; }
-.sk-cube-8 { animation-delay: 0.1s; }
-.sk-cube-9 { animation-delay: 0.2s; }
-
-@keyframes sk-cube-grid-scale-delay {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(0); }
+.card:hover {
+    transform: translateY(-5px); /* 悬停时抬起 */
+    box-shadow: var(--hover-shadow); /* 悬停时增加阴影 */
 }
-
-:root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --border-radius: 1rem; /* 边角圆润程度 */
-            --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-            --gap: 1.5rem;
-            --hover-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(90deg, #edc0bf 0%, #c4caef 58%);
-        }
-
-        .container {
-            max-width: 1200px; /* 更宽的容器 */
-            margin: auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 自适应卡牌宽度 */
-            gap: var(--gap); /* 卡牌间距 */
-        }
-
-        .card {
-            border: 1px solid rgba(255, 255, 255, 0.5); /* 半透明白色边框 */
-            border-radius: var(--border-radius); /* 圆角 */
-            backdrop-filter: blur(10px); /* 背景模糊效果 */
-            background: rgba(255, 255, 255, 0.7); /* 半透明白色背景 */
-            box-shadow: var(--shadow);
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            text-decoration: none; /* 去掉链接下划线 */
-            color: inherit; /* 继承颜色 */
-            transition: transform 0.2s, box-shadow 0.2s; /* 添加动画效果 */
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            max-height: 200px; /* 设置最大高度 */
-            border-radius: var(--border-radius);
-            object-fit: cover; /* 保持纵横比，同时裁剪多余部分 */
-        }
-
-
-        .card h3 {
-            margin: 0.5rem 0;
-        }
-
-        .card time {.loader {
-    position: absolute; /* 绝对定位以覆盖图片 */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black; /* 不透明黑色背景 */
-    color: white; /* 加载文字颜色 */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* 确保在最上层 */
-    display: flex; /* 使用flex布局 */
-}
-
-.sk-cube-grid {
-    width: 8em; /* 更改为适应2x6布局 */
-    height: 8em;
-}
-
-
-.sk-cube {
-    width: 33%;
-    height: 33%;
-    box-sizing: border-box;
-    animation: sk-cube-grid-scale-delay 1.3s infinite ease-in-out;
-    background-color: #007BFF;
-}
-
-/* 动画延迟类 */
-.sk-cube-1 { animation-delay: 0.2s; }
-.sk-cube-2 { animation-delay: 0.3s; }
-.sk-cube-3 { animation-delay: 0.4s; }
-.sk-cube-4 { animation-delay: 0.1s; }
-.sk-cube-5 { animation-delay: 0.2s; }
-.sk-cube-6 { animation-delay: 0.3s; }
-.sk-cube-7 { animation-delay: 0s; }
-.sk-cube-8 { animation-delay: 0.1s; }
-.sk-cube-9 { animation-delay: 0.2s; }
-
-@keyframes sk-cube-grid-scale-delay {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(0); }
-}
-
-:root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --border-radius: 1rem; /* 边角圆润程度 */
-            --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-            --gap: 1.5rem;
-            --hover-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(90deg, #edc0bf 0%, #c4caef 58%);
-        }
-
-        .container {
-            max-width: 1200px; /* 更宽的容器 */
-            margin: auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 自适应卡牌宽度 */
-            gap: var(--gap); /* 卡牌间距 */
-        }
-
-        .card {
-            border: 1px solid rgba(255, 255, 255, 0.5); /* 半透明白色边框 */
-            border-radius: var(--border-radius); /* 圆角 */
-            backdrop-filter: blur(10px); /* 背景模糊效果 */
-            background: rgba(255, 255, 255, 0.7); /* 半透明白色背景 */
-            box-shadow: var(--shadow);
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            text-decoration: none; /* 去掉链接下划线 */
-            color: inherit; /* 继承颜色 */
-            transition: transform 0.2s, box-shadow 0.2s; /* 添加动画效果 */
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            max-height: 200px; /* 设置最大高度 */
-            border-radius: var(--border-radius);
-            object-fit: cover; /* 保持纵横比，同时裁剪多余部分 */
-        }
-
-
-        .card h3 {
-            margin: 0.5rem 0;
-        }
-
-        .card time {
-            font-size: 0.875rem;
-            color: var(--secondary-color);
-        }
-
-        .card:hover {
-            transform: translateY(-5px); /* 悬停时抬起 */
-            box-shadow: var(--hover-shadow); /* 悬停时增加阴影 */
-        }
-            font-size: 0.875rem;
-            color: var(--secondary-color);
-        }
-
-        .card:hover {
-            transform: translateY(-5px); /* 悬停时抬起 */
-            box-shadow: var(--hover-shadow); /* 悬停时增加阴影 */
-        }
-        
