@@ -9,7 +9,7 @@
     body {
       padding: 2rem;
       margin: 0;
-      background: linear-gradient(90deg, #edc0bf 0%, #c4caef 58%);
+      background:black;
       font-family: 'Inter', sans-serif;
       display: flex;
       justify-content: center;
@@ -17,24 +17,26 @@
       height: 100vh;
     }
 
-    .card {
-      width: 100%;
-      max-width: 400px;
-      padding: 2rem;
-      border-radius: 1rem;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      position: relative;
-      margin-top: 2rem;
-      animation: fadeIn 0.5s ease-in;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-    }
+.card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); 
+  border: 0.888889px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px; 
+  border-radius: 12px;
+  -webkit-border-radius: 12px; 
+  color: rgba(255, 255, 255, 0.75);
+}
+
 
     .card-title {
       margin-top: 0;
       margin-bottom: 0.5rem;
-      font-size: 3rem; /* 增大标题字体 */
+      font-size: 4rem; /* 增大标题字体 */
       font-weight: bold;
     }
 

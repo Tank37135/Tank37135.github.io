@@ -27,7 +27,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.5); /* 半透明白色边框 */
     border-radius: var(--border-radius); /* 圆角 */
     backdrop-filter: blur(10px); /* 背景模糊效果 */
-    background: rgba(255, 255, 255, 0.7); /* 半透明白色背景 */
+    background-color: rgba(255, 255, 255, 0.25);
     box-shadow: var(--shadow);
     padding: 1rem;
     display: flex;
