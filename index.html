@@ -1,104 +1,35 @@
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tank37135 Blog</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body translate="no">
+  <canvas id="sparks"></canvas>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>Tank37135 Blog</title>
-<link href="style.css" rel="stylesheet">
-
-    <style>
-.loader {
-    position: fixed; /* 使用 fixed，使加载动画固定在视口 */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex; /* 使用 flex 布局 */
-    background-color: black; /* 不透明黑色背景 */
-    color: white; /* 加载文字颜色 */
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* 纵向排列 */
-    z-index: 1000; /* 确保在最上层 */
-    visibility: hidden; /* 初始状态不可见 */
-    opacity: 0; /* 初始透明度为 0 */
-    transition: visibility 0s 0.5s, opacity 0.5s; /* 动画过渡效果 */
-}
-
-.loader.show {
-    visibility: visible; /* 可见 */
-    opacity: 1; /* 完全不透明 */
-}
-    </style>
-    <link href="blog.css" rel="stylesheet">
-  </head>
-  <body>
-<div class="loader" id="loader" aria-label="加载中，请稍候">
-        <div class="sk-cube-grid">
-            <div class="sk-cube sk-cube-1"></div>
-            <div class="sk-cube sk-cube-2"></div>
-            <div class="sk-cube sk-cube-3"></div>
-            <div class="sk-cube sk-cube-4"></div>
-            <div class="sk-cube sk-cube-5"></div>
-            <div class="sk-cube sk-cube-6"></div>
-            <div class="sk-cube sk-cube-7"></div>
-            <div class="sk-cube sk-cube-8"></div>
-            <div class="sk-cube sk-cube-9"></div>
-        </div>
-        <div>加载中，请稍候...</div>
-    </div>
-    
-    
-<div class="container">
-  <header class="border-bottom lh-1 py-3">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1">
-        <a class="link-secondary" href="#">Tank37135</a>
-      </div>
-    </div>
+  <!-- 页面头部 -->
+  <header>
+    <h3>Tank37135 Blog</h3>
   </header>
 
-<div class="nav-scroller py-1 mb-3 border-bottom">
-    <nav class="nav nav-underline justify-content-between">
-      <a class="nav-item nav-link link-body-emphasis" href="blog/">博客</a>
-      <a class="nav-item nav-link link-body-emphasis" href="essay/">文章</a>
-      <a class="nav-item nav-link link-body-emphasis" href="software/">软件</a>
-      <a class="nav-item nav-link link-body-emphasis" href="video/">视觉</a>
-      <a class="nav-item nav-link link-body-emphasis" href="Special/">专题</a>
-      <a class="nav-item nav-link link-body-emphasis" href="tool/">工具</a>
-      <a class="nav-item nav-link link-body-emphasis" href="games/">游戏</a>
-      <a class="nav-item nav-link link-body-emphasis" href="sundry/">杂的</a>
-      <a class="nav-item nav-link link-body-emphasis" href="hatreds/">记仇</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">友情链接</a>
-    </nav>
-</div>
+  <!-- 导航栏 -->
+  <nav>
+    <a href="blog">博客</a>
+    <a href="essay">文章</a>
+    <a href="tools">工具</a>
+    <a href="projects">项目</a>
+    <a href="Special">专题</a>
+    <a href="video">视觉</a>
+    <a href="games">游戏</a>
+    <a href="sundry">杂七杂八</a>
+  </nav>
 
-
-<main class="container">
-  <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-    <div class="col-lg-6 px-0">
-      <h1 class="display-4 fst-italic">简要说明</h1>
-      <p class="lead my-3">博客网站最近在不断更换排版，还有一些不方便说的原因导致网站更新缓慢，所以内容较少，但会持续更新</p>
-      <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">阅读全文...</a></p>
-    </div>
-  </div>
-
-
-  <div class="row g-5">
-    <div class="col-md-8">
-      <article class="blog-post">
-        <p>这篇博客文章展示了一些不同类型的内容，这些内容得到了样式化。</p>
-        <hr>
-        <p>网站提供一些文章，可能有用的工具，可能一些无聊的游戏，一些普通的软件，和花很多时间做好的专题等</p>
-        <h2>引用</h2>
-        <p>这是一个引用的示例：</p>
-        <blockquote class="blockquote">
-          <p>引用的文本在这里。</p>
-        </blockquote>
+  <!-- 页面主体内容 -->
+  <div class="main-container">
+    <main>     
+      <article>
         <p>这是一些额外的段落占位内容。它被写来填充可用空间，并展示较长文本片段如何影响周围内容。我们会经常重复这段文本，以保持演示的流畅，因此请留意这段完全相同的文字。</p>
 
         <h3>示例列表</h3>
@@ -125,129 +56,160 @@
         </dl>
 
         <h2>内联HTML元素</h2>
-        <p>HTML定义了一个可用内联标签的长列表，完整列表可以在<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Mozilla开发者网络</a>上找到。</p>
+        <p>HTML定义了一个可用内联标签的长列表，完整列表可以在<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Mozilla开发者网络</a>上或者<a href="https://www.runoob.com/tags/html-reference.html">菜鸟教程</a>上找到。</p>
         <ul>
-          <li><strong>加粗文本</strong>，使用<code class="language-plaintext highlighter-rouge">&lt;strong&gt;</code>。</li>
-          <li><em>斜体文本</em>，使用<code class="language-plaintext highlighter-rouge">&lt;em&gt;</code>。</li>
-          <li>缩写，如<abbr title="超文本标记语言">HTML</abbr>，应使用<code class="language-plaintext highlighter-rouge">&lt;abbr&gt;</code>，并可选择添加<code class="language-plaintext highlighter-rouge">title</code>属性以提供完整短语。</li>
-          <li>引用，如<cite>— Mark Otto</cite>，应使用<code class="language-plaintext highlighter-rouge">&lt;cite&gt;</code>。</li>
-          <li><del>删除</del>的文本应使用<code class="language-plaintext highlighter-rouge">&lt;del&gt;</code>，<ins>插入</ins>的文本应使用<code class="language-plaintext highlighter-rouge">&lt;ins&gt;</code>。</li>
-          <li>上标<sup>文本</sup>使用<code class="language-plaintext highlighter-rouge">&lt;sup&gt;</code>，下标<sub>文本</sub>使用<code class="language-plaintext highlighter-rouge">&lt;sub&gt;</code>。</li>
+          <li><strong>加粗文本</strong>，使用<code>&lt;strong&gt;</code>。</li>
+          <li><em>斜体文本</em>，使用<code>&lt;em&gt;</code>。</li>
+          <li>缩写，如<abbr title="超文本标记语言">HTML</abbr>，应使用<code>&lt;abbr&gt;</code>，并可选择添加<code>title</code>属性以提供完整短语。</li>
+          <li>引用，如<cite>— Mark Otto</cite>，应使用<code>&lt;cite&gt;</code>。</li>
+          <li><del>删除</del>的文本应使用<code>&lt;del&gt;</code>，<ins>插入</ins>的文本应使用<code>&lt;ins&gt;</code>。</li>
+          <li>上标<sup>文本</sup>使用<code>&lt;sup&gt;</code>，下标<sub>文本</sub>使用<code>&lt;sub&gt;</code>。</li>
         </ul>
         <p>这些元素大多数由浏览器以少量修改的样式显示。</p>
-        <h2>标题</h2>
-        <p>这是一些额外的段落占位内容。它的编写是为了填充可用空间，并展示更长文本片段如何影响周围内容。我们会经常重复这段文字，以保持演示的连贯性，所以请留意这段完全相同的文本。</p>
-        <h3>副标题</h3>
-        <p>这是一些额外的段落占位内容。它的编写是为了填充可用空间，并展示更长文本片段如何影响周围内容。我们会经常重复这段文字，以保持演示的连贯性，所以请留意这段完全相同的文本。</p>
-        <pre><code>示例代码块</code></pre>
-        <p>这是一些额外的段落占位内容。它是其他高度重复的正文文本的略短版本。</p>
-
-
-        <article class="blog-post">
-            <h2 class="display-5 link-body-emphasis mb-1">另一篇博客文章</h2>
-
-            <p>这是一些额外的段落占位内容。它被写入以填充可用空间，并展示较长文本片段如何影响周围内容。我们会经常重复这段文本，以保持演示的流畅，所以请注意这段相同的文本。</p>
-            <blockquote>
-                <p>更长的引用在这里，可能中间有一些 <strong>强调文本</strong>。</p>
-            </blockquote>
-            <p>这是一些额外的段落占位内容。它被写入以填充可用空间，并展示较长文本片段如何影响周围内容。我们会经常重复这段文本，以保持演示的流畅，所以请注意这段相同的文本。</p>
-            <h3>示例表格</h3>
-            <p>别忘了这些文章中的表格：</p>
-        </article>
-
-        <table class="table">
+      </article>
+      
+      <article>
+        <h3>示例表格</h3>
+        <p>别忘了这些文章中的表格：</p>  
+        <table class=>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Upvotes</th>
-              <th>Downvotes</th>
+              <th>姓名</th>
+              <th>上传</th>
+              <th>下载</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Alice</td>
-              <td>10</td>
+              <td>name</td>
+              <td>105</td>
               <td>11</td>
             </tr>
             <tr>
-              <td>Bob</td>
-              <td>4</td>
-              <td>3</td>
+              <td>name</td>
+              <td>46</td>
+              <td>13</td>
             </tr>
             <tr>
-              <td>Charlie</td>
+              <td>name</td>
               <td>7</td>
               <td>9</td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <td>Totals</td>
-              <td>21</td>
+              <td>name</td>
+              <td>291</td>
               <td>23</td>
             </tr>
           </tfoot>
-        </table>
-
-        <p>这是一些额外的段落占位内容。它是其他高度重复的主体文本的略短版本。</p>
+        </table>    
       </article>
-
-      <article class="blog-post">
-        <h2 class="display-5 link-body-emphasis mb-1">新功能</h2>
-
-        <p>这是一些额外的段落占位内容。它被写入以填充可用空间，并展示较长文本片段如何影响周围内容。我们会经常重复这段文本，以保持演示的流畅，所以请注意这段相同的文本。</p>
+      
+      <article>
+        <p>这里，我们粗略地讲解一个表格一个表格的属性：</p>
         <ul>
-            <li>第一个列表项</li>
-            <li>第二个列表项，带有更长的描述</li>
-            <li>第三个列表项，作为结束</li>
+          <li><strong>&lt;table&gt; 元素的属性</strong>
+            <ul>
+              <li><strong>border</strong>：设置表格的边框宽度（已过时，建议使用 CSS）。
+                <p>例如：<code>&lt;table border="1"&gt;</code> 用于创建一个带有 1 像素宽边框的表格。</p>
+              </li>
+              <li><strong>cellspacing</strong>：设置单元格之间的间距（已过时，建议使用 CSS `border-spacing`）。
+                <p>例如：<code>&lt;table cellspacing="5"&gt;</code> 用于设置单元格之间有 5 像素的间距。</p>
+              </li>
+              <li><strong>cellpadding</strong>：设置单元格内容与边框之间的内边距（已过时，建议使用 CSS `padding`）。
+                <p>例如：<code>&lt;table cellpadding="10"&gt;</code> 用于设置单元格内内容与边框之间的间距为 10 像素。</p>
+               </li>
+              <li><strong>width</strong>：设置表格的宽度，可以使用具体的像素值或百分比。
+                <p>例如：<code>&lt;table width="100%"&gt;</code> 用于设置表格宽度占据父容器的 100%。</p>
+              </li>
+              <li><strong>height</strong>：设置表格的高度。
+                <p>例如：<code>&lt;table height="400px"&gt;</code> 用于设置表格高度为 400 像素。</p>
+              </li>
+              <li><strong>align</strong>：设置表格在页面中的水平对齐方式（已过时，建议使用 CSS `text-align`）。
+                <p>例如：<code>&lt;table align="center"&gt;</code> 用于将表格居中显示。</p>
+               </li>
+              <li><strong>summary</strong>：为表格提供简短的说明，主要用于无障碍设计。
+                <p>例如：<code>&lt;table summary="This table shows sales data for Q1"&gt;</code> 用于为表格提供简要描述，方便屏幕阅读器用户。</p>
+              </li>
+            </ul>
+          </li>
+  
+          <li><strong>&lt;tr&gt; 元素的属性</strong>
+            <ul>
+              <li><strong>align</strong>：设置表格行内容的水平对齐方式（已过时，建议使用 CSS）。
+                <p>例如：<code>&lt;tr align="center"&gt;</code> 用于设置行中的内容居中对齐。</p>
+              </li>
+              <li><strong>valign</strong>：设置表格行内容的垂直对齐方式（已过时，建议使用 CSS）。
+                <p>例如：<code>&lt;tr valign="top"&gt;</code> 用于将行中的内容垂直对齐到顶部。</p>
+              </li>
+            </ul>
+          </li>
+  
+          <li><strong>&lt;td&gt; 元素的属性</strong>
+            <ul>
+              <li><strong>colspan</strong>：设置单元格跨越的列数。
+                <p>例如：<code>&lt;td colspan="2"&gt;合并两列&lt;/td&gt;</code> 用于合并两列。</p>
+              </li>
+              <li><strong>rowspan</strong>：设置单元格跨越的行数。
+                <p>例如：<code>&lt;td rowspan="2"&gt;合并两行&lt;/td&gt;</code> 用于合并两行。</p>
+              </li>
+              <li><strong>align</strong>：设置单元格内容的水平对齐方式。
+                <p>例如：<code>&lt;td align="right"&gt;</code> 用于将单元格内容右对齐。</p>
+              </li>
+              <li><strong>valign</strong>：设置单元格内容的垂直对齐方式。
+                <p>例如：<code>&lt;td valign="middle"&gt;</code> 用于将单元格内容垂直居中。</p>
+              </li>
+              <li><strong>width</strong>：设置单元格的宽度。
+                <p>例如：<code>&lt;td width="100px"&gt;</code> 用于设置单元格的宽度为 100 像素。</p>
+              </li>
+              <li><strong>height</strong>：设置单元格的高度。
+                <p>例如：<code>&lt;td height="50px"&gt;</code> 用于设置单元格的高度为 50 像素。</p>
+              </li>
+            </ul>
+          </li>
+  
+          <li><strong>&lt;th&gt; 元素的属性</strong>
+            <ul>
+              <li><strong>colspan</strong>：设置标题单元格跨越的列数。
+                <p>例如：<code>&lt;th colspan="2"&gt;标题&lt;/th&gt;</code> 用于合并两列的标题单元格。</p>
+              </li>
+              <li><strong>rowspan</strong>：设置标题单元格跨越的行数。
+                <p>例如：<code>&lt;th rowspan="2"&gt;标题&lt;/th&gt;</code> 用于合并两行的标题单元格。</p>
+              </li>
+              <li><strong>align</strong>：设置标题单元格内容的水平对齐方式。
+                <p>例如：<code>&lt;th align="center"&gt;标题&lt;/th&gt;</code> 用于将标题单元格的内容居中对齐。</p>
+              </li>
+              <li><strong>valign</strong>：设置标题单元格内容的垂直对齐方式。
+                <p>例如：<code>&lt;th valign="bottom"&gt;标题&lt;/th&gt;</code> 用于将标题单元格的内容垂直对齐到底部。</p>
+              </li>
+            </ul>
+          </li>
         </ul>
-        <p>这是一些额外的段落占位内容。它是其他高度重复的主体文本的略短版本。</p>
+      </article>
+      
+    </main>
+
+    <aside>
+      <article>
+      <h4 class="fst-italic">在其他地方</h4>
+      <ol class="list-unstyled">
+        <li><a href="https://github.com/tank37135">GitHub</a></li>
+      </ol>
+      <ol class="list-unstyled">
+        <li><a href="https://www.bilibili.com">bilibili</a></li>
+      </ol>
       </article>
 
-<div class="col-md-4">
-  <div class="position-sticky" style="top: 2rem;">
-    <div class="p-4 mb-3 bg-body-tertiary rounded">
-      <h4 class="fst-italic">关于</h4>
-      <p class="mb-0">这里将声明…</p>
-            <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">阅读全文...</a></p>
-    </div>
-
-    <div>
-      <h4 class="fst-italic">最新文章</h4>
-      <ul class="list-unstyled">
-        <li>
-          <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-            <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            <div class="col-lg-8">
-              <h6 class="mb-0">临时博客文章标题</h6>
-              <small class="text-body-secondary">一个时间戳</small>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-            <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            <div class="col-lg-8">
-              <h6 class="mb-0">这是另一个博客文章标题</h6>
-              <small class="text-body-secondary">另一个时间戳</small>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-            <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            <div class="col-lg-8">
-              <h6 class="mb-0">更长的博客文章标题：这篇有多行内容！</h6>
-              <small class="text-body-secondary">时间戳</small>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="p-4">
-      <h4 class="fst-italic">Timer</h4>
-      <h5 class="fst-italic">珍惜当下</h5>
+    <article>
+        <h4>联系</h4>
+      <ol class="list-unstyled">
+        <li><a href="mailto:Tank37135@outlook.com?subject=你好，Tank37135&body=我是你的访客，我想说：">电子邮箱</a></li>
+      </ol>
+      </article>
+      
+      <article>
+        <h3>Timer</h3>
       <ol class="list-unstyled mb-0">
           <li><h2>这一分钟已经过去</h2></li>
         <div class="progress-container">
@@ -268,48 +230,14 @@
         <div class="progress-container">
           <li> <div class="progress-bar" id="yearProgressBar">0%</div></li>
         </div>
-
-      </ol>
-    </div>
-
-    <div class="p-4">
-      <h4 class="fst-italic">在其他地方</h4>
-      <ol class="list-unstyled">
-        <li><a href="https://github.com/tank37135">GitHub</a></li>
-      </ol>
-      <h4 class="fst-italic">联系</h4>
-      <ol class="list-unstyled">
-        <li><a href="mailto:Tank37135@outlook.com?subject=我想给你些建议&body=我是你博客网站的访客，对于网站我想给你以下建议">电子邮箱</a>
-      </ol>
-    </div>
+      </article>
   </div>
-</div>
+</aside>
+  <!-- 页脚 -->
+  <footer>
+    <p>For Tank37135 Blog</p>
+  </footer>
 
-</main>
-
-<footer class="py-5 text-center text-body-secondary bg-body-tertiary">
-  <p class="mb-0">
-    <a href="#">返回顶部</a>
-  </p>
-</footer>
-<script>
-// 页面加载时显示加载动画
-document.body.classList.add('loading'); // 添加加载类
-const loader = document.getElementById('loader');
-loader.classList.add('show'); // 添加类以显示动画
-
-// 当页面加载完成时隐藏加载动画
-window.addEventListener('load', function() {
-    loader.classList.remove('show'); // 移除显示类
-    setTimeout(() => {
-        loader.style.display = 'none'; // 隐藏加载动画
-    }, 500); // 等待过渡效果完成后再设置为 none
-    document.body.classList.remove('loading'); // 移除加载类
-    document.body.style.overflow = 'auto'; // 允许滚动
-});
-
-    </script>
-     <script src=script.js> </script>
-
-    </body>
+   <script id="rendered-js" src=script.js> </script>
+</body>
 </html>
