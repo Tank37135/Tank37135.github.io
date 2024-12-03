@@ -1,0 +1,88 @@
+footer {
+	color:rgba(255,255,255,0.75);
+	background-color:rgba(255,255,255,0.25);
+	text-align:center;
+	padding:10px 0;
+	margin-top:auto
+}
+header {
+	background-color:rgba(255,255,255,0.25);
+	backdrop-filter:blur(6px);
+	border:1px solid rgba(255,255,255,0.18);
+	box-shadow:0px 6px 15px rgba(142,142,142,0.19);
+	border-radius:12px;
+	color:rgba(255,255,255,0.75);
+	margin:10px;
+	padding:1px 7px
+}
+html {
+	scroll-behavior:smooth
+}
+
+a{
+text-decoration:none;
+}
+.article-title{
+font-size:18px;
+font-weight:bold
+}
+.article-date{
+font-size:14px;
+color:#666
+}
+.article-description{
+margin-top:5px;
+font-size:16px
+}
+
+
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+justify-content: space-between;
+  padding: 10px;
+}
+
+.article-box {
+  width: 300px; /* 或者根据需要调整宽度 */
+  height: 150px;
+  padding: 1px 7px;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0px 6px 15px rgba(142, 142, 142, 0.19);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  position: relative;
+  display: flex;
+
+  margin-bottom: 10px; /* 添加底部间距 */
+}
+
+.article-box img {
+  width: 150px; /* 图片宽度 */
+  height: 150px; /* 图片高度 */
+  border-radius: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.article-box img.loaded {
+  background-color: transparent;
+  color: transparent;
+}
+
+.article-box .content {
+  flex: 1; /* 文字内容占据剩余空间 */
+  padding: 10px;
+  position: relative; /* 相对于父元素定位 */
+  z-index: 1; /* 确保文字内容在图片之上 */
+}
