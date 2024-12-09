@@ -5,112 +5,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tank37135 Blog</title>
+    <style>
+        /* 全局样式 */
+        body {
+            background-color: #000; /* 背景颜色为黑色 */
+            width: 100%;
+            height: 100vh; /* 视口高度为视口高度的100% */
+            overflow: hidden; /* 隐藏超出内容区域的部分 */
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative; /* 相对定位 */
+            text-align: center; /* 文本居中 */
+            display: flex; /* 使用flex布局 */
+            align-items: center; /* 垂直居中 */
+            justify-content: center; /* 水平居中 */
+            overflow: hidden; /* 隐藏超出内容区域的部分 */
+        }
+
+        .inner {
+            --w: 100px; /* 定义卡片宽度 */
+            --h: 150px; /* 定义卡片高度 */
+            --translateZ: calc((var(--w) + var(--h)) + 0px); /* 定义卡片在Z轴上的位置 */
+            --rotateX: -15deg; /* 定义X轴旋转角度 */
+            --perspective: 1000px; /* 定义透视距离 */
+            position: absolute; /* 绝对定位 */
+            width: var(--w); /* 使用CSS变量 */
+            height: var(--h);
+            top: 25%; /* 顶部距离视口高度的25% */
+            left: calc(50% - (var(--w) / 2) - 2.5px); /* 左侧距离视口中心的计算值 */
+            z-index: 2; /* 层叠上下文，卡片在下方 */
+            transform-style: preserve-3d; /* 3D变换 */
+            transform: perspective(var(--perspective)); /* 设置透视效果 */
+            animation: rotating 20s linear infinite; /* 无限循环旋转动画 */
+        }
+
+        @keyframes rotating {
+            from {
+                transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0); /* 初始状态 */
+            }
+            to {
+                transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(1turn); /* 结束状态 */
+            }
+        }
+
+        .card {
+            position: absolute; /* 绝对定位 */
+            border: 2px solid rgba(var(--color-card)); /* 边框颜色为CSS变量，半透明 */
+            border-radius: 12px; /* 边框圆角 */
+            overflow: hidden; /* 隐藏超出内容区域的部分 */
+            inset: 0; /* 内边距为0 */
+            transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ)); /* 旋转Y轴并沿Z轴平移 */
+            transition: transform 0.3s ease, scale 0.3s ease; /* 变换过渡效果 */
+        }
+
+        .card:hover {
+            transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ)) scale(1.1); /* 鼠标悬停时放大卡片 */
+        }
+
+        .img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 覆盖整个容器 */
+            background: #0000 radial-gradient(circle,
+                rgba(var(--color-card), 0.2) 0%,
+                rgba(var(--color-card), 0.6) 80%,
+                rgba(var(--color-card), 0.9) 100%); /* 背景为径向渐变 */
+        }
+    </style>
 </head>
-
-<style>
-body {
-    background-color: #000;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.inner {
-    --w: 100px;
-    --h: 150px;
-    --translateZ: calc((var(--w) + var(--h)) + 0px);
-    --rotateX: -15deg;
-    --perspective: 1000px;
-    position: absolute;
-    width: var(--w);
-    height: var(--h);
-    top: 25%;
-    left: calc(50% - (var(--w) / 2) - 2.5px);
-    z-index: 2;
-    transform-style: preserve-3d;
-    transform: perspective(var(--perspective));
-    animation: rotating 20s linear infinite;
-}
-
-@keyframes rotating {
-    from {
-        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0);
-    }
-
-    to {
-        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(1turn);
-    }
-}
-
-.card {
-    position: absolute;
-    border: 2px solid rgba(var(--color-card));
-    border-radius: 12px;
-    overflow: hidden;
-    inset: 0;
-    transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ));
-    transition: transform 0.3s ease, scale 0.3s ease;
-}
-
-.card:hover {
-    transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ)) scale(1.1); /* 放大效果 */
-}
-
-.img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background: #0000 radial-gradient(circle,
-        rgba(var(--color-card), 0.2) 0%,
-        rgba(var(--color-card), 0.6) 80%,
-        rgba(var(--color-card), 0.9) 100%);
-}
-
-</style>
 
 <body>
     <div class="wrapper">
         <div class="inner" style="--quantity: 10;">
+            <!-- 卡片内容 -->
             <div class="card" style="--index: 0;--color-card: 142, 249, 252;">
-                <div class="img"></div>
+                <div class="img">card0</div>
             </div>
-            <div class="card" style="--index: 1;--color-card: 142, 252, 204;">
-                <div class="img"></div>
+            <div class="card" style="--index: 1;--color-card: 142, 249, 252;">
+                <div class="img">card1</div>
             </div>
-            <div class="card" style="--index: 2;--color-card: 142, 252, 157;">
-                <div class="img"></div>
+            <div class="card" style="--index: 2;--color-card: 142, 249, 252;">
+                <div class="img">card2</div>
             </div>
-            <div class="card" style="--index: 3;--color-card: 215, 252, 142;">
-                <div class="img"></div>
+            <div class="card" style="--index: 3;--color-card: 142, 249, 252;">
+                <div class="img">card3</div>
             </div>
-            <div class="card" style="--index: 4;--color-card: 252, 252, 142;">
-                <div class="img"></div>
+            <div class="card" style="--index: 4;--color-card: 142, 249, 252;">
+                <div class="img">card4</div>
             </div>
-            <div class="card" style="--index: 5;--color-card: 252, 208, 142;">
-                <div class="img"></div>
+            <div class="card" style="--index: 5;--color-card: 142, 249, 252;">
+                <div class="img">card5</div>
             </div>
-            <div class="card" style="--index: 6;--color-card: 252, 142, 142;">
-                <div class="img"></div>
+            <div class="card" style="--index: 6;--color-card: 142, 249, 252;">
+                <div class="img">card6</div>
             </div>
-            <div class="card" style="--index: 7;--color-card: 252, 142, 239;">
-                <div class="img"></div>
+            <div class="card" style="--index: 7;--color-card: 142, 249, 252;">
+                <div class="img">card7</div>
             </div>
-            <div class="card" style="--index: 8;--color-card: 204, 142, 252;">
-                <div class="img"></div>
+            <div class="card" style="--index: 8;--color-card: 142, 249, 252;">
+                <div class="img">card8</div>
             </div>
-            <div class="card" style="--index: 9;--color-card: 142, 202, 252;">
-                <div class="img"></div>
+            <div class="card" style="--index: 9;--color-card: 142, 249, 252;">
+                <div class="img">card9</div>
             </div>
         </div>
     </div>
