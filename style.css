@@ -151,6 +151,11 @@ article {
 	box-shadow: 0 0 10px rgba(0,0,0,.1)
 }
 
+
+.article-1 {
+	max-height: 1000px;
+}
+
 article,nav {
 	background-color: hsla(0,0%,100%,.25);
 	backdrop-filter: blur(6px);
