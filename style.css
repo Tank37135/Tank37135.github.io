@@ -153,7 +153,8 @@ article {
 
 
 .article-1 {
-	max-height: 1000px;
+	max-height: 500px;
+	overflow: auto;
 }
 
 article,nav {
