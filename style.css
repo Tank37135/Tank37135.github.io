@@ -1,6 +1,13 @@
-﻿a {
-	text-decoration: none
-}
+﻿    a {
+      color: #4d4ae8;
+      text-decoration: none;
+      transition: color 0.3s, text-decoration 0.3s;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #3a3ae8;
+    }
 
 canvas {
 	position: fixed;
@@ -155,6 +162,8 @@ article {
 .article-1 {
 	max-height: 500px;
 	overflow: auto;
+	overflow-y: auto;
+
 }
 
 article,nav {
