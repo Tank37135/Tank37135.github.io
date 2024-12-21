@@ -106,3 +106,13 @@ function updateProgressBars() {
 }
 setInterval(updateProgressBars, 1000);
 updateProgressBars();
+
+
+
+  // 当文档加载完成后执行此函数
+  document.addEventListener('DOMContentLoaded', function() {
+    // 获取具有特定类的<h3>元素
+    var h3Element = document.querySelector('.specific-class');
+    // 修改<h3>元素的文本内容
+    h3Element.textContent = '已就绪！';
+  });
