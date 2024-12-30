@@ -1,12 +1,12 @@
 ﻿    a {
-      color: #4d4ae8;
+      color: #a5caff;
       text-decoration: none;
       transition: color 0.3s, text-decoration 0.3s;
     }
 
     a:hover {
       text-decoration: underline;
-      color: #3a3ae8;
+      color: #a5caff;
     }
 
 canvas {
