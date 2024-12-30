@@ -17,7 +17,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .container {
@@ -27,8 +27,11 @@
             width: 100%;
             max-width: 1000px;
             padding: 0 10px;
+        }
+        * {
             box-sizing: border-box;
         }
+
 
         .inputGroup {
             margin: 1em 0;
@@ -100,26 +103,32 @@
 </head>
 <body>
     <div class="container">
-
+        <h1 class="color1">745算数练习-&copyTank37135</h1>
+        <p class="color1">使用介绍:</p>
+        <p class="color1">1.点击开始按钮开始<br>输入框下方的预备会变成算式，同时开始计时</p>
+        <p class="color1">2.将计算结果提交至输入框<br>可以使用回车快速跳转到下一输入框</p>
+        <p class="color1">3.点击提交<br>结果是否正确将交付前端计算<br>假如结果有误，对应输入框将会被清空。<br>如果全部正确，将停止计时，结束</p>
+        <p class="color1">不建议使用多次刷新来挑选题目，<br>除非你觉得本次题目很简单</p>
+        <hr>
         <button class="button" id="startBtn">开始</button>
         <div class="inputGroup">
-            <input type="text" id="formula1" required autocomplete="off" placeholder="算式1">
+            <input type="tel" id="formula1" required autocomplete="off" placeholder="算式1">
             <label for="formula1">预备</label>
         </div>
         <div class="inputGroup">
-            <input type="text" id="formula2" required autocomplete="off" placeholder="算式2">
+            <input type="tel" id="formula2" required autocomplete="off" placeholder="算式2">
             <label for="formula2">预备</label>
         </div>
         <div class="inputGroup">
-            <input type="text" id="formula3" required autocomplete="off" placeholder="算式3">
+            <input type="tel" id="formula3" required autocomplete="off" placeholder="算式3">
             <label for="formula3">预备</label>
         </div>
         <div class="inputGroup">
-            <input type="text" id="formula4" required autocomplete="off" placeholder="算式4">
+            <input type="tel" id="formula4" required autocomplete="off" placeholder="算式4">
             <label for="formula4">预备</label>
         </div>
         <div class="inputGroup">
-            <input type="text" id="formula5" required autocomplete="off" placeholder="算式5">
+            <input type="tel" id="formula5" required autocomplete="off" placeholder="算式5">
             <label for="formula5">预备</label>
         </div>
         <button class="button hidden" id="submitBtn">提交</button>
