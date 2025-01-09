@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>404</title>
+  <style>
+  body,
+    html {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      background: #000;
+      overflow: scroll; /* Enable scrolling */
+      background-attachment: fixed; /* Fix the background so it doesn't move */
+      position: relative;
+      z-index: 1;
+      
+      
+      
+      overflow-x: hidden; /* 禁用横向滚动 */
+  width: 100%; /* 保证页面宽度不超过视口宽度 */
+
+  box-sizing: border-box; 
+    }
+
+    canvas {
+      position: fixed; /* Keep canvas fixed in the background */
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1; /* Make sure canvas stays behind content */
+    }
+
+.aim {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+  z-index: 50;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.aim .c {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  background: #000;
+  margin: -5px 0 0 -5px;
+  transform: rotate(45deg);
+  border: 1px solid #77f;
+}
+.aim .h {
+  position: absolute;
+  top: 1px;
+  left: -50%;
+  width: 200%;
+  height: 1px;
+  background: #77f;
+  opacity: 0.5;
+}
+.aim .v {
+  position: absolute;
+  top: -50%;
+  left: 1px;
+  width: 1px;
+  height: 200%;
+  background: #77f;
+  opacity: 0.5;
+}
+  
+  
+  
+    body {
+      padding: 2rem;
+      margin: 0;
+
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* 垂直居中 */
+      height: 100vh;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(6px);
+      box-shadow: 0px 6px 15px rgba(142, 142, 142, 0.19);
+      position: relative;
+      margin-top: 2rem;
+      animation: fadeIn 0.5s ease-in;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .card-title {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 3rem; /* 增大标题字体 */
+      font-weight: bold;
+    }
+
+    h3 {
+      margin: 0;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    p, a {
+      font-size: 1rem;
+    }
+
+    a {
+      color: #4d4ae8;
+      text-decoration: none;
+      transition: color 0.3s, text-decoration 0.3s;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #3a3ae8;
+    }
+
+    .countdown {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body translate="no">
+  <canvas id="sparks"></canvas>
+  <div class="card">
+    <h1 class="card-title" role="heading" aria-level="1">404</h1>
+    <h3 role="heading" aria-level="2">Not Found</h3>
+    <p>哎呀，博客开发时太饿了，把页面吃掉了</p>
+    <a href="https://Tank37135.github.io" target="_self">返回首页</a>
+    <div class="countdown" id="countdown"></div>
+  </div>
+
+<script id="rendered-js" >
+    window.onload = function() {
+      let countdownElement = document.getElementById('countdown');
+      let countdown = 5; // 从5秒开始倒计时
+      
+      countdownElement.textContent = `${countdown}秒后自动返回上一页面`;
+
+      const timer = setInterval(() => {
+        countdown--;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          window.history.back(); // 返回上一页面
+        }
+        countdownElement.textContent = `${countdown}秒后自动返回上一页面`;
+      }, 1000);
+    };
+    
+    
+    
+    
+    
+    
+
+let OPT = {
+  selector: "#sparks",
+  amount: 5000,
+  speed: 0.05, // pixels per frame
+  lifetime: 200,
+  direction: { x: -0.5, y: 1 },
+  size: [2, 2],
+  maxopacity: 1,
+  color: "150, 150, 150",
+  randColor: true,
+  acceleration: [5, 40] };
+
+
+if (window.innerWidth < 520) {
+  OPT.speed = 0.05;
+  OPT.color = "150, 150, 150";
+}
+
+(function spark() {
+  const canvas = document.querySelector(OPT.selector);
+  const ctx = canvas.getContext("2d");
+
+  let sparks = [];
+
+  window.addEventListener('resize', () => {
+    setCanvasWidth();
+  });
+
+  function setCanvasWidth() {
+    ctx.canvas.width = window.innerWidth;
+    ctx.canvas.height = window.innerHeight;
+  }
+
+  function rand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  // Init animation
+  function init() {
+    setCanvasWidth();
+
+    window.setInterval(() => {
+      if (sparks.length < OPT.amount) {
+        addSpark();
+      }
+    }, 1000 / OPT.amount);
+
+    window.requestAnimationFrame(draw);
+  }
+
+  function draw() {
+    ctx.fillStyle = 'rgba(0,0,0, 0.1)';
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    sparks.forEach((spark, i, array) => {
+
+      if (spark.opacity <= 0) {
+        array.splice(i, 1);
+      } else {
+        drawSpark(spark);
+      }
+
+    });
+
+    window.requestAnimationFrame(draw);
+  }
+
+  function Spark(x, y) {
+    this.x = x;
+    this.y = y;
+    this.age = 0;
+    this.acceleration = rand(OPT.acceleration[0], OPT.acceleration[1]);
+
+    this.color = OPT.randColor ?
+    rand(0, 255) + "," + rand(0, 255) + "," + rand(0, 255) :
+    OPT.color;
+
+    this.opacity = OPT.maxopacity - this.age / (OPT.lifetime * rand(1, 10));
+
+    this.go = function () {
+      this.x += OPT.speed * OPT.direction.x * this.acceleration / 2;
+      this.y += OPT.speed * OPT.direction.y * this.acceleration / 2;
+
+      this.opacity = OPT.maxopacity - ++this.age / OPT.lifetime;
+    };
+  }
+
+  function addSpark() {
+    let x = rand(-200, window.innerWidth + 200);
+    let y = rand(-200, window.innerHeight + 200);
+    sparks.push(new Spark(x, y));
+  }
+
+  function drawSpark(spark) {
+    let x = spark.x,y = spark.y;
+
+    spark.go();
+
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(${spark.color}, ${spark.opacity})`;
+    ctx.rect(x, y, OPT.size[0], OPT.size[1], 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  init();
+})();
+
+  </script>
+</body>
+</html>

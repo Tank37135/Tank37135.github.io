@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Tank37135 Blog</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  </head>
+  <body translate="no">
+    <canvas id="sparks"></canvas>
+    <main>
+    <article>
+        <h1>hi</h1>
+        <h3>访客，你好，我是Tank37135</h3>
+        <p>不必好奇我的名字(尤其是数字的含义)，不然会使我不知所措</p>
+        <p>对此，我只能解释为" 'Tank' 是我在初一时我朋友给我起的，中文翻译为 '坦克' 。<br>正确的读法是 '坦克儿' 或者 '坦克~'(其实就是 '坦克' 加点北京 '儿' 化音)。<br>假如你在现实中认识我，你也可以直接使用 '坦克~' 称呼我，但读音一定要对，不然听起来很难受😣</p>
+        <p>然后就是 '37135' 这串数字，其实这串数字没有任何意义，因为 'tank' 的称号已经有了，数字是随机生成后挑出的读起来最顺口的，'37135' 也可以算我的唯一标识符了"</p>
+        <p>以下是我的更多的一些介绍：</p>
+        <ul>
+            <li>
+                <p>我是一名<a class="a1"href="https://www.minecraft.net/"target="_blank">minecraft</a>钉子户玩家，从认识他到现在已经有7年了，但我仍然喜欢他，他是我第一个梦开始的地方</p>
+            </li>
+            <li>
+                <p>是一个技术不是很好的程序员，什么都学，其中最喜欢的是制作软件，但目前技术最好的是Web前端(因为简单)</p>
+            </li>
+    </article>
+    <article>
+        <h1>兴趣表单</h1>
+        <p>兴趣多而不杂，几乎都与计算机相关</p>
+        <p><h6>网络安全</h6><h1>C++</h1><h3>python</h3><h2>java</h2><h3>html,css.js</h3><h4>blender</h4><h1>UE5</h1><h5>https</h5><h5>SQL</h5><h6>vb</h6></p><br><hr>
+        <p>其中，blender和UE5(虚幻5)对美术要求比较高，但我…连像素都画得不怎么样
+    </article>
+    <article>
+        <h1>成就</h1>
+        <p>因为受设备和外部人文的双重抑制，所以暂时没有什么成就</p>
+    </article>
+    <article>
+        <h1>经历</h1>
+        <p>好像也没有什么经历</p>
+    </article>
+    <article>
+        <h1>历程</h1>
+        <ul>
+            <li>初学计算机：位于小学，临沂市大岭小学。（是梦第一开始的地方(没错，这时候认识Minecraft)，初学为3Done(建模)技术一般(应该是_1班)</li>
+            <li>再学编程：位于初中，临沂市第五中学。（我最喜欢的学习，因为这是梦第二开始的地方，而且交了很多朋友，遇到了很好的老师），2020年疫情使我阴差阳错遇到了VB，让我第一次见到了软件开发。从此喜欢编程<br>在不久后我以为VB的某下需要，认识了Html，从此开始学习网络</li>
+            <li>深化学习：位于初中，临沂市第五中学。认识GitHub，所以认识了AI所以认识python(虽然是教材的一部分)</li>
+            <li>高度编程：位于初中，双林中学(转学了。离开了我最爱的学校)了解到VB和Web前端的不足，开始使用C++(巨难)开发后端和软件</li>
+            <li>梦会小学：位于初中，双林中学。随着对GitHub的深入认识，认识游戏开发，比如UE，blender等</li>
+            <li>目前仍然在学习(自学)<li>
+    </article>
+    <article>
+        <h1>霉好的回忆</h1>
+        <h1>您无权访问该界面</h1><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <p>开玩笑的</p>
+        <a class="a1"href="hatreds/"target="_blank">霉好回忆</a>
+    </article>
+</main>
+    <script id="rendered-js">
+      let OPT = {
+        selector: "#sparks",
+        amount: 5000,
+        speed: 0.05, // pixels per frame
+        lifetime: 200,
+        direction: { x: -0.5, y: 1 },
+        size: [2, 2],
+        maxopacity: 1,
+        color: "150, 150, 150",
+        randColor: true,
+        acceleration: [5, 40],
+      };
+
+      if (window.innerWidth < 520) {
+        OPT.speed = 0.05;
+        OPT.color = "150, 150, 150";
+      }
+
+      (function spark() {
+        const canvas = document.querySelector(OPT.selector);
+        const ctx = canvas.getContext("2d");
+
+        let sparks = [];
+
+        window.addEventListener("resize", () => {
+          setCanvasWidth();
+        });
+
+        function setCanvasWidth() {
+          ctx.canvas.width = window.innerWidth;
+          ctx.canvas.height = window.innerHeight;
+        }
+
+        function rand(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Init animation
+        function init() {
+          setCanvasWidth();
+
+          window.setInterval(() => {
+            if (sparks.length < OPT.amount) {
+              addSpark();
+            }
+          }, 1000 / OPT.amount);
+
+          window.requestAnimationFrame(draw);
+        }
+
+        function draw() {
+          ctx.fillStyle = "rgba(0,0,0, 0.1)";
+          ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+          sparks.forEach((spark, i, array) => {
+            if (spark.opacity <= 0) {
+              array.splice(i, 1);
+            } else {
+              drawSpark(spark);
+            }
+          });
+
+          window.requestAnimationFrame(draw);
+        }
+
+        function Spark(x, y) {
+          this.x = x;
+          this.y = y;
+          this.age = 0;
+          this.acceleration = rand(OPT.acceleration[0], OPT.acceleration[1]);
+
+          this.color = OPT.randColor
+            ? rand(0, 255) + "," + rand(0, 255) + "," + rand(0, 255)
+            : OPT.color;
+
+          this.opacity =
+            OPT.maxopacity - this.age / (OPT.lifetime * rand(1, 10));
+
+          this.go = function () {
+            this.x += (OPT.speed * OPT.direction.x * this.acceleration) / 2;
+            this.y += (OPT.speed * OPT.direction.y * this.acceleration) / 2;
+
+            this.opacity = OPT.maxopacity - ++this.age / OPT.lifetime;
+          };
+        }
+
+        function addSpark() {
+          let x = rand(-200, window.innerWidth + 200);
+          let y = rand(-200, window.innerHeight + 200);
+          sparks.push(new Spark(x, y));
+        }
+
+        function drawSpark(spark) {
+          let x = spark.x,
+            y = spark.y;
+
+          spark.go();
+
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(${spark.color}, ${spark.opacity})`;
+          ctx.rect(x, y, OPT.size[0], OPT.size[1], 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        init();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>745算数练习-Tank37135</title>
+    <style>
+        .color1 {
+        color: #a5caff;
+        }
+        body {
+            background-color: #212121;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 10px;
+        }
+        * {
+            box-sizing: border-box;
+        }
+
+
+        .inputGroup {
+            margin: 1em 0;
+            width: 100%;
+            position: relative;
+        }
+
+        .inputGroup input {
+            font-size: 16px;
+            padding: 0.8em 1em;
+            outline: none;
+            border: 2px solid #a5caff;
+            background-color: transparent;
+            border-radius: 20px;
+            width: 100%;
+            color: #a5caff;
+            box-sizing: border-box;
+        }
+
+        .inputGroup label {
+            font-size: 16px;
+            position: absolute;
+            left: 10px;
+            bottom: -25px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            color: #a5caff;
+            background-color: #212121;
+            padding: 0 5px;
+            pointer-events: none;
+        }
+
+        .inputGroup input:focus ~ label,
+        .inputGroup input:not(:placeholder-shown) ~ label {
+            transform: translateY(-300%);
+            color: #a5caff;
+        }
+
+        input::placeholder {
+            color: transparent;
+        }
+
+        .button {
+            background-color: #a5caff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #7d9fb8;
+        }
+
+        .timer {
+            font-size: 24px;
+            color: #a5caff;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="color1">745算数练习-&copyTank37135</h1>
+        <p class="color1">使用介绍:</p>
+        <p class="color1">1.点击开始按钮开始<br>输入框下方的预备会变成算式，同时开始计时</p>
+        <p class="color1">2.将计算结果提交至输入框<br>可以使用回车快速跳转到下一输入框</p>
+        <p class="color1">3.点击提交<br>结果是否正确将交付前端计算<br>假如结果有误，对应输入框将会被清空。<br>如果全部正确，将停止计时，结束</p>
+        <p class="color1">不建议使用多次刷新来挑选题目，<br>除非你觉得本次题目很简单</p>
+        <hr>
+        <button class="button" id="startBtn">开始</button>
+        <div class="inputGroup">
+            <input type="tel" id="formula1" required autocomplete="off" placeholder="算式1">
+            <label for="formula1">预备</label>
+        </div>
+        <div class="inputGroup">
+            <input type="tel" id="formula2" required autocomplete="off" placeholder="算式2">
+            <label for="formula2">预备</label>
+        </div>
+        <div class="inputGroup">
+            <input type="tel" id="formula3" required autocomplete="off" placeholder="算式3">
+            <label for="formula3">预备</label>
+        </div>
+        <div class="inputGroup">
+            <input type="tel" id="formula4" required autocomplete="off" placeholder="算式4">
+            <label for="formula4">预备</label>
+        </div>
+        <div class="inputGroup">
+            <input type="tel" id="formula5" required autocomplete="off" placeholder="算式5">
+            <label for="formula5">预备</label>
+        </div>
+        <button class="button hidden" id="submitBtn">提交</button>
+        <div class="timer hidden" id="timer">时间: 0s</div>
+    </div>
+    <script>
+        const startBtn = document.getElementById('startBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const timerDisplay = document.getElementById('timer');
+        const inputs = document.querySelectorAll('.inputGroup input');
+        const labels = document.querySelectorAll('.inputGroup label');
+
+        let formulas = [];
+        let startTime = 0;
+        let timerInterval;
+        let correctAnswers = [];
+
+        function generateRandomFormula() {
+            let num1 = Math.floor(Math.random() * 9000 + 1000);
+            let num2 = Math.floor(Math.random() * 9000 + 1000);
+            return `${num1} × ${num2}`;
+        }
+
+        function startTimer() {
+            startTime = Date.now();
+            timerInterval = setInterval(() => {
+                let elapsed = Math.floor((Date.now() - startTime) / 1000);
+                timerDisplay.textContent = `时间: ${elapsed}s`;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        function checkAnswers() {
+            let allCorrect = true;
+            for (let i = 0; i < 5; i++) {
+                const userInput = inputs[i].value.trim();
+                const correctAnswer = correctAnswers[i];
+                if (parseInt(userInput) !== correctAnswer) {
+                    allCorrect = false;
+                    inputs[i].value = ''; 
+                }
+            }
+            return allCorrect;
+        }
+
+        // 点击开始按钮时执行
+        startBtn.addEventListener('click', () => {
+            if (confirm("确定开始与否？")) {
+                submitBtn.classList.remove('hidden');
+                timerDisplay.classList.remove('hidden');
+
+                formulas = [];
+                correctAnswers = [];
+                inputs.forEach(input => input.value = ''); // 清空输入框
+
+                for (let i = 0; i < 5; i++) {
+                    const formula = generateRandomFormula();
+                    formulas.push(formula);
+                    labels[i].textContent = formula;
+                    correctAnswers.push(eval(formula.replace('×', '*'))); // 计算正确答案
+                }
+
+                startTimer();
+            }
+        });
+
+        submitBtn.addEventListener('click', () => {
+            if (checkAnswers()) {
+                stopTimer();
+                alert("你真棒！");
+                startBtn.style.display = 'block'; // 显示开始按钮
+                submitBtn.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

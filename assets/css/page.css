@@ -1,0 +1,82 @@
+footer {
+  color: rgba(255,255,255,0.75);
+  background-color: rgba(255,255,255,0.25);
+  text-align: center;
+  padding: 10px 0;
+  margin-top: auto;
+}
+
+header {
+  background-color: rgba(255,255,255,0.25);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0px 6px 15px rgba(142,142,142,0.19);
+  border-radius: 12px;
+  color: rgba(255,255,255,0.75);
+  margin: 10px;
+  padding: 1px 7px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+    a {
+      color: #4d4ae8;
+      text-decoration: none;
+      transition: color 0.3s, text-decoration 0.3s;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #3a3ae8;
+    }
+
+.article-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.article-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.article-description {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the articles within each row */
+  padding: 10px;
+}
+
+.article-box {
+  width: 288px; /* Set the width of the article box */
+  height: 140px; /* Set the height of the article box */
+  margin: 10px; /* Set the margin around the article box */
+  padding: 6px; /* Set the padding inside the article box */
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0px 6px 15px rgba(142, 142, 142, 0.19);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center; /* Center the content vertically */
+}
+
+.article-box img {
+  width: 128px; /* Set the width of the image */
+  height: 128px; /* Set the height of the image */
+  border-radius: 12px;
+  float: right; /* Align the image to the right */
+}
+
+.article-box .content {
+  flex: 1; /* Allow the content to fill the remaining space */
+  text-align: center; /* Center the text horizontally */
+}

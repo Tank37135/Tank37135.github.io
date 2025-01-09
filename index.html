@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tank37135 Blog</title>
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body translate="no">
+    <canvas id="sparks"></canvas>
+    <!-- 页面头部 -->
+    <header>
+        <h3>Tank37135 Blog</h3>
+    </header>
+    <!-- 导航栏 -->
+    <nav>
+        <a href="blog">博客</a>
+        <a href="essay">文章</a>
+        <a href="tools">工具</a>
+        <a href="projects">项目</a>
+        <a href="Special">专题</a>
+        <a href="visual">视觉</a>
+        <a href="games">游戏</a>
+        <a href="sundry">杂的</a>
+    </nav>
+    <!-- 页面主体内容 -->
+    <div class="main-container">
+        <main>
+            <article class="article-1">
+                <p>这是一些额外的段落占位内容。它被写来填充可用空间，并展示较长文本片段如何影响周围内容。我们会经常重复这段文本，以保持演示的流畅，因此请留意这段完全相同的文字。</p>
+                <h3>示例列表</h3>
+                <p>这是一些额外的段落占位内容。它是稍微简短的版本，跟其他高重复性的正文文本相比。这是一个无序列表的示例：</p>
+                <ul>
+                    <li>第一个列表项</li>
+                    <li>第二个列表项，带有更长的描述</li>
+                    <li>第三个列表项，以此结束</li>
+                </ul>
+                <p>这是一个有序列表：</p>
+                <ol>
+                    <li>第一个列表项</li>
+                    <li>第二个列表项，带有更长的描述</li>
+                    <li>第三个列表项，以此结束</li>
+                </ol>
+                <p>这是一个定义列表：</p>
+                <dl>
+                    <dt>超文本标记语言 (HTML)</dt>
+                    <dd>用于描述和定义网页内容的语言</dd>
+                    <dt>层叠样式表 (CSS)</dt>
+                    <dd>用于描述网页内容外观的工具</dd>
+                    <dt>JavaScript (JS)</dt>
+                    <dd>用于构建高级网站和应用程序的编程语言</dd>
+                </dl>
+                <h2>内联HTML元素</h2>
+                <p>HTML定义了一个可用内联标签的长列表，完整列表可以在<a class="a1" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank">Mozilla开发者网络</a>上或者<a class="a1" href="https://www.runoob.com/tags/html-reference.html" target="_blank">菜鸟教程</a>上找到。</p>
+                <ul>
+                    <li>
+                        <strong>加粗文本</strong>，使用<code>&lt;strong&gt;</code>。
+                    </li>
+                    <li>
+                        <em>斜体文本</em>，使用<code>&lt;em&gt;</code>。
+                    </li>
+                    <li>缩写，如<abbr title="超文本标记语言">HTML</abbr>，应使用<code>&lt;abbr&gt;</code>，并可选择添加<code>title</code>属性以提供完整短语。</li>
+                    <li>引用，如<cite>— Mark Otto</cite>，应使用<code>&lt;cite&gt;</code>。</li>
+                    <li>
+                        <del>删除</del>的文本应使用<code>&lt;del&gt;</code>，<ins>插入</ins>的文本应使用<code>&lt;ins&gt;</code>。
+                    </li>
+                    <li>上标<sup>文本</sup>使用<code>&lt;sup&gt;</code>，下标<sub>文本</sub>使用<code>&lt;sub&gt;</code>。</li>
+                </ul>
+                <p>这些元素大多数由浏览器以少量修改的样式显示。</p>
+            </article>
+            <article class="article-1">
+                <h3>示例表格</h3>
+                <p>别忘了这些文章中的表格：</p>
+                <table class=>
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>上传</th>
+                            <th>下载</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>105</td>
+                            <td>11</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>46</td>
+                            <td>13</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>7</td>
+                            <td>9</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>name</td>
+                            <td>291</td>
+                            <td>23</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </article>
+            <article class="article-1">
+                <p>这里，我们粗略地讲解一个表格一个表格的属性：</p>
+                <ul>
+                    <li>
+                        <strong>&lt;table&gt; 元素的属性</strong>
+                        <ul>
+                            <li>
+                                <strong>border</strong>：设置表格的边框宽度（已过时，建议使用 CSS）。 <p>例如：<code>&lt;table border="1"&gt;</code> 用于创建一个带有 1 像素宽边框的表格。</p>
+                            </li>
+                            <li>
+                                <strong>cellspacing</strong>：设置单元格之间的间距（已过时，建议使用 CSS `border-spacing`）。 <p>例如：<code>&lt;table cellspacing="5"&gt;</code> 用于设置单元格之间有 5 像素的间距。</p>
+                            </li>
+                            <li>
+                                <strong>cellpadding</strong>：设置单元格内容与边框之间的内边距（已过时，建议使用 CSS `padding`）。 <p>例如：<code>&lt;table cellpadding="10"&gt;</code> 用于设置单元格内内容与边框之间的间距为 10 像素。</p>
+                            </li>
+                            <li>
+                                <strong>width</strong>：设置表格的宽度，可以使用具体的像素值或百分比。 <p>例如：<code>&lt;table width="100%"&gt;</code> 用于设置表格宽度占据父容器的 100%。</p>
+                            </li>
+                            <li>
+                                <strong>height</strong>：设置表格的高度。 <p>例如：<code>&lt;table height="400px"&gt;</code> 用于设置表格高度为 400 像素。</p>
+                            </li>
+                            <li>
+                                <strong>align</strong>：设置表格在页面中的水平对齐方式（已过时，建议使用 CSS `text-align`）。 <p>例如：<code>&lt;table align="center"&gt;</code> 用于将表格居中显示。</p>
+                            </li>
+                            <li>
+                                <strong>summary</strong>：为表格提供简短的说明，主要用于无障碍设计。 <p>例如：<code>&lt;table summary="This table shows sales data for Q1"&gt;</code> 用于为表格提供简要描述，方便屏幕阅读器用户。</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>&lt;tr&gt; 元素的属性</strong>
+                        <ul>
+                            <li>
+                                <strong>align</strong>：设置表格行内容的水平对齐方式（已过时，建议使用 CSS）。 <p>例如：<code>&lt;tr align="center"&gt;</code> 用于设置行中的内容居中对齐。</p>
+                            </li>
+                            <li>
+                                <strong>valign</strong>：设置表格行内容的垂直对齐方式（已过时，建议使用 CSS）。 <p>例如：<code>&lt;tr valign="top"&gt;</code> 用于将行中的内容垂直对齐到顶部。</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>&lt;td&gt; 元素的属性</strong>
+                        <ul>
+                            <li>
+                                <strong>colspan</strong>：设置单元格跨越的列数。 <p>例如：<code>&lt;td colspan="2"&gt;合并两列&lt;/td&gt;</code> 用于合并两列。</p>
+                            </li>
+                            <li>
+                                <strong>rowspan</strong>：设置单元格跨越的行数。 <p>例如：<code>&lt;td rowspan="2"&gt;合并两行&lt;/td&gt;</code> 用于合并两行。</p>
+                            </li>
+                            <li>
+                                <strong>align</strong>：设置单元格内容的水平对齐方式。 <p>例如：<code>&lt;td align="right"&gt;</code> 用于将单元格内容右对齐。</p>
+                            </li>
+                            <li>
+                                <strong>valign</strong>：设置单元格内容的垂直对齐方式。 <p>例如：<code>&lt;td valign="middle"&gt;</code> 用于将单元格内容垂直居中。</p>
+                            </li>
+                            <li>
+                                <strong>width</strong>：设置单元格的宽度。 <p>例如：<code>&lt;td width="100px"&gt;</code> 用于设置单元格的宽度为 100 像素。</p>
+                            </li>
+                            <li>
+                                <strong>height</strong>：设置单元格的高度。 <p>例如：<code>&lt;td height="50px"&gt;</code> 用于设置单元格的高度为 50 像素。</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>&lt;th&gt; 元素的属性</strong>
+                        <ul>
+                            <li>
+                                <strong>colspan</strong>：设置标题单元格跨越的列数。 <p>例如：<code>&lt;th colspan="2"&gt;标题&lt;/th&gt;</code> 用于合并两列的标题单元格。</p>
+                            </li>
+                            <li>
+                                <strong>rowspan</strong>：设置标题单元格跨越的行数。 <p>例如：<code>&lt;th rowspan="2"&gt;标题&lt;/th&gt;</code> 用于合并两行的标题单元格。</p>
+                            </li>
+                            <li>
+                                <strong>align</strong>：设置标题单元格内容的水平对齐方式。 <p>例如：<code>&lt;th align="center"&gt;标题&lt;/th&gt;</code> 用于将标题单元格的内容居中对齐。</p>
+                            </li>
+                            <li>
+                                <strong>valign</strong>：设置标题单元格内容的垂直对齐方式。 <p>例如：<code>&lt;th valign="bottom"&gt;标题&lt;/th&gt;</code> 用于将标题单元格的内容垂直对齐到底部。</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </article>
+        </main>
+        <aside>
+            <article>
+                <h1>当前网站加载状态：</h1>
+                <h3 class="specific-class">载入中...</h3>
+            </article>
+            <a href="#">
+                <article>
+                    <h3>声明</h3>
+                    <strong>这里将说明一些问题</strong>
+                </article>
+            </a>
+            <article>
+                <h4 class="fst-italic">热门文章</h4>
+                <ul class="ul-1">
+                    <a href="essay/essay1.html">
+                        <li class="li-1">
+                            <div class="article-info">
+                                <div class="article-title">在网站上挂国旗</div>
+                                <div class="article-date">2024/12/2</div>
+                                <div class="article-description">#法律</div>
+                            </div>
+                            <img src="essay/images/IMG_20241202_195518.png" alt="Image 1">
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li class="li-1">
+                            <div class="article-info">
+                                <div class="article-title">文章标题2</div>
+                                <div class="article-date">2023-04-02</div>
+                                <div class="article-description">主要内容。</div>
+                            </div>
+                            <img src="images/image2.png" alt="Image 2">
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li class="li-1">
+                            <div class="article-info">
+                                <div class="article-title">文章标题3</div>
+                                <div class="article-date">2023-04-02</div>
+                                <div class="article-description">主要内容。</div>
+                            </div>
+                            <img src="images/image3.png" alt="Image 3">
+                        </li>
+                    </a>
+                </ul>
+            </article>
+            <article>
+                <h4 class="fst-italic">在其他地方</h4>
+                <ol class="list-unstyled">
+                    <li>
+                        <a class="a1" href="https://github.com/tank37135">GitHub</a>
+                    </li>
+                </ol>
+                <ol class="list-unstyled">
+                    <li>
+                        <a class="a1" href="https://space.bilibili.com/3546812994554001?spm_id_from=333.337.0.0">bilibili</a>
+                    </li>
+                </ol>
+            </article>
+            <article>
+                <h4>联系</h4>
+                <ol class="list-unstyled">
+                    <li>
+                        <a class="a1" href="mailto:Tank37135@outlook.com?subject=你好，Tank37135&body=该邮件十日内回复有效，否则重新发送我是你的访客，我想说：">电子邮箱</a>
+                    </li>
+                </ol>
+            </article>
+            <article>
+                <h3>Timer</h3>
+                <ol class="list-unstyled mb-0">
+                    <li>
+                        <h2>这一分钟已经过去</h2>
+                    </li>
+                    <div class="progress-container">
+                        <li>
+                            <div class="progress-bar" id="minuteProgressBar">0%</div>
+                        </li>
+                    </div>
+                    <li>
+                        <h2>这个小时已经过去</h2>
+                    </li>
+                    <div class="progress-container">
+                        <li>
+                            <div class="progress-bar" id="hourProgressBar">0%</div>
+                        </li>
+                    </div>
+                    <li>
+                        <h2>这天已经过去</h2>
+                    </li>
+                    <div class="progress-container">
+                        <li>
+                            <div class="progress-bar" id="hour24ProgressBar">0%</div>
+                        </li>
+                    </div>
+                    <li>
+                        <h2>这年已经过去</h2>
+                    </li>
+                    <div class="progress-container">
+                        <li>
+                            <div class="progress-bar" id="yearProgressBar">0%</div>
+                        </li>
+                    </div>
+            </article>
+    </div>
+    </aside>
+    <!-- 页脚 -->
+    <footer>
+        <p>For &copy Tank37135 Blog</p>
+    </footer>
+    <script id="rendered-js" src=assets/js/script.js> </script>
+</body>
+</html>
