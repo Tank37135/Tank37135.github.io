@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows基础</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: #f4f4f4;
+        overflow-y: auto;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+.center{
+    text-align:center;
+}
+article {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+    display: none;
+    background-color: #e0e0e0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+article.active {
+    display: flex;
+    opacity: 1;
+}
+
+.hamburger-menu {
+    font-size: 24px; /* 缩小字体大小 */
+    cursor: pointer;
+    padding: 10px; /* 缩小内边距 */
+    background-color: rgba(0, 122, 255, 0.5); /* 设置为浅蓝色半透明 */
+    color: white;
+    text-align: center;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.hamburger-menu:hover {
+    background-color: rgba(0, 122, 255, 0.7); /* 鼠标悬停时颜色更深 */
+}
+
+
+.menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #2c3e50;
+    width: 175px;
+    height: 100%;
+    color: white;
+    padding-top: 20px;
+    z-index: 10;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+    border-radius: 10px 0 0 10px;
+}
+
+.menu.open {
+    display: block;
+    transform: translateX(0);
+}
+
+.menu ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    height: calc(100% - 20px); /* Adjust height to account for padding */
+    overflow-y: auto;
+}
+
+.menu li {
+    margin: 15px 0;
+}
+
+.menu button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #34495e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.menu button:hover {
+    background-color: #1abc9c;
+}
+
+.submenu {
+    display: none;
+    margin-left: 20px;
+}
+
+.submenu.open {
+    display: block;
+}
+
+.menu > ul > li > button {
+    font-weight: bold;
+    background-color: #2c3e50;
+}
+
+.submenu li button {
+    font-weight: normal;
+    background-color: #34495e;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    z-index: 5;
+}
+
+.menu.open + #overlay,
+.menu.open ~ #overlay {
+    visibility: visible;
+}
+    </style>
+</head>
+<body>
+    <!-- 汉堡菜单 -->
+    <div id="hamburger-menu" class="hamburger-menu" onclick="toggleMenu()">
+        &#9776; 菜单
+    </div>
+
+    <!-- 菜单背景遮罩层 -->
+    <div id="overlay" onclick="closeMenu()"></div>
+
+    <!-- 菜单项 -->
+    <div id="menu" class="menu">
+        <ul>
+            <li><button onclick="changePage(1)">前言</button></li>
+            <li><button onclick="changePage(2)">系统选择</button></li>
+            <li>
+                <button onclick="toggleSubmenu('submenu1')">#硬件篇</button>
+                <ul id="submenu1" class="submenu">
+                    <li><button onclick="changePage(3)">鼠标</button></li>
+                    <li><button onclick="changePage(4)">键盘</button></li>
+                    <li><button onclick="changePage(5)">USB接口</button></li>
+                </ul>
+            </li>
+            <li>
+                <button onclick="toggleSubmenu('submenu2')">页面二</button>
+                <ul id="submenu2" class="submenu">
+                    <li><button onclick="changePage(6)">子页面 8</button></li>
+                    <li><button onclick="changePage(7)">子页面 9</button></li>
+                </ul>
+            </li>
+            <li><button onclick="changePage(8)">页面三</button></li>
+        </ul>
+    </div>
+
+    <!-- 页面内容 -->
+    <div id="content">
+        <article class="page">
+            <h1 class="center">前言</h1>
+            <p>因为有很多人希望学习电脑的用法，所以我决定在此介绍"windows"电脑系统的用法</p>
+            <h3>内容介绍</h3>
+            <b>我们将在此介绍一些知识，其中包括：
+            <ul>
+                <li>系统的选择</li>
+                <li>硬件</li>
+                <li>账户</li>
+                <li>文件管理</li>
+                <li>软件管理</li>
+                <li>基础维护</li>
+            </ul>
+            等内容</b>
+            <p>本专题主要讲解Windows电脑系统。</p>
+            <p>讲解比较基础的内容，如果发现错误或者内容不全，欢迎补充</p>
+            <a class="center" href="mailto:Tank37135@outlook.com?subject=745错误汇报&body=该邮件十日内回复有效，否则重新发送，我发现以下问题： ">错误汇报途径：邮箱</a>
+            <a class="center" href="https://github.com/Tank37135/Tank37135.github.io/issues" target="_self">错误汇报途径：GitHub issues</a>
+            <b>专题会不定时更新，请留意</b>
+            <br>
+            <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
+        </article>
+        
+        <article class="page">
+        <h1 class="center">选择你的电脑系统</h1>
+        <p>首先，我们了解一下世界主流的电脑系统</p>
+        <ul>
+            <li>
+            <a href="https://www.microsoft.com/zh-cn/" target="_self">Windows(微软)</a><br>
+            Windows 是全球使用最广泛的桌面操作系统。它由微软公司开发，常用于个人电脑、企业工作站和笔记本电脑。Windows 系统易于使用，支持大量的软件和硬件，兼容性高，也就是说，你对这台电脑的配置不满，你可以通过更换几乎任意厂家的芯片来升级此电脑。<br>
+            因为其使用最广泛，所以拥有最大的软件库，几乎所有软件都支持Windows，假如系统出现问题，可以很轻松地在网络上找到解决方案，微软官网售卖的电脑有超高的颜值，画在屏幕背面的中央的商标显得电脑非常气派。<br>
+            如果你希望获得好用，但这个软件比较小众(很多大众软件也不支持其他系统)，Windows是最好的选择
+            </li>
+            <li>
+            <a href="https://support.apple.com/zh-cn/guide/mac-help/welcome" target="_self">macOS (苹果)</a><br>
+            macOS 是苹果公司开发的操作系统，专门用于其Mac系列电脑。macOS 以其简洁、稳定而著称。它也提供了优异的图形和多媒体处理能力，常用于创意行业如设计、视频编辑等。<br>
+            但macOS系统封闭，对硬件兼容性不高，只能通过更换特定厂家的芯片升级配置，软件市场小，尤其是游戏，能支持的游戏(2024统计)可以说两只手就可以数过来<br>
+            和Windows一样，苹果官方的电脑颜值高，但macOS的动画优化优于Windows(视觉体验更好)，不过系统故障很难找到解决办法，目前(2024)据我了解，主要只有苹果自己售卖macOS<br>
+            但由于macOS软件市场远小于Windows，所以可以使用macOS系统来避免很多风险软件的安装(对于见过Windows的用户会很不习惯，比如其系统关闭浏览器要点击左侧红色点然后再任务栏右键图标，点击退出而不是点击右侧叉号，注意，macOS系统的鼠标滚轮是反的)<br>对了，买这种系统之前记得先买一个转换器和一个扩展坞，因为不进行复杂的办公，所以一般不需要买鼠标。
+            </li>
+            <li>
+            <a href="https://www.linux.org/" target="_self">Linux</a><br>
+            Linux 是一个开源的操作系统，广泛应用于服务器、嵌入式设备以及开发者和技术爱好者的个人电脑上。Linux 有许多不同的发行版（如 Ubuntu、Debian、Fedora、CentOS 等），并因其高定制性和强大的安全性在开发和服务器领域特别受欢迎。<br>
+            对于专业人士非常适合，但软件市场小(支持的软件比macOS多点，但仍然远远小于Windows)，系统没有官方售卖的电脑，最好在Windows系统上下载此系统，然后安装
+            </li>
+            <li>
+            BSD 系统（如 FreeBSD、OpenBSD、NetBSD）<br>
+            BSD 是一种类 Unix 操作系统，基于 Berkeley Software Distribution（BSD）。它具有高度的稳定性和安全性，广泛应用于服务器、路由器、嵌入式系统等领域。
+            </li>
+        </ul>
+        <p>以上是常见的四类电脑系统，如果你不知道改选什么，就直接选择Windows<br>
+        如果你是仅看电视，使用基本的办公，且对视觉要求高，就选择macOS(屏幕好)。如果你专业开发或其他专业人士，选择Linux(推荐)或者BSD<br>
+        如果都不是，选择Windows，否则你将放弃很多便利<p>
+        <p>当然，也可以组合使用，推荐使用Windows台式机(处理复制问题，当然，看电视，画图，剪辑等简单问题也可以)，加macOS笔记本(看电视，画图)。如果愿意，可以再准备一台电脑(笔记本台式都可以)使用Linux</p>
+         <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
+        </article>
+        
+        <article class="page">
+        <h1 class="center">鼠标</h1>
+        <h3>鼠标硬件篇</h3>
+        <p>我们重点了解三个核心元件</p>
+        <p>首先是微动，微动是鼠标左右键下的元件，用来检测用户是否点击，假如你的鼠标按键失灵，可以选择更换微动，不一定要换整个鼠标</p>
+        <p>接着是滚轮，滚轮主要分两种，一种是"光栅式"，结构复制，价格较贵，但耐用，稳定，仅微软，罗技等少数企业生产。<br>另一种是"机械编码式"，其结构简单，便宜，但不耐用(一般是你的微动先坏，放心)。</p>
+        <p>传感器：传感器主要是用来识别所在位置，然后转换成数据汇报给计算机转换成光标移动的<br>
+        对传感器的影响主要是鼠标垫，一般是编制布垫。当然也有好的传感器，比如微软蓝影技术(新一代鼠标追踪技术)，几乎可以用于任何地方。<br>
+        鼠标传感器有两个参数。一个叫做采样率(CPI)。有人将其称为DPI(图像每英寸长度内的像素点数。)，但其实应该叫做CPI(英寸采样率)。通俗的讲，CPI越高，鼠标的灵敏度就越高。在现实中鼠标在鼠标垫上移动单位距离，CPI越大的鼠标在屏幕上移动的距离越大。CPI不是不能调，在系统的控制面板>硬件>鼠标选项 可以修改。
+        第二个参数叫做回报率，意思是指鼠标向计算机报告位置的频率。一般情况下频率越高，相对于的延迟越小。但过高的回报率与较高的回报率基本没有感受上的区别。</p>
+        <p>有些鼠标就有鼠标侧键。这些鼠标侧键跟键盘差不多,不同的鼠标侧键有不同的功能。但在游戏时使用这些鼠标侧键很容易被判定为作弊。</p>
+        <h3>鼠标软件知识</h3>
+        <p>鼠标左键在电脑中一般可以作为选择，比如你使用鼠标左键点击某一文件的时候，可以选中该文件。<br>鼠标右键可以理解为属性，在很多时候对着某东西使用鼠标右键会出现右键菜单。这些菜单里面一般提供了很多关于该文件属性的选项。<br>鼠标中键及鼠标滚轮，一般用作对过长的文件进行滚动。</p>
+        <p>鼠标左键选中文本之后拖动文本到某一可输入文本的地方，系统会复制该文本。(对于一些不允许复制的网站有效)。用鼠标将网站上的图片拖至文件夹或桌面(桌面也是一种文件夹。)，系统会下载该图片。在浏览器中，拖动网址进入输入框会直接填入该网址，拖入上方标签也会替换标签页或在标签页旁边插入新的标签页。</p>
+        <p>在浏览器上对着链接使用鼠标中键，可以使链接在后台新建标签页中打开。<br>在有标签页的软件上对着标签页使用鼠标中间可以快速关闭标签页。<br>使用<code>Alt</code>+<code>Tab</code>多任务视图时，可以使用鼠标中键对着任务视图单击关闭窗口。<br>在允许滚动的位置单击鼠标中键可以实现自动滚动，滚动的方向由你鼠标的移动方向决定。</p>
+        <h4>鼠标组合键</h4>
+        <b>该内容需要用到一点点键盘知识，你只需要知道这些按键在哪里就行。</b>
+        <h5>左键</h5>
+        <p>对文件使用双击，可以打开该文件。对文字使用双击，可以选中该词语。对文字使用三击，可以选中整行的文字。</p>
+        <p>在大多数情况下，你可以按住鼠标左键不放，然后拖动鼠标，就可以选中一片区域的文字或文件。也可以先对着起点单击鼠标左键。然后按住<code>shift</code>不放，最后在末尾单击鼠标左键，也可以达到选择一片区域的效果。</p>
+        <p>按住<code>ctrl</code>再使用鼠标单击链接，可以使链接在后台新建标签页中打开。</p>
+        <p>按住<code>Alt</code>在使用鼠标可以选中网站链接上的文字。</p>
+        <h5>中键</h5>
+        <p>按住<code>ctrl</code>使用鼠标滚轮滚动，可以在支持放大缩小的地方放大和缩小页面。</p>
+        <h5>右键</h5>
+        <p>按住<code>shift</code>加鼠标右键可以显示全部菜单。(contextmenumanager可以帮助你过来右键菜单。)</p>
+        <h5>鼠标手势</h5>
+        <p>鼠标手势是指使用鼠标按照特定的键位在滑动特定的轨迹实现特定的操作。</p>
+        <p>系统本不支持鼠标手势。但有些软件支持，比如说很多浏览器，部分输入法。也有专业的鼠标手势软件(mouselnc等)。<br>Quicker是一个强大的鼠标工具软件。提供了很多便捷功能。</p>
+        </article>
+        
+        <article class="page">
+        <h1 class="center">键盘</h1>
+        </article>
+        
+        <article class="page">
+        <h1 class="center">接口</h1>
+        </article>
+        
+        <article class="page">
+        页面五内容
+        </article>
+        
+        <article class="page">
+        页面六内容
+        </article>
+        
+        <article class="page">
+        页面七内容
+        </article>
+        
+        <article class="page">
+        页面八内容
+        </article>
+        
+        <article class="page">
+        页面九内容
+        </article>
+        
+        <article class="page">
+        页面十内容
+        </article>
+        
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const pages = document.querySelectorAll('article');
+        const menu = document.getElementById('menu');
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const overlay = document.getElementById('overlay');
+
+        // 切换菜单的显示状态
+        function toggleMenu() {
+            menu.classList.toggle('open');
+            overlay.classList.toggle('visible');
+        }
+
+        // 关闭菜单
+        function closeMenu() {
+            menu.classList.remove('open');
+            overlay.classList.remove('visible');
+        }
+
+        // 切换子菜单的显示状态
+        function toggleSubmenu(submenuId) {
+            const submenu = document.getElementById(submenuId);
+            submenu.classList.toggle('open');
+        }
+
+        // 切换页面内容
+        function changePage(pageNumber) {
+            if (pageNumber < 1 || pageNumber > pages.length) return;
+
+            currentPage = pageNumber;
+
+            // 将所有页面设置为不可见
+            pages.forEach((page) => {
+                page.classList.remove('active');
+            });
+
+            // 设置当前页面为可见
+            pages[currentPage - 1].classList.add('active');
+
+            // 关闭菜单
+            closeMenu();
+        }
+
+        // 初始化第一个页面
+        document.addEventListener('DOMContentLoaded', () => {
+            changePage(1);
+        });
+    </script>
+</body>
+</html>
