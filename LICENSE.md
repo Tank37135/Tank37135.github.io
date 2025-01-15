@@ -1,105 +1,127 @@
-# Apache License Version 2.0
+# Tank37135 Open Source License
 
-## Copyright Notice
+## Version: 1.0
 
-Copyright (C) 2004-2023 Apache Software Foundation
+## Effective Date: January 15, 2025
+
+## Copyright Statement
+
+The product (hereinafter referred to as "the Product") under this agreement is owned by Tank37135.github.io, and the copyright owner is Tank37135.
 
 ## License Terms
 
-The following is the full text of the Apache License Version 2.0:
+### 1. Reproduction and Quotation
 
----
+- You are allowed to reproduce and quote the content of the Product, but you must comply with the following conditions:
+  - The content reproduced and quoted must not exceed the scope of fair use, which generally refers to non-commercial purposes such as personal study, research, commentary, news reporting, etc.
+  - It must be clearly stated that the original author is Tank37135, and all copyright information must be retained.
+  - The content reproduced and quoted may not be used for commercial purposes or distributed.
 
-**Apache License**
+### 2. Non-Commercial Use
 
-**Version 2.0, January 2004**
+- The Product may not be used for any commercial purposes unless Tank37135 provides explicit written permission.
 
-**http://www.apache.org/licenses/** 
+### 3. Modification and Derivative Works
 
-**TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION**
+- You may modify the Product and create derivative works based on it, but you must comply with the following conditions:
+  - The modification and derivative works must comply with the terms of this agreement.
+  - It must be clearly stated that the original author is Tank37135, and all copyright information must be retained.
+  - The modification and derivative works may not infringe on the intellectual property rights of third parties.
 
-1. **Definitions.**
+### 4. Source Code of Updated Versions
 
-   - "License" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document.
+- The source code of any updates or subsequent versions of the Product shall still comply with the terms of this agreement. Any modification, reproduction, or quotation based on the existing version or subsequent versions must comply with all the conditions of this agreement.
 
-   - "Licensor" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.
+### 5. Intellectual Property Retention
 
-   - "Legal Entity" shall mean the union of the acting entity and all other entities that control, are controlled by, or are under common control with that entity. For the purposes of this definition, "control" means (i) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the outstanding shares, or (iii) beneficial ownership of such entity.
+- Tank37135 retains all intellectual property rights related to the Product, including but not limited to copyright, trademark rights, and patent rights.
 
-   - "You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.
+## Disclaimer
 
-   - "Source" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.
+### 1. Use Risks
 
-   - "Object" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.
+- When using the Product, you shall bear all risks on your own, including but not limited to data loss and system damage. Tank37135 shall not be liable for any direct or indirect losses resulting from the use of the Product.
 
-   - "Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a copyright notice that is included in or attached to the work (an example is provided in the Appendix below).
+### 2. Product Defects
 
-   - "Derivative Works" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Work and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship. For the purposes of this License, Derivative Works shall not include works that remain separable from, or merely link (or bind by name) to the interfaces of, the Work and Derivative Works thereof.
+- Tank37135 shall not be liable for any defects in the Product, including but not limited to software errors and performance issues.
 
-   - "Contribution" shall mean any work of authorship, including the original version of the Work and any modifications or additions to that Work or Derivative Works thereof, that is intentionally submitted to Licensor for inclusion in the Work by the copyright owner or by an individual or Legal Entity authorized to submit on behalf of the copyright owner. For the purposes of this definition, "submitted" means any form of electronic, verbal, or written communication sent to the Licensor or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, the Licensor for the purpose of discussing and improving the Work, but excluding communication that is conspicuously marked or otherwise designated in writing by the copyright owner as "Not a Contribution."
+## Agreement Changes
 
-   - "Contributor" shall mean Licensor and any individual or Legal Entity on behalf of whom a Contribution has been received by Licensor and subsequently incorporated within the Work.
+1. Tank37135 reserves the right to modify the terms of this agreement without prior notice. Any modifications to the agreement shall take effect immediately upon publication, unless you explicitly indicate that you do not accept the modifications within 20 days of publication.
+2. Any modifications shall take effect immediately upon the effective date of the modified agreement.
 
-2. **Grant of Copyright License.**
+## Termination Terms
 
-   Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.
+1. If you violate any term of this agreement, Tank37135 shall have the right to terminate this agreement immediately.
+2. After the termination of the agreement, you must immediately cease using the Product and delete all copies.
 
-3. **Grant of Patent License.**
+## Applicable Law and Dispute Resolution
 
-   Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work, where such license applies only to those patent claims licensable by such Contributor that are necessarily infringed by their Contribution(s) alone or by combination of their Contribution(s) with the Work to which such Contribution(s) was submitted. If You institute patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging that the Work or a Contribution incorporated within the Work constitutes direct or contributory patent infringement, then any patent licenses granted to You under this License for that Work shall terminate as of the date such litigation is filed.
+1. The applicable law for this agreement is the laws of the People's Republic of China.
+2. Any disputes arising from this agreement shall be resolved through friendly negotiation first; if the negotiation fails, either party may file a lawsuit with the people's court having jurisdiction.
 
-4. **Redistribution.**
+***
 
-   You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:
+# Tank37135开源协议
 
-   (a) You must give any other recipients of the Work or Derivative Works a copy of this License; and
+## 版本：1.0
 
-   (b) You must cause any modified files to carry prominent notices stating that You changed the files; and
+## 协议生效日期：2025年1月15日
 
-   (c) You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work, excluding those notices that do not pertain to any part of the Derivative Works; and
+## 版权声明
 
-   (d) If the Work includes a "NOTICE" text file as part of its distribution, then any Derivative Works that You distribute must include a readable copy of the attribution notices contained within such NOTICE file, excluding those notices that do not pertain to any part of the Derivative Works, in at least one of the following places: within a NOTICE text file distributed as part of the Derivative Works; within the Source form or documentation, if provided along with the Derivative Works; or, within a display generated by the Derivative Works, if and wherever such third-party notices normally appear. The contents of the NOTICE file are for informational purposes only and do not modify the License. You may add Your own attribution notices within Derivative Works that You distribute, alongside or as an addendum to the NOTICE text from the Work, provided that such additional attribution notices cannot be construed as modifying the License.
+本协议下的产品（以下简称“产品”）为Tank37135.github.io版权所有，版权所有人为Tank37135。
 
-   You may add Your own copyright statement to Your modifications and may provide additional or different license terms and conditions for use, reproduction, or distribution of Your modifications, or for any such Derivative Works as a whole, provided Your use, reproduction, and distribution of the Work otherwise complies with the conditions stated in this License.
+## 许可条款
 
-5. **Submission of Contributions.**
+### 1. 复制与引用
 
-   Unless You explicitly state otherwise, any Contribution intentionally submitted for inclusion in the Work by You to the Licensor shall be under the terms and conditions of this License, without any additional terms or conditions. Notwithstanding the above, nothing herein shall supersede or modify the terms of any separate license agreement you may have executed with Licensor regarding such Contributions.
+- 您被允许复制和引用本产品的内容，但必须遵守以下条件：
+  - 复制和引用的内容不得超出合理使用的范围，合理使用通常指个人学习、研究、评论、新闻报道等非商业目的的使用。
+  - 必须明确声明源作者是Tank37135，并保留所有版权信息。
+  - 不得对复制和引用的内容进行商业性利用或分发。
 
-6. **Trademarks.**
+### 2. 非商业用途
 
-   This License does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work and reproducing the content of the NOTICE file.
+- 本产品不得用于任何商业用途，除非获得Tank37135的明确书面许可。
 
-7. **Disclaimer of Warranty.**
+### 3. 修改与衍生作品
 
-   Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining the appropriateness of using or redistributing the Work and assume any risks associated with Your exercise of permissions under this License.
+- 您可以修改本产品，并在此基础上创建衍生作品，但必须遵守以下条件：
+  - 修改和衍生作品必须遵守本协议的条款。
+  - 必须明确声明源作者是Tank37135，并保留所有版权信息。
+  - 修改和衍生作品不得侵犯第三方的知识产权。
 
-8. **Limitation of Liability.**
+### 4. 更新后的源代码
 
-   In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Work (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if such Contributor has been advised of the possibility of such damages.
+- 对于产品的任何更新或后续版本，其源代码依然遵守本协议的条款。任何基于现有版本或后续版本进行的修改、复制或引用，都必须遵守本协议的所有条件。
 
-9. **Accepting Warranty or Additional Liability.**
+### 5. 知识产权保留
 
-   While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability.
+- Tank37135保留所有与本产品相关的知识产权，包括但不限于版权、商标权、专利权等。
 
----
+## 免责声明
 
-**END OF TERMS AND CONDITIONS**
+### 1. 使用风险
 
-**APPENDIX: How to apply the Apache License to your work.**
+- 您使用本产品时，应自行承担所有风险，包括但不限于数据丢失、系统损坏等。Tank37135不对因使用本产品而导致的任何直接或间接损失承担责任。
 
-To apply the Apache License to your work, attach the following boilerplate notice, with the fields enclosed by brackets "[]"
-replaced with your own identifying information. (Don't include the brackets!) The text should be enclosed in the appropriate
-comment syntax for the file format. We also recommend that a file or class name and description of purpose be included on the
-same "printed page" as the copyright notice for easier identification within third-party archives.
+### 2. 产品瑕疵
 
-**Copyright [Tank37135.github.io] [Tank37135]**
+- Tank37135不对本产品的任何瑕疵或缺陷承担责任，包括但不限于软件错误、性能问题等。
 
-**Licensed under the Apache License, Version 2.0 (the "License");**
-you may not use this file except in compliance with the License. You may obtain a copy of the License at
+## 协议变更
 
-    http://www.apache.org/licenses/LICENSE-2.0
+1. Tank37135有权在不事先通知的情况下修改本协议的条款。修改后的协议将在发布后立即生效，除非您在发布后20天内明确表示不接受修改。
+2. 任何修改将在修改后的协议生效日期后立即生效。
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and
-limitations under the License.
+## 终止条款
+
+1. 如果您违反本协议的任何条款，Tank37135有权立即终止本协议。
+2. 协议终止后，您必须立即停止使用本产品，并删除所有副本。
+
+## 法律适用与争议解决
+
+1. 本协议的适用法律为中华人民共和国法律。
+2. 任何因本协议引起的争议，应首先通过友好协商解决；协商不成的，任何一方均可向有管辖权的人民法院提起诉讼。
