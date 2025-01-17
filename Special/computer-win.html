@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows基础</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <style>
+    code {
+      background-color: #333; /* 设置背景为灰色 */
+      color: white;            /* 设置文字为白色 */
+      padding: 2px 4px;        /* 给代码增加内边距 */
+      border-radius: 4px;      /* 可选：圆角效果 */
+    }
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
     position: relative;
-    background-color: #f4f4f4;
-        overflow-y: auto;
+    overflow-y: auto;
 }
 
 #content {
@@ -25,14 +28,15 @@ body {
 .center{
     text-align:center;
 }
+
+
+
 article {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    padding: 20px;
     box-sizing: border-box;
     display: none;
-    background-color: #e0e0e0;
     opacity: 0;
     transition: opacity 0.5s ease;
 }
@@ -149,7 +153,8 @@ article.active {
 }
     </style>
 </head>
-<body>
+<body translate="no">
+  <canvas id="sparks"></canvas>
     <!-- 汉堡菜单 -->
     <div id="hamburger-menu" class="hamburger-menu" onclick="toggleMenu()">
         &#9776; 菜单
@@ -181,7 +186,7 @@ article.active {
             <li><button onclick="changePage(8)">页面三</button></li>
         </ul>
     </div>
-
+<main>
     <!-- 页面内容 -->
     <div id="content">
         <article class="page">
@@ -305,8 +310,10 @@ article.active {
         </article>
         
     </div>
-
-    <script>
+</main>
+<script scr="../assets/js/background.js" ></script>
+<script id="rendered-js" >
+    
         let currentPage = 1;
         const pages = document.querySelectorAll('article');
         const menu = document.getElementById('menu');
