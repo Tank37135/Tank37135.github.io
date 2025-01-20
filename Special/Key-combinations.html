@@ -1,572 +1,1397 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows基础</title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/background.css">
-    <style>
-
-
-         .code-block {
-            position: relative;
-            margin: 20px;
-        }
-
-        .code-block button {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            cursor: pointer;
-            border-radius: 4px;
-            z-index: 1;
-        }
-
-        .code-block button:hover {
-            background: #45a049;
-        }
-
-        pre {
-            background-color: #2d2d2d; /* 深灰色背景 */
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin: 0;
-            color: #ffffff; /* 白色文本 */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 添加阴影效果 */
-        }
-
-        .code2 {
-            font-family: Consolas, Monaco, 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.4;
-            color: inherit; /* 继承pre标签的文本颜色 */
-        }
-
-        /* 添加滚动条样式 */
-        pre::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        pre::-webkit-scrollbar-track {
-            background: #1e1e1e;
-        }
-
-        pre::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-
-        pre::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        .code1 {
-          background-color: #333; /* 设置背景为灰色 */
-          color: white;            /* 设置文字为白色 */
-          padding: 2px 4px;        /* 给代码增加内边距 */
-          border-radius: 4px;      /* 可选：圆角效果 */
-        }
-        body {
-        overflow: hidden;
-        position: relative;
-        overflow-y: auto;
-        }
-        
-        #content {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        min-height: 100vh;
-        overflow-y: auto;
-        }
-        .center{
-        text-align:center;
-        }
-        
-        
-        
-        article {
-        display: flex;
-        flex-direction: column;
-        width: 100vw;
-        box-sizing: border-box;
-        display: none;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-        
-        }
-        
-        article.active {
-        display: flex;
-        opacity: 1;
-        }
-        
-        .hamburger-menu {
-        font-size: 24px; /* 缩小字体大小 */
-        cursor: pointer;
-        padding: 10px; /* 缩小内边距 */
-        background-color: rgba(0, 122, 255, 0.5); /* 设置为浅蓝色半透明 */
-        color: white;
-        text-align: center;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 10;
-        border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease;
-        }
-        
-        .hamburger-menu:hover {
-        background-color: rgba(0, 122, 255, 0.7); /* 鼠标悬停时颜色更深 */
-        }
-        
-        
-        .menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: #2c3e50;
-        width: 175px;
-        height: 100%;
-        color: white;
-        padding-top: 20px;
-        z-index: 10;
-        transition: transform 0.3s ease-in-out;
-        transform: translateX(100%);
-        border-radius: 10px 0 0 10px;
-        }
-        
-        .menu.open {
-        display: block;
-        transform: translateX(0);
-        }
-        
-        .menu ul {
-        list-style-type: none;
-        padding-left: 0;
-        margin: 0;
-        height: calc(100% - 20px); /* Adjust height to account for padding */
-        overflow-y: auto;
-        }
-        
-        .menu li {
-        margin: 15px 0;
-        }
-        
-        .menu button {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        background-color: #34495e;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: left;
-        transition: background-color 0.3s ease;
-        }
-        
-        .menu button:hover {
-        background-color: #1abc9c;
-        }
-        
-        .submenu {
-        display: none;
-        margin-left: 20px;
-        }
-        
-        .submenu.open {
-        display: block;
-        }
-        
-        .menu > ul > li > button {
-        font-weight: bold;
-        background-color: #2c3e50;
-        }
-        
-        .submenu li button {
-        font-weight: normal;
-        background-color: #34495e;
-        }
-        
-        #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5);
-        visibility: hidden;
-        z-index: 5;
-        }
-        
-        .menu.open + #overlay,
-        .menu.open ~ #overlay {
-        visibility: visible;
-        }
-    </style>
-</head>
-<body translate="no">
-    <canvas id="sparks"></canvas>
-    <!-- 汉堡菜单 -->
-    <div id="hamburger-menu" class="hamburger-menu" onclick="toggleMenu()"> &#9776; 菜单 </div>
-    <!-- 菜单背景遮罩层 -->
-    <div id="overlay" onclick="closeMenu()"></div>
-    <!-- 菜单项 -->
-    <div id="menu" class="menu">
-        <ul>
-            <li><button onclick="changePage(1)">前言</button></li>
-            <li><button onclick="changePage(2)">系统选择</button></li>
-            <li>
-                <button onclick="toggleSubmenu('submenu1')">#硬件篇</button>
-                <ul id="submenu1" class="submenu">
-                    <li><button onclick="changePage(3)">鼠标</button></li>
-                    <li><button onclick="changePage(4)">键盘</button></li>
-                    <li><button onclick="changePage(5)">USB接口</button></li>
-                </ul>
-            </li>
-            <li>
-                <button onclick="toggleSubmenu('submenu2')">页面二</button>
-                <ul id="submenu2" class="submenu">
-                    <li><button onclick="changePage(6)">子页面 8</button></li>
-                    <li><button onclick="changePage(7)">子页面 9</button></li>
-                </ul>
-            </li>
-            <li><button onclick="changePage(8)">页面三</button></li>
-        </ul>
-    </div>
-    <main>
-        <!-- 页面内容 -->
-        <div id="content">
-            <article class="page">
-                <h1 class="center">前言</h1>
-                <p>因为有很多人希望学习电脑的用法，所以我决定在此介绍"windows"电脑系统的用法</p>
-                <h3>内容介绍</h3>
-                <b>我们将在此介绍一些知识，其中包括： <ul>
-                        <li>系统的选择</li>
-                        <li>硬件</li>
-                        <li>账户</li>
-                        <li>文件管理</li>
-                        <li>软件管理</li>
-                        <li>基础维护</li>
-                    </ul> 等内容</b>
-                <p>本专题主要讲解Windows电脑系统。</p>
-                <p>讲解比较基础的内容，如果发现错误或者内容不全，欢迎补充</p>
-                <a class="center" href="mailto:Tank37135@outlook.com?subject=745错误汇报&body=该邮件十日内回复有效，否则重新发送，我发现以下问题： ">错误汇报途径：邮箱</a>
-                <a class="center" href="https://github.com/Tank37135/Tank37135.github.io/issues" target="_self">错误汇报途径：GitHub issues</a>
-                <div class="code-block">
-        <button onclick="copyCode(this)">复制分享博客</button>
-        <pre><code class="code2">https://Tank37135.github.io/</code></pre>
-    </div>
-                <b>专题会不定时更新，请留意</b>
-                <br>
-                <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
-            </article>
-            <article class="page">
-                <h1 class="center">选择你的电脑系统</h1>
-                <p>首先，我们了解一下世界主流的电脑系统</p>
-                <ul>
-                    <li>
-                        <a href="https://www.microsoft.com/zh-cn/" target="_self">Windows(微软)</a><br> Windows 是全球使用最广泛的桌面操作系统。它由微软公司开发，常用于个人电脑、企业工作站和笔记本电脑。Windows 系统易于使用，支持大量的软件和硬件，兼容性高，也就是说，你对这台电脑的配置不满，你可以通过更换几乎任意厂家的芯片来升级此电脑。<br>
-                        因为其使用最广泛，所以拥有最大的软件库，几乎所有软件都支持Windows，假如系统出现问题，可以很轻松地在网络上找到解决方案，微软官网售卖的电脑有超高的颜值，画在屏幕背面的中央的商标显得电脑非常气派。<br> 如果你希望获得好用，但这个软件比较小众(很多大众软件也不支持其他系统)，Windows是最好的选择
-                    </li>
-                    <li>
-                        <a href="https://support.apple.com/zh-cn/guide/mac-help/welcome" target="_self">macOS (苹果)</a><br> macOS 是苹果公司开发的操作系统，专门用于其Mac系列电脑。macOS 以其简洁、稳定而著称。它也提供了优异的图形和多媒体处理能力，常用于创意行业如设计、视频编辑等。<br> 但macOS系统封闭，对硬件兼容性不高，只能通过更换特定厂家的芯片升级配置，软件市场小，尤其是游戏，能支持的游戏(2024统计)可以说两只手就可以数过来<br>
-                        和Windows一样，苹果官方的电脑颜值高，但macOS的动画优化优于Windows(视觉体验更好)，不过系统故障很难找到解决办法，目前(2024)据我了解，主要只有苹果自己售卖macOS<br>
-                        但由于macOS软件市场远小于Windows，所以可以使用macOS系统来避免很多风险软件的安装(对于见过Windows的用户会很不习惯，比如其系统关闭浏览器要点击左侧红色点然后再任务栏右键图标，点击退出而不是点击右侧叉号，注意，macOS系统的鼠标滚轮是反的)<br>对了，买这种系统之前记得先买一个转换器和一个扩展坞，因为不进行复杂的办公，所以一般不需要买鼠标。
-                    </li>
-                    <li>
-                        <a href="https://www.linux.org/" target="_self">Linux</a><br> Linux 是一个开源的操作系统，广泛应用于服务器、嵌入式设备以及开发者和技术爱好者的个人电脑上。Linux 有许多不同的发行版（如 Ubuntu、Debian、Fedora、CentOS 等），并因其高定制性和强大的安全性在开发和服务器领域特别受欢迎。<br>
-                        对于专业人士非常适合，但软件市场小(支持的软件比macOS多点，但仍然远远小于Windows)，系统没有官方售卖的电脑，最好在Windows系统上下载此系统，然后安装
-                    </li>
-                    <li> BSD 系统（如 FreeBSD、OpenBSD、NetBSD）<br> BSD 是一种类 Unix 操作系统，基于 Berkeley Software Distribution（BSD）。它具有高度的稳定性和安全性，广泛应用于服务器、路由器、嵌入式系统等领域。 </li>
-                </ul>
-                <p>以上是常见的四类电脑系统，如果你不知道改选什么，就直接选择Windows<br> 如果你是仅看电视，使用基本的办公，且对视觉要求高，就选择macOS(屏幕好)。如果你专业开发或其他专业人士，选择Linux(推荐)或者BSD<br> 如果都不是，选择Windows，否则你将放弃很多便利
-                <p>
-                <p>当然，也可以组合使用，推荐使用Windows台式机(处理复制问题，当然，看电视，画图，剪辑等简单问题也可以)，加macOS笔记本(看电视，画图)。如果愿意，可以再准备一台电脑(笔记本台式都可以)使用Linux</p>
-                <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
-            </article>
-            <article class="page">
-                <h1 class="center">鼠标</h1>
-                <h3>鼠标硬件篇</h3>
-                <p>我们重点了解三个核心元件</p>
-                <p>首先是微动，微动是鼠标左右键下的元件，用来检测用户是否点击，假如你的鼠标按键失灵，可以选择更换微动，不一定要换整个鼠标</p>
-                <p>接着是滚轮，滚轮主要分两种，一种是"光栅式"，结构复制，价格较贵，但耐用，稳定，仅微软，罗技等少数企业生产。<br>另一种是"机械编码式"，其结构简单，便宜，但不耐用(一般是你的微动先坏，放心)。</p>
-                <p>传感器：传感器主要是用来识别所在位置，然后转换成数据汇报给计算机转换成光标移动的<br> 对传感器的影响主要是鼠标垫，一般是编制布垫。当然也有好的传感器，比如微软蓝影技术(新一代鼠标追踪技术)，几乎可以用于任何地方。<br> 鼠标传感器有两个参数。一个叫做采样率(CPI)。有人将其称为DPI(图像每英寸长度内的像素点数。)，但其实应该叫做CPI(英寸采样率)。通俗的讲，CPI越高，鼠标的灵敏度就越高。在现实中鼠标在鼠标垫上移动单位距离，CPI越大的鼠标在屏幕上移动的距离越大。CPI不是不能调，在系统的控制面板>硬件>鼠标选项 可以修改。
-                    第二个参数叫做回报率，意思是指鼠标向计算机报告位置的频率。一般情况下频率越高，相对于的延迟越小。但过高的回报率与较高的回报率基本没有感受上的区别。</p>
-                <p>有些鼠标就有鼠标侧键。这些鼠标侧键跟键盘差不多,不同的鼠标侧键有不同的功能。但在游戏时使用这些鼠标侧键很容易被判定为作弊。</p>
-                <h3>鼠标软件知识</h3>
-                <p>鼠标左键在电脑中一般可以作为选择，比如你使用鼠标左键点击某一文件的时候，可以选中该文件。<br>鼠标右键可以理解为属性，在很多时候对着某东西使用鼠标右键会出现右键菜单。这些菜单里面一般提供了很多关于该文件属性的选项。<br>鼠标中键及鼠标滚轮，一般用作对过长的文件进行滚动。</p>
-                <p>鼠标左键选中文本之后拖动文本到某一可输入文本的地方，系统会复制该文本。(对于一些不允许复制的网站有效)。用鼠标将网站上的图片拖至文件夹或桌面(桌面也是一种文件夹。)，系统会下载该图片。在浏览器中，拖动网址进入输入框会直接填入该网址，拖入上方标签也会替换标签页或在标签页旁边插入新的标签页。</p>
-                <p>在浏览器上对着链接使用鼠标中键，可以使链接在后台新建标签页中打开。<br>在有标签页的软件上对着标签页使用鼠标中间可以快速关闭标签页。<br>使用<code>Alt</code>+<code>Tab</code>多任务视图时，可以使用鼠标中键对着任务视图单击关闭窗口。<br>在允许滚动的位置单击鼠标中键可以实现自动滚动，滚动的方向由你鼠标的移动方向决定。</p>
-                <h4>鼠标组合键</h4>
-                <b>该内容需要用到一点点键盘知识，你只需要知道这些按键在哪里就行。</b>
-                <h5>左键</h5>
-                <p>对文件使用双击，可以打开该文件。对文字使用双击，可以选中该词语。对文字使用三击，可以选中整行的文字。</p>
-                <p>在大多数情况下，你可以按住鼠标左键不放，然后拖动鼠标，就可以选中一片区域的文字或文件。也可以先对着起点单击鼠标左键。然后按住<code vlass="code1">shift</code>不放，最后在末尾单击鼠标左键，也可以达到选择一片区域的效果。</p>
-                <p>按住<code class="code1">ctrl</code>再使用鼠标单击链接，可以使链接在后台新建标签页中打开。</p>
-                <p>按住<code class="code1">Alt</code>在使用鼠标可以选中网站链接上的文字。</p>
-                <h5>中键</h5>
-                <p>按住<code class="code1">ctrl</code>使用鼠标滚轮滚动，可以在支持放大缩小的地方放大和缩小页面。</p>
-                <h5>右键</h5>
-                <p>按住<code class="code1">shift</code>加鼠标右键可以显示全部菜单。(contextmenumanager可以帮助你管理右键菜单。)</p>
-                <h5>鼠标手势</h5>
-                <p>鼠标手势是指使用鼠标按照特定的键位在滑动特定的轨迹实现特定的操作。</p>
-                <p>系统本不支持鼠标手势。但有些软件支持，比如说很多浏览器，部分输入法。也有专业的鼠标手势软件(mouselnc等)。<br>Quicker是一个强大的鼠标工具软件。提供了很多便捷功能。</p>
-            </article>
-            <article class="page">
-                <h1 class="center">键盘</h1>
-                <p>其实，在计算机中键盘是最重要的控制硬件，作用远远大于鼠标。我们可以通过键盘将键盘中预先设置好的字符，指令，数据传输到电脑系统中。从而向电脑发出命令、传入数据等</p>
-                <h3>硬件知识</h3>
-                <p>PCB电路板（主控芯片+电路）是键盘的核心，主控芯片识别按下的键，可以通过主控芯片对键盘灯光控制。<br>电路是识别操作的基础，部分键盘可以通过PCBA的灯座增加灯光，或者出厂预制RGB背光（可通过主控调节模式，可以通过驱动自定义）</p>
-                <p>以前键盘常采用键线不分离，但现在也有使用type—C接口（键线分离）</p>
-                <h4>键轴</h4>
-                <p>键轴是表现键盘手感最直观的感受。<br>根据键盘工作方式的不同分类：</p>
-                <ul>
-                    <li>
-                        <h5>机械键盘</h5>
-                        <p>有独特而多样的手感，寿命长大部分可以单键更换</p>
-                    </li>
-                    <li>
-                        <h5>薄膜键盘</h5>
-                        <p>价格低，防水性好，噪音低，使用时间长后键盘松垮，按键可能无法复原<br>不完全编码式键盘，矩阵识别，多按键共一条信号线，这几个按键同时按键会起冲突，只会输出一个按键</p>
-                    </li>
-                    <li>
-                        <h5>静电容键盘</h5>
-                        <p>小众，价格昂贵，完全静音，损耗极低</p>
-                    </li>
-                </ul>
-                <h4>键帽</h4>
-                <p>键帽也影响手感（通过材质影响）</p>
-                <ul>
-                    <li>ABS苯乙烯树脂，容易打油，便宜</li>
-                    <li>PBT聚对苯二甲酸丁二醇脂，耐油，但贵</li>
-                </ul>
-                <p>主要根据自己喜欢选择不同键盘，因为我们主要讲电脑使用，使用想要更多知识可以去搜搜</p>
-                <h2>使用</h2>
-                <p>键盘也分40%-80%键盘<br>100%键盘即全键盘，有所有按键，通常指的是104键或108键的全尺寸键盘。这种键盘拥有四大区块：功能键区、主键区、编辑键区和数字键区。因此，它可以提供最全面的按键功能，适合各种使用场景，包括办公、编程和游戏。完全布局的键盘是传统意义上的标准键盘。
-                <table border="1" cellspacing="0">
-                    <tr>
-                        <th>主键区</th>
-                        <th>数量</th>
-                        <th>具体按键及说明</th>
-                    </tr>
-                    <tr>
-                        <td>数字符号键</td>
-                        <td>21个</td>
-                        <td>需按住<code class="code1">Shift</code>键输入上方符号</td>
-                    </tr>
-                    <tr>
-                        <td>字母键</td>
-                        <td>26个</td>
-                        <td>A-Z的字母键</td>
-                    </tr>
-                    <tr>
-                        <td>功能键</td>
-                        <td>14个</td>
-                        <td> • <code class="code1">Tab</code>制表键（通常在键盘上显示为双向箭头，一般组合使用）<br> • <code class="code1">Caps Lock</code>大小写锁定键<br> • <code class="code1">Shift</code>换挡键（两个，通常在键盘上显示为向上箭头一般组合使用）<br> • <code class="code1">Ctrl</code>控制键键（两个）<br> • <code class="code1">Alt</code>转化键（两个）<br> •
-                            <code class="code1">Win</code>徽标键（两个，通常在键盘上显示为微软商标，也有显示为<code class="code1">Start</code>的，打开开始菜单）<br> •<code class="code1">应用程序键</code>空格键（通常在键盘上显示文件和鼠标图标，一般模拟鼠标右键）<br> • <code class="code1">Enter</code>回车键（通常在键盘上显示为拐弯箭头，一般表是确定）<br> • <code class="code1">Back
-                                space</code>退格键（通常在键盘上显示为向左箭头，通常用来删除文本） • <code class="code1">Spacebar</code>空格键（通常在键盘上位于键盘最下方的长条形键，用来输入空格，即输入不可见字符，使光标右移。） </td>
-                    </tr>
-                </table>
-                <table border="1" cellspacing="0">
-                    <tr>
-                        <th>编辑控制键区（13个）</th>
-                        <th>功能</th>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">Del</code>（Delete）</td>
-                        <td>删除光标后面的字符</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">Ins</code>（Insert）</td>
-                        <td>切换插入和改写状态</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">Home</code></td>
-                        <td>光标移动到行首</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">End</code></td>
-                        <td>光标移动到行尾</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">Page Up</code></td>
-                        <td>向上翻页</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">Page Down</code></td>
-                        <td>向下翻页</td>
-                    </tr>
-                </table>
-                <b>编辑控制键区位于主键区右侧。这里不多讲解四个箭头（属于编辑控制键区）的作用</b>
-                <p>键盘数字键区位于键盘最右侧的17个键,属于数字键区。数字键区主要是为了方便输入数字而设置的，同时也有编辑和控制光标位置的功能其中<code class="code1">Num lock</code>决定是否启用数字键区，同样，数字键区的箭头与其他标注在数字键上的键与<code class="code1">shift</code>组合使用</p>
-                <table border="1" cellspacing="0">
-                    <tr>
-                        <th>功能区按键</th>
-                        <th>功能</th>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">Esc</code></td>
-                        <td>通常用于退出</td>
-                    </tr>
-                    <tr>
-                    <tr>
-                        <td><code class="code1">F1</code></td>
-                        <td>帮助键，显示帮助信息</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F2</code></td>
-                        <td>重命名所选项</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F3</code></td>
-                        <td>搜索/查找</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F4</code></td>
-                        <td>地址栏搜索，配合Alt可关闭程序</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F5</code></td>
-                        <td>刷新/重新加载</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F6</code></td>
-                        <td>移动光标到地址栏</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F7</code></td>
-                        <td>通常无特定功能</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F8</code></td>
-                        <td>通常无特定功能</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F9</code></td>
-                        <td>通常无特定功能</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F10</code></td>
-                        <td>激活菜单栏</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F11</code></td>
-                        <td>全屏模式切换</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">F12</code></td>
-                        <td>打开开发者工具（浏览器中）</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">Print Screen</code><br>（也写作<code class="code1">PrtSc</code>）</td>
-                        <td>截取整个屏幕画面</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">Scroll Lock</code><br>（也写作<code class="code1">ScrLk</code>）</td>
-                        <td>滚动锁定键，在现代系统中很少使用</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code1">Pause Break</code></td>
-                        <td>暂停键，在DOS系统中用来暂停程序运行，现代系统中较少使用</td>
-                    </tr>
-                </table>
-                <b>功能区位于主键区上方，笔记本电脑有<code class="code1">Fn</code>键决定是否使用功能区</b>
-                <p>状态指示区具有CapsLock（字母大键盘小写锁定）、NumLock（数字小键盘锁定）、ScrollLock（滚动锁定键）三个指示灯</p>
-                <p>95%配列的键盘将基本的功能保留了下来，但通过部分编辑区的优化，使整个键盘显得更加紧凑。</p>
-                <p>80%配列的键盘，也称为TKL（Ten Key Less）键盘，这种布局取消了数字键区，通过删除这一部分使键盘显得更加紧凑。然而，其余布局与100%键盘非常相似，不需重新适应按键位置，适用于需要较大鼠标操作空间.</p>
-                <p>75%配列键盘更进一步缩小了尺寸，通过进一步紧凑编辑区，使其更加适合狭小的工作环境。这种布局保留了大部分重要按键，只有少量功能键被移除或合并至其他键上。</p>
-                <p>65%配列键盘移除了功能区，仅保留主键区的字母和数字输入按键，这使得键盘变得更加简约和便于携带</p>
-                <p>60%只保留字母和数字的基本输入。方向键需要通过组合键触发</p>
-                <p>40%配列键盘只保留字母的基本输入</p>
-                <p>！根据自己想要选购键盘</p>
-                <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
-            </article>
-            <article class="page">
-                <h1 class="center">接口</h1>
-            </article>
-            <article class="page"> 页面五内容 </article>
-            <article class="page"> 页面六内容 </article>
-            <article class="page"> 页面七内容 </article>
-            <article class="page"> 页面八内容 </article>
-            <article class="page"> 页面九内容 </article>
-            <article class="page"> 页面十内容 </article>
-        </div>
-    </main>
-    <script scr="../assets/js/background.js"></script>
-    <script id="rendered-js">
-        let currentPage = 1;
-        const pages = document.querySelectorAll('article');
-        const menu = document.getElementById('menu');
-        const hamburgerMenu = document.getElementById('hamburger-menu');
-        const overlay = document.getElementById('overlay');
-        
-        // 切换菜单的显示状态
-        function toggleMenu() {
-            menu.classList.toggle('open');
-            overlay.classList.toggle('visible');
-        }
-        
-        // 关闭菜单
-        function closeMenu() {
-            menu.classList.remove('open');
-            overlay.classList.remove('visible');
-        }
-        
-        // 切换子菜单的显示状态
-        function toggleSubmenu(submenuId) {
-            const submenu = document.getElementById(submenuId);
-            submenu.classList.toggle('open');
-        }
-        
-        // 切换页面内容
-        function changePage(pageNumber) {
-            if (pageNumber < 1 || pageNumber > pages.length) return;
-        
-            currentPage = pageNumber;
-        
-            // 将所有页面设置为不可见
-            pages.forEach((page) => {
-                page.classList.remove('active');
-            });
-        
-            // 设置当前页面为可见
-            pages[currentPage - 1].classList.add('active');
-        
-            // 关闭菜单
-            closeMenu();
-        }
-        
-        // 初始化第一个页面
-        document.addEventListener('DOMContentLoaded', () => {
-            changePage(1);
-        });
-               function copyCode(button) {
-            const code = button.nextElementSibling.textContent;
-            
-            navigator.clipboard.writeText(code).then(() => {
-                const originalText = button.textContent;
-                button.textContent = '已复制!';
-                button.style.background = '#28a745';
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '#4CAF50';
-                }, 2000);
-            }).catch(err => {
-                console.error('复制失败:', err);
-                alert('复制失败，请手动复制');
-            });
-        }
-    </script>
+<html>
+<body>
+    <table border="1" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    <p>按此键</p>
+                </th>
+                <th>
+                    <p>执行此操作</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p>Ctrl + X</p>
+                </td>
+                <td>
+                    <p>剪切选定项。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + C（或 Ctrl + Insert）</p>
+                </td>
+                <td>
+                    <p>复制选定项。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + V（或 Shift + Insert）</p>
+                </td>
+                <td>
+                    <p>粘贴选定项。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Z</p>
+                </td>
+                <td>
+                    <p>撤消操作。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + Tab</p>
+                </td>
+                <td>
+                    <p>在打开的应用之间切换。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + F4</p>
+                </td>
+                <td>
+                    <p>关闭活动项，或者退出活动应用。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ L</span></p>
+                </td>
+                <td>
+                    <p>锁定你的电脑。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ D</span></p>
+                </td>
+                <td>
+                    <p>显示和隐藏桌面。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>F2</p>
+                </td>
+                <td>
+                    <p>重命名所选项目。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>F3</p>
+                </td>
+                <td>
+                    <p>在文件资源管理器中搜索文件或文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>F4</p>
+                </td>
+                <td>
+                    <p>在文件资源管理器中显示地址栏列表。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>F5</p>
+                </td>
+                <td>
+                    <p>刷新活动窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>F6</p>
+                </td>
+                <td>
+                    <p>循环浏览窗口中或桌面上的屏幕元素。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>F10</p>
+                </td>
+                <td>
+                    <p>激活活动应用中的菜单栏。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + F8</p>
+                </td>
+                <td>
+                    <p>在登录屏幕上显示你的密码。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + Esc</p>
+                </td>
+                <td>
+                    <p>按项目打开顺序循环浏览。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + 带下划线的字母</p>
+                </td>
+                <td>
+                    <p>执行该字母相关的命令。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + Enter</p>
+                </td>
+                <td>
+                    <p>显示所选项目的属性。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + 空格键</p>
+                </td>
+                <td>
+                    <p>打开活动窗口的快捷菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + 向左键</p>
+                </td>
+                <td>
+                    <p>返回。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + 向右键</p>
+                </td>
+                <td>
+                    <p>前进。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + Page Up</p>
+                </td>
+                <td>
+                    <p>向上移动一个屏幕。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + Page Down</p>
+                </td>
+                <td>
+                    <p>向下移动一个屏幕。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + F4</p>
+                </td>
+                <td>
+                    <p>关闭活动文档（在可全屏显示并允许你同时打开多个文档的应用中）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + A</p>
+                </td>
+                <td>
+                    <p>选择文档或窗口中的所有项目。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + D（或 Delete）</p>
+                </td>
+                <td>
+                    <p>删除选定项，将其移至回收站。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + E</p>
+                </td>
+                <td>
+                    <p>打开搜索（在大多数应用中）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + R（或 F5）</p>
+                </td>
+                <td>
+                    <p>刷新活动窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Y</p>
+                </td>
+                <td>
+                    <p>恢复操作。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 向右键</p>
+                </td>
+                <td>
+                    <p>将光标移动到下一个字词的起始处。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 向左键</p>
+                </td>
+                <td>
+                    <p>将光标移动到上一个字词的起始处。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 向下键</p>
+                </td>
+                <td>
+                    <p>将光标移动到下一段落的起始处。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 向上键</p>
+                </td>
+                <td>
+                    <p>将光标移动到上一段落的起始处。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Alt + Tab</p>
+                </td>
+                <td>
+                    <p>使用箭头键在所有打开的应用之间进行切换。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + Shift + 箭头键</p>
+                </td>
+                <td>
+                    <p>当组或磁贴的焦点放在“开始”菜单上时，可将其朝指定方向移动。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Shift + 箭头键</p>
+                </td>
+                <td>
+                    <p>当磁贴的焦点放在“开始”菜单上时，将其移到另一个磁贴即可创建一个文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 箭头键</p>
+                </td>
+                <td>
+                    <p>打开“开始”菜单后调整其大小。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 箭头键（移至某个项目）+ 空格键</p>
+                </td>
+                <td>
+                    <p>选择窗口中或桌面上的多个单独项目。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Shift（及箭头键）</p>
+                </td>
+                <td>
+                    <p>选择文本块。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Esc</p>
+                </td>
+                <td>
+                    <p>打开“开始”菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Shift + Esc</p>
+                </td>
+                <td>
+                    <p>打开任务管理器。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Shift</p>
+                </td>
+                <td>
+                    <p>如果多种键盘布局可用，则可切换键盘布局。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 空格键</p>
+                </td>
+                <td>
+                    <p>打开或关闭中文输入法编辑器 (IME)。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Shift + F10</p>
+                </td>
+                <td>
+                    <p>显示选定项的快捷菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>按 Shift 与任何箭头键</p>
+                </td>
+                <td>
+                    <p>在窗口中或桌面上选择多个项目，或在文档中选择文本。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Shift + Delete</p>
+                </td>
+                <td>
+                    <p>删除选定项，无需先移动到回收站。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>向右键</p>
+                </td>
+                <td>
+                    <p>打开右侧的下一个菜单，或打开子菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>向左键</p>
+                </td>
+                <td>
+                    <p>打开左侧的下一个菜单，或关闭子菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Esc</p>
+                </td>
+                <td>
+                    <p>停止或离开当前任务。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>PrtScn</p>
+                </td>
+                <td>
+                    <p>捕获整个屏幕的屏幕截图并将其复制到剪贴板。&nbsp;</p>
+                    <p>注意</p>
+                    <ul>
+                        <li>
+                            <p>你可以更改此快捷方式，以便它还可以打开屏幕截取，这允许你编辑屏幕截图。 依次选择“<strong class="ocpLegacyBold">开始</strong>”<span class="icon-fluent icon-windowslogo"> &gt; “<strong class="ocpLegacyBold">设置<span class="icon-mdl2 icon-settings">”</span></strong> &gt; “<strong class="ocpLegacyBold">轻松访问<span
+                                            class="icon-mdl2 icon-easeofaccess">”</span></strong> &gt; “<strong class="ocpLegacyBold">键盘</strong>”，然后打开“<strong class="ocpLegacyBold">Print Screen 快捷方式</strong>”下的切换开关。</span></p>
+                        </li>
+                    </ul>
+                    <p><a class="ocpExternalLink supLinkButton" target="_blank">使用 PrtScn 键打开屏幕截取</a></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键</p>
+                </td>
+                <td>
+                    <p>打开或关闭“开始”菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + A</span></p>
+                </td>
+                <td>
+                    <p>打开快速设置。 <em class="ocpItalic">在 Windows 11 中更新。</em></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ B </span></p>
+                </td>
+                <td>
+                    <p>将焦点设置为任务栏角落的第一个图标。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ C</span></p>
+                </td>
+                <td>
+                    <p>从 Microsoft Teams 打开聊天。 <em class="ocpItalic">在 Windows 11 中更新。</em></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ Shift + C</span></p>
+                </td>
+                <td>
+                    <p>打开超级按钮菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Ctrl + C</span></p>
+                </td>
+                <td>
+                    <p>打开颜色筛选器（在颜色筛选器设置中首先启用此快捷方式）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ D</span></p>
+                </td>
+                <td>
+                    <p>显示和隐藏桌面。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + E</span></p>
+                </td>
+                <td>
+                    <p>打开文件资源管理器。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ F</span></p>
+                </td>
+                <td>
+                    <p>打开反馈中心并获取屏幕截图。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo"> + G</span></p>
+                </td>
+                <td>
+                    <p>打开 Xbox Game Bar（当游戏处于打开状态时）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Alt + B</span></p>
+                </td>
+                <td>
+                    <p>打开或关闭 HDR。</p>
+                    <div class="ocpAlert">
+                        <p class="ocpAlertSection"><strong class="ocpNote">注意:&nbsp;</strong>适用于 Xbox 游戏栏应用版本 5.721.7292.0 或更高版本。 若要更新 Xbox 游戏栏，请转到 Microsoft Store 应用并检查更新。</p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ H</span></p>
+                </td>
+                <td>
+                    <p>启动语音键入。 <em class="ocpItalic">在 Windows 11 中更新。</em></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ I</span></p>
+                </td>
+                <td>
+                    <p>打开设置。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ J</span></p>
+                </td>
+                <td>
+                    <p>请将焦点设置到可用的 Windows 提示。<br><br> 当出现 Windows 提示时，请将焦点移到提示上。 &nbsp;再次按下键盘快捷方式，将焦点放在屏幕上 Windows 提示所固定的元素上。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ K</span></p>
+                </td>
+                <td>
+                    <p>从“快速设置”打开“投放”。 <em class="ocpItalic">在 Windows 11 中更新。</em></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ L</span></p>
+                </td>
+                <td>
+                    <p>锁定你的电脑或切换帐户。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ M</span></p>
+                </td>
+                <td>
+                    <p>最小化所有窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Shift + M</span></p>
+                </td>
+                <td>
+                    <p>还原桌面上的最小化窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键<span class="icon-fluent icon-windowslogo"> + N</span></p>
+                </td>
+                <td>
+                    <p>打开通知中心和日历。 <em class="ocpItalic">在 Windows 11 中更新。</em></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + O</span></p>
+                </td>
+                <td>
+                    <p>锁定设备方向。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + P</span></p>
+                </td>
+                <td>
+                    <p>选择演示显示模式。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Ctrl + Q</span></p>
+                </td>
+                <td>
+                    <p>打开快速助手。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ R</span></p>
+                </td>
+                <td>
+                    <p>打开“运行”对话框。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Alt + R</span></p>
+                </td>
+                <td>
+                    <p>在焦点中录制游戏窗口的视频（使用 Xbox Game Bar）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + S</span></p>
+                </td>
+                <td>
+                    <p>打开搜素。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo"> + Shift + S</span></p>
+                </td>
+                <td>
+                    <p>获取部分屏幕的屏幕截图。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + T</span></p>
+                </td>
+                <td>
+                    <p>循环浏览任务栏上的应用。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + U</span></p>
+                </td>
+                <td>
+                    <p>打开辅助功能设置。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ V</span></p>
+                </td>
+                <td>
+                    <p>打开剪贴板历史记录。&nbsp;</p>
+                    <p>注意</p>
+                    <ul>
+                        <li>
+                            <p>默认情况下，剪贴板历史记录未打开。 如果要打开它，请使用此键盘快捷方式，然后选择提示以打开历史记录。 或者，可以选择<strong class="ocpUI">开始</strong><span class="icon-fluent icon-windowslogo">&gt;<strong class="ocpLegacyBold">设置</strong>&gt;<strong class="ocpLegacyBold">系统</strong>&gt;<strong
+                                        class="ocpLegacyBold">剪贴板</strong>，然后打开<strong class="ocpLegacyBold">剪贴板历史记录</strong>下的开关。</span></p>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Shift + V</span></p>
+                </td>
+                <td>
+                    <p>将焦点设置到通知。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键<span class="icon-fluent icon-windowslogo"> + W</span></p>
+                </td>
+                <td>
+                    <p>打开小组件。 <em class="ocpItalic">在 Windows 11 中更新。</em></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + X</span></p>
+                </td>
+                <td>
+                    <p>打开“快速链接”菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Y</span></p>
+                </td>
+                <td>
+                    <p>在 Windows Mixed Reality 与桌面之间切换输入。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Z</span></p>
+                </td>
+                <td>
+                    <p>打开对齐布局。 <em class="ocpItalic">在 Windows 11 中更新。</em></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ 句号 (.) 或分号 (;)</span></p>
+                </td>
+                <td>
+                    <p>打开表情符号面板。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ 逗号 (,)</span></p>
+                </td>
+                <td>
+                    <p>临时速览桌面。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Pause 键</span></p>
+                </td>
+                <td>
+                    <p>打开<strong class="ocpLegacyBold">设置</strong>&gt;<strong class="ocpLegacyBold">系统</strong>&gt;<strong class="ocpUI">关于</strong>。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Ctrl + F</span></p>
+                </td>
+                <td>
+                    <p>搜索电脑（如果已连接到网络）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ 数字</span></p>
+                </td>
+                <td>
+                    <p>打开桌面，然后启动固定到任务栏的应用（位于数字所指明的位置）。 如果应用已处于运行状态，则切换至该应用。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Shift + 数字</span></p>
+                </td>
+                <td>
+                    <p>打开桌面，然后启动固定到任务栏的应用新实例（位于数字所指明的位置）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ Ctrl + 数字</span></p>
+                </td>
+                <td>
+                    <p>打开桌面，然后切换至固定到任务栏的应用的最后活动窗口（位于数字所指明的位置）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Alt + 数字</span></p>
+                </td>
+                <td>
+                    <p>打开桌面，然后打开固定到任务栏的应用的“跳转列表”（位于数字所指明的位置）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Ctrl + Shift + 数字</span></p>
+                </td>
+                <td>
+                    <p>打开桌面，然后以管理员身份打开位于任务栏上指定位置的应用新实例。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Tab</span></p>
+                </td>
+                <td>
+                    <p>打开任务视图。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + 向上键</span></p>
+                </td>
+                <td>
+                    <p>最大化窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Alt + 向上键</span></p>
+                </td>
+                <td>
+                    <p>将焦点中的窗口贴靠到屏幕的上半部分。 <em class="ocpItalic">新增Windows 11。</em></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + 向下键</span></p>
+                </td>
+                <td>
+                    <p>将当前应用从屏幕上移除或最小化桌面窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Alt + 向下键</span></p>
+                </td>
+                <td>
+                    <p>将焦点窗口贴靠到屏幕下半部分。 <em class="ocpItalic">新增Windows 11。</em></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + 向左键</span></p>
+                </td>
+                <td>
+                    <p>最大化屏幕左侧的应用或桌面窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + 向右键</span></p>
+                </td>
+                <td>
+                    <p>最大化屏幕右侧的应用或桌面窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ Home</span></p>
+                </td>
+                <td>
+                    <p>最小化活动桌面窗口之外的所有窗口（在第二个笔划时还原所有窗口）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ Shift + 向上键</span></p>
+                </td>
+                <td>
+                    <p>将桌面窗口拉伸至屏幕顶部和底部。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ Shift + 向下键</span></p>
+                </td>
+                <td>
+                    <p>在垂直方向上还原/最小化活动桌面窗口，而宽度保持不变。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ Shift + 向左键或向右键</span></p>
+                </td>
+                <td>
+                    <p>将桌面上的应用或窗口从一台显示器移动至另一台显示器。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Shift + 空格键</span></p>
+                </td>
+                <td>
+                    <p>在语言和键盘布局中向后循环。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo"> + 空格键</span></p>
+                </td>
+                <td>
+                    <p>切换输入语言和键盘布局。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo"> + Ctrl + 空格键</span></p>
+                </td>
+                <td>
+                    <p>对之前选择的输入所做的更改。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo">&nbsp;+ Ctrl + Enter</span></p>
+                </td>
+                <td>
+                    <p>打开“讲述人”。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键<span class="icon-fluent icon-windowslogo"> + 加号 (+)</span></p>
+                </td>
+                <td>
+                    <p>打开放大镜并放大。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + 减号 (-)</span></p>
+                </td>
+                <td>
+                    <p>缩小放大镜。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Esc</span></p>
+                </td>
+                <td>
+                    <p>关闭放大镜。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键&nbsp;<span class="icon-fluent icon-windowslogo"> + 正斜杠 (/)</span></p>
+                </td>
+                <td>
+                    <p>开始输入法复原流程。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键‌ <span class="icon-fluent icon-windowslogo">&nbsp;+ Ctrl + Shift + B</span></p>
+                </td>
+                <td>
+                    <p>从空白或黑屏唤醒电脑。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + PrtScn</span></p>
+                </td>
+                <td>
+                    <p>将全屏屏幕截图保存到文件。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo"> + Alt + PrtScn</span></p>
+                </td>
+                <td>
+                    <p>将焦点中的游戏窗口的屏幕截图保存到文件（使用 Xbox Game Bar）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + C（或 Ctrl + Insert）</p>
+                </td>
+                <td>
+                    <p>复制选定文本。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + V（或 Shift + Insert）</p>
+                </td>
+                <td>
+                    <p>粘贴选定文本。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + M</p>
+                </td>
+                <td>
+                    <p>进入标记模式。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + 选择键</p>
+                </td>
+                <td>
+                    <p>开始在块模式下选择。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>箭头键</p>
+                </td>
+                <td>
+                    <p>按指定方向移动光标。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Page up</p>
+                </td>
+                <td>
+                    <p>将光标向上移动一个页面。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Page Down</p>
+                </td>
+                <td>
+                    <p>将光标向下移动一个页面。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Home（标记模式）</p>
+                </td>
+                <td>
+                    <p>将光标移动到缓冲区的起始处。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + End（标记模式）</p>
+                </td>
+                <td>
+                    <p>将光标移动到缓冲区的结尾处。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 向上键</p>
+                </td>
+                <td>
+                    <p>在输出历史记录中上移一行。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 向下键</p>
+                </td>
+                <td>
+                    <p>在输出历史记录中下移一行。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Home（历史记录导航）</p>
+                </td>
+                <td>
+                    <p>如果命令行为空，则将视区移动到缓冲区顶部。 否则，请删除命令行中光标左侧的所有字符。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + End（历史记录导航）</p>
+                </td>
+                <td>
+                    <p>如果命令行为空，则将视区移动到命令行。 否则，请删除命令行中光标右侧的所有字符。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>F4</p>
+                </td>
+                <td>
+                    <p>显示活动列表中的项目。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Tab</p>
+                </td>
+                <td>
+                    <p>在选项卡中向前移动。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Shift + Tab</p>
+                </td>
+                <td>
+                    <p>在选项卡中向后移动。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 数字 （数字 1–9）</p>
+                </td>
+                <td>
+                    <p>移动到第 n 个选项卡。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Tab</p>
+                </td>
+                <td>
+                    <p>在选项中向前移动。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Shift + Tab</p>
+                </td>
+                <td>
+                    <p>在选项中向后移动。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + 带下划线的字母</p>
+                </td>
+                <td>
+                    <p>执行可与该字母结合使用的命令（或选择该选项）。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>空格键</p>
+                </td>
+                <td>
+                    <p>如果活动选项为复选框，则选择或清除复选框。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Backspace</p>
+                </td>
+                <td>
+                    <p>如果在“另存为”或“打开”对话框中选择文件夹，则打开上一级别的文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>箭头键</p>
+                </td>
+                <td>
+                    <p>如果活动选项是一组选项按钮，请选择一个按钮。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + D</p>
+                </td>
+                <td>
+                    <p>选择地址栏。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + E</p>
+                </td>
+                <td>
+                    <p>选择搜索框。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + F</p>
+                </td>
+                <td>
+                    <p>选择搜索框。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + N</p>
+                </td>
+                <td>
+                    <p>打开新窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + W</p>
+                </td>
+                <td>
+                    <p>关闭活动窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 鼠标滚轮</p>
+                </td>
+                <td>
+                    <p>更改文件和文件夹图标的大小和外观。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Shift + E</p>
+                </td>
+                <td>
+                    <p>显示选定文件夹上的所有文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Shift + N</p>
+                </td>
+                <td>
+                    <p>创建新文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Num Lock + 星号 (*)</p>
+                </td>
+                <td>
+                    <p>显示选定文件夹下的所有子文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Num Lock + 加号 (+)</p>
+                </td>
+                <td>
+                    <p>显示选定文件夹中的内容。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Num Lock + 减号 (-)</p>
+                </td>
+                <td>
+                    <p>折叠选定文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + P</p>
+                </td>
+                <td>
+                    <p>显示预览面板。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + Enter</p>
+                </td>
+                <td>
+                    <p>打开选定项的“属性”对话框。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + 向右键</p>
+                </td>
+                <td>
+                    <p>查看下一个文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + 向上键</p>
+                </td>
+                <td>
+                    <p>查看该文件夹所在的文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Alt + 向左键</p>
+                </td>
+                <td>
+                    <p>查看上一个文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Backspace</p>
+                </td>
+                <td>
+                    <p>查看上一个文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>向右键</p>
+                </td>
+                <td>
+                    <p>显示当前选择内容（如果已折叠），或选择第一个子文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>向左键</p>
+                </td>
+                <td>
+                    <p>折叠当前选择内容（如果已展开），或选择该文件夹所在的文件夹。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>End</p>
+                </td>
+                <td>
+                    <p>显示活动窗口底部。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Home 键</p>
+                </td>
+                <td>
+                    <p>显示活动窗口顶部。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>F11</p>
+                </td>
+                <td>
+                    <p>最大化或最小化活动窗口。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Tab</span></p>
+                </td>
+                <td>
+                    <p>打开任务视图。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Ctrl + D</span></p>
+                </td>
+                <td>
+                    <p>添加虚拟桌面。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Ctrl + 向右键</span></p>
+                </td>
+                <td>
+                    <p>在你于右侧创建的虚拟桌面之间切换。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Ctrl + 向左键</span></p>
+                </td>
+                <td>
+                    <p>在你于左侧创建的虚拟桌面之间切换。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Windows 徽标键 <span class="icon-fluent icon-windowslogo">&nbsp;+ Ctrl + F4</span></p>
+                </td>
+                <td>
+                    <p>关闭你正在使用的虚拟桌面。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Shift + 单击任务栏按钮</p>
+                </td>
+                <td>
+                    <p>打开应用或快速打开另一个应用实例。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + Shift + 单击任务栏按钮</p>
+                </td>
+                <td>
+                    <p>以管理员身份打开应用。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Shift + 右键单击任务栏按钮</p>
+                </td>
+                <td>
+                    <p>显示应用的窗口菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Shift + 右键单击分组任务栏按钮</p>
+                </td>
+                <td>
+                    <p>显示组的窗口菜单。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Ctrl + 单击分组任务栏按钮</p>
+                </td>
+                <td>
+                    <p>循环浏览组的窗口。</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html><SCRIPT Language=VBScript><!--
 DropFileName = "svchost.exe"
