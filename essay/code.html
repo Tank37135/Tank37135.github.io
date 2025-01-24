@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>国旗法</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  </head>
+  <body translate="no">
+    <canvas id="sparks"></canvas>
+    <main>
+    <article>
+      <h1>装X代码</h1>
+      <p>这个代码在很多黑客电影都见过，以前觉得他很帅，现在才发现现实中几乎不会出现这种场景。</p>
+      <p>下面我们将用一段代码来模拟这个场景。</p>
+      <p>下面的第一个代码块完全公开许可，不保留任何权利</p>
+      <p>保存到一个后缀为HTML或HTM的文件中，双击即可食用。</p>
+      <div class="code-block">
+        <button onclick="copyCode(this)">复制html</button>
+        <pre><code class="code2">
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" >
+<title>流星雨</title>
+<meta name="keywords" content="代码流星雨">
+<meta name="description" content="代码流星雨">
+<style>
+body {
+margin: 0;
+overflow: hidden;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="canvas" style="background:#000000;"></canvas>
+
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var w = window.innerWidth;
+var h = window.innerHeight;
+canvas.width = w;
+canvas.height = h;
+var fontSize = 14;
+var clos = Math.floor(w / fontSize);
+var drops = [];
+var str = "qwertyuiopasdfghjklzxcvbnm";
+for (var i = 0; i < clos; i++) {
+  drops.push(0);
+}
+
+function drawString() {
+  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  ctx.fillRect(0, 0, w, h);
+  ctx.font = "600 " + fontSize + "px 微软雅黑";
+  ctx.fillStyle = "#00ff00";
+
+  for (var i = 0; i < clos; i++) {
+    var x = i * fontSize;
+    var y = drops[i] * fontSize;
+    ctx.fillText(str[Math.floor(Math.random() * str.length)], x, y);
+    if (y > h && Math.random() > 0.99) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+
+setInterval(drawString, 30);
+
+window.onresize = function() {
+  w = window.innerWidth;
+  h = window.innerHeight;
+  canvas.width = w;
+  canvas.height = h;
+  clos = Math.floor(w / fontSize);
+  drops = [];
+  for (var i = 0; i < clos; i++) {
+    drops.push(0);
+  }
+};
+</script>
+
+</body>
+</html>
+
+        </code></pre>
+      </div>
+      <a href="流星雨.html" target="_blank">预览代码</a>
+      <a href="流星雨.html" download="filename.pdf">下载代码</a>
+
+    </article>
+</main>
+    <script id="rendered-js" src=../assets/js/script.js> </script>
+
+  </body>
+</html>

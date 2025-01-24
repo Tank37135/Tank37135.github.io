@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" >
+<title>Á÷ÐÇÓê</title>
+<meta name="keywords" content="´úÂëÁ÷ÐÇÓê">
+<meta name="description" content="´úÂëÁ÷ÐÇÓê">
+<style>
+body {
+margin: 0;
+overflow: hidden;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="canvas" style="background:#000000;"></canvas>
+
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var w = window.innerWidth;
+var h = window.innerHeight;
+canvas.width = w;
+canvas.height = h;
+var fontSize = 14;
+var clos = Math.floor(w / fontSize);
+var drops = [];
+var str = "qwertyuiopasdfghjklzxcvbnm";
+for (var i = 0; i < clos; i++) {
+  drops.push(0);
+}
+
+function drawString() {
+  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  ctx.fillRect(0, 0, w, h);
+  ctx.font = "600 " + fontSize + "px Î¢ÈíÑÅºÚ";
+  ctx.fillStyle = "#00ff00";
+
+  for (var i = 0; i < clos; i++) {
+    var x = i * fontSize;
+    var y = drops[i] * fontSize;
+    ctx.fillText(str[Math.floor(Math.random() * str.length)], x, y);
+    if (y > h && Math.random() > 0.99) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+
+setInterval(drawString, 30);
+
+window.onresize = function() {
+  w = window.innerWidth;
+  h = window.innerHeight;
+  canvas.width = w;
+  canvas.height = h;
+  clos = Math.floor(w / fontSize);
+  drops = [];
+  for (var i = 0; i < clos; i++) {
+    drops.push(0);
+  }
+};
+</script>
+
+</body>
+</html>
