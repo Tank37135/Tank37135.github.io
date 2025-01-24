@@ -6,35 +6,6 @@
     <meta charset="UTF-8" />
     <title>国旗法</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-
-  <style>
-    /* 美化按钮样式 */
-    .download-btn {
-      background-color: #4CAF50; /* 背景颜色 */
-      color: white; /* 文字颜色 */
-      padding: 15px 32px; /* 内边距 */
-      text-align: center; /* 文字居中 */
-      text-decoration: none; /* 去掉下划线 */
-      display: inline-block; /* 设置为行内块元素 */
-      font-size: 16px; /* 字体大小 */
-      margin: 10px 0; /* 外边距 */
-      border: none; /* 无边框 */
-      border-radius: 8px; /* 圆角 */
-      transition: all 0.3s ease; /* 添加平滑过渡效果 */
-    }
-
-    /* 鼠标悬停时的效果 */
-    .download-btn:hover {
-      background-color: #45a049; /* 悬停时的背景颜色 */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
-      transform: scale(1.1); /* 放大按钮 */
-    }
-
-    /* 点击时的效果 */
-    .download-btn:active {
-      transform: scale(1); /* 点击时恢复原始大小 */
-    }
-  </style>
   </head>
   <body translate="no">
     <canvas id="sparks"></canvas>
@@ -48,18 +19,11 @@
 
       <p><a href="rain.html" target="_blank">预览代码</a>
       或者
-<button id="downloadBtn" class="download-btn">下载代码</button>
+<a href="rain.html" download="filename.txt">点击下载文件</a>
+
 
     </article>
 </main>
     <script id="rendered-js" src=../assets/js/script.js> </script>
-<script>
-  document.getElementById('downloadBtn').addEventListener('click', function() {
-    var a = document.createElement('a');
-    a.href = 'rain.html'; // 你的文件路径
-    a.download = 'rain.html'; // 设置下载文件的名称
-    a.click(); // 触发下载
-  });
-</script>
   </body>
 </html>
