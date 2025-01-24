@@ -6,55 +6,7 @@
     <meta charset="UTF-8" />
     <title>国旗法</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    
-2025/1/24 21:05:40
 
-html怎么把某忘记下载到用户电脑
-
-2025/1/24 21:05:48
-
-要在 HTML 页面中让用户下载文件，可以使用 <a> 标签结合 download 属性。这个方法不会强制用户下载文件，但会给用户提供下载文件的选项。
-
-例子：下载文件
-html
-<a href="path/to/your/file.txt" download="filename.txt">点击下载文件</a>
-href="path/to/your/file.txt"：指定文件的路径，可以是本地文件路径或 URL 地址。
-download="filename.txt"：指定下载文件的默认名称。当用户点击链接时，文件将以 filename.txt 作为名称下载。如果不设置 download 属性，浏览器将使用文件的原始名称。
-通过 JavaScript 动态触发下载
-如果你希望在用户触发某个操作时（例如点击按钮）自动开始下载文件，可以使用 JavaScript 来动态创建 <a> 元素并触发下载：
-
-html
-<button id="downloadBtn">点击下载</button>
-
-<script>
-  document.getElementById('downloadBtn').addEventListener('click', function() {
-    var a = document.createElement('a');
-    a.href = 'path/to/your/file.txt'; // 你的文件路径
-    a.download = 'filename.txt'; // 设置下载文件的名称
-    a.click(); // 触发下载
-  });
-</script>
-这样，当用户点击按钮时，文件会自动下载到他们的计算机。
-
-
-
-
-2025/1/24 21:09:51
-
-美化按钮
-
-2025/1/24 21:10:06
-
-为了美化按钮，你可以使用 CSS 来调整按钮的外观，设置颜色、形状、阴影、边框等。下面是一个简单的例子，展示了如何美化一个按钮：
-
-HTML 和 CSS 示例
-html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>美化按钮示例</title>
   <style>
     /* 美化按钮样式 */
     .download-btn {
