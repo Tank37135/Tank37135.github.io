@@ -186,7 +186,34 @@
         <span class="slider"></span>
       </label>
     </div>
+    
+    <div class="switch-container">
+      <label class="label">DuckDuckGo</label>
+      <label class="switch">
+        <input type="checkbox" id="DuckDuckGo">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      <label class="label">Yahoo!</label>
+      <label class="switch">
+        <input type="checkbox" id="Yahoo!">
+        <span class="slider"></span>
+      </label>
+    </div>
+ 
+ <div class="switch-container">
+      <label class="label">Ecosia</label>
+      <label class="switch">
+        <input type="checkbox" id="Ecosia">
+        <span class="slider"></span>
+      </label>
+    </div>
+ 
+ 
   </div>
+  
       </article>
           <article>
           <h1>其他</h1>
@@ -218,10 +245,13 @@
         if (document.getElementById('baidu').checked) searchEngines.push('baidu');
         if (document.getElementById('google').checked) searchEngines.push('google');
         if (document.getElementById('360').checked) searchEngines.push('360'); // 360搜索
+        if (document.getElementById('DuckDuckGo').checked) searchEngines.push('DuckDuckGo'); 
+        if (document.getElementById('Yahoo!').checked) searchEngines.push('Yahoo!'); 
+        if (document.getElementById('Ecosia').checked) searchEngines.push('Ecosia'); 
 
         // 如果没有选中任何搜索引擎，则随机选择一个
         if (searchEngines.length === 0) {
-          const engines = ['bing', 'baidu', 'google', '360'];
+          const engines = ['bing', 'baidu', 'google', '360', 'DuckDuckGo', 'Ecosia'];
           searchEngines.push(engines[Math.floor(Math.random() * engines.length)]);
         }
 
@@ -240,6 +270,15 @@
               break;
             case '360':
               searchURL = `https://www.so.com/s?q=${encodeURIComponent(query)}`; // 360搜索的URL
+              break;
+            case 'DuckDuckGo':
+              searchURL = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`; // 360搜索的URL
+              break;
+            case 'Yahoo!':
+              searchURL = `https://search.yahoo.com/search?q=${encodeURIComponent(query)}`; // 360搜索的URL
+              break;
+            case 'Ecosia':
+              searchURL = `https://www.ecosia.org/search?q=${encodeURIComponent(query)}`; // 360搜索的URL
               break;
           }
           window.open(searchURL, '_blank');
