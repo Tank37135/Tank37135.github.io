@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索引擎选择</title>
+  <style>
+    /* 设置页面背景 */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+
+    /* 输入框和搜索按钮容器 */
+    .search-container {
+      display: flex;
+      flex-direction: column; /* 设置为列方向 */
+      align-items: flex-start; /* 让按钮靠右对齐 */
+      margin-bottom: 20px;
+      width: 100%; /* 容器占满父元素宽度 */
+      max-width: 600px; /* 最大宽度限制 */
+      padding: 0 10px; /* 左右外边距 */
+    }
+
+    /* 输入框样式 */
+    input[type="text"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18); /* 半透明边框 */
+      background-color: rgba(255, 255, 255, 0.25); /* 半透明背景 */
+      color: rgba(255, 255, 255, 0.75); /* 字体颜色 */
+      width: calc(100% - 20px);  /* 输入框宽度为父容器宽度减去左右边距 */
+      height: 40px; /* 高度设置为40px */
+      backdrop-filter: blur(6px); /* 背景模糊效果 */
+      box-shadow: 0px 6px 15px rgba(142, 142, 142, 0.19); /* 阴影效果 */
+      transition: all 0.3s ease; /* 添加过渡效果 */
+    }
+
+    /* 聚焦时的效果 */
+    input[type="text"]:focus {
+      border: 1px solid rgba(255, 255, 255, 0.6); /* 聚焦时边框更明显 */
+      background-color: rgba(255, 255, 255, 0.35); /* 背景稍微变亮 */
+      box-shadow: 0px 6px 15px rgba(142, 142, 142, 0.35); /* 聚焦时阴影加强 */
+      outline: none; /* 去掉聚焦时的默认轮廓 */
+    }
+
+    /* 搜索按钮样式 */
+    .search-btn {
+      padding: 0 20px;
+      background-color: #1e90ff; /* 蓝色 */
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      height: 38px; /* 与输入框一致 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px; /* 按钮距离输入框有一定间隔 */
+      align-self: flex-end; /* 使按钮靠右对齐 */
+    }
+
+    .search-btn:hover {
+      background-color: #4682b4; /* 深蓝色 */
+    }
+
+    /* 搜索引擎选择区域 */
+    .search-engines {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    /* 每个滑块和名称的容器 */
+    .switch-container {
+      display: flex;
+      align-items: center;
+    }
+
+    /* 定义滑块容器 */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 50px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      border-radius: 50%;
+      left: 4px;
+      bottom: 4px;
+      background-color: #1e90ff; /* 蓝色 */
+      transition: 0.4s;
+    }
+
+    input:checked + .slider {
+      background-color: #1e90ff; /* 蓝色 */
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+      background-color: #4682b4; /* 深蓝色圆圈 */
+    }
+
+    /* 显示搜索引擎标签 */
+    .label {
+      margin-left: 10px;
+      font-size: 16px;
+    }
+  </style>
+<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+  </head>
+  <body translate="no">
+    <canvas id="sparks"></canvas>
+        <header>
+        <h3>Tank37135 Blog</h3>
+    </header>
+<main>
+    <article>
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="请输入搜索内容" />
+    <button class="search-btn" id="search-button">搜索</button>
+  </div>
+
+  <div class="search-engines">
+    <div class="switch-container">
+      <label class="label">必应</label>
+      <label class="switch">
+        <input type="checkbox" id="bing" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+    
+    <div class="switch-container">
+      <label class="label">百度</label>
+      <label class="switch">
+        <input type="checkbox" id="baidu">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      <label class="label">Google</label>
+      <label class="switch">
+        <input type="checkbox" id="google">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="switch-container">
+      <label class="label">360搜索</label>
+      <label class="switch">
+        <input type="checkbox" id="360">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+      </article>
+          <article>
+          <h1>其他</h1>
+          </article>
+</main>
+    <footer>
+        <p>For &copy Tank37135 Blog</p>
+    </footer>
+  <script>
+    // 监听搜索框回车事件
+    document.getElementById('search-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+
+    // 监听搜索按钮点击事件
+    document.getElementById('search-button').addEventListener('click', function() {
+      performSearch();
+    });
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.trim();
+      if (query) {
+        const searchEngines = [];
+
+        // 检查哪些滑块按钮被打开
+        if (document.getElementById('bing').checked) searchEngines.push('bing');
+        if (document.getElementById('baidu').checked) searchEngines.push('baidu');
+        if (document.getElementById('google').checked) searchEngines.push('google');
+        if (document.getElementById('360').checked) searchEngines.push('360'); // 360搜索
+
+        // 如果没有选中任何搜索引擎，则随机选择一个
+        if (searchEngines.length === 0) {
+          const engines = ['bing', 'baidu', 'google', '360'];
+          searchEngines.push(engines[Math.floor(Math.random() * engines.length)]);
+        }
+
+        // 根据选择的搜索引擎进行搜索
+        searchEngines.forEach(engine => {
+          let searchURL = '';
+          switch (engine) {
+            case 'bing':
+              searchURL = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+              break;
+            case 'baidu':
+              searchURL = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
+              break;
+            case 'google':
+              searchURL = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+              break;
+            case '360':
+              searchURL = `https://www.so.com/s?q=${encodeURIComponent(query)}`; // 360搜索的URL
+              break;
+          }
+          window.open(searchURL, '_blank');
+        });
+      }
+    }
+  </script>
+<script id="rendered-js" src=../assets/js/script.js> </script>
+</body>
+</html>
