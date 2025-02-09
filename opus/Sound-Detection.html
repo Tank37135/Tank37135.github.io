@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>声波机-Tank37135</title>
+    <style>
+        /* 弹窗的样式 */
+        .modal {
+           display: none; /* 默认隐藏弹窗 */
+           position: fixed;
+           z-index: 1;
+           left: 0;
+           top: 0;
+           width: 100%;
+           height: 100%;
+           background-color: rgba(0, 0, 0, 0.6); /* 半透明背景 */
+           animation: fadeIn 0.3s ease-out; /* 打开动画 */
+           overflow-y: auto;  
+                   
+        }
+        
+        /* 弹窗内容的样式 */
+        .modal-content {
+           background-color: rgba(255, 255, 255, 0.95); /* 半透明白色背景 */
+           margin: 15% auto;
+           padding: 20px;
+           border-radius: 15px; /* 圆角效果 */
+           width: 80%;
+           max-width: 500px;
+           transform: scale(0); /* 初始状态设置为缩小 */
+           animation: scaleIn 0.3s ease-out forwards; /* 打开时的缩放动画 */
+        }
+        
+        /* 关闭按钮的样式 */
+        .close {
+           color: #aaa;
+           float: right;
+           font-size: 28px;
+           font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+           color: black;
+           text-decoration: none;
+           cursor: pointer;
+        }
+        
+        /* 打开动画 */
+        @keyframes fadeIn {
+           from {
+               opacity: 0;
+           }
+           to {
+               opacity: 1;
+           }
+        }
+        
+        /* 弹窗内容缩放动画 */
+        @keyframes scaleIn {
+           from {
+               transform: scale(0);
+           }
+           to {
+               transform: scale(1);
+           }
+        }
+        
+           
+           
+               body {
+                   font-family: Arial, sans-serif;
+                   text-align: center;
+                   margin-top: 20px;
+                   background-color: #f4f4f9;
+               }
+               h1 {
+                   color: #333;
+                   margin-bottom: 20px;
+               }
+               #frequency, #loudness {
+                   font-size: 24px;
+                   color: #333;
+                   margin-bottom: 10px;
+               }
+               button {
+                   background-color: #4CAF50;
+                   color: white;
+                   font-size: 16px;
+                   padding: 10px 20px;
+                   border: none;
+                   border-radius: 5px;
+                   cursor: pointer;
+                   margin-top: 20px;
+               }
+               button:hover {
+                   background-color: #45a049;
+               }
+               button.stop {
+                   background-color: #f44336;
+               }
+               button.stop:hover {
+                   background-color: #e53935;
+               }
+               canvas {
+                   width: 100%;
+                   max-width: 800px;
+                   margin-top: 20px;
+                   border: 1px solid #ddd;
+               }
+               table {
+                   width: 90%;
+                   margin: 20px auto;
+                   border-collapse: collapse;
+               }
+               th, td {
+                   padding: 8px;
+                   text-align: center;
+                   border: 1px solid #ddd;
+               }
+               th {
+                   background-color: #f2f2f2;
+               }
+               @media (max-width: 600px) {
+                   h1 {
+                       font-size: 22px;
+                   }
+                   button {
+                       font-size: 14px;
+                       padding: 8px 16px;
+                   }
+               }
+    </style>
+</head>
+
+<body>
+    <h1>声音频率与响度检测器</h1>
+    <button id="openBtn">了解更多和隐私保护</button>
+
+    <!-- 弹窗 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>隐私</h2>
+            <ul>
+                <li>本页面不上传任何用户信息</li>
+                <li>本面为静态页面，无上传记录入服务器功能</li>
+                <li>本页面所有测量和记录都在前端进行，不会上传至云端计算</li>
+            </ul>
+            <hr>
+            <h2>使用说明</h2>
+            <p>本页面可用于实验或检测<br>页面将计算监测声音的响度(单位为全幅分贝(dBFS))和频率(单位为赫兹(Hz))<br>
+                本页有两个图像，分别是(从上至下)频率谱图和波形图<br>
+                本页有两个表格，分别记录过去的五分钟之内的响度和频率的最大值和平均值。每个表格最多记录50组数值，当数值超过50组时会删除最老的数值，更新最新的数值。</p>
+            <h2>疑难解答</h2>
+            <p><b>为什么响度值出现负值？</b><br>在数字音频处理中，dBFS（0dB Full Scale）是指将16bit采样的最大值作为0dB的参考点。在实际应用中，大多数的电平显示都是负值，因为数字音乐的最大电平是0dBFS，而实际录音或制作的电平通常会低于这个标准，因此显示为负值。‌</p>
+            <h2>&copy Tank37135</h2>
+        </div>
+    </div>
+
+    <p>点击下面的按钮开始或停止检测频率、响度，并查看音频的可视化图表。</p>
+
+    <button id="startButton">开始检测</button>
+    <button id="stopButton" class="stop" style="display:none;">停止检测</button>
+
+    <div id="frequency">频率: -- Hz</div>
+    <div id="loudness">响度: -- dBFS</div>
+
+    <!-- 频率谱图 -->
+    <canvas id="spectrumCanvas" width="800" height="200"></canvas>
+
+    <!-- 波形图 -->
+    <canvas id="waveformCanvas" width="800" height="200"></canvas>
+
+    <!-- 响度历史数据 -->
+    <h3>响度历史</h3>
+    <table id="loudnessTable">
+        <thead>
+            <tr>
+                <th>时间</th>
+                <th>最大响度 (dBFS)</th>
+                <th>平均响度 (dBFS)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 响度数据将在这里显示 -->
+        </tbody>
+    </table>
+
+    <!-- 频率历史数据 -->
+    <h3>频率历史</h3>
+    <table id="frequencyTable">
+        <thead>
+            <tr>
+                <th>时间</th>
+                <th>最大频率 (Hz)</th>
+                <th>平均频率 (Hz)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 频率数据将在这里显示 -->
+        </tbody>
+    </table>
+
+    <script>
+        // 获取弹窗和按钮元素
+        let modal = document.getElementById("myModal");
+        let btn = document.getElementById("openBtn");
+        let span = document.getElementsByClassName("close")[0];
+        
+        // 点击按钮打开弹窗
+        btn.onclick = function() {
+            modal.style.display = "block";
+            // 让弹窗内容的动画效果重新触发
+            setTimeout(function() {
+                modal.querySelector('.modal-content').style.animation = 'scaleIn 0.3s ease-out forwards';
+            }, 10); // 使用setTimeout确保动画生效
+        }
+        
+        // 点击关闭按钮关闭弹窗
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        
+        // 点击弹窗外部区域也关闭弹窗
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+            
+            
+            
+                let audioContext;
+                let analyser;
+                let microphone;
+                let dataArray;
+                let bufferLength;
+                let canvas1, ctx1;
+                let canvas2, ctx2;
+                let loudnessHistory = [];
+                let frequencyHistory = [];
+                let currentLoudnessData = [];
+                let currentFrequencyData = [];
+                let lastUpdateTime = Date.now();
+                let isDetecting = false;
+        
+                // 开始按钮点击事件
+                document.getElementById("startButton").addEventListener("click", startDetection);
+                document.getElementById("stopButton").addEventListener("click", stopDetection);
+        
+                function startDetection() {
+                    // 获取使用麦克风的权限
+                    navigator.mediaDevices.getUserMedia({ audio: true })
+                        .then(function(stream) {
+                            // 创建AudioContext
+                            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+                            // 创建一个AnalyserNode（分析节点）
+                            analyser = audioContext.createAnalyser();
+                            analyser.fftSize = 2048; // 设置FFT的大小
+        
+                            // 将麦克风流连接到Analyser节点
+                            microphone = audioContext.createMediaStreamSource(stream);
+                            microphone.connect(analyser);
+        
+                            // 创建一个数组来存储频率数据
+                            bufferLength = analyser.frequencyBinCount;
+                            dataArray = new Uint8Array(bufferLength);
+        
+                            // 设置画布
+                            canvas1 = document.getElementById("spectrumCanvas");
+                            ctx1 = canvas1.getContext("2d");
+        
+                            canvas2 = document.getElementById("waveformCanvas");
+                            ctx2 = canvas2.getContext("2d");
+        
+                            // 开始频率、响度和可视化的检测循环
+                            isDetecting = true;
+                            document.getElementById("stopButton").style.display = "inline-block";
+                            document.getElementById("startButton").style.display = "none";
+                            detectSoundProperties();
+                        })
+                        .catch(function(err) {
+                            alert("无法访问麦克风: " + err);
+                        });
+                }
+        
+                // 停止检测
+                function stopDetection() {
+                    isDetecting = false;
+                    document.getElementById("startButton").style.display = "inline-block";
+                    document.getElementById("stopButton").style.display = "none";
+                    if (audioContext) {
+                        audioContext.close(); // 关闭AudioContext来停止麦克风
+                    }
+                }
+        
+                // 检测频率、响度并进行可视化
+                function detectSoundProperties() {
+                    if (!isDetecting) return;
+        
+                    // 获取频率数据
+                    analyser.getByteFrequencyData(dataArray);
+                    analyser.getByteTimeDomainData(dataArray);
+        
+                    // 找到最大频率
+                    let maxIndex = 0;
+                    let maxValue = 0;
+                    for (let i = 0; i < dataArray.length; i++) {
+                        if (dataArray[i] > maxValue) {
+                            maxValue = dataArray[i];
+                            maxIndex = i;
+                        }
+                    }
+        
+                    // 计算频率
+                    let frequency = maxIndex * audioContext.sampleRate / analyser.fftSize;
+        
+                    // 计算响度（RMS值）
+                    let rms = 0;
+                    for (let i = 0; i < dataArray.length; i++) {
+                        rms += dataArray[i] * dataArray[i];
+                    }
+                    rms = Math.sqrt(rms / dataArray.length);
+        
+                    // 将RMS转换为分贝（dB）
+                    let loudness = 20 * Math.log10(rms / 128);  // 128是Uint8Array的最大值
+        
+                    // 显示频率和响度
+                    document.getElementById("frequency").textContent = "频率: " + frequency.toFixed(2) + " Hz";
+                    document.getElementById("loudness").textContent = "响度: " + loudness.toFixed(2) + " dBFS";
+        
+                    // 清除画布，准备绘制新的帧
+                    ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+                    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+        
+                    // 绘制频率谱图
+                    drawSpectrum();
+        
+                    // 绘制波形图
+                    drawWaveform();
+        
+                    // 记录当前的响度和频率
+                    currentLoudnessData.push(loudness);
+                    currentFrequencyData.push(frequency);
+        
+                    // 每5分钟记录一次频率和响度数据
+                    let currentTime = Date.now();
+                    if (currentTime - lastUpdateTime >= 300000) {  // 5分钟（毫秒）
+                        lastUpdateTime = currentTime;
+        
+                        // 计算最大值和平均值
+                        let maxLoudness = Math.max(...currentLoudnessData);
+                        let avgLoudness = currentLoudnessData.reduce((sum, value) => sum + value, 0) / currentLoudnessData.length;
+        
+                        let maxFrequency = Math.max(...currentFrequencyData);
+                        let avgFrequency = currentFrequencyData.reduce((sum, value) => sum + value, 0) / currentFrequencyData.length;
+        
+                        // 将数据添加到历史记录
+                        loudnessHistory.push({
+                            time: new Date(currentTime).toLocaleTimeString(),
+                            maxLoudness: maxLoudness.toFixed(2),
+                            avgLoudness: avgLoudness.toFixed(2)
+                        });
+        
+                        frequencyHistory.push({
+                            time: new Date(currentTime).toLocaleTimeString(),
+                            maxFrequency: maxFrequency.toFixed(2),
+                            avgFrequency: avgFrequency.toFixed(2)
+                        });
+        
+                        // 保持最多50条记录
+                        if (loudnessHistory.length > 50) {
+                            loudnessHistory.shift();
+                        }
+                        if (frequencyHistory.length > 50) {
+                            frequencyHistory.shift();
+                        }
+        
+                        // 清空当前数据
+                        currentLoudnessData = [];
+                        currentFrequencyData = [];
+        
+                        // 更新表格
+                        updateTables();
+                    }
+        
+                    // 继续检测
+                    requestAnimationFrame(detectSoundProperties);
+                }
+        
+                // 绘制频率谱图
+                function drawSpectrum() {
+                    const width = canvas1.width;
+                    const height = canvas1.height;
+                    const barWidth = width / bufferLength;
+                    let x = 0;
+        
+                    ctx1.fillStyle = 'rgb(0, 0, 0)';
+                    for (let i = 0; i < bufferLength; i++) {
+                        const value = dataArray[i];
+                        const barHeight = value * height / 256;
+                        ctx1.fillRect(x, height - barHeight, barWidth, barHeight);
+                        x += barWidth;
+                    }
+                }
+        
+                // 绘制波形图
+                function drawWaveform() {
+                    const width = canvas2.width;
+                    const height = canvas2.height;
+                    const sliceWidth = width * 1.0 / bufferLength;
+                    let x = 0;
+        
+                    ctx2.beginPath();
+                    for (let i = 0; i < bufferLength; i++) {
+                        const v = dataArray[i] / 128.0; // 将值归一化到0.0 - 1.0
+                        const y = v * height / 2; // 缩放到画布高度
+        
+                        if (i === 0) {
+                            ctx2.moveTo(x, y);
+                        } else {
+                            ctx2.lineTo(x, y);
+                        }
+        
+                        x += sliceWidth;
+                    }
+                    ctx2.lineTo(canvas2.width, canvas2.height / 2);
+                    ctx2.stroke();
+                }
+        
+                // 更新表格
+                function updateTables() {
+                    const loudnessTable = document.getElementById("loudnessTable").getElementsByTagName("tbody")[0];
+                    const frequencyTable = document.getElementById("frequencyTable").getElementsByTagName("tbody")[0];
+        
+                    // 更新响度表格
+                    loudnessTable.innerHTML = "";
+                    loudnessHistory.forEach(entry => {
+                        const row = loudnessTable.insertRow();
+                        row.insertCell(0).textContent = entry.time;
+                        row.insertCell(1).textContent = entry.maxLoudness;
+                        row.insertCell(2).textContent = entry.avgLoudness;
+                    });
+        
+                    // 更新频率表格
+                    frequencyTable.innerHTML = "";
+                    frequencyHistory.forEach(entry => {
+                        const row = frequencyTable.insertRow();
+                        row.insertCell(0).textContent = entry.time;
+                        row.insertCell(1).textContent = entry.maxFrequency;
+                        row.insertCell(2).textContent = entry.avgFrequency;
+                    });
+                }
+    </script>
+</body>
+
+</html>

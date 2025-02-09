@@ -1,1 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="展示我的网络开发、设计等项目。">
+    <meta name="keywords" content="工具, 作品集">
+    <title>Tank37135作品集</title>
+        <style>
 
+
+        .dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333; /* 更改背景颜色为 #333 */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  border-radius: 8px; /* 添加圆角效果 */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: #A5CAFF;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* 项目列表样式 */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 2rem;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-card .project-info {
+            padding: 1rem;
+        }
+
+        .project-card h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #A5CAFF;
+            padding: 10px 15px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .project-card a:hover {
+            background-color: #7b9acc;
+        }
+
+        /* 搜索框 */
+        .search-container {
+            text-align: center;
+            margin: 2rem;
+        }
+
+        .search-container input {
+            padding: 10px;
+            width: 80%;
+            max-width: 500px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tank37135作品集</h1>
+         <nav class="navbar">
+
+            <a href="../blog/">博客</a>
+                        <a href="Tank37135.github.io">主页</a>
+            <div class="dropdown">
+  <a>快速导航</a>
+  <div class="dropdown-content">
+    <a href="#">工具</a><br>
+    <a href="#">专题</a><br>
+    <a href="#">软件</a><br>
+    <a href="#">更多</a><br>
+  </div>
+</div>
+        </nav>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="搜索我的作品">
+    </div>
+
+
+
+    <section class="projects-container" id="projectResults">
+    <h2>工具</h2>
+        <!-- 项目卡 -->
+        <article class="project-card" data-name="754算数" data-tech="计算, 锻炼, 流程, 算数">
+            <div class="project-info">
+                <h3>754算数</h3>
+                <p>加强计算速度和锻炼自身的流程思维</p>
+                <a href="754.html">查看工具</a>
+            </div>
+        </article>
+
+        <article class="project-card" data-name="声波机" data-tech="检测, 响度, 频率, 声波">
+            <div class="project-info">
+                <h3>声波机</h3>
+                <p>快速检测附近声波的频率和全幅响度</p>
+                <a href="Sound-Detection.html">查看工具</a>
+            </div>
+        </article>
+
+        <article class="project-card" data-name="Tank37135网址导航" data-tech="无广告, 导航, 搜索, 网址">
+            <div class="project-info">
+                <h3>Tank37135网址导航</h3>
+                <p>无广告可多引擎同时搜索的导航</p>
+                <a href="guide.html">查看工具</a>
+            </div>
+        </article>
+
+        <!-- 更多项目... -->
+    </section>
+
+    <section class="projects-container" id="projectResults">
+    <h2>专题</h2>
+        <!-- 项目卡 -->
+        <article class="project-card" data-name="Windows教程" data-tech="Windows, 电脑, 系统, 教程">
+            <div class="project-info">
+                <h3>windows教程</h3>
+                <p>世界最主流的系统教学</p>
+                <a href="computer-win.html">查看专题</a>
+            </div>
+        </article>
+
+        <article class="project-card" data-name="快捷键" data-tech="键盘, 快捷键, 效率, Windows">
+            <div class="project-info">
+                <h3>快捷键</h3>
+                <p><高效使用Windows的秘籍/p>
+                <a href="Key-combinations.html">查看专题</a>
+            </div>
+        </article>
+
+        <!-- 更多项目... -->
+    </section>
+
+
+    <footer>
+        <p>&copy; Tank37135</p>
+    </footer>
+
+    <script>
+        // 获取搜索输入框和结果容器
+        const search = document.getElementById('search');
+        const resultsContainer = document.getElementById('projectResults');
+
+        // 搜索项目的函数
+        function searchProjects(query) {
+            // 获取所有项目卡
+            const projectCards = resultsContainer.getElementsByTagName('article');
+            
+            // 将查询转为小写以便对比
+            query = query.toLowerCase();
+
+            // 循环检查每个项目卡
+            for (let card of projectCards) {
+                const projectName = card.getAttribute('data-name').toLowerCase();
+                const projectTechs = card.getAttribute('data-tech').toLowerCase().split(', ');
+
+                if (projectName.includes(query) || 
+                    projectTechs.some(tech => tech.includes(query))) {
+                    // 显示匹配的项目卡
+                    card.style.display = 'block';
+                } else {
+                    // 隐藏不匹配的项目卡
+                    card.style.display = 'none';
+                }
+            }
+        }
+
+        // 监听搜索输入框的实时变化
+        search.addEventListener('input', function() {
+            const query = this.value;
+            if (query) {
+                // 执行搜索并过滤结果
+                searchProjects(query);
+            } else {
+                // 恢复所有项目卡当搜索为空时
+                const projectCards = resultsContainer.getElementsByTagName('article');
+                for (let card of projectCards) {
+                    card.style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
