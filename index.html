@@ -1,302 +1,304 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A personal blog showcasing articles, projects, and more.">
+    <meta name="keywords" content="blog, personal, web development, projects">
     <title>Tank37135 Blog</title>
-    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+
+
+
+
+
+        a {
+    text-decoration: none;
+    color: #A5CAFF; /* 默认文字颜色 */
+    padding: 5px 10px;
+    border-radius: 5px; /* 可选，增加圆角 */
+    transition: background-color 0.3s ease; /* 添加平滑过渡效果 */
+}
+
+a:hover {
+    background-color: #444; /* 当鼠标悬停时的背景色 */
+    color: #fff; /* 鼠标悬停时文字颜色 */
+}
+
+        /* 基本布局 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* 更浅的黑色背景 */
+            color: #fff;
+        }
+
+        header {
+            background-color: #000; /* 深黑色 */
+            padding: 1rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            color: #A5CAFF;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-links li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: #A5CAFF;
+            text-decoration: none;
+        }
+
+        /* 主内容区 */
+        main {
+            padding: 2rem;
+        }
+
+        .hero {
+            background-color: #2b2b2b; /* 淡灰色背景 */
+            color: #A5CAFF;
+            padding: 2rem;
+            text-align: center;
+        }
+        .center {
+            text-align: center;
+        }
+
+        .articles {
+            margin-top: 2rem;
+        }
+
+        .article-list article {
+            background-color: #333; /* 更淡的黑色背景 */
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            opacity: 0; /* 默认隐藏 */
+            transform: translateY(50px); /* 向下偏移 */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .article-list h3 a {
+            text-decoration: none;
+            color: #A5CAFF;
+            font-size: 1.2rem;
+        }
+
+        .article-list p {
+            color: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #A5CAFF;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+        }
+    </style>
 </head>
-<body translate="no">
-    <canvas id="sparks"></canvas>
-    <!-- 页面头部 -->
-    <header>
-        <h3>Tank37135 Blog</h3>
+
+<body>
+
+    <!-- Header/Navbar -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="/" class="logo">Tank37135</a>
+            <ul class="nav-links">
+                <li><a href="blog/">博客</a></li>
+                <li><a href="article/">文章</a></li>
+                <li><a href="opus/">作品</a></li>
+                <li><a href="about/">关于</a></li>
+            </ul>
+        </nav>
     </header>
-    <!-- 导航栏 -->
-    <nav>
-        <a href="blog">博客</a>
-        <a href="essay">文章</a>
-        <a href="tools">工具</a>
-        <a href="projects">项目</a>
-        <a href="Special">专题</a>
-        <a href="visual">视觉</a>
-        <a href="games">游戏</a>
-        <a href="sundry">杂的</a>
-    </nav>
-    <!-- 页面主体内容 -->
-    <div class="main-container">
-        <main>
-            <article class="article-1">
-                <p>这是一些额外的段落占位内容。它被写来填充可用空间，并展示较长文本片段如何影响周围内容。我们会经常重复这段文本，以保持演示的流畅，因此请留意这段完全相同的文字。</p>
-                <h3>示例列表</h3>
-                <p>这是一些额外的段落占位内容。它是稍微简短的版本，跟其他高重复性的正文文本相比。这是一个无序列表的示例：</p>
-                <ul>
-                    <li>第一个列表项</li>
-                    <li>第二个列表项，带有更长的描述</li>
-                    <li>第三个列表项，以此结束</li>
-                </ul>
-                <p>这是一个有序列表：</p>
-                <ol>
-                    <li>第一个列表项</li>
-                    <li>第二个列表项，带有更长的描述</li>
-                    <li>第三个列表项，以此结束</li>
-                </ol>
-                <p>这是一个定义列表：</p>
-                <dl>
-                    <dt>超文本标记语言 (HTML)</dt>
-                    <dd>用于描述和定义网页内容的语言</dd>
-                    <dt>层叠样式表 (CSS)</dt>
-                    <dd>用于描述网页内容外观的工具</dd>
-                    <dt>JavaScript (JS)</dt>
-                    <dd>用于构建高级网站和应用程序的编程语言</dd>
-                </dl>
-                <h2>内联HTML元素</h2>
-                <p>HTML定义了一个可用内联标签的长列表，完整列表可以在<a class="a1" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank">Mozilla开发者网络</a>上或者<a class="a1" href="https://www.runoob.com/tags/html-reference.html" target="_blank">菜鸟教程</a>上找到。</p>
-                <ul>
-                    <li>
-                        <strong>加粗文本</strong>，使用<code>&lt;strong&gt;</code>。
-                    </li>
-                    <li>
-                        <em>斜体文本</em>，使用<code>&lt;em&gt;</code>。
-                    </li>
-                    <li>缩写，如<abbr title="超文本标记语言">HTML</abbr>，应使用<code>&lt;abbr&gt;</code>，并可选择添加<code>title</code>属性以提供完整短语。</li>
-                    <li>引用，如<cite>— Mark Otto</cite>，应使用<code>&lt;cite&gt;</code>。</li>
-                    <li>
-                        <del>删除</del>的文本应使用<code>&lt;del&gt;</code>，<ins>插入</ins>的文本应使用<code>&lt;ins&gt;</code>。
-                    </li>
-                    <li>上标<sup>文本</sup>使用<code>&lt;sup&gt;</code>，下标<sub>文本</sub>使用<code>&lt;sub&gt;</code>。</li>
-                </ul>
-                <p>这些元素大多数由浏览器以少量修改的样式显示。</p>
-            </article>
-            <article class="article-1">
-                <h3>示例表格</h3>
-                <p>别忘了这些文章中的表格：</p>
-                <table class=>
-                    <thead>
-                        <tr>
-                            <th>姓名</th>
-                            <th>上传</th>
-                            <th>下载</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>name</td>
-                            <td>105</td>
-                            <td>11</td>
-                        </tr>
-                        <tr>
-                            <td>name</td>
-                            <td>46</td>
-                            <td>13</td>
-                        </tr>
-                        <tr>
-                            <td>name</td>
-                            <td>7</td>
-                            <td>9</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td>name</td>
-                            <td>291</td>
-                            <td>23</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </article>
-            <article class="article-1">
-                <p>这里，我们粗略地讲解一个表格一个表格的属性：</p>
-                <ul>
-                    <li>
-                        <strong>&lt;table&gt; 元素的属性</strong>
-                        <ul>
-                            <li>
-                                <strong>border</strong>：设置表格的边框宽度（已过时，建议使用 CSS）。 <p>例如：<code>&lt;table border="1"&gt;</code> 用于创建一个带有 1 像素宽边框的表格。</p>
-                            </li>
-                            <li>
-                                <strong>cellspacing</strong>：设置单元格之间的间距（已过时，建议使用 CSS `border-spacing`）。 <p>例如：<code>&lt;table cellspacing="5"&gt;</code> 用于设置单元格之间有 5 像素的间距。</p>
-                            </li>
-                            <li>
-                                <strong>cellpadding</strong>：设置单元格内容与边框之间的内边距（已过时，建议使用 CSS `padding`）。 <p>例如：<code>&lt;table cellpadding="10"&gt;</code> 用于设置单元格内内容与边框之间的间距为 10 像素。</p>
-                            </li>
-                            <li>
-                                <strong>width</strong>：设置表格的宽度，可以使用具体的像素值或百分比。 <p>例如：<code>&lt;table width="100%"&gt;</code> 用于设置表格宽度占据父容器的 100%。</p>
-                            </li>
-                            <li>
-                                <strong>height</strong>：设置表格的高度。 <p>例如：<code>&lt;table height="400px"&gt;</code> 用于设置表格高度为 400 像素。</p>
-                            </li>
-                            <li>
-                                <strong>align</strong>：设置表格在页面中的水平对齐方式（已过时，建议使用 CSS `text-align`）。 <p>例如：<code>&lt;table align="center"&gt;</code> 用于将表格居中显示。</p>
-                            </li>
-                            <li>
-                                <strong>summary</strong>：为表格提供简短的说明，主要用于无障碍设计。 <p>例如：<code>&lt;table summary="This table shows sales data for Q1"&gt;</code> 用于为表格提供简要描述，方便屏幕阅读器用户。</p>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>&lt;tr&gt; 元素的属性</strong>
-                        <ul>
-                            <li>
-                                <strong>align</strong>：设置表格行内容的水平对齐方式（已过时，建议使用 CSS）。 <p>例如：<code>&lt;tr align="center"&gt;</code> 用于设置行中的内容居中对齐。</p>
-                            </li>
-                            <li>
-                                <strong>valign</strong>：设置表格行内容的垂直对齐方式（已过时，建议使用 CSS）。 <p>例如：<code>&lt;tr valign="top"&gt;</code> 用于将行中的内容垂直对齐到顶部。</p>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>&lt;td&gt; 元素的属性</strong>
-                        <ul>
-                            <li>
-                                <strong>colspan</strong>：设置单元格跨越的列数。 <p>例如：<code>&lt;td colspan="2"&gt;合并两列&lt;/td&gt;</code> 用于合并两列。</p>
-                            </li>
-                            <li>
-                                <strong>rowspan</strong>：设置单元格跨越的行数。 <p>例如：<code>&lt;td rowspan="2"&gt;合并两行&lt;/td&gt;</code> 用于合并两行。</p>
-                            </li>
-                            <li>
-                                <strong>align</strong>：设置单元格内容的水平对齐方式。 <p>例如：<code>&lt;td align="right"&gt;</code> 用于将单元格内容右对齐。</p>
-                            </li>
-                            <li>
-                                <strong>valign</strong>：设置单元格内容的垂直对齐方式。 <p>例如：<code>&lt;td valign="middle"&gt;</code> 用于将单元格内容垂直居中。</p>
-                            </li>
-                            <li>
-                                <strong>width</strong>：设置单元格的宽度。 <p>例如：<code>&lt;td width="100px"&gt;</code> 用于设置单元格的宽度为 100 像素。</p>
-                            </li>
-                            <li>
-                                <strong>height</strong>：设置单元格的高度。 <p>例如：<code>&lt;td height="50px"&gt;</code> 用于设置单元格的高度为 50 像素。</p>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>&lt;th&gt; 元素的属性</strong>
-                        <ul>
-                            <li>
-                                <strong>colspan</strong>：设置标题单元格跨越的列数。 <p>例如：<code>&lt;th colspan="2"&gt;标题&lt;/th&gt;</code> 用于合并两列的标题单元格。</p>
-                            </li>
-                            <li>
-                                <strong>rowspan</strong>：设置标题单元格跨越的行数。 <p>例如：<code>&lt;th rowspan="2"&gt;标题&lt;/th&gt;</code> 用于合并两行的标题单元格。</p>
-                            </li>
-                            <li>
-                                <strong>align</strong>：设置标题单元格内容的水平对齐方式。 <p>例如：<code>&lt;th align="center"&gt;标题&lt;/th&gt;</code> 用于将标题单元格的内容居中对齐。</p>
-                            </li>
-                            <li>
-                                <strong>valign</strong>：设置标题单元格内容的垂直对齐方式。 <p>例如：<code>&lt;th valign="bottom"&gt;标题&lt;/th&gt;</code> 用于将标题单元格的内容垂直对齐到底部。</p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </article>
-        </main>
-        <aside>
-            <article>
-                <h1>当前网站加载状态：</h1>
-                <h3 class="specific-class">载入中...</h3>
-            </article>
-            <a href="#">
-                <article>
-                    <h3>声明</h3>
-                    <strong>这里将说明一些问题</strong>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero">
+            <h1>hi，欢迎来到我的个人网站</h1>
+            <p>在这里，我会分享我的知识，发布我的项目，提供一些工具等</p>
+            <p>让我们在这个充满知识和乐趣的世界里，一起成长吧</p>
+        </section>
+
+        <section class="articles">
+            <div class="article-list">
+                <article class="article-item">
+                    <h3>前言介绍</h3>
+                    <p>这里的文章都是在网络上查阅大量包括但不限于官方网站，当我发表个人观点时，我会声明特别<br>
+                    我是一个"会做不会画的"的业余爱好者，说爱好不如说是热爱，作品大多"实而不华"。所以会显地页面不那么好看</p>
+                    <p>还有我页面设计也不是很好，虽然是个人网站，但排布风格总像企业官网或者公益机构官网，比如现在（第四代）排版</p>
+                    <p>大更新网站有很大可能会改变网站排版和URL结构，所以有不少页面会变成404，在这里向访客们说声</p>
+                    <h2>对不起</h2>
+                    <p>由于本站配置较差，所以图片使用非常少，请谅解</p>
                 </article>
-            </a>
-            <article>
-                <h4 class="fst-italic">热门文章</h4>
-                <ul class="ul-1">
-                    <a href="essay/essay1.html">
-                        <li class="li-1">
-                            <div class="article-info">
-                                <div class="article-title">在网站上挂国旗</div>
-                                <div class="article-date">2024/12/2</div>
-                                <div class="article-description">#法律</div>
-                            </div>
-                            <img src="essay/images/IMG_20241202_195518.png" alt="Image 1">
-                        </li>
-                    </a>
-                    <a href="#">
-                        <li class="li-1">
-                            <div class="article-info">
-                                <div class="article-title">文章标题2</div>
-                                <div class="article-date">2023-04-02</div>
-                                <div class="article-description">主要内容。</div>
-                            </div>
-                            <img src="images/image2.png" alt="Image 2">
-                        </li>
-                    </a>
-                    <a href="#">
-                        <li class="li-1">
-                            <div class="article-info">
-                                <div class="article-title">文章标题3</div>
-                                <div class="article-date">2023-04-02</div>
-                                <div class="article-description">主要内容。</div>
-                            </div>
-                            <img src="images/image3.png" alt="Image 3">
-                        </li>
-                    </a>
-                </ul>
-            </article>
-            <article>
-                <h4 class="fst-italic">在其他地方</h4>
-                <ol class="list-unstyled">
-                    <li>
-                        <a class="a1" href="https://github.com/tank37135">GitHub</a>
-                    </li>
-                </ol>
-                <ol class="list-unstyled">
-                    <li>
-                        <a class="a1" href="https://space.bilibili.com/3546812994554001?spm_id_from=333.337.0.0">bilibili</a>
-                    </li>
-                </ol>
-            </article>
-            <article>
-                <h4>联系</h4>
-                <ol class="list-unstyled">
-                    <li>
-                        <a class="a1" href="mailto:Tank37135@outlook.com?subject=你好，Tank37135&body=该邮件十日内回复有效，否则重新发送我是你的访客，我想说：">电子邮箱</a>
-                    </li>
-                </ol>
-            </article>
-            <article>
-                <h3>Timer</h3>
-                <ol class="list-unstyled mb-0">
-                    <li>
-                        <h2>这一分钟已经过去</h2>
-                    </li>
-                    <div class="progress-container">
-                        <li>
-                            <div class="progress-bar" id="minuteProgressBar">0%</div>
-                        </li>
-                    </div>
-                    <li>
-                        <h2>这个小时已经过去</h2>
-                    </li>
-                    <div class="progress-container">
-                        <li>
-                            <div class="progress-bar" id="hourProgressBar">0%</div>
-                        </li>
-                    </div>
-                    <li>
-                        <h2>这天已经过去</h2>
-                    </li>
-                    <div class="progress-container">
-                        <li>
-                            <div class="progress-bar" id="hour24ProgressBar">0%</div>
-                        </li>
-                    </div>
-                    <li>
-                        <h2>这年已经过去</h2>
-                    </li>
-                    <div class="progress-container">
-                        <li>
-                            <div class="progress-bar" id="yearProgressBar">0%</div>
-                        </li>
-                    </div>
-            </article>
-    </div>
-    </aside>
-    <!-- 页脚 -->
+            </div>
+        </section>
+
+        <section class="articles">
+            <h2 class="center">最新文章</h2>
+            <div class="article-list">
+                <article class="article-item">
+                    <h3><a href="/blog/post/1">认识《国旗法》</a></h3>
+                    <p>这篇文章介绍了在网站上使用国旗的注意事项，以及在哪里获得标准的五星红旗。<br>
+                        我想，这应该是一件很严肃的事，也是一件不可忽略的事<br>
+                    它可能很简单，但一定要注意</p>
+                </article>
+                <article class="article-item">
+                    <h3><a href="/blog/post/2">我的web学习历程</a></h3>
+                    <p>介绍我如何认识和学习HTML、CSS、JavaScript，并且讲述了我在学习中遇到的困难和我如何解决他们，以及我的学习资源</p>
+                </article>
+                <article class="article-item">
+                    <h3><a href="/blog/post/3">对SEO进行优化</a></h3>
+                    <p>SEO即搜索引擎优化，是一种通过优化网站内容、结构和技术，提高网站在搜索引擎中排名的策略和方法，目标是增加网站在搜索引擎页面中的可见性，从而吸引更多有潜力的访客<br>
+                    那么，我们改怎么进行SEO的优化呢，我们将在本文讲述</p>
+                </article>
+                <article class="article-item">
+                    <h3><a href="/blog/post/4">Exploring Node.js</a></h3>
+                    <p>My experience with Node.js, setting up a backend server, and how it complements front-end development. I also share some tutorials I followed to get started.</p>
+                </article>
+                <article class="article-item">
+                    <h3><a href="/blog/post/5">CSS Grid: A Game Changer</a></h3>
+                    <p>How CSS Grid revolutionized web layout design for me. In this post, I explore the advantages of using Grid over Flexbox for certain types of layouts.</p>
+                </article>
+                <article class="article-item">
+                    <h3><a href="/blog/post/6">Building My Portfolio</a></h3>
+                    <p>I share the process of building my personal portfolio website, including design decisions, code challenges, and lessons learned along the way.</p>
+                </article>
+            </div>
+        </section>
+        <section class="articles">
+            <h2 class="center">最新工具</h2>
+            <div class="article-list">
+                <article class="article-item">
+                    <h3><a href="/blog/post/1">网址导航</a></h3>
+                    <p>用腻了充满广告的搜索导航吗，来试试支持多引擎搜索的Tank37135网址导航吧<br>
+                    Tank37135网址导航不仅没有广告，还有支持多搜索引擎同时搜索的一大亮点</p>
+                </article>
+                <article class="article-item">
+                    <h3><a href="/blog/post/2">声波机</a></h3>
+                    <p>这可能是一个有用但不多的功能它可以使用你的设备的麦克风检测声音，计算这些声音的全幅分贝以及频率，并且提供可视化图表，没5分钟计算一次在本次5分钟内的最大全幅分贝、平均全幅分贝以及最大频率、平均频率<br>
+                    注意谨慎刷新，因为这样会使你辛苦记录的数据灰飞烟灭<br>
+                    来开发新的用法吧</p>
+                </article>
+                <article class="article-item">
+                    <h3><a href="/blog/post/3">754算数练习</a></h3>
+                    <p>754算数练习是提升数学技能的一种技巧，在当代社会，到处都能用到数学，754算数可以锻炼自身的流程思维，提高计算速度（我喜欢称为大脑算力）<br>
+                    七分钟（420秒）合格，快来挑战吧</p>
+                </article>
+            </div>
+        </section>
+        <section class="articles">
+            <h2 class="center">最新专题</h2>
+            <div class="article-list">
+                <article class="article-item">
+                    <h3><a href="/blog/post/1">windows系统教程</a></h3>
+                    <p>现在还有人不会使用Windows系统吗，作为全球约84.44%电脑用户都在使用的桌面操作系统，有着极强的开放，兼容，高效，高扩展等性质，我可以称之为对于一般用户最好用的系统，现在周围都是Windows用户，本专题将教你怎么使用、优化系统<br>
+                    快进来学习吧</p>
+                </article>
+                <article class="article-item">
+                    <h3><a href="/blog/post/2">快捷键</a></h3>
+                    <p>键盘是电脑最重要的输入硬件，可以说没有键盘，电脑就几乎等于废铁，而键盘也有大学问，高级的技巧可以帮助用户更高效地使用电脑<br>
+                    而高效使用键盘的秘籍就是组合键，有了这个秘籍，相信你也会变成《电脑高手》</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <p>For &copy Tank37135 Blog</p>
+        <p>&copy; 2025 Tank37135. All rights reserved.</p>
     </footer>
-    <script id="rendered-js" src=assets/js/script.js> </script>
+
+    <script>
+        // 使用 IntersectionObserver 监听文章是否进入视口
+        const articles = document.querySelectorAll('.article-item');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target); // 只触发一次动画
+                }
+            });
+        }, {
+            threshold: 0.5 // 50% 进入视图触发
+        });
+
+        articles.forEach(article => {
+            observer.observe(article);
+        });
+    </script>
+
 </body>
+<!--
+//                            _ooOoo_  
+//                           o8888888o  
+//                           88" . "88  
+//                           (| -_- |)  
+//                            O\ = /O  
+//                        ____/`---'\____  
+//                      .   ' \\| |// `.  
+//                       / \\||| : |||// \  
+//                     / _||||| -:- |||||- \  
+//                       | | \\\ - /// | |  
+//                     | \_| ''\---/'' | |  
+//                      \ .-\__ `-` ___/-. /  
+//                   ___`. .' /--.--\ `. . __  
+//                ."" '< `.___\_<|>_/___.' >'"".  
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |  
+//                 \ \ `-. \_ __\ /__ _/ .-` / /  
+//         ======`-.____`-.___\_____/___.-`____.-'======  
+//                            `=---='  
+//  
+//         .............................................  
+//                  佛祖保佑             永无BUG 
+//          佛曰:  
+//                  写字楼里写字间，写字间里程序员；  
+//                  程序人员写程序，又拿程序换酒钱。  
+//                  酒醒只在网上坐，酒醉还来网下眠；  
+//                  酒醉酒醒日复日，网上网下年复年。  
+//                  但愿老死电脑间，不愿鞠躬老板前；  
+//                  奔驰宝马贵者趣，公交自行程序员。  
+//                  别人笑我忒疯癫，我笑自己命太贱；  
+//                  不见满街漂亮妹，哪个归得程序员？
+*/
+-->
 </html>
