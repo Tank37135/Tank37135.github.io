@@ -4,8 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows基础</title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <style>
+
+
+
+                .content {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    background-color: #2a2a2a;
+                    padding: 2rem;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                    animation: fadeIn 0.5s ease-in;
+                }
+        
+                /* 标题样式 */
+                h2 {
+                    color: #ff9900;
+                    margin: 1.5rem 0;
+                    font-size: 2rem; /* 调整标题的字体大小 */
+                }
+        
+                /* 正文段落样式 */
+                p {
+                    text-indent: 2em;
+                    margin: 1rem 0;
+                    font-size: 1.1rem; /* 增加字体大小 */
+                }
+        
+                /* 引用样式 */
+                blockquote {
+                    background-color: #333;
+                    padding: 1rem;
+                    border-left: 4px solid #ff9900;
+                    color: #fff;
+                    margin: 1rem 0;
+                    font-style: italic;
+                }
+        
+                /* 过渡效果 */
+                .content {
+                    animation: fadeIn 0.5s ease-in;
+                }
+        
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+        
+                /* 响应式设计 */
+                @media (max-width: 768px) {
+                    .content {
+           padding: 1.5rem;
+                    }
+        
+                    h2 {
+           font-size: 1.8rem; /* 调整标题字体大小 */
+                    }
+        
+                    p {
+           font-size: 1rem; /* 调整正文字体大小 */
+                    }
+                }
+        
+                /* 更好看的链接效果 */
+                a {
+                    color: #ff9900;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                }
+        
+                a:hover {
+                    color: #ffffff;
+                }
+        
+
 
 
          .code-block {
@@ -74,6 +147,7 @@
         overflow: hidden;
         position: relative;
         overflow-y: auto;
+            background-color: #2a2a2a
         }
         
         #content {
@@ -90,25 +164,27 @@
         
         
         article {
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        display: none;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-        
-        }
-        
-        article.active {
-        display: flex;
-        opacity: 1;
-        }
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background-color: #2a2a2a; /* 设置背景色为 #2a2a2a */
+    color: white; /* 设置文字颜色为白色 */
+}
+
+article.active {
+    display: flex;
+    opacity: 1;
+}
+
         
         .hamburger-menu {
         font-size: 24px; /* 缩小字体大小 */
         cursor: pointer;
         padding: 10px; /* 缩小内边距 */
-        background-color: rgba(0, 122, 255, 0.5); /* 设置为浅蓝色半透明 */
+        background-color: rgba(255, 153, 0, 0.5); /* 设置为浅蓝色半透明 */
         color: white;
         text-align: center;
         position: fixed;
@@ -266,8 +342,10 @@
                 <a class="center" href="mailto:Tank37135@outlook.com?subject=745错误汇报&body=该邮件十日内回复有效，否则重新发送，我发现以下问题： ">错误汇报途径：邮箱</a>
                 <a class="center" href="https://github.com/Tank37135/Tank37135.github.io/issues" target="_self">错误汇报途径：GitHub issues</a>
                 <div class="code-block">
-        <button onclick="copyCode(this)">复制分享博客</button>
-        <pre><code class="code2">https://Tank37135.github.io/</code></pre>
+        <button onclick="copyCode(this)">复制</button>
+        <pre><code class="code2">
+        https://Tank37135.github.io/
+        </code></pre>
     </div>
                 <b>专题会不定时更新，请留意</b>
                 <ul>
@@ -667,7 +745,6 @@
             <article class="page"> 页面十内容 </article>
         </div>
     </main>
-    <script scr="../assets/js/background.js"></script>
     <script id="rendered-js">
         let currentPage = 1;
         const pages = document.querySelectorAll('article');
