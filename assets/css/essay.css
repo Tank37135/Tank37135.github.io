@@ -1,0 +1,143 @@
+        .code-block {
+                    position: relative;
+                    margin: 20px;
+                }
+        
+                .code-block button {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                    background: #ff9900;
+                    color: white;
+                    border: none;
+                    padding: 6px 12px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    z-index: 1;
+                }
+        
+                .code-block button:hover {
+                    background: #ff9900;
+                }
+        
+                pre {
+                    background-color: #2d2d2d; /* 深灰色背景 */
+                    padding: 15px;
+                    border-radius: 5px;
+                    overflow-x: auto;
+                    margin: 0;
+                    color: #ffffff; /* 白色文本 */
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 添加阴影效果 */
+                }
+        
+                .code2 {
+                    font-family: Consolas, Monaco, 'Courier New', monospace;
+                    font-size: 14px;
+                    line-height: 1.4;
+                    color: inherit; /* 继承pre标签的文本颜色 */
+                }
+        
+                /* 添加滚动条样式 */
+                pre::-webkit-scrollbar {
+                    height: 8px;
+                }
+        
+                pre::-webkit-scrollbar-track {
+                    background: #1e1e1e;
+                }
+        
+                pre::-webkit-scrollbar-thumb {
+                    background: #888;
+                    border-radius: 4px;
+                }
+        
+                pre::-webkit-scrollbar-thumb:hover {
+                    background: #555;
+                }
+                .code1 {
+                  background-color: #333; /* 设置背景为灰色 */
+                  color: white;            /* 设置文字为白色 */
+                  padding: 2px 4px;        /* 给代码增加内边距 */
+                  border-radius: 4px;      /* 可选：圆角效果 */
+                }
+                /* 基本样式 */
+                body {
+                    font-family: 'Segoe UI', Arial, sans-serif;
+                    line-height: 1.8;
+                    margin: 0;
+                    padding: 20px;
+                    background-color: #1a1a1a;
+                    color: #ffffff;
+                }
+        
+                /* 文章容器 */
+                .content {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    background-color: #2a2a2a;
+                    padding: 2rem;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                    animation: fadeIn 0.5s ease-in;
+                }
+        
+                /* 标题样式 */
+                h2 {
+                    color: #ff9900;
+                    margin: 1.5rem 0;
+                    font-size: 2rem; /* 调整标题的字体大小 */
+                }
+        
+                /* 正文段落样式 */
+                p {
+                    text-indent: 2em;
+                    margin: 1rem 0;
+                    font-size: 1.1rem; /* 增加字体大小 */
+                }
+        
+                /* 引用样式 */
+                blockquote {
+                    background-color: #333;
+                    padding: 1rem;
+                    border-left: 4px solid #ff9900;
+                    color: #fff;
+                    margin: 1rem 0;
+                    font-style: italic;
+                }
+        
+                /* 过渡效果 */
+                .content {
+                    animation: fadeIn 0.5s ease-in;
+                }
+        
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+        
+                /* 响应式设计 */
+                @media (max-width: 768px) {
+                    .content {
+           padding: 1.5rem;
+                    }
+        
+                    h2 {
+           font-size: 1.8rem; /* 调整标题字体大小 */
+                    }
+        
+                    p {
+           font-size: 1rem; /* 调整正文字体大小 */
+                    }
+                }
+        
+                /* 更好看的链接效果 */
+                a {
+                    color: #ff9900;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                }
+        
+                a:hover {
+                    color: #ffffff;
+                }
+        
