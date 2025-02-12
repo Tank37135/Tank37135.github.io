@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="展示我的文章">
+    <meta name="keywords" content="文章, 作品集">
+    <title>Tank37135文章</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: #A5CAFF;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* 项目列表样式 */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 2rem;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-card .project-info {
+            padding: 1rem;
+        }
+
+        .project-card h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #A5CAFF;
+            padding: 10px 15px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .project-card a:hover {
+            background-color: #7b9acc;
+        }
+
+        /* 搜索框 */
+        .search-container {
+            text-align: center;
+            margin: 2rem;
+        }
+
+        .search-container input {
+            padding: 10px;
+            width: 80%;
+            max-width: 500px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tank37135文章</h1>
+         <nav class="navbar">
+
+            <a href="../blog/">博客</a>
+            <a href="Tank37135.github.io">主页</a>
+        </nav>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="搜索我的文章">
+    </div>
+
+    <section class="projects-container" id="projectResults">
+        <!-- 项目卡 -->
+        <article class="project-card" data-name="SEO优化" data-tech="seo, 优化, 网站">
+            <div class="project-info">
+                <h3>SEO优化</h3>
+                <p>让网站更好</p>
+                <a href="SEO.html">查看文章</a>
+            </div>
+        </article>
+        
+        <article class="project-card" data-name="《国旗法》" data-tech="法律, 国旗, 严肃">
+            <div class="project-info">
+                <h3>《国旗法》</h3>
+                <p>很重要的一节</p>
+                <a href="essay1.html">查看文章</a>
+            </div>
+        </article>
+
+        <article class="project-card" data-name="好东西" data-tech="学习, 资源">
+            <div class="project-info">
+                <h3>好东西</h3>
+                <p>有年龄要求</p>
+                <a href="18.html">查看文章</a>
+            </div>
+        </article>
+        
+        <article class="project-card" data-name="代码流星雨" data-tech="装, 流星雨">
+            <div class="project-info">
+                <h3>代码流星雨</h3>
+                <p>装x必备</p>
+                <a href="code.html">查看文章</a>
+            </div>
+        </article>
+
+<!-- 更多项目... -->
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My Projects Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 获取搜索输入框和结果容器
+        const search = document.getElementById('search');
+        const resultsContainer = document.getElementById('projectResults');
+
+        // 搜索项目的函数
+        function searchProjects(query) {
+            // 获取所有项目卡
+            const projectCards = resultsContainer.getElementsByTagName('article');
+            
+            // 将查询转为小写以便对比
+            query = query.toLowerCase();
+
+            // 循环检查每个项目卡
+            for (let card of projectCards) {
+                const projectName = card.getAttribute('data-name').toLowerCase();
+                const projectTechs = card.getAttribute('data-tech').toLowerCase().split(', ');
+
+                if (projectName.includes(query) || 
+                    projectTechs.some(tech => tech.includes(query))) {
+                    // 显示匹配的项目卡
+                    card.style.display = 'block';
+                } else {
+                    // 隐藏不匹配的项目卡
+                    card.style.display = 'none';
+                }
+            }
+        }
+
+        // 监听搜索输入框的实时变化
+        search.addEventListener('input', function() {
+            const query = this.value;
+            if (query) {
+                // 执行搜索并过滤结果
+                searchProjects(query);
+            } else {
+                // 恢复所有项目卡当搜索为空时
+                const projectCards = resultsContainer.getElementsByTagName('article');
+                for (let card of projectCards) {
+                    card.style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
