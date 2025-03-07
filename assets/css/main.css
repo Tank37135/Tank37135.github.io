@@ -1,0 +1,126 @@
+a {
+    text-decoration: none;
+    color: #A5CAFF;
+    /* 默认文字颜色 */
+    padding: 5px 10px;
+    border-radius: 5px;
+    /* 可选，增加圆角 */
+    transition: background-color 0.3s ease;
+    /* 添加平滑过渡效果 */
+}
+
+a:hover {
+    background-color: #444;
+    /* 当鼠标悬停时的背景色 */
+    color: #fff;
+    /* 鼠标悬停时文字颜色 */
+}
+
+/* 基本布局 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #bcdefe;
+    color: #fff;
+}
+
+header {
+    background-color: #1e90ff;
+    padding: 1rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    color: #A5CAFF;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #A5CAFF;
+    text-decoration: none;
+}
+
+/* 主内容区 */
+main {
+    padding: 2rem;
+}
+
+.hero {
+    background-color: #f4fafe;
+    color: #A5CAFF;
+    padding: 2rem;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.articles {
+    margin-top: 2rem;
+}
+
+.article-list article {
+    background-color: #f4fafe;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    /* 默认隐藏 */
+    transform: translateY(50px);
+    /* 向下偏移 */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.article-list h3 a {
+    text-decoration: none;
+    color: #A5CAFF;
+    font-size: 1.2rem;
+}
+
+.article-list p {
+    color: #386f92;
+}
+
+/* Footer */
+footer {
+    background-color: #1e90ff;
+    color: #A5CAFF;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+}
