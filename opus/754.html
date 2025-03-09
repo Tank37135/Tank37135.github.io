@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>754算数练习-Tank37135</title>
     <style>
+    
+    
+    a {
+    text-decoration: none;
+    color: #386f92;
+    /* 默认文字颜色 */
+    padding: 5px 10px;
+    border-radius: 5px;
+    /* 可选，增加圆角 */
+    transition: background-color 0.3s ease;
+    /* 添加平滑过渡效果 */
+}
+
+a:hover {
+    background-color: #444;
+    /* 当鼠标悬停时的背景色 */
+    color: #fff;
+    /* 鼠标悬停时文字颜色 */
+}
         * {
             margin: 0;
             padding: 0;
@@ -12,8 +31,8 @@
         }
 
         body {
-            background-color: #2e2e2e;
-            color: #fff;
+            background-color: #bcdefe;
+            color: #386f92;
             font-family: Arial, sans-serif;
         }
 
@@ -29,13 +48,14 @@
         }
 
         .buttons button {
-            background-color: #ff9900;
-            color: white;
+            background-color: transparent;
+            color: #386f92;
             padding: 10px 20px;
             margin: 10px;
-            border: none;
+            border: 2px solid #386f92;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 10px;
+            transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
         }
 
         .buttons button:disabled {
@@ -50,21 +70,24 @@
 
         .inputs .input-group {
             margin: 10px 0;
+            
         }
 
-        input[type="text"] {
+        input[type="number"] {
             padding: 10px;
-            width: 150px;
+            width: 170px;
             font-size: 16px;
             border-radius: 5px;
-            border: 2px solid #333;
+            border: 2px solid #386f92;
+            background-color: transparent;
+            height: 40px;
         }
 
-        input[type="text"].error {
+        input[type="number"].error {
             border-color: red;
         }
 
-        input[type="text"].correct {
+        input[type="number"].correct {
             border-color: green;
         }
     </style>
@@ -81,27 +104,27 @@
         <div class="inputs">
             <div class="input-group">
                 <label id="label1">1. </label>
-                <input type="tel" id="input1" class="input" disabled>
+                <input type="number"  id="input1" class="input" disabled>
             </div>
             <div class="input-group">
                 <label id="label2">2. </label>
-                <input type="tel" id="input2" class="input" disabled>
+                <input type="number"  id="input2" class="input" disabled>
             </div>
             <div class="input-group">
                 <label id="label3">3. </label>
-                <input type="tel" id="input3" class="input" disabled>
+                <input type="number"  id="input3" class="input" disabled>
             </div>
             <div class="input-group">
                 <label id="label4">4. </label>
-                <input type="tel" id="input4" class="input" disabled>
+                <input type="number"  id="input4" class="input" disabled>
             </div>
             <div class="input-group">
                 <label id="label5">5. </label>
-                <input type="tel" id="input5" class="input" disabled>
+                <input type="number"  id="input5" class="input" disabled>
             </div>
         </div>
-        <b>7分钟内及格</b>
-        <p>&copy Tank37135</p>
+        <b>7分钟内合格</b><br>
+         <a href="https://Tank37135.github.io/" target="_self">&copy; 2025 Tank37135. All rights reserved.</a>
     </div>
 
     <script>
