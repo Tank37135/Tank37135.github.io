@@ -88,7 +88,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>754练习-Pro</h1>
+        <h1>754练习</h1>
         <div class="buttons">
             <button id="startButton">开始</button>
             <button id="submitButton" disabled>提交</button>
@@ -224,12 +224,16 @@
             equations = [];
             usedEquations.clear();
 
-            labels.forEach((label, index) => {
+            for (let i = 0; i < labels.length; i++) {
                 const equation = generateUniqueEquation();
-                equations.push(equation.str);
-                document.getElementById(label).textContent = `${index + 1}. ${equation.str}`;
-                document.getElementById(`input${index + 1}`).disabled = false;
-            });
+                equations.push({
+                    str: equation.str,
+                    num1: equation.num1,
+                    num2: equation.num2
+                });
+                document.getElementById(labels[i]).textContent = `${i + 1}. ${equation.str}`;
+                document.getElementById(`input${i + 1}`).disabled = false;
+            }
 
             submitButton.disabled = false;
             startButton.textContent = '结束';
@@ -254,14 +258,15 @@
             });
         }
 
-        // 答案检查
+        // 答案检查（修复核心）
         function checkAnswers() {
             let allCorrect = true;
             inputs.forEach((input, index) => {
-                const [num1, num2] = equations[index].split(' × ').map(Number);
+                const equation = equations[index];
+                const correct = equation.num1 * equation.num2;
                 const answer = parseInt(input.value) || 0;
                 
-                if (answer !== num1 * num2) {
+                if (answer !== correct) {
                     input.classList.add('error');
                     input.value = '';
                     allCorrect = false;
