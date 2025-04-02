@@ -1,291 +1,671 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>搜索引擎选择</title>
-  <style>
-  article input {
-    width: 100%;
-    box-sizing: border-box; /* 确保边框和内边距也计算在内 */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>网址导航</title>
+    <style>
+.box {
+	width: 140px;
+  /* 调整方框的宽度 */
+	height: 65px;
+  /* 调整方框的高度 */
+	background-color: #fff;
+	border: 1px solid #ccc;
+	margin: 5px;
+	text-align: left;
+	padding: 8px;
+  /* 减小内边距 */
+	box-sizing: border-box;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.3s ease;
+	display: flex;
+	align-items: center;
+ /* 垂直居中 */
 }
 
+.box:hover {
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-    /* 输入框和搜索按钮容器 */
-    .search-container {
-      display: flex;
-      flex-direction: column; /* 设置为列方向 */
-      align-items: flex-start; /* 让按钮靠右对齐 */
-      margin-bottom: 20px;
-      width: 100%; /* 容器占满父元素宽度 */
-      max-width: 600px; /* 最大宽度限制 */
-      padding: 0 10px; /* 左右外边距 */
-    }
+.logo1 {
+	width: 25px;
+  /* 限制Logo图片大小 */
+	height: 25px;
+	margin-right: 8px;
+  /* 减小Logo与文字之间的间隔 */
+}
 
-    /* 输入框样式 */
-    input[type="text"] {
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.18); /* 半透明边框 */
-      background-color: rgba(255, 255, 255, 0.25); /* 半透明背景 */
-      color: rgba(255, 255, 255, 0.75); /* 字体颜色 */
-      width: calc(100% - 20px);  /* 输入框宽度为父容器宽度减去左右边距 */
-      height: 40px; /* 高度设置为40px */
-      backdrop-filter: blur(6px); /* 背景模糊效果 */
-      box-shadow: 0px 6px 15px rgba(142, 142, 142, 0.19); /* 阴影效果 */
-      transition: all 0.3s ease; /* 添加过渡效果 */
-    }
+.title {
+	font-size: 12px;
+  /* 减小标题字体 */
+	font-weight: bold;
+	color: #333;
+	text-decoration: none;
+	display: block;
+}
 
-    /* 聚焦时的效果 */
-    input[type="text"]:focus {
-      border: 1px solid rgba(255, 255, 255, 0.6); /* 聚焦时边框更明显 */
-      background-color: rgba(255, 255, 255, 0.35); /* 背景稍微变亮 */
-      box-shadow: 0px 6px 15px rgba(142, 142, 142, 0.35); /* 聚焦时阴影加强 */
-      outline: none; /* 去掉聚焦时的默认轮廓 */
-    }
+.title:hover {
+	text-decoration: underline;
+}
 
-    /* 搜索按钮样式 */
-    .search-btn {
-      padding: 0 20px;
-      background-color: #1e90ff; /* 蓝色 */
-      color: white;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      height: 38px; /* 与输入框一致 */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px; /* 按钮距离输入框有一定间隔 */
+.description {
+	font-size: 10px;
+  /* 减小简介字体 */
+	color: #666;
+}
 
-    }
+.text-content {
+	flex-grow: 1;
+ /* 确保文字部分占用剩余空间 */
+}
 
-    .search-btn:hover {
-      background-color: #4682b4; /* 深蓝色 */
-    }
+    
+    
+    
+    
+    
+    
+    /* 新增容器用于纵向排列 */
+.vertical-layout {
+	display: flex;
+	align-items: center;
+ /* 居中对齐 */
+	width: 100%;
+	margin-top: 20px;
+ /* 给容器添加间距 */
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	padding: 10px;
+}
 
-    /* 搜索引擎选择区域 */
-    .search-engines {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 20px;
-    }
+* {
+	box-sizing: border-box;
+}
 
-    /* 每个滑块和名称的容器 */
-    .switch-container {
-      display: flex;
-      align-items: center;
-    }
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: #bcdefe;
+	color: #386f92;
+	max-width: 100vw; 
+}
 
-    /* 定义滑块容器 */
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-    }
+.container {
+	text-align: center;
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	position: relative;
+	align-items: center;
+ /* 垂直居中对齐 */
+	justify-content: space-between;
+ /* 水平对齐，确保 logo 和输入框分布 */
+	position: relative;
+}
 
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
+.logo {
+	font-size: 36px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	color: #007bff;
+}
 
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: 0.4s;
-      border-radius: 50px;
-    }
+.search-box {
+	position: relative;
+	width: 100%;
+	margin: 20px auto;
+}
 
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 26px;
-      width: 26px;
-      border-radius: 50%;
-      left: 4px;
-      bottom: 4px;
-      background-color: #1e90ff; /* 蓝色 */
-      transition: 0.4s;
-    }
+.search-input {
+	width: 100%;
+	padding: 10px 10px;
+	font-size: 18px;
+	border: 2px solid #007bff;
+	border-radius: 25px;
+	outline: none;
+}
 
-    input:checked + .slider {
-      background-color: #1e90ff; /* 蓝色 */
-    }
+.search-input:focus {
+	border-color: #0056b3;
+}
 
-    input:checked + .slider:before {
-      transform: translateX(26px);
-      background-color: #4682b4; /* 深蓝色圆圈 */
-    }
+.search-icon {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
 
-    /* 显示搜索引擎标签 */
-    .label {
-      margin-left: 10px;
-      font-size: 16px;
-    }
-  </style>
-<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-  </head>
-  <body translate="no">
-    <canvas id="sparks"></canvas>
-        <header>
-        <h3>Tank37135 Blog</h3>
-    </header>
-<main>
-    <article>
-    <p>搜索说明</p>
-    <ul>
-        <li>直接在下方输入框输入搜索。</li>
-        <li>选中对应的搜索引擎表示使用该搜索引擎进行搜索。</li>
-        <li>可以选中多个搜索引擎进行多项同时搜索(多标签页)</li>
-        <li>不选择搜索引擎随机使用搜索引擎搜索。</li>
-    </ul>
-  <div class="search-container">
-    <input type="text" id="search-input" placeholder="请输入搜索内容" />
-    <button class="search-btn" id="search-button">搜索</button>
-  </div>
+.settings-btn {
+	padding: 10px 20px;
+	margin-top: 20px;
+	background-color: transparent;
+	color: #007bff;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	border: 2px solid #386f92;
+}
 
-  <div class="search-engines">
-    <div class="switch-container">
-      <label class="label">必应</label>
-      <label class="switch">
-        <input type="checkbox" id="bing" checked>
-        <span class="slider"></span>
-      </label>
+.settings-btn:hover {
+	background-color: #0056b3;
+	color: white;
+}
+
+        /* Popup style */
+.popup {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	justify-content: center;
+	align-items: center;
+	animation: fadeIn 0.5s ease-out;
+}
+
+.popup-content {
+	background-color: white;
+	width: 90%;
+	max-width: 500px;
+	padding: 20px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	animation: slideUp 0.3s ease-out;
+}
+
+.popup-header {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	color: #007bff;
+}
+
+.popup-footer {
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.popup-footer button {
+	padding: 10px;
+	font-size: 16px;
+	cursor: pointer;
+	background-color: transparent;
+	border-radius: 10px;
+	transition: background-color 0.3s, color 0.3s;
+	border: 2px solid #386f92;
+}
+
+.popup-footer .confirm-btn {
+	color: #007bff;
+}
+
+.popup-footer .cancel-btn {
+	color: #007bff;
+}
+
+.confirm-btn:hover {
+	background-color: #007bff;
+	color: white;
+}
+
+.cancel-btn:hover {
+	background-color: #007bff;
+	color: white;
+}
+
+.search-engine-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	margin-bottom: 20px;
+	overflow-y: auto;
+	max-height: 200px;
+}
+
+.search-engine-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.search-engine-item hr {
+	margin: 10px 0;
+	border: 0;
+	border-top: 1px solid #ccc;
+}
+
+.slider {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.visit-btn {
+	background-color: transparent;
+	color: #007bff;
+	;
+            padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.visit-btn:hover {
+	background-color: #007bff;
+	color: white;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideUp {
+	from {
+		transform: translateY(50px);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+        /* Responsive Design */
+@media (max-width: 600px) {
+	.container {
+		padding: 10px;
+	}
+
+	.search-input {
+		font-size: 16px;
+	}
+
+	.popup-content {
+		width: 80%;
+	}
+
+	.popup-footer button {
+		font-size: 14px;
+	}
+}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">Tank37135导航</div>
+    <div class="search-box">
+        <input type="text" class="search-input" id="search-input" placeholder="请输入搜索内容">
+        <svg id="search-icon" class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+    </div>
+    <button class="settings-btn" id="settings-btn">搜索引擎设置</button>
+    <br><br>
+    <div class="vertical-layout">
+     <!-- 新增纵向布局容器 -->
+     <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 1 Logo">
+      <div class="text-content">
+        <a href="https://www.minecraft.net/" target="_blank" class="title">我的世界官网</a>
+        <div class="description">我认为最棒的游戏</div>
+      </div>
+    </div>
+
+    <!-- Box 2 -->
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 3 Logo">
+      <div class="text-content">
+        <a href="https://mc.163.com/" target="_blank" class="title">网易我的世界</a>
+        <div class="description">中国代理我的世界,免费</div>
+      </div>
+    </div>
+
+    <!-- Box 3 -->
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 3 Logo">
+      <div class="text-content">
+        <a href="https://www.microsoft.com/" target="_blank" class="title">微软官网</a>
+        <div class="description">微软公司的官方网站</div>
+      </div>
+    </div>
+
+        
+        <!-- 邮箱-->
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://mail.google.com/" target="_blank" class="title">Gmail</a>
+        <div class="description">大量收集用户数据,15GB</div>
+      </div>
     </div>
     
-    <div class="switch-container">
-      <label class="label">百度</label>
-      <label class="switch">
-        <input type="checkbox" id="baidu">
-        <span class="slider"></span>
-      </label>
-    </div>
-
-    <div class="switch-container">
-      <label class="label">Google</label>
-      <label class="switch">
-        <input type="checkbox" id="google">
-        <span class="slider"></span>
-      </label>
-    </div>
-
-    <div class="switch-container">
-      <label class="label">360搜索</label>
-      <label class="switch">
-        <input type="checkbox" id="360">
-        <span class="slider"></span>
-      </label>
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://outlook.live.com/" target="_blank" class="title">Outlook</a>
+        <div class="description">与Microsoft Office套件集成,15GB。界面复杂</div>
+      </div>
     </div>
     
-    <div class="switch-container">
-      <label class="label">DuckDuckGo</label>
-      <label class="switch">
-        <input type="checkbox" id="DuckDuckGo">
-        <span class="slider"></span>
-      </label>
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://mail.yahoo.com/" target="_blank" class="title">Yahoo Mail</a>
+        <div class="description">丰富的设置,1TB,广告多,安全性隐私差</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://protonmail.com/" target="_blank" class="title">ProtonMail</a>
+        <div class="description">强调隐私,空间小,高级功能需要付费</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://www.zoho.com/mail/" target="_blank" class="title"> Zoho Mail</a>
+        <div class="description">无广告,大空间,体验不好,高级功能付费</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://mail.aol.com//" target="_blank" class="title">AOL Mail</a>
+        <div class="description">无限空间,老旧,不安全</div>
+      </div>
+    </div>
+        
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://mail.google.com/" target="_blank" class="title">iCloud Mail</a>
+        <div class="description">苹果集成,Windows和安卓设备一般,5GB</div>
+      </div>
+    </div>
+        
+        
+        
+        
+      <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 1 Logo">
+      <div class="text-content">
+        <a href="https://www.minecraft.net/" target="_blank" class="title">我的世界官网</a>
+        <div class="description">我认为最棒的游戏</div>
+      </div>
     </div>
 
-    <div class="switch-container">
-      <label class="label">Yahoo!</label>
-      <label class="switch">
-        <input type="checkbox" id="Yahoo!">
-        <span class="slider"></span>
-      </label>
+    <!-- Box 2 -->
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 3 Logo">
+      <div class="text-content">
+        <a href="https://mc.163.com/" target="_blank" class="title">网易我的世界</a>
+        <div class="description">中国代理我的世界,免费</div>
+      </div>
     </div>
- 
- <div class="switch-container">
-      <label class="label">Ecosia</label>
-      <label class="switch">
-        <input type="checkbox" id="Ecosia">
-        <span class="slider"></span>
-      </label>
+
+    <!-- Box 3 -->
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 3 Logo">
+      <div class="text-content">
+        <a href="https://www.microsoft.com/" target="_blank" class="title">微软官网</a>
+        <div class="description">微软公司的官方网站</div>
+      </div>
     </div>
- 
- 
-  </div>
-  
-      </article>
-          <article>
-          <h1>其他</h1>
-          </article>
-</main>
-    <footer>
-        <p>For &copy Tank37135 Blog</p>
-    </footer>
-  <script>
-    // 监听搜索框回车事件
-    document.getElementById('search-input').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        performSearch();
-      }
+
+        
+        <!-- 邮箱-->
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://mail.google.com/" target="_blank" class="title">Gmail</a>
+        <div class="description">大量收集用户数据,15GB</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://outlook.live.com/" target="_blank" class="title">Outlook</a>
+        <div class="description">与Microsoft Office套件集成,15GB。界面复杂</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://mail.yahoo.com/" target="_blank" class="title">Yahoo Mail</a>
+        <div class="description">丰富的设置,1TB,广告多,安全性隐私差</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://protonmail.com/" target="_blank" class="title">ProtonMail</a>
+        <div class="description">强调隐私,空间小,高级功能需要付费</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://www.zoho.com/mail/" target="_blank" class="title"> Zoho Mail</a>
+        <div class="description">无广告,大空间,体验不好,高级功能付费</div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://mail.aol.com//" target="_blank" class="title">AOL Mail</a>
+        <div class="description">无限空间,老旧,不安全</div>
+      </div>
+    </div>
+        
+    <div class="box">
+      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
+      <div class="text-content">
+        <a href="https://mail.google.com/" target="_blank" class="title">iCloud Mail</a>
+        <div class="description">苹果集成,Windows和安卓设备一般,5GB</div>
+      </div>
+    </div>
+    
+    
+    
+    </div>
+</div>
+<!-- Popup -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <div class="popup-header">搜索引擎设置</div>
+        <ul class="search-engine-list">
+            <li class="search-engine-item">
+                <label>Bing</label>
+                <input type="checkbox" class="slider" data-engine="bing" checked>
+            </li>
+            <hr>
+            <li class="search-engine-item">
+                <label>Google</label>
+                <input type="checkbox" class="slider" data-engine="google">
+            </li>
+            <hr>
+            <li class="search-engine-item">
+                <label>Yahoo</label>
+                <input type="checkbox" class="slider" data-engine="yahoo">
+            </li>
+            <hr>
+            <li class="search-engine-item">
+                <label>DuckDuckGo</label>
+                <input type="checkbox" class="slider" data-engine="duckduckgo">
+            </li>
+            <hr>
+            <li class="search-engine-item">
+                <label>Baidu</label>
+                <input type="checkbox" class="slider" data-engine="baidu">
+            </li>
+            <hr>
+            <li class="search-engine-item">
+                <label>Ask.com</label>
+                <input type="checkbox" class="slider" data-engine="ask">
+            </li>
+            <hr>
+            <li class="search-engine-item">
+                <label>Yandex</label>
+                <input type="checkbox" class="slider" data-engine="yandex">
+            </li>
+            <hr>
+            <li class="search-engine-item">
+                <label>WolframAlpha</label>
+                <input type="checkbox" class="slider" data-engine="wolframalpha">
+            </li>
+            <hr>
+            <li class="search-engine-item">
+                <label>StartPage</label>
+                <input type="checkbox" class="slider" data-engine="startpage">
+            </li>
+            <hr>
+            <li class="search-engine-item">
+                <label>Qwant</label>
+                <input type="checkbox" class="slider" data-engine="qwant">
+            </li>
+        </ul>
+        <div class="popup-footer">
+            <button class="visit-btn" id="visit-btn">访问minecraft</button>
+            <button class="cancel-btn" id="random-btn">随机选择</button>
+            <button class="confirm-btn" id="confirm-btn">确定</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Default search engine
+    let selectedEngines = ['bing'];
+
+    // Show popup when settings button is clicked
+    document.getElementById('settings-btn').addEventListener('click', function () {
+        document.getElementById('popup').style.display = 'flex';
     });
 
-    // 监听搜索按钮点击事件
-    document.getElementById('search-button').addEventListener('click', function() {
-      performSearch();
-    });
-
-    function performSearch() {
-      const query = document.getElementById('search-input').value.trim();
-      if (query) {
-        const searchEngines = [];
-
-        // 检查哪些滑块按钮被打开
-        if (document.getElementById('bing').checked) searchEngines.push('bing');
-        if (document.getElementById('baidu').checked) searchEngines.push('baidu');
-        if (document.getElementById('google').checked) searchEngines.push('google');
-        if (document.getElementById('360').checked) searchEngines.push('360'); // 360搜索
-        if (document.getElementById('DuckDuckGo').checked) searchEngines.push('DuckDuckGo'); 
-        if (document.getElementById('Yahoo!').checked) searchEngines.push('Yahoo!'); 
-        if (document.getElementById('Ecosia').checked) searchEngines.push('Ecosia'); 
-
-        // 如果没有选中任何搜索引擎，则随机选择一个
-        if (searchEngines.length === 0) {
-          const engines = ['bing', 'baidu', 'google', '360', 'DuckDuckGo', 'Ecosia'];
-          searchEngines.push(engines[Math.floor(Math.random() * engines.length)]);
-        }
-
-        // 根据选择的搜索引擎进行搜索
-        searchEngines.forEach(engine => {
-          let searchURL = '';
-          switch (engine) {
-            case 'bing':
-              searchURL = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-              break;
-            case 'baidu':
-              searchURL = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
-              break;
-            case 'google':
-              searchURL = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-              break;
-            case '360':
-              searchURL = `https://www.so.com/s?q=${encodeURIComponent(query)}`; // 360搜索的URL
-              break;
-            case 'DuckDuckGo':
-              searchURL = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`; // 360搜索的URL
-              break;
-            case 'Yahoo!':
-              searchURL = `https://search.yahoo.com/search?q=${encodeURIComponent(query)}`; // 360搜索的URL
-              break;
-            case 'Ecosia':
-              searchURL = `https://www.ecosia.org/search?q=${encodeURIComponent(query)}`; // 360搜索的URL
-              break;
-          }
-          window.open(searchURL, '_blank');
+    // Close popup when clicking on random
+    document.getElementById('random-btn').addEventListener('click', function () {
+        const engines = ['bing', 'google', 'yahoo', 'duckduckgo', 'baidu', 'ask', 'yandex', 'wolframalpha', 'startpage', 'qwant'];
+        const randomEngine = engines[Math.floor(Math.random() * engines.length)];
+        selectedEngines = [randomEngine];
+        
+        // Update checkboxes to reflect the random choice
+        document.querySelectorAll('.slider').forEach(slider => {
+            if (slider.dataset.engine === randomEngine) {
+                slider.checked = true;
+            } else {
+                slider.checked = false;
+            }
         });
-      }
+    });
+
+    // Confirm button logic
+    document.getElementById('confirm-btn').addEventListener('click', function () {
+        selectedEngines = [];
+        document.querySelectorAll('.slider').forEach(slider => {
+            if (slider.checked) {
+                selectedEngines.push(slider.dataset.engine);
+            }
+        });
+        if (selectedEngines.length === 0) {
+            selectedEngines = ['bing'];
+        }
+        document.getElementById('popup').style.display = 'none';
+    });
+
+    // Open "Minecraft" official website
+    document.getElementById('visit-btn').addEventListener('click', function () {
+        window.open('https://www.minecraft.net', '_blank');
+    });
+
+    // Search icon click logic
+    document.getElementById('search-icon').addEventListener('click', function () {
+        const query = document.getElementById('search-input').value;
+        if (query) {
+            selectedEngines.forEach(engine => {
+                const searchUrl = getSearchEngineUrl(engine, query);
+                window.open(searchUrl, '_blank');
+            });
+        }
+    });
+
+    // Function to get the search URL based on selected engine
+    function getSearchEngineUrl(engine, query) {
+        switch (engine) {
+            case 'bing':
+                return `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+            case 'google':
+                return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            case 'yahoo':
+                return `https://search.yahoo.com/search?p=${encodeURIComponent(query)}`;
+            case 'duckduckgo':
+                return `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
+            case 'baidu':
+                return `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
+            case 'ask':
+                return `https://www.ask.com/web?q=${encodeURIComponent(query)}`;
+            case 'yandex':
+                return `https://yandex.com/search/?text=${encodeURIComponent(query)}`;
+            case 'wolframalpha':
+                return `https://www.wolframalpha.com/input/?i=${encodeURIComponent(query)}`;
+            case 'startpage':
+                return `https://www.startpage.com/do/dsearch?query=${encodeURIComponent(query)}`;
+            case 'qwant':
+                return `https://www.qwant.com/?q=${encodeURIComponent(query)}`;
+            default:
+                return `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+        }
     }
-  </script>
-<script id="rendered-js" src=../assets/js/script.js> </script>
+</script>
 </body>
 </html>
