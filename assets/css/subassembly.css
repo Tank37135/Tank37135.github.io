@@ -1,0 +1,64 @@
+/*代码块*/
+.code-block {
+    position: relative;
+    margin: 20px;
+}
+
+.code-block button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: #ff9900;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.code-block button:hover {
+    background: #ff9900;
+}
+
+pre {
+    background-color: #2d2d2d;
+    /* 深灰色背景 */
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 0;
+    color: #ffffff;
+    /* 白色文本 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 添加阴影效果 */
+}
+
+.code2 {
+    font-family: Consolas, Monaco, 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    color: inherit;
+    /* 继承pre标签的文本颜色 */
+}
+
+/* 添加滚动条样式 */
+pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+p

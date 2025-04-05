@@ -1,6 +1,31 @@
+h2 {
+    color: #A5CAFF;
+    margin: 1.5rem 0;
+    font-size: 2rem;
+    /* 调整标题的字体大小 */
+}
+
+/* 正文段落样式 */
+p {
+    text-indent: 2em;
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    /* 增加字体大小 */
+}
+
+/* 引用样式 */
+blockquote {
+    background-color: #1E66F3;
+    padding: 1rem;
+    border-left: 4px solid #3794FB;
+    color: #fff;
+    margin: 1rem 0;
+    font-style: italic;
+}
+
 a {
     text-decoration: none;
-    color: #A5CAFF;
+    color: #00CDCD;
     /* 默认文字颜色 */
     padding: 5px 10px;
     border-radius: 5px;
@@ -10,95 +35,36 @@ a {
 }
 
 a:hover {
-    background-color: #444;
+    background-color: #00FFFF;
     /* 当鼠标悬停时的背景色 */
-    color: #fff;
+    color: #FFFF00;
     /* 鼠标悬停时文字颜色 */
 }
 
-/* 基本布局 */
+
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.8;
     margin: 0;
-    padding: 0;
+    padding: 10;
     background-color: #bcdefe;
-    color: #fff;
+    color: #386f92;
 }
+
 
 header {
     background-color: #1e90ff;
     padding: 1rem;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar .logo {
-    color: #A5CAFF;
-    text-decoration: none;
-    font-size: 1.5rem;
-}
-
-.nav-links {
-    list-style: none;
-    padding: 0;
-}
-
-.nav-links li {
-    display: inline;
-    margin-left: 20px;
-}
-
-.nav-links a {
-    color: #A5CAFF;
-    text-decoration: none;
-}
 
 /* 主内容区 */
 main {
     padding: 2rem;
 }
 
-.hero {
-    background-color: #f4fafe;
-    color: #A5CAFF;
-    padding: 2rem;
-    text-align: center;
-}
 
-.center {
-    text-align: center;
-}
-
-.articles {
-    margin-top: 2rem;
-}
-
-.article-list article {
-    background-color: #f4fafe;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    opacity: 0;
-    /* 默认隐藏 */
-    transform: translateY(50px);
-    /* 向下偏移 */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.article-list h3 a {
-    text-decoration: none;
-    color: #A5CAFF;
-    font-size: 1.2rem;
-}
-
-.article-list p {
-    color: #386f92;
-}
 
 /* Footer */
 footer {
@@ -124,3 +90,36 @@ footer {
         margin: 10px 0;
     }
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .content {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        /* 调整标题字体大小 */
+    }
+
+    p {
+        font-size: 1rem;
+        /* 调整正文字体大小 */
+    }
+}
+
+
+* {
+    font-family: 'Source Code Pro', monospace;
+}
+
