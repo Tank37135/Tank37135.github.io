@@ -47,7 +47,7 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     line-height: 1.8;
     margin: 0;
-    padding: 10;
+    padding: 20px;
     background-color: #bcdefe;
     color: #386f92;
 }
@@ -121,5 +121,7 @@ footer {
 
 * {
     font-family: 'Source Code Pro', monospace;
+    font-display: swap;
+    box-sizing: border-box;
 }
 

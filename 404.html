@@ -1,124 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - 页面丢失</title>
+    <title>404错误页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        /* 设置页面样式 */
-        body {
-            background-color: #001d29; /* 深色背景，仿电脑蓝屏 */
-            color: #fff; /* 白色文字 */
-            font-family: 'Courier New', Courier, monospace; /* 计算机风格字体 */
-            margin: 0;
+        * {
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            opacity: 0; /* 初始状态不可见 */
-            animation: fadeIn 1.5s forwards; /* 加入淡入动画 */
+            margin: 0;
         }
 
-        /* 页面淡入动画 */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+        a {
+            text-decoration: none;
         }
 
-        /* 创建“错误”提示框样式 */
-        .error-box {
-            background: #141f2d;
-            padding: 30px;
-            border-radius: 10px;
-            border: 3px solid #ff0000; /* 红色边框模拟错误 */
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-            width: 80%;
-            max-width: 600px;
+        .notfound-container .img-404 {
+            height: 155px;
+            background: url(404.png) center center no-repeat;
+            -webkit-background-size: 150px auto;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .notfound-container .notfound-p {
+            line-height: 30px;
+            font-size: 17px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f6f6f6;
+            text-align: center;
+            color: #262b31;
+        }
+
+        .notfound-container .notfound-reason {
+            color: #9ca4ac;
+            font-size: 13px;
+            line-height: 13px;
+            text-align: left;
+            width: 210px;
+            margin: 0 auto;
+        }
+
+        .notfound-container .notfound-reason p {
+            margin-top: 13px;
+        }
+
+        .notfound-container .notfound-reason ul li {
+            margin-top: 10px;
+            margin-left: 36px;
+        }
+
+        .notfound-container .notfound-btn-container {
+            margin: 40px auto 0;
             text-align: center;
         }
 
-        /* 错误标题 */
-        .error-title {
-            font-size: 36px;
-            font-weight: bold;
-            color: #ff0000;
-            margin-bottom: 20px;
-        }
-
-        /* 错误代码文本 */
-        .error-message {
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        .error-message span {
-            color: #00ff00; /* 模拟绿色的代码文字 */
-        }
-
-        /* 返回首页按钮样式 */
-        .link {
-            color: #ffffff;
-            text-decoration: none;
-            background-color: #ff0000;
-            padding: 12px 30px;
-            font-size: 18px;
+        .notfound-container .notfound-btn-container .notfound-btn {
+            display: inline-block;
+            border: 1px solid #ebedef;
+            background-color: #239bf0;
+            color: #fff;
+            font-size: 15px;
             border-radius: 5px;
-            margin-top: 20px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-            transition: transform 0.3s ease;
-        }
-
-        .home:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes blink {
-            0%, 50% {
-                opacity: 1;
-            }
-            25%, 75% {
-                opacity: 0;
-            }
-        }
-
-        .error-message.blink {
-            animation: blink 1s infinite;
-        }
-
-        /* 创建崩溃效果的闪烁文本 */
-        .crash-effect {
-            font-size: 24px;
-            color: #00ff00;
-            margin-top: 40px;
-        }
-
-        /* 巨大的警告符号 */
-        .warning-icon {
-            font-size: 120px;
-            color: #ffcc00;
-            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            line-height: 16px;
+            white-space: nowrap;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
-    <div class="error-box">
-        <!-- 警告符号 -->
-        <div class="warning-icon">⚠️</div>
-
-        <h1 class="error-title">ERROR 404: 页面丢失</h1>
-        <p class="error-message">致命错误：无法找到页面</p>
-        <p class="error-message blink">查找失败...请检查拼写重试。</p>
-        <p class="error-message">错误代码：<span>0x00000004</span></p>
-        <p class="crash-effect">寻找中... 无效URL！</p>
-        <a href="https://Tank37135.github.io" class="link">返回首页</a>
-        
-        <a href="javascript:history.back()" class="link">返回上页</a>
+    <div class="notfound-container">
+        <div class="img-404"></div>
+        <p class="notfound-p">哎呀迷路了...</p>
+        <div class="notfound-reason">
+            <p>可能的原因：</p>
+            <ul>
+                <li>原来的页面不存在了</li>
+                <li>我们的服务器被外星人劫持了</li>
+            </ul>
+        </div>
+        <div class="notfound-btn-container">
+            <a class="notfound-btn" href="http://www.yuanxiblog.cn/">返回首页</a>
+            <a class="notfound-btn" onclick="window.history.back()">返回上页</a>
+        </div>
     </div>
 </body>
 </html>
