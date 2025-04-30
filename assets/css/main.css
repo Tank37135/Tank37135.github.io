@@ -123,3 +123,28 @@ footer {
     font-display: swap;
     box-sizing: border-box;
 }
+
+/*字体*/
+
+@font-face {
+            font-family: GreatVibes;
+            src: url('../assets/fonts/GreatVibes-Regular.otf') format('opentype');
+        }
+
+
+@font-face {
+    font-family: Minecrafter_3;
+    src: url('../assets/fonts/Minecrafter_3.ttf') format('truetype');
+}
+
+@font-face {
+            font-family: Minecraftia;
+            src: url('../assets/fonts/Minecraftia.ttf') format('truetype');
+        }
+
+
+@font-face{
+    font-family: KaushanScript-Regular;
+    src: url('../assets/fonts/KaushanScript-Regular.ttf') format('truetype');
+
+}
