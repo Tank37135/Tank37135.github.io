@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -32,7 +31,7 @@
     }
 
     .container {
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
         padding-top: 50px;
         text-align: center;
@@ -84,6 +83,39 @@
     input[type="number"].correct {
         border-color: green;
     }
+
+    /* 新增表格样式 */
+    .record-table {
+        width: 100%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: transparent;
+    }
+
+    .record-table th,
+    .record-table td {
+        padding: 12px 15px;
+        text-align: center;
+        border-bottom: 1px solid #386f92;
+    }
+
+    .record-table th {
+        background-color: transparent;
+        color: #386f92;
+        font-weight: bold;
+    }
+
+    .record-container {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: transparent;
+    }
+
+    .record-title {
+        margin-bottom: 15px;
+        font-weight: bold;
+        color: #386f92;
+    }
     </style>
 </head>
 <body>
@@ -118,7 +150,25 @@
             </div>
         </div>
         <b>7分钟内合格</b><br>
-        <a href="https://Tank37135.github.io/" target="_self">&copy; 2025 Tank37135. All rights reserved.</a>
+        
+        <!-- 新增记录表格 -->
+        <div class="record-container">
+            <div class="record-title">练习记录</div>
+            <table class="record-table">
+                <thead>
+                    <tr>
+                        <th>错误题序</th>
+                        <th>用时</th>
+                    </tr>
+                </thead>
+                <tbody id="recordBody">
+                    <!-- 记录将通过JavaScript动态添加 -->
+                </tbody>
+            </table>
+        </div>
+
+        <a href="https://Tank37135.github.io/" target="_self">&copy; 2025 Tank37135. All rights reserved.</a><br>
+        <a href="../assets/download/zip/754本地无调色版.zip" download="754脱机文件.zip">我希望下载本地文件</a>
     </div>
 
     <script>
@@ -127,10 +177,13 @@
         let timerElement = document.getElementById('timer');
         let inputs = document.querySelectorAll('.input');
         let labels = ['label1', 'label2', 'label3', 'label4', 'label5'];
+        let recordBody = document.getElementById('recordBody');
 
         let equations = [];
         let timer;
         let seconds = 0;
+        let lastClickTime = 0;
+        let records = [];
         let usedEquations = new Set();
 
         // 数字生成逻辑
@@ -217,10 +270,34 @@
             timerElement.textContent = '时间：00:00';
         }
 
+        // 输入框重置
+        function resetInputs() {
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('error', 'correct');
+            });
+        }
+
+        // 记录表格重置
+        function resetRecords() {
+            records = [];
+            recordBody.innerHTML = '';
+        }
+
+        // 双击结束功能
+        function handleStartButtonClick() {
+            const now = Date.now();
+            if (now - lastClickTime < 300) {
+                resetGame();
+            }
+            lastClickTime = now;
+        }
+
         // 游戏控制
         function startGame() {
             resetTimer();
             resetInputs();
+            resetRecords();
             equations = [];
             usedEquations.clear();
 
@@ -236,32 +313,57 @@
             }
 
             submitButton.disabled = false;
-            startButton.textContent = '结束';
+            startButton.textContent = '结束（双击）';
             startButton.removeEventListener('click', startGame);
-            startButton.addEventListener('click', resetGame);
+            startButton.addEventListener('click', handleStartButtonClick);
             startTimer();
         }
 
         function resetGame() {
             resetTimer();
             startButton.textContent = '开始';
-            startButton.removeEventListener('click', resetGame);
+            startButton.removeEventListener('click', handleStartButtonClick);
             startButton.addEventListener('click', startGame);
             submitButton.disabled = true;
             resetInputs();
         }
 
-        function resetInputs() {
-            inputs.forEach(input => {
-                input.value = '';
-                input.classList.remove('error', 'correct');
+        // 添加记录到表格
+        function addRecord(errorQuestions) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            const timeUsed = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+            
+            const record = {
+                errors: errorQuestions.length ? errorQuestions.join(', ') : '无',
+                duration: timeUsed
+            };
+            
+            records.unshift(record);
+            updateRecordTable();
+        }
+
+        // 更新记录表格
+        function updateRecordTable() {
+            recordBody.innerHTML = '';
+            
+            records.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${record.errors}</td>
+                    <td>${record.duration}</td>
+                `;
+                recordBody.appendChild(row);
             });
         }
 
-        // 答案检查（修复核心）
+        // 答案检查
         function checkAnswers() {
             let allCorrect = true;
+            const errorQuestions = [];
+            
             inputs.forEach((input, index) => {
+                const questionNumber = index + 1;
                 const equation = equations[index];
                 const correct = equation.num1 * equation.num2;
                 const answer = parseInt(input.value) || 0;
@@ -269,16 +371,21 @@
                 if (answer !== correct) {
                     input.classList.add('error');
                     input.value = '';
+                    errorQuestions.push(questionNumber);
                     allCorrect = false;
                 } else {
                     input.classList.add('correct');
                 }
             });
 
+            addRecord(errorQuestions);
+
             if (allCorrect) {
                 clearInterval(timer);
                 alert('全部正确!');
                 startButton.textContent = '重新开始';
+                startButton.removeEventListener('click', handleStartButtonClick);
+                startButton.addEventListener('click', startGame);
             }
         }
 
@@ -288,4 +395,3 @@
     </script>
 </body>
 </html>
- 
