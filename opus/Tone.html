@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>频率生成器</title>
+        <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/subassembly.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/writing.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
+    <style>
+        body {
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, button, slider {
+            font-size: 16px;
+            margin: 10px;
+        }
+        #frequencySlider {
+            width: 200px; /* 缩小滑块宽度 */
+        }
+        input[type="number"] {
+            width: 150px; /* 缩小输入框宽度 */
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center; /* 横向排列按钮 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div>
+        <input type="number" id="frequencyInput" value="1000" />
+        <p>输入频率以让我们发出恒定音频（20-20K）</p>
+    </div>
+    
+    <div class="button-container">
+        <button id="randomBtn">随机</button>
+        <button id="startStopBtn">开始</button>
+    </div>
+    
+    <div>
+        <input type="range" id="frequencySlider" min="20" max="20000" step="1" value="1000" />
+        <p>选择频率</p>
+    </div>
+</div>
+
+<script>
+    let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    let oscillator = null;
+    let isPlaying = false;
+
+    const frequencyInput = document.getElementById('frequencyInput');
+    const randomBtn = document.getElementById('randomBtn');
+    const startStopBtn = document.getElementById('startStopBtn');
+    const frequencySlider = document.getElementById('frequencySlider');
+
+    // 随机按钮
+    randomBtn.onclick = function() {
+        const randomFrequency = Math.floor(Math.random() * (20000 - 20 + 1)) + 20;
+        frequencyInput.value = randomFrequency;
+        frequencySlider.value = randomFrequency;
+
+        // 如果正在播放，更新频率
+        if (isPlaying) {
+            oscillator.frequency.setValueAtTime(randomFrequency, audioContext.currentTime);
+        }
+    };
+
+    // 开始/停止按钮
+    startStopBtn.onclick = function() {
+        if (isPlaying) {
+            stopSound();
+        } else {
+            const frequency = parseInt(frequencyInput.value);
+            if (frequency >= 20 && frequency <= 20000) {
+                startSound(frequency);
+            } else {
+                alert('请输入20到20000之间的数字');
+            }
+        }
+    };
+
+    // 启动声音
+    function startSound(frequency) {
+        oscillator = audioContext.createOscillator();
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+        oscillator.connect(audioContext.destination);
+        oscillator.start();
+        isPlaying = true;
+        startStopBtn.textContent = '停止';
+    }
+
+    // 停止声音
+    function stopSound() {
+        if (oscillator) {
+            oscillator.stop();
+            isPlaying = false;
+            startStopBtn.textContent = '开始';
+        }
+    }
+
+    // 频率输入框变化
+    frequencyInput.addEventListener('input', function() {
+        const frequency = parseInt(frequencyInput.value);
+        if (frequency >= 20 && frequency <= 20000) {
+            frequencySlider.value = frequency;
+            if (isPlaying) {
+                oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            }
+        } else {
+            frequencyInput.value = Math.max(20, Math.min(20000, frequency));
+        }
+    });
+
+    // 滑块变化
+    frequencySlider.addEventListener('input', function() {
+        const frequency = parseInt(frequencySlider.value);
+        frequencyInput.value = frequency;
+        if (isPlaying) {
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+        }
+    });
+
+    // 默认频率更新
+    window.onload = function() {
+        frequencySlider.value = frequencyInput.value;
+    };
+
+</script>
+
+</body>
+</html>
