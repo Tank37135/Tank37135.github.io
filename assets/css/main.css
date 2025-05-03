@@ -148,3 +148,50 @@ footer {
     src: url('../assets/fonts/KaushanScript-Regular.ttf') format('truetype');
 
 }
+
+
+
+button {
+    position: relative;
+    background-color: transparent;
+    color: #386f92;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 2px solid #386f92;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    font-weight: bold;
+    transition: color 0.3s, background-color 0.3s;
+    z-index: 1; /* 确保文字在最上面 */
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 100%;
+    background-color: #386f92;
+    transition: width 0.3s, left 0.3s;
+    z-index: -1; /* 确保伪元素在文字的下层 */
+}
+
+button:hover {
+    color: white;
+}
+
+button:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+button:active {
+    background-color: #386f92;
+    color: white;
+}
+
+button:focus {
+    outline: none;
+}
