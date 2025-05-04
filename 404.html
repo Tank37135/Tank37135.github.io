@@ -40,13 +40,20 @@
     <script>
         let countdown = 10;
         const timerElement = document.getElementById('timer');
-
+        
+        // 检查是否有上一页
+        const previousPage = document.referrer;
+        
         const interval = setInterval(() => {
             countdown--;
             timerElement.textContent = countdown;
             if (countdown === 0) {
                 clearInterval(interval);
-                window.history.back(); // 自动返回上一页
+                if (previousPage) {
+                    window.history.back(); // 自动返回上一页
+                } else {
+                    window.location.href = "https://tank37135.github.io"; // 跳转到指定URL
+                }
             }
         }, 1000);
     </script>
