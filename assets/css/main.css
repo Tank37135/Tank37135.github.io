@@ -50,6 +50,9 @@ body {
     padding: 0;
     background-color: #bcdefe;
     color: #386f92;
+    background-attachment: fixed;  /* 固定背景 */
+    overflow: auto;  /* 允许滚动 */
+    height: 100%;  /* 确保页面可以滚动 */
 }
 
 
@@ -195,3 +198,9 @@ button:active {
 button:focus {
     outline: none;
 }
+        #canvas {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: -1;  /* 确保画布在内容下面 */
+        }
