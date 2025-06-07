@@ -1,160 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
+    <link rel="icon" href="assets/images/logo/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="assets/script/loading.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style/loading.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A personal blog showcasing articles, projects, and more.">
-    <meta name="keywords" content="blog, personal, web development, projects">
+    <meta name="description" content="Tank37135博客主页，提供原创文章，在线工具，个人软件以及3D作品">
     <title>Tank37135 Blog</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/subassembly.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/writing.css">
+    <meta name="keywords" content="博客, 文章,在线工具, 项目">
+    <link rel="stylesheet" type="text/css" href="assets/style/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/subassembly.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/background.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css"/>
 </head>
-
 <body>
+
+    <div class="l-body">
+        <div class="loading">
+            <i>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </i>
+        </div>
+        <div class="l-title">正在加载...</div>
+        <div class="timeout-message">加载时间过长，我们将为您跳过加载动画</div>
+    </div>
     <canvas id="canvas"></canvas>
-    <!-- Header/Navbar -->
-    <header class="header">
-        <nav class="navbar">
-            <a href="/" class="logo">Tank37135</a>
-            <ul class="nav-links">
-                <li><a href="blog/">博客</a></li>
-                <li><a href="article/">文章</a></li>
-                <li><a href="opus/">作品</a></li>
-                <li><a href="about/">关于</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <section class="hero">
-            <h1>hi，欢迎来到我的个人网站</h1>
-            <p>在这里，我会分享我的知识，发布我的项目，提供一些工具等</p>
-            <p>让我们在这个充满知识和乐趣的世界里，一起成长吧</p>
-            <p>记录生活与技术的点滴</p>
-        </section>
-
-
-        <section class="articles">
-            <h2 class="center">最新文章</h2>
-            <div class="article-list">
-                <article class="article-item">
-                    <h3><a href="/article/essay1.html">认识《国旗法》</a></h3>
-                    <p>这篇文章介绍了在网站上使用国旗的注意事项，以及在哪里获得标准的五星红旗。<br>
-                        我想，这应该是一件很严肃的事，也是一件不可忽略的事<br>
-                        它可能很简单，但一定要注意</p>
-                </article>
-                <article class="article-item">
-                    <h3><a href="/article/learn.html">我的web学习历程</a></h3>
-                    <p>介绍我如何认识和学习HTML、CSS、JavaScript，并且讲述了我在学习中遇到的困难和我如何解决他们，以及我的学习资源</p>
-                </article>
-                <article class="article-item">
-                    <h3><a href="/article/SEO.html">对SEO进行优化</a></h3>
-                    <p>SEO即搜索引擎优化，是一种通过优化网站内容、结构和技术，提高网站在搜索引擎中排名的策略和方法，目标是增加网站在搜索引擎页面中的可见性，从而吸引更多有潜力的访客<br>
-                        那么，我们改怎么进行SEO的优化呢，我们将在本文讲述</p>
-                </article>
+    
+        <div class="logo-container">
+        <!-- 替换为您的Logo图片 -->
+        <img src="assets/images/logo/favicon.ico" alt="Logo" class="logo">
+        <div class="logo-text">Tank37135</div>
+    </div>
+    
+    <nav class="dropdown-menu">
+        <ul class="menu-items">
+            <li><a href="https://Tank37135.github.io" class="menu-item">首页</a></li>
+            <li><a href="category/blog/" class="menu-item" target="_blank">博客</a></li>
+            <li><a href="category/aritcle/" class="menu-item" target="_blank">文章</a></li>
+            <li><a href="category/tools/" class="menu-item" target="_blank">在线工具</a></li>
+            <li><a href="about.html" class="menu-item" target="_blank">关于</a></li>
+            <li><a class="menu-item" href="javascript:void(0);" onclick="window.close();">关机</a></li>
+        </ul>
+    </nav>
+    
+   
+        <section class="section1 section">
+            <div class="links">
+                <a href="blog/" class="a1">Tank37135 Blog</a>
+                <a href="category/aritcle/" class="a1">article-工具</a>
+                <a href="category/tools/" class="a1">Tools-工具</a>
+                <a href="about.html" class="a1">About-关于</a>
             </div>
+                <img class="image" src="assets/images/png/home.png" alt="Tank37135">
         </section>
-        <section class="articles">
-            <h2 class="center">最新工具</h2>
-            <div class="article-list">
-                <article class="article-item">
-                    <h3><a href="opus/Tone.html">恒频播放器</a></h3>
-                    <p>定频恒频播放声音，适合声，波学术研究的人使用</p>
-                </article>
-                <article class="article-item">
-                    <h3><a href="/opus/guide.html">网址导航</a></h3>
-                    <p>用腻了充满广告的搜索导航吗，来试试支持多引擎搜索的Tank37135网址导航吧<br>
-                        Tank37135网址导航不仅没有广告，还有支持多搜索引擎同时搜索的一大亮点</p>
-                </article>
-                <article class="article-item">
-                    <h3><a href="/opus/Sound-Detection.html">声波机</a></h3>
-                    <p>这可能是一个有用但不多的功能它可以使用你的设备的麦克风检测声音，计算这些声音的全幅分贝以及频率，并且提供可视化图表，
-                        来开发新的用法吧</p>
-                </article>
-                
-            </div>
-        </section>
-        <section class="articles">
-            <h2 class="center">最新专题</h2>
-            <div class="article-list">
-                <article class="article-item">
-                    <h3><a href="opus/computer-win.html">windows系统教程</a></h3>
-                    <p>现在还有人不会使用Windows系统吗，作为全球约84.44%电脑用户都在使用的桌面操作系统，有着极强的开放，兼容，高效，高扩展等性质，我可以称之为对于一般用户最好用的系统，现在周围都是Windows用户，本专题将教你怎么使用、优化系统<br>
-                        快进来学习吧</p>
-                </article>
-                <article class="article-item">
-                    <h3><a href="opus/Key-combinations.html">快捷键</a></h3>
-                    <p>键盘是电脑最重要的输入硬件，可以说没有键盘，电脑就几乎等于废铁，而键盘也有大学问，高级的技巧可以帮助用户更高效地使用电脑<br>
-                        而高效使用键盘的秘籍就是组合键，有了这个秘籍，相信你也会变成《电脑高手》</p>
-                </article>
-            </div>
-        </section>
-    </main>
 
-    <!-- Footer -->
+    <!-- 其他section -->
+    <section class="section">
+        <div>
+                <h3>Tank37135 Blog</h3>
+                <p>随心更新一点点</p>
+            <img class="section-image" src="assets/images/png/blog.png" alt="Tank37135 Blog">
+                <a class="a2" href="blog/">了解更多 &gt;&gt;</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div>
+                <h3>文章</h3>
+                <p>在本站，我们通过提供中、高质量的文章，帮助您获取有价值的资讯和实用的知识。每篇文章都经过精心编写，旨在为您提供有实用性的内容，帮助您更好地应对日常工作和生活中的挑战。</p>
+            <img class="section-image" src="assets/images/png/aritcle.png" alt="知识之书">
+                <a class="a2" href="category/aritcle/">了解更多 &gt;&gt;</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div>
+                <h3>工具</h3>
+                <p>我们开发了多款高效的在线工具，帮助您摆脱对本地软件的依赖，释放宝贵的内存空间。通过使用我们的工具，您可以更轻松地进行工作，不再受到传统软件的限制，享受更加便捷的使用体验。我们始终致力于为用户提供简洁的解决方案，让您的每一天都更加轻松自在。</p>
+            <img class="section-image" src="assets/images/png/tools.png" alt="在线工具">
+                <a class="a2" href="category/tools/">了解更多 &gt;&gt;</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div>
+                <h3>软件</h3>
+                <p>我们始终专注于技术创新，努力提升软件的性能和用户体验。以轻便、高效、快速为核心理念，我们致力于为您提供稳定、流畅的使用感受。每一次优化和改进，都是为了让您的工作更加高效、顺畅。</p>
+            <img class="section-image" src="assets/images/png/software.png" alt="技术图片">
+                <a class="a2" href="category/software/">了解更多 &gt;&gt;</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div>
+                <h3>图片以及视频</h3>
+                <p>Tank37135对建模和渲染相关的内容有一定了解，掌握了基本的概念和技术。已经具备了对这些领域的基本认识，能够理解和应用一些常见的建模和渲染方法。</p>
+            <img class="section-image" src="assets/images/png/img.png" alt="联系图片">
+                <a class="a2" href="未完待续">了解更多 &gt;&gt;</a>
+        </div>
+    </section>
+    
+
+    <section class="section">
+        <div>
+                <h3>探索minevraft</h3>
+                <p>在这款终极沙盒游戏中建造出你能想到的所有奇景，揭开诡异秘事的神秘面纱，并在漫漫长夜中生存下来。在 Minecraft 中，每次游玩都有不同体验，世界各处都蕴藏着让人难以忘怀的冒险。在无限世界中探索创造，一步一个方块，这个世界任你塑造。</p>
+            <img class="section-image" src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/PDP-Hero_Triple-Bundle_16x9.jpg" alt="我的世界宣传图片">
+                <a class="a2" href="https://www.minecraft.net/">了解更多 &gt;&gt;</a>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div>
+                <h3><i class="bi bi-megaphone-fill"></i>公告</h3>
+                <p>欢迎来到TKB6(Tank37135-6)，眨眼间，我的网站已经来到了第六代改版，每次改变都意味着布局的改变和URL的变更，给喜欢老布局和习惯输入URL的用户带了了不便，这里Tank37135深表歉意<br>和以往一样，TKB6又一次改动了URL和布局，不过不用过于担心，我们保留了以前的URL（但我们会在2025年7月底清除），你们可以在这一段时间内快速适应新URL，我们在你的屏幕左上角放置了我的logo，你可以通过点击他打开菜单<br><hr>另外，由于某些原因，我们没能及时将所有页面风格化，大多数页面仍然保留TKB5甚至TKB4的风格，请再给我们一些时间，我们还将更新一些组件，比如在你屏幕右下角更新悬浮工具栏，在手机上我们将把滚动更新的文章菜单放到这里，也就是更靠近你大拇指的位置，让你能够更快捷打开它，敬请期待，谢谢</p>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2025 Tank37135. All rights reserved.</p>
+        &copy; 2025 Tank37135. All rights reserved.
     </footer>
-<script type="text/javascript" src="assets/js/script.js"></script>
-    <script>
-        // 使用 IntersectionObserver 监听文章是否进入视口
-        const articles = document.querySelectorAll('.article-item');
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target); // 只触发一次动画
-                }
-            });
-        }, {
-            threshold: 0.5 // 50% 进入视图触发
-        });
-
-        articles.forEach(article => {
-            observer.observe(article);
-        });
-    </script>
-
+    <script type="text/javascript" src="assets/script/background.js"></script>
+    <script type="text/javascript" src="assets/script/script.js"></script>
+    <script type="text/javascript" src="assets/script/subassembly.js"></script>
 </body>
-<!--
-//                            _ooOoo_  
-//                           o8888888o  
-//                           88" . "88  
-//                           (| -_- |)  
-//                            O\ = /O  
-//                        ____/`---'\____  
-//                      .   ' \\| |// `.  
-//                       / \\||| : |||// \  
-//                     / _||||| -:- |||||- \  
-//                       | | \\\ - /// | |  
-//                     | \_| ''\---/'' | |  
-//                      \ .-\__ `-` ___/-. /  
-//                   ___`. .' /--.--\ `. . __  
-//                ."" '< `.___\_<|>_/___.' >'"".  
-//               | | : `- \`.;`\ _ /`;.`/ - ` : | |  
-//                 \ \ `-. \_ __\ /__ _/ .-` / /  
-//         ======`-.____`-.___\_____/___.-`____.-'======  
-//                            `=---='  
-//  
-//         .............................................  
-//                  佛祖保佑             永无BUG 
-//          佛曰:  
-//                  写字楼里写字间，写字间里程序员；  
-//                  程序人员写程序，又拿程序换酒钱。  
-//                  酒醒只在网上坐，酒醉还来网下眠；  
-//                  酒醉酒醒日复日，网上网下年复年。  
-//                  但愿老死电脑间，不愿鞠躬老板前；  
-//                  奔驰宝马贵者趣，公交自行程序员。  
-//                  别人笑我忒疯癫，我笑自己命太贱；  
-//                  不见满街漂亮妹，哪个归得程序员？
-*/
--->
 
 </html>
