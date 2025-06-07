@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>754算数练习-pro-Tank37135</title>
+    <style>
+    a {
+        text-decoration: none;
+        color: #386f92;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    a:hover {
+        background-color: #444;
+        color: #fff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #bcdefe;
+        color: #386f92;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 50px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .buttons button {
+        background-color: transparent;
+        color: #386f92;
+        padding: 10px 20px;
+        margin: 10px;
+        border: 2px solid #386f92;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .buttons button:disabled {
+        background-color: #bbb;
+        cursor: not-allowed;
+    }
+
+    #timer {
+        margin: 20px;
+        font-size: 20px;
+    }
+
+    .inputs .input-group {
+        margin: 10px 0;
+    }
+
+    input[type="number"] {
+        padding: 10px;
+        width: 170px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 2px solid #386f92;
+        background-color: transparent;
+        height: 40px;
+    }
+
+    input[type="number"].error {
+        border-color: red;
+    }
+
+    input[type="number"].correct {
+        border-color: green;
+    }
+
+    /* 新增表格样式 */
+    .record-table {
+        width: 100%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: transparent;
+    }
+
+    .record-table th,
+    .record-table td {
+        padding: 12px 15px;
+        text-align: center;
+        border-bottom: 1px solid #386f92;
+    }
+
+    .record-table th {
+        background-color: transparent;
+        color: #386f92;
+        font-weight: bold;
+    }
+
+    .record-container {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: transparent;
+    }
+
+    .record-title {
+        margin-bottom: 15px;
+        font-weight: bold;
+        color: #386f92;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>754练习-pro</h1>
+        <div class="buttons">
+            <button id="startButton">开始</button>
+            <button id="submitButton" disabled>提交</button>
+        </div>
+        <div id="timer">时间：00:00</div>
+        
+        <div class="inputs">
+            <div class="input-group">
+                <label id="label1">1. </label>
+                <input type="number" id="input1" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label id="label2">2. </label>
+                <input type="number" id="input2" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label id="label3">3. </label>
+                <input type="number" id="input3" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label id="label4">4. </label>
+                <input type="number" id="input4" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label id="label5">5. </label>
+                <input type="number" id="input5" class="input" disabled>
+            </div>
+        </div>
+        <b>7分钟内合格</b><br>
+        
+        <!-- 新增记录表格 -->
+        <div class="record-container">
+            <div class="record-title">练习记录</div>
+            <table class="record-table">
+                <thead>
+                    <tr>
+                        <th>错误题序</th>
+                        <th>用时</th>
+                    </tr>
+                </thead>
+                <tbody id="recordBody">
+                    <!-- 记录将通过JavaScript动态添加 -->
+                </tbody>
+            </table>
+        </div>
+
+        <a href="https://Tank37135.github.io/" target="_self">&copy; 2025 Tank37135. All rights reserved.</a><br>
+        <a href="../assets/download/zip/754本地无调色版.zip" download="754脱机文件.zip">我希望下载本地文件</a>
+    </div>
+
+    <script>
+        let startButton = document.getElementById('startButton');
+        let submitButton = document.getElementById('submitButton');
+        let timerElement = document.getElementById('timer');
+        let inputs = document.querySelectorAll('.input');
+        let labels = ['label1', 'label2', 'label3', 'label4', 'label5'];
+        let recordBody = document.getElementById('recordBody');
+
+        let equations = [];
+        let timer;
+        let seconds = 0;
+        let lastClickTime = 0;
+        let records = [];
+        let usedEquations = new Set();
+
+        // 数字生成逻辑
+        function getFirstDigit() {
+            return Math.random() < 0.05 ? 2 : Math.floor(Math.random() * 7) + 3;
+        }
+
+        function getDigit() {
+            return Math.random() < 0.1 ? 2 : Math.floor(Math.random() * 7) + 3;
+        }
+
+        function generateFourDigitNumber() {
+            let digits = [];
+            digits.push(getFirstDigit());
+            
+            for (let i = 1; i < 4; i++) {
+                let digit;
+                do {
+                    digit = getDigit();
+                } while (digits.includes(digit));
+                digits.push(digit);
+            }
+
+            if (Math.random() < 0.05) {
+                const replaceIndex = Math.floor(Math.random() * 4);
+                digits[replaceIndex] = digits[Math.floor(Math.random() * 4)];
+            }
+
+            const numberStr = digits.join('');
+            return /[01]/.test(numberStr) ? generateFourDigitNumber() : parseInt(numberStr);
+        }
+
+        // 算式生成逻辑
+        function generateRandomEquation() {
+            const rangeType = Math.random();
+            let num1, num2;
+            
+            if (rangeType < 0.4) {
+                num1 = generateFourDigitNumberInRange(6000, 9000);
+                num2 = generateFourDigitNumberInRange(3000, 5000);
+            } else if (rangeType < 0.8) {
+                num1 = generateFourDigitNumberInRange(4000, 6000);
+                num2 = generateFourDigitNumberInRange(4000, 6000);
+            } else {
+                num1 = generateFourDigitNumber();
+                num2 = generateFourDigitNumber();
+            }
+            
+            return { 
+                num1,
+                num2,
+                str: `${num1} × ${num2} = ` 
+            };
+        }
+
+        function generateFourDigitNumberInRange(min, max) {
+            let num;
+            do {
+                num = generateFourDigitNumber();
+            } while (num < min || num > max);
+            return num;
+        }
+
+        function generateUniqueEquation() {
+            let equation;
+            do {
+                equation = generateRandomEquation();
+            } while (usedEquations.has(equation.str));
+            usedEquations.add(equation.str);
+            return equation;
+        }
+
+        // 计时器功能
+        function startTimer() {
+            timer = setInterval(() => {
+                seconds++;
+                timerElement.textContent = `时间：${Math.floor(seconds/60).toString().padStart(2,'0')}:${(seconds%60).toString().padStart(2,'0')}`;
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            seconds = 0;
+            timerElement.textContent = '时间：00:00';
+        }
+
+        // 输入框重置
+        function resetInputs() {
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('error', 'correct');
+            });
+        }
+
+        // 记录表格重置
+        function resetRecords() {
+            records = [];
+            recordBody.innerHTML = '';
+        }
+
+        // 双击结束功能
+        function handleStartButtonClick() {
+            const now = Date.now();
+            if (now - lastClickTime < 300) {
+                resetGame();
+            }
+            lastClickTime = now;
+        }
+
+        // 游戏控制
+        function startGame() {
+            resetTimer();
+            resetInputs();
+            resetRecords();
+            equations = [];
+            usedEquations.clear();
+
+            for (let i = 0; i < labels.length; i++) {
+                const equation = generateUniqueEquation();
+                equations.push({
+                    str: equation.str,
+                    num1: equation.num1,
+                    num2: equation.num2
+                });
+                document.getElementById(labels[i]).textContent = `${i + 1}. ${equation.str}`;
+                document.getElementById(`input${i + 1}`).disabled = false;
+            }
+
+            submitButton.disabled = false;
+            startButton.textContent = '结束（双击）';
+            startButton.removeEventListener('click', startGame);
+            startButton.addEventListener('click', handleStartButtonClick);
+            startTimer();
+        }
+
+        function resetGame() {
+            resetTimer();
+            startButton.textContent = '开始';
+            startButton.removeEventListener('click', handleStartButtonClick);
+            startButton.addEventListener('click', startGame);
+            submitButton.disabled = true;
+            resetInputs();
+        }
+
+        // 添加记录到表格
+        function addRecord(errorQuestions) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            const timeUsed = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+            
+            const record = {
+                errors: errorQuestions.length ? errorQuestions.join(', ') : '无',
+                duration: timeUsed
+            };
+            
+            records.unshift(record);
+            updateRecordTable();
+        }
+
+        // 更新记录表格
+        function updateRecordTable() {
+            recordBody.innerHTML = '';
+            
+            records.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${record.errors}</td>
+                    <td>${record.duration}</td>
+                `;
+                recordBody.appendChild(row);
+            });
+        }
+
+        // 答案检查
+        function checkAnswers() {
+            let allCorrect = true;
+            const errorQuestions = [];
+            
+            inputs.forEach((input, index) => {
+                const questionNumber = index + 1;
+                const equation = equations[index];
+                const correct = equation.num1 * equation.num2;
+                const answer = parseInt(input.value) || 0;
+                
+                if (answer !== correct) {
+                    input.classList.add('error');
+                    input.value = '';
+                    errorQuestions.push(questionNumber);
+                    allCorrect = false;
+                } else {
+                    input.classList.add('correct');
+                }
+            });
+
+            addRecord(errorQuestions);
+
+            if (allCorrect) {
+                clearInterval(timer);
+                alert('全部正确!');
+                startButton.textContent = '重新开始';
+                startButton.removeEventListener('click', handleStartButtonClick);
+                startButton.addEventListener('click', startGame);
+            }
+        }
+
+        // 事件监听
+        startButton.addEventListener('click', startGame);
+        submitButton.addEventListener('click', checkAnswers);
+    </script>
+</body>
+</html>

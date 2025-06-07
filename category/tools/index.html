@@ -1,1 +1,156 @@
+<head>
+    <link rel="icon" href="../assets/images/logo/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../assets/script/loading.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/style/loading.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tank37135的在线工具，不需要下载免费使用">
+    <title>Tank37135 文章</title>
+    <meta name="keywords" content="博客, 在线工具, Tank37135">
+    <link rel="stylesheet" type="text/css" href="../assets/style/main.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style/subassembly.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style/background.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css"/>
+    <style>
+        body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #2b2d42;
+    background: linear-gradient(to bottom right, #1a71d5, #c469f4);
 
+    min-height: 100vh; /* 确保body至少和视口一样高 */
+    background-size: cover; /* 覆盖整个区域 */
+
+}
+
+    </style>
+</head>
+<body>
+<header>
+TK工具箱
+</header>
+
+    <div class="l-body">
+        <div class="loading">
+            <i>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </i>
+        </div>
+        <div class="l-title">正在加载...</div>
+        <div class="timeout-message">加载时间过长，我们将为您跳过加载动画</div>
+    </div>
+    <canvas id="canvas"></canvas>
+    
+        <div class="logo-container">
+        <!-- 替换为您的Logo图片 -->
+        <img src="../assets/images/logo/favicon.ico" alt="Logo" class="logo">
+        <div class="logo-text">Tank37135</div>
+    </div>
+    
+    <nav class="dropdown-menu">
+        <ul class="menu-items">
+            <li><a href="https://Tank37135.github.io" class="menu-item">首页</a></li>
+            <li><a href="../category/blog/" class="menu-item" target="_blank">博客</a></li>
+            <li><a href="../category/aritcle/" class="menu-item" target="_blank">文章</a></li>
+            <li><a href="../category/tools/" class="menu-item" target="_blank">在线工具</a></li>
+            <li><a href="../about.html" class="menu-item" target="_blank">关于</a></li>
+            <li><a class="menu-item" href="javascript:void(0);" onclick="window.close();">关机</a></li>
+        </ul>
+    </nav>
+<main>
+    <!-- 搜索框 -->
+    <div class="search-container">
+        <input type="text" id="search" placeholder="搜索文章标题或标签...">
+    </div>
+
+    <div class="articles-container" id="articleResults">
+        <!-- 文章卡片1 -->
+        <div class="article-card" data-tags="录屏">
+            <div class="article-date"><i class="bi bi-calendar-check-fill"></i>2025-5-25</div>
+            <h3 class="article-title">在线录屏</h3>
+            <p class="article-excerpt">网页录屏，支持8k，240帧，可以录制多种格式，包括动图，可以使用你的计算机的极限录制</p>
+            <div class="article-tags">
+                <span class="tag">录屏</span>
+            </div>
+            <a href="Recording.html" class="read-more">使用工具</a>
+        </div>
+        
+        <div class="article-card" data-tags="物理,声音">
+            <div class="article-date"><i class="bi bi-calendar-check-fill"></i>2025-06-4</div>
+            <h3 class="article-title">声波发生器</h3>
+            <p class="article-excerpt">可以发出20至20000赫兹的恒定频率的声波</p>
+            <div class="article-tags">
+                <span class="tag">物理</span>
+                <span class="tag">声音</span>
+            </div>
+            <a href="Tone.html" class="read-more">使用工具</a>
+        </div>
+        
+        <!-- 文章卡片2 -->
+        <div class="article-card" data-tags="物理,声音">
+            <div class="article-date"><i class="bi bi-calendar-check-fill"></i>2025-05-3</div>
+            <h3 class="article-title">声波检测器</h3>
+            <p class="article-excerpt">可以动态检查附近声波的频率和响度</p>
+            <div class="article-tags">
+                <span class="tag">物理</span>
+                <span class="tag">声音</span>
+            </div>
+            <a href="Sound-Detection.html" class="read-more">使用工具</a>
+        </div>
+        
+        <!-- 文章卡片3 -->
+        <div class="article-card" data-tags="754,数学,练习">
+            <div class="article-date"><i class="bi bi-calendar-check-fill"></i>2023-5-1</div>
+            <h3 class="article-title">754 pro</h3>
+            <p class="article-excerpt">新算法出题，难度更高</p>
+            <div class="article-tags">
+                <span class="tag">754</span>
+                <span class="tag">数学</span>
+                <span class="tag">练习</span>
+            </div>
+            <a href="754-Pro.html" class="read-more">使用工具</a>
+        </div>
+        
+        <!-- 文章卡片4 -->
+        <div class="article-card" data-tags="754,数学,练习">
+            <div class="article-date"><i class="bi bi-calendar-check-fill"></i>2025-5-1</div>
+            <h3 class="article-title">754算数</h3>
+            <p class="article-excerpt">7分钟，5道4位数乘法，提高正确率和计算速度/p>
+            <div class="article-tags">
+                <span class="tag">754</span>
+                <span class="tag">数学</span>
+                <span class="tag">练习</span>
+            </div>
+            <a href="754.html" class="read-more">使用工具</a>
+        </div>
+        
+        <!-- 文章卡片5 -->
+        <div class="article-card" data-tags="导航,网址">
+            <div class="article-date"><i class="bi bi-calendar-check-fill"></i>2025-4-29</div>
+            <h3 class="article-title">TK网址导航</h3>
+            <p class="article-excerpt">没有广告，多引擎搜索，网址导航</p>
+            <div class="article-tags">
+                <span class="tag">导航</span>
+                <span class="tag">网址</span>
+            </div>
+            <a href="guide.html" class="read-more">使用工具</a>
+        </div>
+        
+    </div>
+</main>
+    <script type="text/javascript" src="../assets/script/background.js"></script>
+    <script type="text/javascript" src="../assets/script/script.js"></script>
+    <script type="text/javascript" src="../assets/script/subassembly.js"></script>
+
+    <footer>
+        &copy; 2025 Tank37135. All rights reserved.
+    </footer>
+</body>
+</html>

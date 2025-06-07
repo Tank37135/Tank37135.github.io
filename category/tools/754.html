@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>754算数练习-Tank37135</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #386f92;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #444;
+            color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #bcdefe;
+            color: #386f92;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;  /* 容器宽度增加 */
+            margin: 0 auto;
+            padding-top: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .buttons button {
+            background-color: transparent;
+            color: #386f92;
+            padding: 10px 20px;
+            margin: 10px;
+            border: 2px solid #386f92;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .buttons button:disabled {
+            background-color: #bbb;
+            cursor: not-allowed;
+        }
+
+        #timer {
+            margin: 20px;
+            font-size: 20px;
+        }
+
+        .inputs .input-group {
+            margin: 10px 0;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            width: 170px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #386f92;
+            background-color: transparent;
+            height: 40px;
+        }
+
+        input[type="number"].error {
+            border-color: red;
+        }
+
+        input[type="number"].correct {
+            border-color: green;
+        }
+
+        /* 修改后的表格样式 */
+        .record-table {
+            width: 100%;  /* 表格宽度改为100% */
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: transparent;
+        }
+
+        .record-table th,
+        .record-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #386f92;
+        }
+
+        .record-table th {
+            background-color: transparent;
+            color: #386f92;
+            font-weight: bold;
+        }
+
+        .record-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        .record-title {
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #386f92;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>754练习</h1>
+        <div class="buttons">
+            <button id="startButton">开始</button>
+            <button id="submitButton" disabled>提交</button>
+        </div>
+        <div id="timer">时间：00:00</div>
+        
+        <div class="inputs">
+            <div class="input-group">
+                <label id="label1">1. </label>
+                <input type="number" id="input1" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label id="label2">2. </label>
+                <input type="number" id="input2" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label id="label3">3. </label>
+                <input type="number" id="input3" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label id="label4">4. </label>
+                <input type="number" id="input4" class="input" disabled>
+            </div>
+            <div class="input-group">
+                <label id="label5">5. </label>
+                <input type="number" id="input5" class="input" disabled>
+            </div>
+        </div>
+        <b>7分钟内合格</b><br>
+        
+        <div class="record-container">
+            <div class="record-title">练习记录</div>
+            <table class="record-table">
+                <thead>
+                    <tr>
+                        <th>错误题序</th>
+                        <th>用时</th>
+                    </tr>
+                </thead>
+                <tbody id="recordBody">
+                    <!-- 记录将通过JavaScript动态添加 -->
+                </tbody>
+            </table>
+        </div>
+
+        <a href="https://Tank37135.github.io/" target="_self">&copy; 2025 Tank37135. All rights reserved.</a><br>
+                <a href="../assets/download/zip/754本地无调色版.zip" download="754脱机文件.zip">我希望下载本地文件</a>
+    </div>
+
+    <script>
+        let startButton = document.getElementById('startButton');
+        let submitButton = document.getElementById('submitButton');
+        let timerElement = document.getElementById('timer');
+        let inputs = document.querySelectorAll('.input');
+        let labels = ['label1', 'label2', 'label3', 'label4', 'label5'];
+        let recordBody = document.getElementById('recordBody');
+
+        let equations = [];
+        let timer;
+        let seconds = 0;
+        let lastClickTime = 0;
+        let records = [];
+
+        function generateRandomEquation() {
+            let num1 = Math.floor(Math.random() * 9000) + 1000;
+            let num2 = Math.floor(Math.random() * 9000) + 1000;
+            return `${num1} × ${num2} = `;
+        }
+
+        function startTimer() {
+            timer = setInterval(function() {
+                seconds++;
+                let minutes = Math.floor(seconds / 60);
+                let remainingSeconds = seconds % 60;
+                timerElement.textContent = `时间：${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            seconds = 0;
+            timerElement.textContent = '时间：00:00';
+        }
+
+        function resetInputs() {
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('error', 'correct');
+            });
+        }
+
+        function resetRecords() {
+            records = [];
+            recordBody.innerHTML = '';
+        }
+
+        function handleStartButtonClick() {
+            const now = Date.now();
+            if (now - lastClickTime < 300) {
+                resetGame();
+            }
+            lastClickTime = now;
+        }
+
+        function startGame() {
+            resetTimer();
+            resetInputs();
+            resetRecords();
+
+            equations = [];
+            labels.forEach((label, index) => {
+                let equation = generateRandomEquation();
+                equations.push(equation);
+                document.getElementById(label).textContent = `${index + 1}. ${equation}`;
+                document.getElementById(`input${index + 1}`).disabled = false;
+            });
+
+            submitButton.disabled = false;
+            startButton.textContent = '双击放弃';
+            startButton.removeEventListener('click', startGame);
+            startButton.addEventListener('click', handleStartButtonClick);
+
+            startTimer();
+        }
+
+        function resetGame() {
+            resetTimer();
+            startButton.textContent = '开始';
+            startButton.removeEventListener('click', handleStartButtonClick);
+            startButton.addEventListener('click', startGame);
+            submitButton.disabled = true;
+            
+            inputs.forEach(input => {
+                input.disabled = true;
+            });
+        }
+
+        function addRecord(errorQuestions) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            const timeUsed = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+            
+            const record = {
+                errors: errorQuestions.length ? errorQuestions.join(', ') : '无',
+                duration: timeUsed
+            };
+            
+            records.unshift(record);
+            updateRecordTable();
+        }
+
+        function updateRecordTable() {
+            recordBody.innerHTML = '';
+            
+            records.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${record.errors}</td>
+                    <td>${record.duration}</td>
+                `;
+                recordBody.appendChild(row);
+            });
+        }
+
+        function checkAnswers() {
+            let allCorrect = true;
+            const errorQuestions = [];
+            
+            inputs.forEach((input, index) => {
+                const questionNumber = index + 1;
+                const answer = input.value.trim();
+                const correctAnswer = eval(equations[index].replace('=', '').replace('×', '*').trim());
+                
+                if (answer === '' || parseInt(answer) !== correctAnswer) {
+                    input.classList.add('error');
+                    input.value = '';  // 清空错误答案
+                    errorQuestions.push(questionNumber);
+                    allCorrect = false;
+                } else {
+                    input.classList.add('correct');
+                }
+            });
+
+            addRecord(errorQuestions);
+
+            if (allCorrect) {
+                clearInterval(timer);
+                alert('全部正确!');
+                startButton.textContent = '重新开始';
+                startButton.removeEventListener('click', handleStartButtonClick);
+                startButton.addEventListener('click', startGame);
+            }
+        }
+
+        startButton.addEventListener('click', startGame);
+        submitButton.addEventListener('click', checkAnswers);
+    </script>
+</body>
+</html>
