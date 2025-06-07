@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css" href="../assets/style/background.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css"/>
-</head>
     <style>
         .loading {
             width: 25px;
@@ -356,11 +355,9 @@
 <img src="../assets/images/png/software.png" alt="Logo" class="logo">
 <img src="../assets/images/png/tools.png" alt="Logo" class="logo">
 
-
-
     <script>
-        // 获取页面所有资源
-        function getAllPageResources() {
+        // 获取页面所有图片、音频和视频资源
+        function getAllMediaResources() {
             const resources = [];
             
             // 获取所有<img>标签
@@ -368,30 +365,9 @@
                 if (img.src) resources.push(img.src);
             });
             
-            // 获取所有<link>标签 (CSS)
-            document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-                if (link.href) resources.push(link.href);
-            });
-            
-            // 获取所有<script>标签 (外部JS)
-            document.querySelectorAll('script[src]').forEach(script => {
-                if (script.src) resources.push(script.src);
-            });
-            
             // 获取所有<video>和<audio>标签
             document.querySelectorAll('video source, audio source').forEach(source => {
                 if (source.src) resources.push(source.src);
-            });
-            
-            // 获取所有背景图片
-            document.querySelectorAll('*').forEach(element => {
-                const bgImage = window.getComputedStyle(element).backgroundImage;
-                if (bgImage && bgImage !== 'none') {
-                    const urlMatch = bgImage.match(/url\(["']?(.*?)["']?\)/);
-                    if (urlMatch && urlMatch[1]) {
-                        resources.push(urlMatch[1]);
-                    }
-                }
             });
             
             return [...new Set(resources)]; // 去重
@@ -407,15 +383,6 @@
                 }
             }
             
-            // 检查样式表
-            const stylesheets = document.styleSheets;
-            for (let sheet of stylesheets) {
-                if (sheet.href === url && sheet.rules && sheet.rules.length > 0) {
-                    return true;
-                }
-            }
-            
-            // 其他资源暂时返回false，通过实际请求验证
             return false;
         }
 
@@ -448,20 +415,19 @@
                         return;
                     }
                     
-                    // 创建请求预加载资源
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('GET', url, true);
-                    xhr.onload = () => {
+                    // 创建Image对象预加载
+                    const img = new Image();
+                    img.onload = () => {
                         loaded++;
                         updateProgress();
                         resolve();
                     };
-                    xhr.onerror = () => {
+                    img.onerror = () => {
                         failed++;
                         updateProgress();
                         resolve();
                     };
-                    xhr.send();
+                    img.src = url;
                 });
             });
             
@@ -502,7 +468,7 @@
 
         // 页面加载完成后开始预加载
         window.addEventListener('DOMContentLoaded', () => {
-            const resources = getAllPageResources();
+            const resources = getAllMediaResources();
             if (resources.length > 0) {
                 preloadResources(resources);
             } else {
