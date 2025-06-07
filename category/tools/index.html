@@ -1,19 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <link rel="icon" href="../assets/images/logo/favicon.ico" type="image/x-icon">
-    <script type="text/javascript" src="../assets/script/loading.js"></script>
-    <link rel="stylesheet" type="text/css" href="../assets/style/loading.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tank37135的在线工具，不需要下载免费使用">
-    <title>Tank37135 文章</title>
-    <meta name="keywords" content="博客, 在线工具, Tank37135">
-    <link rel="stylesheet" type="text/css" href="../assets/style/main.css">
-    <link rel="stylesheet" type="text/css" href="../assets/style/style.css">
-    <link rel="stylesheet" type="text/css" href="../assets/style/subassembly.css">
-    <link rel="stylesheet" type="text/css" href="../assets/style/background.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css"/>
+    <title>技术文章卡牌合集</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.6;
@@ -22,48 +20,195 @@
 
     min-height: 100vh; /* 确保body至少和视口一样高 */
     background-size: cover; /* 覆盖整个区域 */
-
+    padding-top: 70px;
+}
+main{
+    margin: 20px;
 }
 
+        /* 搜索框样式 */
+.search-container {
+    max-width: 1200px;
+    margin: 0 auto 30px;
+}
+
+#search {
+    width: 100%;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.2); /* 半透明白色背景 */
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* 半透明边框 */
+    border-radius: 12px; /* 圆角与卡牌一致 */
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9); /* 白色文字 */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 柔和阴影 */
+}
+
+/* 输入框占位符文字颜色 */
+#search::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* 半透明提示文字 */
+}
+
+/* 聚焦时的高亮效果 */
+#search:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.3); /* 背景稍微变亮 */
+    border-color: rgba(255, 255, 255, 0.5); /* 边框更明显 */
+    box-shadow: 
+        0 0 0 3px rgba(255, 255, 255, 0.2), /* 发光效果 */
+        0 4px 20px rgba(0, 0, 0, 0.1);
+}
+        
+        .articles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .article-card {
+            background-color: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+        -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+        border-radius: 12px;
+        -webkit-border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+        
+        /* 新增：根据鼠标位置倾斜卡片 */
+        .article-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .article-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(67,97,238,0.1) 0%, rgba(72,149,239,0.05) 100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .article-card:hover::after {
+            opacity: 1;
+        }
+        
+        .article-date {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        
+        .article-title {
+            font-size: 1.25rem;
+            margin: 0 0 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .article-excerpt {
+           color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* 标签悬停效果 */
+        .tag:hover {
+            background-color: #4895ef;
+            color: white;
+        }
+        
+        .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: #4361ee;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* 无结果提示样式 */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        
+            header {
+            position: fixed;  /* 固定定位 */
+    top: 0;          /* 固定在顶部 */
+    left: 0;         /* 左侧对齐 */
+    right: 0;        /* 右侧对齐 */
+    width: 100%;     /* 全宽度 */
+    z-index: 1000; 
+            background-color: rgba(255, 255, 255, 0.2); /* 新增背景色，0.3是透明度 */
+        text-align: center;
+        padding: 1rem;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+        -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+        color: rgba(255, 255, 255, 0.75);
+    }
+    
+    footer {
+            text-align: center;
+            padding: 1rem;
+            backdrop-filter:
+                blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,
+                    255, 255, 0.18);
+            box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+            -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+            color:
+                rgba(255, 255, 255, 0.75);
+        }
     </style>
 </head>
 <body>
 <header>
 TK工具箱
 </header>
-
-    <div class="l-body">
-        <div class="loading">
-            <i>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </i>
-        </div>
-        <div class="l-title">正在加载...</div>
-        <div class="timeout-message">加载时间过长，我们将为您跳过加载动画</div>
-    </div>
-    <canvas id="canvas"></canvas>
-    
-        <div class="logo-container">
-        <!-- 替换为您的Logo图片 -->
-        <img src="../assets/images/logo/favicon.ico" alt="Logo" class="logo">
-        <div class="logo-text">Tank37135</div>
-    </div>
-    
-    <nav class="dropdown-menu">
-        <ul class="menu-items">
-            <li><a href="https://Tank37135.github.io" class="menu-item">首页</a></li>
-            <li><a href="../category/blog/" class="menu-item" target="_blank">博客</a></li>
-            <li><a href="../category/aritcle/" class="menu-item" target="_blank">文章</a></li>
-            <li><a href="../category/tools/" class="menu-item" target="_blank">在线工具</a></li>
-            <li><a href="../about.html" class="menu-item" target="_blank">关于</a></li>
-            <li><a class="menu-item" href="javascript:void(0);" onclick="window.close();">关机</a></li>
-        </ul>
-    </nav>
 <main>
     <!-- 搜索框 -->
     <div class="search-container">
@@ -145,9 +290,106 @@ TK工具箱
         
     </div>
 </main>
-    <script type="text/javascript" src="../assets/script/background.js"></script>
-    <script type="text/javascript" src="../assets/script/script.js"></script>
-    <script type="text/javascript" src="../assets/script/subassembly.js"></script>
+    <script>
+        // 获取搜索输入框和结果容器
+        const search = document.getElementById('search');
+        const resultsContainer = document.getElementById('articleResults');
+        
+        // 创建无结果提示元素
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.textContent = '没有找到匹配的文章';
+        noResults.style.display = 'none';
+        resultsContainer.appendChild(noResults);
+
+        // 搜索文章的函数
+        function searchArticles(query) {
+            // 获取所有文章卡片
+            const articleCards = resultsContainer.querySelectorAll('.article-card');
+            let hasResults = false;
+            
+            // 将查询转为小写以便对比
+            query = query.toLowerCase().trim();
+
+            // 循环检查每个文章卡片
+            articleCards.forEach(card => {
+                const title = card.querySelector('.article-title').textContent.toLowerCase();
+                const tags = card.getAttribute('data-tags').toLowerCase().split(',');
+                const excerpt = card.querySelector('.article-excerpt').textContent.toLowerCase();
+                
+                if (title.includes(query) || 
+                    tags.some(tag => tag.includes(query)) ||
+                    excerpt.includes(query)) {
+                    // 显示匹配的文章卡片
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    // 隐藏不匹配的文章卡片
+                    card.style.display = 'none';
+                }
+            });
+
+            // 显示或隐藏无结果提示
+            noResults.style.display = hasResults ? 'none' : 'block';
+        }
+
+        // 监听搜索输入框的实时变化
+        search.addEventListener('input', function() {
+            const query = this.value;
+            if (query) {
+                // 执行搜索并过滤结果
+                searchArticles(query);
+            } else {
+                // 恢复所有文章卡片当搜索为空时
+                const articleCards = resultsContainer.querySelectorAll('.article-card');
+                articleCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+                noResults.style.display = 'none';
+            }
+        });
+
+        // 点击标签自动填充搜索框功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tags = document.querySelectorAll('.tag');
+            
+            tags.forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tagText = this.textContent;
+                    search.value = tagText;
+                    searchArticles(tagText);
+                });
+            });
+
+            // 新增：鼠标悬停卡片倾斜效果
+            const cards = document.querySelectorAll('.article-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // 鼠标相对于卡片左侧的位置
+                    const y = e.clientY - rect.top; // 鼠标相对于卡片顶部的位置
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // 计算鼠标相对于卡片中心的位置
+                    const relativeX = x - centerX;
+                    const relativeY = y - centerY;
+                    
+                    // 计算旋转角度 (限制在15度以内)
+                    const rotateY = (relativeX / centerX) * 15;
+                    const rotateX = (relativeY / centerY) * -15;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            });
+        });
+    </script>
 
     <footer>
         &copy; 2025 Tank37135. All rights reserved.
