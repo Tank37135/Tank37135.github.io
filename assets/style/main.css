@@ -1,1 +1,264 @@
+/* Tank37135.github.io-TKB6 All rights reserved-Tank37135 */
+/* 全局(初始化) */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Source Code Pro', monospace, Arial, sans-serif;
+  font-size: 16px;
+  font-display: swap;
+  box-sizing: border-box;
+}
 
+ul, ol {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+background: linear-gradient(to bottom right, #1a71d5, #c469f4);
+  text-align: left;
+  line-height: 1.5;
+              overflow: auto;  /* 允许滚动 */
+            height: 100%;  /* 确保页面可以滚动 */
+}
+
+html {
+            scroll-behavior: smooth;
+        }
+        
+/* 按钮 */
+        button {
+            position: relative;
+            background: linear-gradient(to right, #1a71d5, #c469f4);
+            background-size: 0 2px; 
+            background-position: bottom right; 
+            background-repeat: repeat-y; 
+            color: #386f92;
+            padding: 10px 20px;
+            margin: 10px;
+            border: 2px solid #386f92;
+            cursor: pointer;
+            border-radius: 10px;
+            overflow: hidden;
+            font-weight: bold;
+            transition: background-size 0.3s ease;
+        }
+        
+        button:hover {
+            background-size: 100% 2px; 
+            background-position: bottom left; 
+            color: #d6e6f9;
+        }
+/* 链接 */
+a {
+    background: linear-gradient(to right, #1a71d5, #c469f4); 
+    background-size: 0 2px; 
+    background-position: bottom right; 
+    background-repeat: no-repeat;
+    text-decoration: none; 
+    color: #00CDCD; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    transition: background-size 0.3s ease; 
+}
+
+a:hover {
+    background-size: 100% 2px; 
+    background-position: bottom left; 
+    color: #00CDCD; 
+}
+
+/* 引用样式 */
+blockquote {
+    background: linear-gradient(to right, #6a4c9c, #9b5de5); 
+    padding: 1rem;
+    border-left: 4px solid #1a71d5;
+    color: #d6e6f9;
+    margin: 1rem 0;
+    font-style: italic;
+    border-radius: 10px;
+}
+
+/* 页脚 */
+footer {
+            text-align: center;
+            padding: 1rem;
+            backdrop-filter:
+                blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,
+                    255, 255, 0.18);
+            box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+            -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+            color:
+                rgba(255, 255, 255, 0.75);
+        }
+/* 背景 */
+        
+        #canvas {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: -1;  /* 确保画布在内容下面 */
+        }
+/* 标题 */
+h3 {
+        font-size: 25px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+/* 图像 */
+img {
+    max-width: 100%; /* 最大宽度为100% */
+    max-height: 100%; 
+    width: auto;
+    height: auto;
+    display: block; 
+    margin-bottom: 25px; 
+  }
+/* 导航栏 */
+/* Logo容器样式 */
+        .logo-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            object-fit: cover;
+        }
+        
+        .logo:hover {
+            opacity: 1;
+        }
+        
+        .logo-text {
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            transition: width 0.3s ease, margin-left 0.3s ease;
+            margin-left: 0;
+        }
+        
+        .logo-container:hover .logo-text {
+            width: 120px;
+            margin-left: 10px;
+        }
+        
+        /* 导航菜单样式 */
+        nav.dropdown-menu {
+            position: fixed;
+            top: 72px; /* Logo高度 + 上下边距 */
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease;
+            z-index: 999;
+            min-width: 0;
+            width: auto;
+            transition: max-height 0.5s ease, min-width 0.3s ease 0.1s;
+        }
+        
+        /* 菜单激活时与Logo+文字同宽 */
+        nav.dropdown-menu.active {
+            max-height: 500px;
+            min-width: calc(32px + 10px + 120px); /* logo宽度 + 间距 + 文字宽度 */
+        }
+        
+        .menu-items {
+            padding: 10px 0;
+            list-style: none;
+            min-width: 100%;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 10px 20px;
+            color: white;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        
+        nav.dropdown-menu.active .menu-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* 为每个菜单项添加延迟动画 */
+        nav.dropdown-menu.active .menu-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+        
+        nav.dropdown-menu.active .menu-item:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+        
+        nav.dropdown-menu.active .menu-item:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+        
+        nav.dropdown-menu.active .menu-item:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+        
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 内容区域 */
+        .content {
+            padding: 80px 40px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+/* 正文段落样式 */
+main{
+    padding-top: 70px;
+    margin: 20px;
+}
+
+        
+            header {
+            position: fixed;  /* 固定定位 */
+    top: 0;          /* 固定在顶部 */
+    left: 0;         /* 左侧对齐 */
+    right: 0;        /* 右侧对齐 */
+    width: 100%;     /* 全宽度 */
+    z-index: 1000; 
+            background-color: rgba(255, 255, 255, 0.2); /* 新增背景色，0.3是透明度 */
+        text-align: center;
+        padding: 1rem;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+        -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+        color: rgba(255, 255, 255, 0.75);
+    }
