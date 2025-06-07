@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>代码流星雨</title>
+<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/subassembly.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/writing.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css"/>
+  </head>
+  <body class="body">
+        <canvas id="canvas"></canvas>
+        <div class="content">
+    <article>
+      <h1>装X代码</h1>
+      <p>这个代码在很多黑客电影都见过，以前觉得他很帅，现在才发现现实中几乎不会出现这种场景。</p>
+      <p>下面我们将用一段代码来模拟这个场景。</p>
+      <p>下面的第一个代码完全公开许可，不保留任何权利</p>
+      <p>保存到一个后缀为HTML或HTM的文件中，双击即可食用。</p>
+
+      <p><a href="rain.html" target="_blank">预览代码</a>
+      或者
+      <a href="rain.html" download="rain.html">点击下载文件</a>
+      <hr>
+      <h2>原理剖析</h2>
+       <p>首先要保证有良好的视觉体验，所以设置body元素的外边距为0，并且隐藏滚动条。为了使canvas占据整个视口，不会有空白区域或滚动条干扰。<br>所以我们可以用CSS这样规定它</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">CSS复制</button>
+       <pre><code class="code2">
+         body {
+         margin: 0;
+         overflow: hidden;
+         }
+      </code></pre>
+      </div>
+      <p>接着，我们需要把背景变成黑色的，我们可以通过创建一个画布来实现</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+       &lt;canvas id="canvas" style="background:#000000;"&gt;&lt;/canvas&gt;
+      </code></pre>
+      </div>
+      <p>然后处理事件，首先获取Canvas元素及其绘图上下文</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+      </code></pre>
+      </div>
+      <p>为了解决高度问题，我们可以设置画布的宽度和高度为窗口当前大小</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+         var w = window.innerWidth;
+         var h = window.innerHeight;
+         canvas.width = w;
+         canvas.height = h;
+      </code></pre>
+      </div>
+      <p>现在要告诉系统字体和排列数，我们让他定义字体大小fontSize为14px，计算每行可以放多少个字符</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+         var fontSize = 14; 
+         var clos = Math.floor(w / fontSize);
+      </code></pre>
+      </div>
+      <p>创建一个数组drops用来记录每一列下落的位置</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+         var drops = [];
+         for (var i = 0; i < clos; i++) {
+             drops.push(0);
+         }
+      </code></pre>
+      </div>
+      <p>定义字符串str为一组小写字母，从“q”到“m”，用于随机生成下落的字符</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+         var str = "qwertyuiopasdfghjklzxcvbnm";
+      </code></pre>
+      </div>
+      <p>清空画布，设置fillStyle为半透明黑色，覆盖整个canvas，模拟背景的逐渐暗淡</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+         ctx.fillStyle = "rgba(0,0,0,0.05)";
+         ctx.fillRect(0, 0, w, h);
+      </code></pre>
+      </div>
+      <p>设置字体样式和颜色</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+         ctx.font = "600 " + fontSize + "px 流星雨";
+         ctx.fillStyle = "#00ff00"; 
+      </code></pre>
+      </div>
+      <p>循环遍历每一列，绘制字符并调整下落的位置</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+         for (var i = 0; i < clos; i++) {
+           var x = i * fontSize;
+           var y = drops[i] * fontSize;
+    
+           ctx.fillText(str[Math.floor(Math.random() * str.length)], x, y);
+     
+           if (y > h && Math.random() > 0.99) {
+               drops[i] = 0;
+           }
+    
+           drops[i]++;
+         }
+      </code></pre>
+      </div>
+      <p>使用setInterval(drawString, 30);每30毫秒调用一次drawString函数，保持动画效果。</p>
+      <p>窗口大小调整处理</p>
+       <div class="code-block">
+       <button onclick="copyCode(this)">html复制</button>
+       <pre><code class="code2">
+         window.onresize = function() {
+           // 更新窗口大小、画布尺寸以及重置drops数组
+           w = window.innerWidth;
+           h = window.innerHeight;
+           canvas.width = w;
+           canvas.height = h;
+           clos = Math.floor(w / fontSize);
+    
+           // 重置drops数组为全0，以适应新的列数
+           drops = [];
+           for (var i = 0; i < clos; i++) {
+               drops.push(0);
+           }
+         }; 
+      </code></pre>
+      </div>
+      <p>OK，以上就是大致原理，快拿去玩吧</p>
+    </article>
+    </div>
+<script id="rendered-js" src=../assets/js/essay.js> </script>
+<script type="text/javascript" src="../assets/js/script.js"></script>
+
+  </body>
+</html>
