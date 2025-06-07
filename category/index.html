@@ -1,1 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <link rel="icon" href="../assets/images/logo/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="../assets/script/loading.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/style/loading.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tank37135预加载页面，提取加载内容以获得更好体验">
+    <title>Tank37135 预加载</title>
+    <meta name="keywords" content="博客, 文章, Tank37135">
+    <link rel="stylesheet" type="text/css" href="../assets/style/main.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style/subassembly.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style/background.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css"/>
+</head>
+    <style>
+        .loading {
+            width: 25px;
+            height: 25px;
+            position: relative;
+        }
 
+        .loading i {
+            margin: auto;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .loading span {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        .loading span:after {
+            content: '';
+            display: block;
+            width: 17%;
+            height: 17%;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .loading span:nth-child(1) {
+            animation: i1 5.5s 0.2s infinite;
+        }
+
+        .loading span:nth-child(2) {
+            animation: i2 5.5s 0.4s infinite;
+        }
+
+        .loading span:nth-child(3) {
+            animation: i3 5.5s 0.6s infinite;
+        }
+
+        .loading span:nth-child(4) {
+            animation: i4 5.5s 0.8s infinite;
+        }
+
+        .loading span:nth-child(5) {
+            animation: i5 5.5s 1s infinite;
+        }
+
+        .loading span:nth-child(6) {
+            animation: i6 5.5s 1.2s infinite;
+        }
+
+        @keyframes i1 {
+            0% {
+                opacity: 1;
+                transform: rotate(190deg);
+                animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74);
+            }
+            7% {
+                opacity: 1;
+                transform: rotate(300deg);
+                animation-timing-function: linear;
+            }
+            30% {
+                opacity: 1;
+                transform: rotate(450deg);
+                animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81);
+            }
+            39% {
+                opacity: 1;
+                transform: rotate(645deg);
+                animation-timing-function: linear;
+            }
+            63% {
+                opacity: 1;
+                transform: rotate(800deg);
+                animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54);
+            }
+            68% {
+                opacity: 1;
+                transform: rotate(920deg);
+                animation-timing-function: ease-in;
+            }
+            69% {
+                opacity: 0;
+                transform: rotate(930deg);
+            }
+        }
+
+        @keyframes i2 {
+            0% {
+                opacity: 1;
+                transform: rotate(180deg);
+                animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74);
+            }
+            7% {
+                opacity: 1;
+                transform: rotate(300deg);
+                animation-timing-function: linear;
+            }
+            30% {
+                opacity: 1;
+                transform: rotate(450deg);
+                animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81);
+            }
+            39% {
+                opacity: 1;
+                transform: rotate(645deg);
+                animation-timing-function: linear;
+            }
+            63% {
+                opacity: 1;
+                transform: rotate(800deg);
+                animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54);
+            }
+            68% {
+                opacity: 1;
+                transform: rotate(910deg);
+                animation-timing-function: ease-in;
+            }
+            69% {
+                opacity: 0;
+                transform: rotate(920deg);
+            }
+        }
+
+        @keyframes i3 {
+            0% {
+                opacity: 1;
+                transform: rotate(170deg);
+                animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74);
+            }
+            7% {
+                opacity: 1;
+                transform: rotate(300deg);
+                animation-timing-function: linear;
+            }
+            30% {
+                opacity: 1;
+                transform: rotate(450deg);
+                animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81);
+            }
+            39% {
+                opacity: 1;
+                transform: rotate(645deg);
+                animation-timing-function: linear;
+            }
+            63% {
+                opacity: 1;
+                transform: rotate(800deg);
+                animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54);
+            }
+            68% {
+                opacity: 1;
+                transform: rotate(900deg);
+                animation-timing-function: ease-in;
+            }
+            69% {
+                opacity: 0;
+                transform: rotate(910deg);
+            }
+        }
+
+        @keyframes i4 {
+            0% {
+                opacity: 1;
+                transform: rotate(160deg);
+                animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74);
+            }
+            7% {
+                opacity: 1;
+                transform: rotate(300deg);
+                animation-timing-function: linear;
+            }
+            30% {
+                opacity: 1;
+                transform: rotate(450deg);
+                animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81);
+            }
+            39% {
+                opacity: 1;
+                transform: rotate(645deg);
+                animation-timing-function: linear;
+            }
+            63% {
+                opacity: 1;
+                transform: rotate(800deg);
+                animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54);
+            }
+            68% {
+                opacity: 1;
+                transform: rotate(890deg);
+                animation-timing-function: ease-in;
+            }
+            69% {
+                opacity: 0;
+                transform: rotate(900deg);
+            }
+        }
+
+        @keyframes i5 {
+            0% {
+                opacity: 1;
+                transform: rotate(150deg);
+                animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74);
+            }
+            7% {
+                opacity: 1;
+                transform: rotate(300deg);
+                animation-timing-function: linear;
+            }
+            30% {
+                opacity: 1;
+                transform: rotate(450deg);
+                animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81);
+            }
+            39% {
+                opacity: 1;
+                transform: rotate(645deg);
+                animation-timing-function: linear;
+            }
+            63% {
+                opacity: 1;
+                transform: rotate(800deg);
+                animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54);
+            }
+            68% {
+                opacity: 1;
+                transform: rotate(880deg);
+                animation-timing-function: ease-in;
+            }
+            69% {
+                opacity: 0;
+                transform: rotate(880deg);
+            }
+        }
+
+        @keyframes i6 {
+            0% {
+                opacity: 1;
+                transform: rotate(140deg);
+                animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74);
+            }
+            7% {
+                opacity: 1;
+                transform: rotate(300deg);
+                animation-timing-function: linear;
+            }
+            30% {
+                opacity: 1;
+                transform: rotate(450deg);
+                animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81);
+            }
+            39% {
+                opacity: 1;
+                transform: rotate(645deg);
+                animation-timing-function: linear;
+            }
+            63% {
+                opacity: 1;
+                transform: rotate(800deg);
+                animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54);
+            }
+            68% {
+                opacity: 1;
+                transform: rotate(870deg);
+                animation-timing-function: ease-in;
+            }
+            69% {
+                opacity: 0;
+                transform: rotate(880deg);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #09f;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+        }
+        
+        .loading {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .loading span:after {
+            width: 13%;
+            height: 13%;
+        }
+        
+        .ltitle {
+            font-size: 22px;
+            line-height: 50px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .countdown {
+            font-size: 18px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-overlay">
+        <div class="loading"><i><span></span><span></span><span></span><span></span><span></span><span></span></i></div>
+        <div class="ltitle">正在预加载...<span id="progress">0</span>%</div>
+        <div class="ltitle" id="loading-text">加载完成后将自动关闭</div>
+        <div class="countdown" id="countdown">即将返回，<span id="countdown-number">5</span>秒后跳转...</div>
+    </div>
+<img src="../assets/images/logo/1741458685358.png" alt="Logo" class="logo">
+<img src="../assets/images/logo/favicon.ico" alt="Logo" class="logo">
+<img src="../assets/images/logo/1741458690999.png" alt="Logo" class="logo">
+<img src="../assets/images/logo/1741458780762.png" alt="Logo" class="logo">
+<img src="../assets/images/logo/1741458786824.png" alt="Logo" class="logo">
+<img src="../assets/images/png/aritcle.png" alt="Logo" class="logo">
+<img src="../assets/images/logo/blog.png" alt="Logo" class="logo">
+<img src="../assets/images/logo/home.png" alt="Logo" class="logo">
+<img src="../assets/images/logo/img.png" alt="Logo" class="logo">
+<img src="../assets/images/logo/software.png" alt="Logo" class="logo">
+<img src="../assets/images/logo/tools.png" alt="Logo" class="logo">
+
+
+
+    <script>
+        // 获取页面所有资源
+        function getAllPageResources() {
+            const resources = [];
+            
+            // 获取所有<img>标签
+            document.querySelectorAll('img').forEach(img => {
+                if (img.src) resources.push(img.src);
+            });
+            
+            // 获取所有<link>标签 (CSS)
+            document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+                if (link.href) resources.push(link.href);
+            });
+            
+            // 获取所有<script>标签 (外部JS)
+            document.querySelectorAll('script[src]').forEach(script => {
+                if (script.src) resources.push(script.src);
+            });
+            
+            // 获取所有<video>和<audio>标签
+            document.querySelectorAll('video source, audio source').forEach(source => {
+                if (source.src) resources.push(source.src);
+            });
+            
+            // 获取所有背景图片
+            document.querySelectorAll('*').forEach(element => {
+                const bgImage = window.getComputedStyle(element).backgroundImage;
+                if (bgImage && bgImage !== 'none') {
+                    const urlMatch = bgImage.match(/url\(["']?(.*?)["']?\)/);
+                    if (urlMatch && urlMatch[1]) {
+                        resources.push(urlMatch[1]);
+                    }
+                }
+            });
+            
+            return [...new Set(resources)]; // 去重
+        }
+
+        // 检查资源是否已加载
+        function isResourceLoaded(url) {
+            // 检查图片
+            const images = document.querySelectorAll('img');
+            for (let img of images) {
+                if (img.src === url && img.complete) {
+                    return true;
+                }
+            }
+            
+            // 检查样式表
+            const stylesheets = document.styleSheets;
+            for (let sheet of stylesheets) {
+                if (sheet.href === url && sheet.rules && sheet.rules.length > 0) {
+                    return true;
+                }
+            }
+            
+            // 其他资源暂时返回false，通过实际请求验证
+            return false;
+        }
+
+        // 预加载资源
+        async function preloadResources(resources) {
+            const total = resources.length;
+            let loaded = 0;
+            let failed = 0;
+            
+            // 更新进度显示
+            function updateProgress() {
+                const progress = Math.min(Math.floor((loaded / total) * 100), 100);
+                document.getElementById('progress').textContent = progress;
+                document.title = `正在加载 ${progress}%`;
+                
+                // 检查是否全部完成
+                if (loaded + failed >= total) {
+                    allResourcesLoaded();
+                }
+            }
+            
+            // 预加载每个资源
+            const preloadPromises = resources.map(url => {
+                return new Promise((resolve) => {
+                    // 如果资源已加载，直接计数
+                    if (isResourceLoaded(url)) {
+                        loaded++;
+                        updateProgress();
+                        resolve();
+                        return;
+                    }
+                    
+                    // 创建请求预加载资源
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, true);
+                    xhr.onload = () => {
+                        loaded++;
+                        updateProgress();
+                        resolve();
+                    };
+                    xhr.onerror = () => {
+                        failed++;
+                        updateProgress();
+                        resolve();
+                    };
+                    xhr.send();
+                });
+            });
+            
+            await Promise.all(preloadPromises);
+        }
+
+        // 所有资源加载完成后的处理
+        function allResourcesLoaded() {
+            const loadingText = document.getElementById('loading-text');
+            const countdownElement = document.getElementById('countdown');
+            const countdownNumber = document.getElementById('countdown-number');
+            
+            // 更新UI
+            loadingText.textContent = '所有资源已加载完成';
+            countdownElement.style.display = 'block';
+            
+            // 开始倒计时
+            let count = 5;
+            const countdownInterval = setInterval(() => {
+                count--;
+                countdownNumber.textContent = count;
+                
+                if (count <= 0) {
+                    clearInterval(countdownInterval);
+                    navigateBack();
+                }
+            }, 1000);
+        }
+
+        // 返回上一页或跳转到默认URL
+        function navigateBack() {
+            if (document.referrer && document.referrer !== '' && !document.referrer.includes(window.location.host)) {
+                window.location.href = document.referrer;
+            } else {
+                window.location.href = 'https://tank37135.github.io';
+            }
+        }
+
+        // 页面加载完成后开始预加载
+        window.addEventListener('DOMContentLoaded', () => {
+            const resources = getAllPageResources();
+            if (resources.length > 0) {
+                preloadResources(resources);
+            } else {
+                // 如果没有可预加载的资源，直接显示完成
+                document.getElementById('progress').textContent = 100;
+                allResourcesLoaded();
+            }
+        });
+    </script>
+    <script type="text/javascript" src="../assets/script/background.js"></script>
+    <script type="text/javascript" src="../assets/script/script.js"></script>
+    <script type="text/javascript" src="../assets/script/subassembly.js"></script>
+</body>
+</html>
