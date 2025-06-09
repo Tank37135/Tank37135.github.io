@@ -125,6 +125,7 @@ img {
     height: auto;
     display: block; 
     margin-bottom: 25px; 
+    object-fit: contain;  
   }
 /* 导航栏 */
 /* Logo容器样式 */
