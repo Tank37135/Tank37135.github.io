@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 
 <head>
+<meta name="msvalidate.01" content="52C62D292F6FA1FDA95F9F7305E3BC9E" />
     <link rel="icon" href="assets/images/logo/favicon.ico" type="image/x-icon">
     <script type="text/javascript" src="assets/script/loading.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/style/loading.css">
@@ -15,18 +16,174 @@
     <link rel="stylesheet" type="text/css" href="assets/style/subassembly.css">
     <link rel="stylesheet" type="text/css" href="assets/style/background.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css"/>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
 </head>
-<body>
+<style>
+    /* 加载动画容器 */
+            /* 加载动画容器 */
+            .l-body {
+                background-color: #09f;
+                height: 100vh;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 9999;
+                transition: opacity 0.5s ease-out;
+            }
+            
+            /* 旋转动画元素 */
+            .loading {
+                width: 70px;
+                height: 70px;
+                position: relative;
+            }
+            
+            .loading i {
+                margin: auto;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+            
+            .loading span {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+            }
+            
+            .loading span:after {
+                content: '';
+                display: block;
+                width: 13%;
+                height: 13%;
+                background: #fff;
+                border-radius: 50%;
+            }
+            
+            /* 6个圆点的旋转动画 */
+            .loading span:nth-child(1) { animation: i1 5.5s 0.2s infinite; }
+            .loading span:nth-child(2) { animation: i2 5.5s 0.4s infinite; }
+            .loading span:nth-child(3) { animation: i3 5.5s 0.6s infinite; }
+            .loading span:nth-child(4) { animation: i4 5.5s 0.8s infinite; }
+            .loading span:nth-child(5) { animation: i5 5.5s 1s infinite; }
+            .loading span:nth-child(6) { animation: i6 5.5s 1.2s infinite; }
+            
+            /* 动画关键帧 */
+            @keyframes i1 {
+                0% { opacity: 1; transform: rotate(190deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
+                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
+                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
+                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
+                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
+                68% { opacity: 1; transform: rotate(920deg); animation-timing-function: ease-in; }
+                69% { opacity: 0; transform: rotate(930deg); }
+            }
+            
+            @keyframes i2 {
+                0% { opacity: 1; transform: rotate(180deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
+                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
+                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
+                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
+                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
+                68% { opacity: 1; transform: rotate(910deg); animation-timing-function: ease-in; }
+                69% { opacity: 0; transform: rotate(920deg); }
+            }
+            
+            @keyframes i3 {
+                0% { opacity: 1; transform: rotate(170deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
+                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
+                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
+                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
+                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
+                68% { opacity: 1; transform: rotate(900deg); animation-timing-function: ease-in; }
+                69% { opacity: 0; transform: rotate(910deg); }
+            }
+            
+            @keyframes i4 {
+                0% { opacity: 1; transform: rotate(160deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
+                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
+                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
+                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
+                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
+                68% { opacity: 1; transform: rotate(890deg); animation-timing-function: ease-in; }
+                69% { opacity: 0; transform: rotate(900deg); }
+            }
+            
+            @keyframes i5 {
+                0% { opacity: 1; transform: rotate(150deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
+                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
+                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
+                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
+                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
+                68% { opacity: 1; transform: rotate(880deg); animation-timing-function: ease-in; }
+                69% { opacity: 0; transform: rotate(880deg); }
+            }
+            
+            @keyframes i6 {
+                0% { opacity: 1; transform: rotate(140deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
+                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
+                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
+                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
+                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
+                68% { opacity: 1; transform: rotate(870deg); animation-timing-function: ease-in; }
+                69% { opacity: 0; transform: rotate(880deg); }
+            }
+            
+            /* 文本样式 */
+            .l-title {
+                font-size: 22px;
+                line-height: 50px;
+                margin-top: 15px;
+                text-align: center;
+            }
+            
+            .timeout-message {
+                display: none;
+                font-size: 18px;
+                margin-top: 20px;
+                color: #fff;
+                text-align: center;
+                max-width: 80%;
+            }
+            
+            /* 加载完成后的状态 */
+            .loaded .l-body {
+                opacity: 0;
+                pointer-events: none;
+            }
+</style>
 
+<body>
+    <div class="l-body">
+        <div class="loading">
+            <i>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </i>
+        </div>
+        <div class="l-title">正在加载...</div>
+        <div class="timeout-message">加载时间过长，我们将为您跳过加载动画</div>
+    </div>
     <canvas id="canvas"></canvas>
-    
-        <div class="logo-container">
+
+    <div class="logo-container">
         <!-- 替换为您的Logo图片 -->
         <img src="assets/images/logo/favicon.ico" alt="Logo" class="logo">
         <div class="logo-text">Tank37135</div>
     </div>
-    
+
     <nav class="dropdown-menu">
         <ul class="menu-items">
             <li><a href="https://Tank37135.github.io" class="menu-item">首页</a></li>
@@ -37,86 +194,81 @@
             <li><a class="menu-item" href="javascript:void(0);" onclick="window.close();">关机</a></li>
         </ul>
     </nav>
-    
-   
-        <section class="section1 section">
-            <div class="links">
-                <a href="blog/" class="a1">Tank37135 Blog</a>
-                <a href="category/aritcle/" class="a1">article-工具</a>
-                <a href="category/tools/" class="a1">Tools-工具</a>
-                <a href="about.html" class="a1">About-关于</a>
-            </div>
-                <img class="image" src="assets/images/png/home.png" alt="Tank37135">
-        </section>
+
+
+    <section class="section1 section">
+        <div class="links">
+            <a href="blog/" class="a1">Tank37135 Blog</a>
+            <a href="category/aritcle/" class="a1">article-工具</a>
+            <a href="category/tools/" class="a1">Tools-工具</a>
+            <a href="about.html" class="a1">About-关于</a>
+        </div>
+        <img class="image" src="assets/images/png/home.png" alt="Tank37135">
+    </section>
 
     <!-- 其他section -->
     <section class="section">
         <div>
-                <h3>Tank37135 Blog</h3>
-                <p>随心更新一点点</p>
+            <h3>Tank37135 Blog</h3>
+            <p>随心更新一点点</p>
             <img class="section-image" src="assets/images/png/blog.png" alt="Tank37135 Blog">
-                <a class="a2" href="blog/">了解更多 &gt;&gt;</a>
+            <a class="a2" href="blog/">了解更多 &gt;&gt;</a>
         </div>
     </section>
 
     <section class="section">
         <div>
-                <h3>文章</h3>
-                <p>在本站，我们通过提供中、高质量的文章，帮助您获取有价值的资讯和实用的知识。每篇文章都经过精心编写，旨在为您提供有实用性的内容，帮助您更好地应对日常工作和生活中的挑战。</p>
+            <h3>文章</h3>
+            <p>在本站，我们通过提供中、高质量的文章，帮助您获取有价值的资讯和实用的知识。每篇文章都经过精心编写，旨在为您提供有实用性的内容，帮助您更好地应对日常工作和生活中的挑战。</p>
             <img class="section-image" src="assets/images/png/aritcle.png" alt="知识之书">
-                <a class="a2" href="category/aritcle/">了解更多 &gt;&gt;</a>
+            <a class="a2" href="category/aritcle/">了解更多 &gt;&gt;</a>
         </div>
     </section>
 
     <section class="section">
         <div>
-                <h3>工具</h3>
-                <p>我们开发了多款高效的在线工具，帮助您摆脱对本地软件的依赖，释放宝贵的内存空间。通过使用我们的工具，您可以更轻松地进行工作，不再受到传统软件的限制，享受更加便捷的使用体验。我们始终致力于为用户提供简洁的解决方案，让您的每一天都更加轻松自在。</p>
+            <h3>工具</h3>
+            <p>我们开发了多款高效的在线工具，帮助您摆脱对本地软件的依赖，释放宝贵的内存空间。通过使用我们的工具，您可以更轻松地进行工作，不再受到传统软件的限制，享受更加便捷的使用体验。我们始终致力于为用户提供简洁的解决方案，让您的每一天都更加轻松自在。</p>
             <img class="section-image" src="assets/images/png/tools.png" alt="在线工具">
-                <a class="a2" href="category/tools/">了解更多 &gt;&gt;</a>
+            <a class="a2" href="category/tools/">了解更多 &gt;&gt;</a>
         </div>
     </section>
 
     <section class="section">
         <div>
-                <h3>软件</h3>
-                <p>我们始终专注于技术创新，努力提升软件的性能和用户体验。以轻便、高效、快速为核心理念，我们致力于为您提供稳定、流畅的使用感受。每一次优化和改进，都是为了让您的工作更加高效、顺畅。</p>
+            <h3>软件</h3>
+            <p>我们始终专注于技术创新，努力提升软件的性能和用户体验。以轻便、高效、快速为核心理念，我们致力于为您提供稳定、流畅的使用感受。每一次优化和改进，都是为了让您的工作更加高效、顺畅。</p>
             <img class="section-image" src="assets/images/png/software.png" alt="技术图片">
-                <a class="a2" href="category/software/">了解更多 &gt;&gt;</a>
+            <a class="a2" href="category/software/">了解更多 &gt;&gt;</a>
         </div>
     </section>
 
     <section class="section">
         <div>
-                <h3>图片以及视频</h3>
-                <p>Tank37135对建模和渲染相关的内容有一定了解，掌握了基本的概念和技术。已经具备了对这些领域的基本认识，能够理解和应用一些常见的建模和渲染方法。</p>
+            <h3>图片以及视频</h3>
+            <p>Tank37135对建模和渲染相关的内容有一定了解，掌握了基本的概念和技术。已经具备了对这些领域的基本认识，能够理解和应用一些常见的建模和渲染方法。</p>
             <img class="section-image" src="assets/images/png/img.png" alt="联系图片">
-                <a class="a2" href="未完待续">了解更多 &gt;&gt;</a>
+            <a class="a2" href="未完待续">了解更多 &gt;&gt;</a>
         </div>
     </section>
-    
+
 
     <section class="section">
         <div>
-                <h3>探索minevraft</h3>
-                <p>在这款终极沙盒游戏中建造出你能想到的所有奇景，揭开诡异秘事的神秘面纱，并在漫漫长夜中生存下来。在 Minecraft 中，每次游玩都有不同体验，世界各处都蕴藏着让人难以忘怀的冒险。在无限世界中探索创造，一步一个方块，这个世界任你塑造。</p>
+            <h3>探索minevraft</h3>
+            <p>在这款终极沙盒游戏中建造出你能想到的所有奇景，揭开诡异秘事的神秘面纱，并在漫漫长夜中生存下来。在 Minecraft 中，每次游玩都有不同体验，世界各处都蕴藏着让人难以忘怀的冒险。在无限世界中探索创造，一步一个方块，这个世界任你塑造。</p>
             <img class="section-image" src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/PDP-Hero_Triple-Bundle_16x9.jpg" alt="我的世界宣传图片">
-                <a class="a2" href="https://www.minecraft.net/">了解更多 &gt;&gt;</a>
+            <a class="a2" href="https://www.minecraft.net/">了解更多 &gt;&gt;</a>
         </div>
     </section>
-    
+
     <section class="section">
         <div>
-                <h3><i class="bi bi-megaphone-fill"></i>公告</h3>
-                <p>欢迎来到TKB6(Tank37135-6)，眨眼间，我的网站已经来到了第六代改版，每次改变都意味着布局的改变和URL的变更，给喜欢老布局和习惯输入URL的用户带了了不便，这里Tank37135深表歉意<br>和以往一样，TKB6又一次改动了URL和布局，不过不用过于担心，我们保留了以前的URL（但我们会在2025年7月底清除），你们可以在这一段时间内快速适应新URL，我们在你的屏幕左上角放置了我的logo，你可以通过点击他打开菜单<br><hr>另外，由于某些原因，我们没能及时将所有页面风格化，大多数页面仍然保留TKB5甚至TKB4的风格，请再给我们一些时间，我们还将更新一些组件，比如在你屏幕右下角更新悬浮工具栏，在手机上我们将把滚动更新的文章菜单放到这里，也就是更靠近你大拇指的位置，让你能够更快捷打开它，敬请期待，谢谢<br>
-                我们遇到了一个严重的问题导致部分页面加载失败，加载动画完全不能运行，Tank37135正在修复这些问题</p>
-        </div>
-    </section>
-    
-    <section class="section">
-        <div>
-                <h3><i class="bi bi-megaphone-fill"></i>公告</h3>
-                <p>现在任然可以使用老的url路径，但主页已经不提供引索</p>
+            <h3><i class="bi bi-megaphone-fill"></i>公告</h3>
+            <p>欢迎来到TKB6(Tank37135-6)，眨眼间，我的网站已经来到了第六代改版，每次改变都意味着布局的改变和URL的变更，给喜欢老布局和习惯输入URL的用户带了了不便，这里Tank37135深表歉意<br>和以往一样，TKB6又一次改动了URL和布局，不过不用过于担心，我们保留了以前的URL（但我们会在2025年7月底清除），你们可以在这一段时间内快速适应新URL，我们在你的屏幕左上角放置了我的logo，你可以通过点击他打开菜单<br>
+                <hr>另外，由于某些原因，我们没能及时将所有页面风格化，大多数页面仍然保留TKB5甚至TKB4的风格，请再给我们一些时间，我们还将更新一些组件，比如在你屏幕右下角更新悬浮工具栏，在手机上我们将把滚动更新的文章菜单放到这里，也就是更靠近你大拇指的位置，让你能够更快捷打开它，敬请期待，谢谢<br>
+                我们遇到了一个严重的问题导致部分页面加载失败，加载动画完全不能运行，Tank37135正在修复这些问题
+            </p>
         </div>
     </section>
 
@@ -126,6 +278,67 @@
     <script type="text/javascript" src="assets/script/background.js"></script>
     <script type="text/javascript" src="assets/script/script.js"></script>
     <script type="text/javascript" src="assets/script/subassembly.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                const loadingContainer = document.getElementById('loadingContainer');
+                const loadingText = document.getElementById('loadingText');
+                
+                // 获取页面中所有需要加载的资源
+                const resources = document.querySelectorAll('img, video, audio');
+                let loadedCount = 0;
+                let totalResources = resources.length;
+                let hasError = false;
+                
+                // 3分钟超时计时器
+                const timeoutTimer = setTimeout(() => {
+                    loadingText.textContent = '加载过长，即将跳过动画';
+                    // 5秒后自动隐藏
+                    setTimeout(() => {
+                        loadingContainer.classList.add('hidden');
+                    }, 5000);
+                }, 180000); // 3分钟 = 180000毫秒
+        
+                // 如果没有需要加载的资源，立即隐藏加载动画
+                if (totalResources === 0) {
+                    clearTimeout(timeoutTimer);
+                    loadingContainer.classList.add('hidden');
+                    return;
+                }
+        
+                // 更新加载进度
+                function updateProgress() {
+                    const progress = Math.round((loadedCount / totalResources) * 100);
+                    loadingText.textContent = `正在加载 ${progress}%`;
+                    
+                    // 所有资源加载完成
+                    if (loadedCount >= totalResources) {
+                        clearTimeout(timeoutTimer);
+                        loadingContainer.classList.add('hidden');
+                    }
+                }
+        
+                // 为每个资源添加加载和错误事件监听器
+                resources.forEach(resource => {
+                    // 如果资源已经完成加载（可能是从缓存中加载的）
+                    if (resource.complete || (resource.readyState && resource.readyState >= 3)) {
+                        loadedCount++;
+                        updateProgress();
+                    } else {
+                        resource.addEventListener('load', () => {
+                            loadedCount++;
+                            updateProgress();
+                        });
+                        
+                        resource.addEventListener('error', () => {
+                            // 加载失败也计入完成，但标记有错误
+                            loadedCount++;
+                            hasError = true;
+                            updateProgress();
+                        });
+                    }
+                });
+            });
+    </script>
 </body>
 
 </html>
