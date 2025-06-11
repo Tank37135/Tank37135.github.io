@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /  
+
+Disallow: /index.html.bak
+Disallow: /404.html
+Disallow: /Recovery.html
+Disallow: /LICENSE.md
+Disallow: /*.bak$
+Disallow: /*.zip$
+
+User-agent: bingbot
+Crawl-delay: 2
+
+User-agent: Googlebot
+Crawl-delay: 2
+
+Sitemap: https://tank37135.github.io/sitemap.xml
