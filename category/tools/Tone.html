@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>频率生成器</title>
-        <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/subassembly.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/writing.css">
+    <title>声波生成器|Tank37135</title>
+        <meta name="description" content="在线生成恒定频率的声波，发出20赫兹至20000赫兹的恒频率声音">
+        <meta name="keywords" content="Tank37135, 声波,在线工具, 恒频率">
+<link rel="icon" href="../../assets/images/logo/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/style/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/subassembly.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/background.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
     <style>
         body {
@@ -17,12 +22,7 @@
             justify-content: center;
             align-items: center;
         }
-        .container {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-        }
+
         input, button, slider {
             font-size: 16px;
             margin: 10px;
@@ -30,11 +30,19 @@
         #frequencySlider {
             width: 200px; /* 缩小滑块宽度 */
         }
+
+
         input[type="number"] {
-            width: 150px; /* 缩小输入框宽度 */
-            -moz-appearance: textfield;
-            appearance: textfield;
-        }
+        padding: 10px;
+        width: 170px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.7);
+        background-color: transparent;
+        height: 40px;
+        appearance: textfield;
+    }
         button {
             padding: 10px 20px;
             margin: 0 5px;
@@ -49,7 +57,8 @@
 </head>
 <body>
 
-<div class="container">
+<div class="section">
+    <h1>声波发生器</h1>
     <div>
         <input type="number" id="frequencyInput" value="1000" />
         <p>选择频率以让我们播放恒定音频<br>（20-20K）</p>

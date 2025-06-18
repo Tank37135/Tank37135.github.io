@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" href="../../assets/images/logo/favicon.ico" type="image/x-icon">
+
     <title>754算数练习-pro-Tank37135</title>
     <style>
     a {
-        text-decoration: none;
-        color: #386f92;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
+    background: linear-gradient(to right, #8ae6f3, #e18af3); 
+    background-size: 0 2px; 
+    background-position: bottom right; 
+    background-repeat: no-repeat;
+    text-decoration: none; 
+    color: #00CDCD; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    transition: background-size 0.3s ease; 
+}
 
-    a:hover {
-        background-color: #444;
-        color: #fff;
-    }
+a:hover {
+    background-size: 100% 2px; 
+    background-position: bottom left; 
+    color: #00CDCD; 
+}
 
     * {
         margin: 0;
@@ -24,11 +31,16 @@
         box-sizing: border-box;
     }
 
-    body {
-        background-color: #bcdefe;
-        color: #386f92;
-        font-family: Arial, sans-serif;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+             color: rgba(255, 255, 255, 0.7);
+            background: linear-gradient(to bottom right, #1a71d5, #c469f4);
+        
+            min-height: 100vh; /* 确保body至少和视口一样高 */
+            background-size: cover; /* 覆盖整个区域 */
+            padding-top: 90px;
+        }
 
     .container {
         width: 90%;
@@ -41,16 +53,28 @@
         margin-bottom: 20px;
     }
 
-    .buttons button {
-        background-color: transparent;
-        color: #386f92;
-        padding: 10px 20px;
-        margin: 10px;
-        border: 2px solid #386f92;
-        cursor: pointer;
-        border-radius: 10px;
-        transition: background-color 0.3s, color 0.3s;
-    }
+button {
+            position: relative;
+            background: linear-gradient(to right, #8ae6f3, #e18af3);
+            background-size: 0 2px; 
+            background-position: bottom right; 
+            background-repeat: repeat-y; 
+            color: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            margin: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            border-radius: 10px;
+            overflow: hidden;
+            font-weight: bold;
+            transition: background-size 0.3s ease;
+        }
+        
+        button:hover {
+            background-size: 100% 2px; 
+            background-position: bottom left; 
+            color: #d6e6f9;
+        }
 
     .buttons button:disabled {
         background-color: #bbb;
@@ -71,9 +95,11 @@
         width: 170px;
         font-size: 16px;
         border-radius: 5px;
-        border: 2px solid #386f92;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.7);
         background-color: transparent;
         height: 40px;
+        appearance: textfield;
     }
 
     input[type="number"].error {
@@ -96,12 +122,12 @@
     .record-table td {
         padding: 12px 15px;
         text-align: center;
-        border-bottom: 1px solid #386f92;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
     }
 
     .record-table th {
         background-color: transparent;
-        color: #386f92;
+        color: rgba(255, 255, 255, 0.7);
         font-weight: bold;
     }
 
@@ -114,7 +140,7 @@
     .record-title {
         margin-bottom: 15px;
         font-weight: bold;
-        color: #386f92;
+        color: rgba(255, 255, 255, 0.7);
     }
     </style>
 </head>
@@ -168,7 +194,7 @@
         </div>
 
         <a href="https://Tank37135.github.io/" target="_self">&copy; 2025 Tank37135. All rights reserved.</a><br>
-        <a href="../assets/download/zip/754本地无调色版.zip" download="754脱机文件.zip">我希望下载本地文件</a>
+        <a href="../../assets/download/zip/754.zip" download="754脱机文件.zip">我希望下载本地文件</a>
     </div>
 
     <script>
