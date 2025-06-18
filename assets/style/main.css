@@ -5,7 +5,6 @@
   padding: 0;
   border: 0;
   font-family: 'Source Code Pro', monospace, Arial, sans-serif;
-  font-size: 16px;
   font-display: swap;
   box-sizing: border-box;
 }
@@ -24,29 +23,32 @@ table {
   border-spacing: 0;
 }
 
-body {
-background: linear-gradient(to bottom right, #1a71d5, #c469f4);
-  text-align: left;
-  line-height: 1.5;
-              overflow: auto;  /* 允许滚动 */
-            height: 100%;  /* 确保页面可以滚动 */
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #2b2d42;
+            background: linear-gradient(to bottom right, #1a71d5, #c469f4);
+        
+            min-height: 100vh; /* 确保body至少和视口一样高 */
+            background-size: cover; /* 覆盖整个区域 */
+            padding-top: 90px;
+        }
 
 html {
             scroll-behavior: smooth;
         }
         
 /* 按钮 */
-        button {
+button {
             position: relative;
-            background: linear-gradient(to right, #1a71d5, #c469f4);
+            background: linear-gradient(to right, #8ae6f3, #e18af3);
             background-size: 0 2px; 
             background-position: bottom right; 
             background-repeat: repeat-y; 
-            color: #386f92;
+            color: rgba(255, 255, 255, 0.7);
             padding: 10px 20px;
             margin: 10px;
-            border: 2px solid #386f92;
+            border: 2px solid rgba(255, 255, 255, 0.7);
             cursor: pointer;
             border-radius: 10px;
             overflow: hidden;
@@ -60,13 +62,13 @@ html {
             color: #d6e6f9;
         }
 /* 链接 */
-a {
-    background: linear-gradient(to right, #1a71d5, #c469f4); 
+    a {
+    background: linear-gradient(to right, #8ae6f3, #e18af3); 
     background-size: 0 2px; 
     background-position: bottom right; 
     background-repeat: no-repeat;
     text-decoration: none; 
-    color: #00CDCD; 
+    color: #4dec50; 
     padding: 5px 10px; 
     border-radius: 5px; 
     transition: background-size 0.3s ease; 
@@ -75,7 +77,7 @@ a {
 a:hover {
     background-size: 100% 2px; 
     background-position: bottom left; 
-    color: #00CDCD; 
+    color: #4dec50; 
 }
 
 /* 引用样式 */
@@ -240,19 +242,18 @@ img {
             margin: 0 auto;
         }
 /* 正文段落样式 */
-main{
-    padding-top: 70px;
-    margin: 20px;
-}
+        main{
+            margin: 20px;
+        }
 
         
             header {
             position: fixed;  /* 固定定位 */
-    top: 0;          /* 固定在顶部 */
-    left: 0;         /* 左侧对齐 */
-    right: 0;        /* 右侧对齐 */
-    width: 100%;     /* 全宽度 */
-    z-index: 1000; 
+            top: 0;          /* 固定在顶部 */
+            left: 0;         /* 左侧对齐 */
+            right: 0;        /* 右侧对齐 */
+            width: 100%;     /* 全宽度 */
+            z-index: 1000; 
             background-color: rgba(255, 255, 255, 0.2); /* 新增背景色，0.3是透明度 */
         text-align: center;
         padding: 1rem;
@@ -262,4 +263,4 @@ main{
         box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
         -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
         color: rgba(255, 255, 255, 0.75);
-    }
+            }
