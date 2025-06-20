@@ -277,7 +277,7 @@
             gap: 20px;
         }
         
-        .time-settings, .sound-settings {
+        .time-settings, .sound-settings, .other-settings {
             flex: 1;
             min-width: 250px;
         }
@@ -322,6 +322,24 @@
         .sound-option label {
             color: #fff;
         }
+
+        .other-options {
+            margin-top: 10px;
+        }
+        
+        .other-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .other-option input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        .other-option label {
+            color: #fff;
+        }
         
         .modal-actions {
             display: flex;
@@ -347,7 +365,7 @@
                 flex-direction: column;
             }
             
-            .time-settings, .sound-settings {
+            .time-settings, .sound-settings, .other-settings {
                 min-width: 100%;
             }
         }
@@ -442,6 +460,16 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="other-settings">
+                    <h3>其他设置</h3>
+                    <div class="other-options">
+                        <div class="other-option">
+                            <input type="checkbox" id="auto-fullscreen" name="auto-fullscreen">
+                            <label for="auto-fullscreen">计时开始后自动全屏</label>
+                        </div>
+                    </div>
+                </div>
                 <p>由于本页面的布局设置和一些原因，此页面使用独立的样式表，这意味着你无法通过网站提供的设置项改变本页样式</p>
                 <p>&copy; 2025 Tank37135. All rights reserved.</p>
             </div>
@@ -485,6 +513,7 @@
         const hoursError = document.getElementById('hours-error');
         const minutesError = document.getElementById('minutes-error');
         const secondsError = document.getElementById('seconds-error');
+        const autoFullscreenCheckbox = document.getElementById('auto-fullscreen');
         
         // Sound elements
         const defaultSound = document.getElementById('default-sound');
@@ -498,6 +527,7 @@
         let isRunning = false;
         let currentMode = 'work';
         let selectedSound = 'default';
+        let autoFullscreen = false;
         
         // Update the timer display
         function updateDisplay() {
@@ -594,12 +624,30 @@
             return isValid;
         }
         
+        // Toggle fullscreen mode
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+        
         // Start the timer
         function startTimer() {
             if (isRunning) return;
             
             isRunning = true;
             toggleButtons(true);
+            
+            // Enter fullscreen if auto fullscreen is enabled
+            if (autoFullscreen && !document.fullscreenElement) {
+                toggleFullscreen();
+            }
             
             countdown = setInterval(() => {
                 if (totalSeconds <= 0) {
@@ -758,6 +806,9 @@
             
             // Update selected sound
             selectedSound = document.querySelector('input[name="sound"]:checked').value;
+            
+            // Update auto fullscreen setting
+            autoFullscreen = autoFullscreenCheckbox.checked;
             
             setActiveMode('custom');
             updateDisplay();
