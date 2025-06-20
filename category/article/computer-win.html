@@ -3,126 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="../../assets/images/logo/favicon.ico" type="image/x-icon">
-
+    <link rel="icon" href="../../assets/images/logo/favicon.ico" type="image/x-icon">
     <title>Windows基础</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
+        :root {
+            --primary-color: #6a5acd;       /* 蓝紫色 */
+            --primary-light: #9370db;       /* 浅蓝紫 */
+            --secondary-color: #4169e1;     /* 皇家蓝 */
+            --accent-color: #8a2be2;        /* 蓝紫 */
+            --text-color: #333;             /* 深灰文字 */
+            --bg-color: #f8f9fa;            /* 浅灰背景 */
+            --card-bg: #ffffff;             /* 白色卡片 */
+            --border-color: #e0e0e0;        /* 浅灰边框 */
+        }
 
+        body {
+            font-family: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
+        /* 透明按钮容器 */
+        .container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-                .content {
-                    max-width: 800px;
-                    margin: 0 auto;
-                    background-color: #2a2a2a;
-                    padding: 2rem;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-                    animation: fadeIn 0.5s ease-in;
-                }
-        
-                /* 标题样式 */
-                h2 {
-                    color: #ff9900;
-                    margin: 1.5rem 0;
-                    font-size: 2rem; /* 调整标题的字体大小 */
-                }
-        
-                /* 正文段落样式 */
-                p {
-                    text-indent: 2em;
-                    margin: 1rem 0;
-                    font-size: 1.1rem; /* 增加字体大小 */
-                }
-        
-                /* 引用样式 */
-                blockquote {
-                    background-color: #333;
-                    padding: 1rem;
-                    border-left: 4px solid #ff9900;
-                    color: #fff;
-                    margin: 1rem 0;
-                    font-style: italic;
-                }
-        
-                /* 过渡效果 */
-                .content {
-                    animation: fadeIn 0.5s ease-in;
-                }
-        
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-        
-                /* 响应式设计 */
-                @media (max-width: 768px) {
-                    .content {
-           padding: 1.5rem;
-                    }
-        
-                    h2 {
-           font-size: 1.8rem; /* 调整标题字体大小 */
-                    }
-        
-                    p {
-           font-size: 1rem; /* 调整正文字体大小 */
-                    }
-                }
-        
-                /* 更好看的链接效果 */
-                a {
-                    color: #ff9900;
-                    text-decoration: none;
-                    transition: color 0.3s ease;
-                }
-        
-                a:hover {
-                    color: #ffffff;
-                }
-        
+        .button {
+            width: 42px;
+            height: 42px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
+        .button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
 
+        /* 齿轮按钮动画效果 */
+        #settingsButton i {
+            transition: transform 0.5s ease;
+        }
 
-         .code-block {
+        #settingsButton:hover i {
+            transform: rotate(360deg);
+        }
+
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease-out;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-container {
+            background-color: var(--card-bg);
+            border-radius: 14px;
+            width: 500px;
+            max-width: 90%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+            transform: scale(0.9) translateY(10px);
+            opacity: 0;
+            transition: 
+                transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.3),
+                opacity 0.15s ease;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            animation: quickBounce 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.3);
+        }
+
+        @keyframes quickBounce {
+            0% { transform: scale(0.9) translateY(10px); }
+            50% { transform: scale(1.03) translateY(-4px); }
+            70% { transform: scale(0.99) translateY(2px); }
+            100% { transform: scale(1) translateY(0); }
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+        }
+
+        .modal-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 20px 24px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            display: flex;
+            justify-content: flex-end;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* 页面内容样式 */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* 标题样式 */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary-color);
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-left: 4px solid var(--primary-light);
+            padding-left: 0.8rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+        }
+
+        /* 正文段落样式 */
+        p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* 引用样式 */
+        blockquote {
+            background-color: rgba(106, 90, 205, 0.08);
+            padding: 1.2rem 1.5rem;
+            border-left: 4px solid var(--primary-light);
+            color: var(--text-color);
+            margin: 1.5rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* 过渡效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .content {
+                padding: 1.5rem;
+                margin: 1rem;
+                border-radius: 8px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        /* 链接效果 */
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* 代码块样式 */
+        .code-block {
             position: relative;
-            margin: 20px;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .code-block button {
             position: absolute;
-            right: 10px;
-            top: 10px;
-            background: #4CAF50;
+            right: 12px;
+            top: 12px;
+            background: var(--primary-color);
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 6px 14px;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 6px;
             z-index: 1;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
         .code-block button:hover {
-            background: #45a049;
+            background: var(--accent-color);
+            transform: translateY(-1px);
         }
 
         pre {
-            background-color: #2d2d2d; /* 深灰色背景 */
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
+            background-color: #2d2d2d;
+            padding: 1.5rem;
             margin: 0;
-            color: #ffffff; /* 白色文本 */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 添加阴影效果 */
-        }
-
-        .code2 {
+            color: #ffffff;
+            overflow-x: auto;
             font-family: Consolas, Monaco, 'Courier New', monospace;
             font-size: 14px;
-            line-height: 1.4;
-            color: inherit; /* 继承pre标签的文本颜色 */
+            line-height: 1.5;
+            tab-size: 4;
         }
 
-        /* 添加滚动条样式 */
+        /* 滚动条样式 */
         pre::-webkit-scrollbar {
             height: 8px;
         }
@@ -132,223 +314,179 @@
         }
 
         pre::-webkit-scrollbar-thumb {
-            background: #888;
+            background: #555;
             border-radius: 4px;
         }
 
         pre::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: #777;
         }
+
         .code1 {
-          background-color: #333; /* 设置背景为灰色 */
-          color: white;            /* 设置文字为白色 */
-          padding: 2px 4px;        /* 给代码增加内边距 */
-          border-radius: 4px;      /* 可选：圆角效果 */
+            background-color: rgba(106, 90, 205, 0.15);
+            color: var(--primary-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+            font-size: 0.95em;
+            border: 1px solid rgba(106, 90, 205, 0.2);
         }
-        body {
-        overflow: hidden;
-        position: relative;
-        overflow-y: auto;
-            background-color: #2a2a2a
-        }
-        
-        #content {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        min-height: 100vh;
-        overflow-y: auto;
-        }
-        .center{
-        text-align:center;
-        }
-        
-        
-        
-        article {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    background-color: #2a2a2a; /* 设置背景色为 #2a2a2a */
-    color: white; /* 设置文字颜色为白色 */
-}
 
-article.active {
-    display: flex;
-    opacity: 1;
-}
+        /* 列表样式 */
+        ul, ol {
+            margin: 1.2rem 0;
+            padding-left: 2em;
+        }
 
-        
-        .hamburger-menu {
-        font-size: 24px; /* 缩小字体大小 */
-        cursor: pointer;
-        padding: 10px; /* 缩小内边距 */
-        background-color: rgba(255, 153, 0, 0.5); /* 设置为浅蓝色半透明 */
-        color: white;
-        text-align: center;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 10;
-        border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease;
+        li {
+            margin: 0.6rem 0;
+            line-height: 1.6;
         }
-        
-        .hamburger-menu:hover {
-        background-color: rgba(0, 122, 255, 0.7); /* 鼠标悬停时颜色更深 */
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
-        
-        
-        .menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: #2c3e50;
-        width: 175px;
-        height: 100%;
-        color: white;
-        padding-top: 20px;
-        z-index: 10;
-        transition: transform 0.3s ease-in-out;
-        transform: translateX(100%);
-        border-radius: 10px 0 0 10px;
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid var(--border-color);
         }
-        
-        .menu.open {
-        display: block;
-        transform: translateX(0);
+
+        th {
+            background-color: rgba(106, 90, 205, 0.1);
+            color: var(--primary-color);
+            font-weight: 600;
         }
-        
-        .menu ul {
-        list-style-type: none;
-        padding-left: 0;
-        margin: 0;
-        height: calc(100% - 20px); /* Adjust height to account for padding */
-        overflow-y: auto;
+
+        tr:nth-child(even) {
+            background-color: rgba(106, 90, 205, 0.03);
         }
-        
-        .menu li {
-        margin: 15px 0;
+
+        /* 禁止body滚动的样式 */
+        body.body-no-scroll {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
         }
-        
-        .menu button {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        background-color: #34495e;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: left;
-        transition: background-color 0.3s ease;
+
+        /* 目录链接样式 */
+        .section-link {
+            display: block;
+            margin: 12px 0;
+            padding: 12px 16px;
+            background-color: rgba(106, 90, 205, 0.08);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+            cursor: pointer;
         }
-        
-        .menu button:hover {
-        background-color: #1abc9c;
+
+        .section-link:hover {
+            background-color: rgba(106, 90, 205, 0.15);
+            text-decoration: none;
+            transform: translateX(4px);
         }
-        
-        .submenu {
-        display: none;
-        margin-left: 20px;
+
+        .section h4 {
+            margin-bottom: 8px;
+            color: var(--primary-color);
         }
-        
-        .submenu.open {
-        display: block;
+
+        .section p {
+            margin: 4px 0;
+            font-size: 0.95rem;
+            color: #555;
         }
-        
-        .menu > ul > li > button {
-        font-weight: bold;
-        background-color: #2c3e50;
+
+        /* 按钮样式 */
+        .mac-button {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
-        
-        .submenu li button {
-        font-weight: normal;
-        background-color: #34495e;
+
+        .mac-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
-        
-        #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5);
-        visibility: hidden;
-        z-index: 5;
+
+        .mac-button:active {
+            background-color: var(--primary-color);
+            transform: translateY(0);
         }
-        
-        .menu.open + #overlay,
-        .menu.open ~ #overlay {
-        visibility: visible;
+
+        /* 中心对齐 */
+        .center {
+            text-align: center;
+            display: block;
+            margin: 1.5rem auto;
+        }
+
+        /* 高亮文本 */
+        b, strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* 页面锚点样式 */
+        .page-anchor {
+            display: block;
+            height: 0;
+            visibility: hidden;
         }
     </style>
 </head>
 <body translate="no">
-    <canvas id="sparks"></canvas>
-    <!-- 汉堡菜单 -->
-    <div id="hamburger-menu" class="hamburger-menu" onclick="toggleMenu()"> &#9776; 菜单 </div>
-    <!-- 菜单背景遮罩层 -->
-    <div id="overlay" onclick="closeMenu()"></div>
-    <!-- 菜单项 -->
-    <div id="menu" class="menu">
-        <ul>
-            <li><button onclick="changePage(1)">前言</button></li>
-            <li><button onclick="changePage(2)">系统选择</button></li>
-            <li>
-                <button onclick="toggleSubmenu('submenu1')">#硬件篇</button>
-                <ul id="submenu1" class="submenu">
-                    <li><button onclick="changePage(3)">鼠标</button></li>
-                    <li><button onclick="changePage(4)">键盘</button></li>
-                </ul>
-            </li>
-            <li>
-                <button onclick="toggleSubmenu('submenu2')">#账户</button>
-                <ul id="submenu2" class="submenu">
-                    <li><button onclick="changePage(5)">微软账户</button></li>
-                    <li><button onclick="changePage(6)">本地账户</button></li>
-                </ul>
-            </li>
-            <li><button onclick="changePage(7)">预备知识</button></li>
-            <li>
-                <button onclick="toggleSubmenu('submenu3')">#文件</button>
-                <ul id="submenu3" class="submenu">
-                    <li><button onclick="changePage(8)">创建文件</button></li>
-                    <li><button onclick="changePage(9)">分类与编辑</button></li>
-                </ul>
-            </li>
-        </ul>
+    <!-- 透明按钮容器 -->
+    <div class="container">
+        <button class="button" id="backToTop" aria-label="返回顶部"><i class="bi bi-arrow-bar-up"></i></button>
+        <button class="button" data-modal="modal1" aria-label="公告"><i class="bi bi-megaphone"></i></button>
+        <button class="button" data-modal="modal2" aria-label="目录"><i class="bi bi-list-ul"></i></button>
+        <button class="button" data-modal="modal3" aria-label="音乐"><i class="bi bi-music-note-beamed"></i></button>
+        <button class="button" data-modal="modal4" id="settingsButton" aria-label="设置"><i class="bi bi-gear"></i></button>
     </div>
+
+    <!-- 主内容区域 -->
     <main>
-        <!-- 页面内容 -->
-        <div id="content">
-            <article class="page">
-                <h1 class="center">前言</h1>
+        <div class="content">
+            <!-- 页面1: 前言 -->
+            <article id="page1">
+                <h1>前言</h1>
                 <p>因为有很多人希望学习电脑的用法，所以我决定在此介绍"windows"电脑系统的用法</p>
-                <h3>内容介绍</h3>
-                <b>我们将在此介绍一些知识，其中包括： <ul>
-                        <li>系统的选择</li>
-                        <li>硬件</li>
-                        <li>账户</li>
-                        <li>文件管理</li>
-                        <li>软件管理</li>
-                        <li>基础维护</li>
-                    </ul> 等内容</b>
+                <h2>内容介绍</h2>
+                <b>我们将在此介绍一些知识，其中包括：</b>
+                <ul>
+                    <li>系统的选择</li>
+                    <li>硬件</li>
+                    <li>账户</li>
+                    <li>文件管理</li>
+                    <li>软件管理</li>
+                    <li>基础维护</li>
+                </ul>
                 <p>本专题主要讲解Windows电脑系统。</p>
                 <p>讲解比较基础的内容，如果发现错误或者内容不全，欢迎补充</p>
-                <a class="center" href="mailto:Tank37135@outlook.com?subject=745错误汇报&body=该邮件十日内回复有效，否则重新发送，我发现以下问题： ">错误汇报途径：邮箱</a>
+                <a class="center" href="mailto:Tank37135@outlook.com?subject=745错误汇报&body=该邮件十日内回复有效，否则重新发送，我发现以下问题：">错误汇报途径：邮箱</a>
                 <a class="center" href="https://github.com/Tank37135/Tank37135.github.io/issues" target="_self">错误汇报途径：GitHub issues</a>
                 <div class="code-block">
-        <button onclick="copyCode(this)">复制</button>
-        <pre><code class="code2">
-        https://Tank37135.github.io/
-        </code></pre>
-    </div>
+                    <button onclick="copyCode(this)">复制</button>
+                    <pre><code class="code2">https://Tank37135.github.io/</code></pre>
+                </div>
                 <b>专题会不定时更新，请留意</b>
                 <ul>
                     <li>文件(2025/1/30)</li>
@@ -358,8 +496,10 @@ article.active {
                 <br>
                 <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
             </article>
-            <article class="page">
-                <h1 class="center">选择你的电脑系统</h1>
+
+            <!-- 页面2: 系统选择 -->
+            <article id="page2">
+                <h1>选择你的电脑系统</h1>
                 <p>首先，我们了解一下世界主流的电脑系统</p>
                 <ul>
                     <li>
@@ -382,36 +522,41 @@ article.active {
                 <p>当然，也可以组合使用，推荐使用Windows台式机(处理复制问题，当然，看电视，画图，剪辑等简单问题也可以)，加macOS笔记本(看电视，画图)。如果愿意，可以再准备一台电脑(笔记本台式都可以)使用Linux</p>
                 <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
             </article>
-            <article class="page">
-                <h1 class="center">鼠标</h1>
-                <h3>鼠标硬件篇</h3>
+
+            <!-- 页面3: 鼠标 -->
+            <article id="page3">
+                <h1>鼠标</h1>
+                <h2>鼠标硬件篇</h2>
                 <p>我们重点了解三个核心元件</p>
                 <p>首先是微动，微动是鼠标左右键下的元件，用来检测用户是否点击，假如你的鼠标按键失灵，可以选择更换微动，不一定要换整个鼠标</p>
                 <p>接着是滚轮，滚轮主要分两种，一种是"光栅式"，结构复制，价格较贵，但耐用，稳定，仅微软，罗技等少数企业生产。<br>另一种是"机械编码式"，其结构简单，便宜，但不耐用(一般是你的微动先坏，放心)。</p>
                 <p>传感器：传感器主要是用来识别所在位置，然后转换成数据汇报给计算机转换成光标移动的<br> 对传感器的影响主要是鼠标垫，一般是编制布垫。当然也有好的传感器，比如微软蓝影技术(新一代鼠标追踪技术)，几乎可以用于任何地方。<br> 鼠标传感器有两个参数。一个叫做采样率(CPI)。有人将其称为DPI(图像每英寸长度内的像素点数。)，但其实应该叫做CPI(英寸采样率)。通俗的讲，CPI越高，鼠标的灵敏度就越高。在现实中鼠标在鼠标垫上移动单位距离，CPI越大的鼠标在屏幕上移动的距离越大。CPI不是不能调，在系统的控制面板>硬件>鼠标选项 可以修改。
                     第二个参数叫做回报率，意思是指鼠标向计算机报告位置的频率。一般情况下频率越高，相对于的延迟越小。但过高的回报率与较高的回报率基本没有感受上的区别。</p>
                 <p>有些鼠标就有鼠标侧键。这些鼠标侧键跟键盘差不多,不同的鼠标侧键有不同的功能。但在游戏时使用这些鼠标侧键很容易被判定为作弊。</p>
-                <h3>鼠标软件知识</h3>
+                <h2>鼠标软件知识</h2>
                 <p>鼠标左键在电脑中一般可以作为选择，比如你使用鼠标左键点击某一文件的时候，可以选中该文件。<br>鼠标右键可以理解为属性，在很多时候对着某东西使用鼠标右键会出现右键菜单。这些菜单里面一般提供了很多关于该文件属性的选项。<br>鼠标中键及鼠标滚轮，一般用作对过长的文件进行滚动。</p>
                 <p>鼠标左键选中文本之后拖动文本到某一可输入文本的地方，系统会复制该文本。(对于一些不允许复制的网站有效)。用鼠标将网站上的图片拖至文件夹或桌面(桌面也是一种文件夹。)，系统会下载该图片。在浏览器中，拖动网址进入输入框会直接填入该网址，拖入上方标签也会替换标签页或在标签页旁边插入新的标签页。</p>
                 <p>在浏览器上对着链接使用鼠标中键，可以使链接在后台新建标签页中打开。<br>在有标签页的软件上对着标签页使用鼠标中间可以快速关闭标签页。<br>使用<code>Alt</code>+<code>Tab</code>多任务视图时，可以使用鼠标中键对着任务视图单击关闭窗口。<br>在允许滚动的位置单击鼠标中键可以实现自动滚动，滚动的方向由你鼠标的移动方向决定。</p>
-                <h4>鼠标组合键</h4>
+                <h3>鼠标组合键</h3>
                 <b>该内容需要用到一点点键盘知识，你只需要知道这些按键在哪里就行。</b>
-                <h5>左键</h5>
+                <h4>左键</h4>
                 <p>对文件使用双击，可以打开该文件。对文字使用双击，可以选中该词语。对文字使用三击，可以选中整行的文字。</p>
-                <p>在大多数情况下，你可以按住鼠标左键不放，然后拖动鼠标，就可以选中一片区域的文字或文件。也可以先对着起点单击鼠标左键。然后按住<code vlass="code1">shift</code>不放，最后在末尾单击鼠标左键，也可以达到选择一片区域的效果。</p>
+                <p>在大多数情况下，你可以按住鼠标左键不放，然后拖动鼠标，就可以选中一片区域的文字或文件。也可以先对着起点单击鼠标左键。然后按住<code class="code1">shift</code>不放，最后在末尾单击鼠标左键，也可以达到选择一片区域的效果。</p>
                 <p>按住<code class="code1">ctrl</code>再使用鼠标单击链接，可以使链接在后台新建标签页中打开。</p>
                 <p>按住<code class="code1">Alt</code>在使用鼠标可以选中网站链接上的文字。</p>
-                <h5>中键</h5>
+                <h4>中键</h4>
                 <p>按住<code class="code1">ctrl</code>使用鼠标滚轮滚动，可以在支持放大缩小的地方放大和缩小页面。</p>
-                <h5>右键</h5>
+                <h4>右键</h4>
                 <p>按住<code class="code1">shift</code>加鼠标右键可以显示全部菜单。(contextmenumanager可以帮助你管理右键菜单。)</p>
-                <h5>鼠标手势</h5>
+                <h4>鼠标手势</h4>
                 <p>鼠标手势是指使用鼠标按照特定的键位在滑动特定的轨迹实现特定的操作。</p>
                 <p>系统本不支持鼠标手势。但有些软件支持，比如说很多浏览器，部分输入法。也有专业的鼠标手势软件(mouselnc等)。<br>Quicker是一个强大的鼠标工具软件。提供了很多便捷功能。</p>
+                <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
             </article>
-            <article class="page">
-                <h1 class="center">键盘</h1>
+
+            <!-- 页面4: 键盘 -->
+            <article id="page4">
+                <h1>键盘</h1>
                 <p>其实，在计算机中键盘是最重要的控制硬件，作用远远大于鼠标。我们可以通过键盘将键盘中预先设置好的字符，指令，数据传输到电脑系统中。从而向电脑发出命令、传入数据等</p>
                 <h3>硬件知识</h3>
                 <p>PCB电路板（主控芯片+电路）是键盘的核心，主控芯片识别按下的键，可以通过主控芯片对键盘灯光控制。<br>电路是识别操作的基础，部分键盘可以通过PCBA的灯座增加灯光，或者出厂预制RGB背光（可通过主控调节模式，可以通过驱动自定义）</p>
@@ -580,51 +725,57 @@ article.active {
                 <a href="Key-combinations.html">点击传送到快捷键</a>
                 <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
             </article>
-            <article class="page"> 
-            <h1 class="center">微软账户</h1>
-            <h2>注册账户</h2>
-            <p>建议买电脑前就注册微软账户<br>
-            注册微软账户的渠道有很多，比如前往<br>
-            <a class="center" href="https://www.microsoft.com" target="_blank">微软官网</a><br>
-            当然，在<a href="https://www.bing.com/" target="_blank">微软bing</a>注册的账户也是微软账户<br>
-            同理，还有在微软<a href="https://www.microsoft.com/zh-cn/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook?deeplink=%2fowa%2f&sdf=0" target="_blank">outlook</a>注册的邮箱也会附一个微软账户<br>
-            还有在微软<a class="a1"href="https://www.minecraft.net/"target="_blank">minecraft</a>官网注册的微软账户也是微软账户……</p>
-            <p>注册微软账户需要邮箱，假如你还没有邮箱，添加你直接点获取新的电子邮件地址，然后微软会帮你带到outlook邮箱的注册界面。微软<a href="https://www.microsoft.com/zh-cn/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook?deeplink=%2fowa%2f&sdf=0" target="_blank">outlook</a>简洁，高效，速度快，安全性好。是一款很不错的邮箱。<br>
-            注册完邮箱之后需要绑定电话号码或者是副邮箱，电话号码或者是副邮箱用来防止你的邮箱丢失。你可以暂且选择跳过，但在七天之内必须绑定，否则你的邮箱被判为违规并且封禁。<br>
-            当他让你选择你所在的国家和地区的时候，如果你希望获得一些国外并且不支持国内的东西，你可以选择国外。最后在经过反AI系统就可以拥有微软账户。(如果你通过不了反AI系统，你可以尝试刷新网站以更换题目。)</p>
-            <p>注册完微软账户之后就要遵守微软账户的守则。这些数字在你注册账号的时候有写到。微软账号至少要每三年登陆一次。(这个不用担心，你每天登录电脑的时候就是登录一遍账户。)至少每一年登陆一次outlook或者是onedrive，除非你没有。否则账户违规。</p>
-            <h2>你在电脑上登录你的账户</h2>
-            <p>在你刚买电脑准备登录账户的时候，它会有提示，你只要跟着提示一步步操作即可登录，你假如你已经买完电脑，并且你的电脑上没有登录你的微软账户，你可以使用<code class="code1">win</code>+<code class="code1">I</code>打开设置，假如你是系统内置管理员账户，在设置的上方会提示你登录，假如你不是内置管理员，你可以点击账户，然后登录。</p>
-            <h2>注销账户</h2>
-            <p>当你不想要你的微软账户的时候，我建议你给自己三天时间冷静一下。因为系统不会给你时间冷静，如果你执意选择注销，你可以点击你在任意已经登录的微软的界面的头像，然后下拉菜单就会有一个注销账户。点击它之后你的微软然后会被立刻注销。没有冷静的时间。(你别问我是怎么知道的，呜呜呜)</p>
-            <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
+
+            <!-- 页面5: 微软账户 -->
+            <article id="page5"> 
+                <h1 class="center">微软账户</h1>
+                <h2>注册账户</h2>
+                <p>建议买电脑前就注册微软账户<br>
+                注册微软账户的渠道有很多，比如前往<br>
+                <a class="center" href="https://www.microsoft.com" target="_blank">微软官网</a><br>
+                当然，在<a href="https://www.bing.com/" target="_blank">微软bing</a>注册的账户也是微软账户<br>
+                同理，还有在微软<a href="https://www.microsoft.com/zh-cn/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook?deeplink=%2fowa%2f&sdf=0" target="_blank">outlook</a>注册的邮箱也会附一个微软账户<br>
+                还有在微软<a class="a1"href="https://www.minecraft.net/"target="_blank">minecraft</a>官网注册的微软账户也是微软账户……</p>
+                <p>注册微软账户需要邮箱，假如你还没有邮箱，添加你直接点获取新的电子邮件地址，然后微软会帮你带到outlook邮箱的注册界面。微软<a href="https://www.microsoft.com/zh-cn/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook?deeplink=%2fowa%2f&sdf=0" target="_blank">outlook</a>简洁，高效，速度快，安全性好。是一款很不错的邮箱。<br>
+                注册完邮箱之后需要绑定电话号码或者是副邮箱，电话号码或者是副邮箱用来防止你的邮箱丢失。你可以暂且选择跳过，但在七天之内必须绑定，否则你的邮箱被判为违规并且封禁。<br>
+                当他让你选择你所在的国家和地区的时候，如果你希望获得一些国外并且不支持国内的东西，你可以选择国外。最后在经过反AI系统就可以拥有微软账户。(如果你通过不了反AI系统，你可以尝试刷新网站以更换题目。)</p>
+                <p>注册完微软账户之后就要遵守微软账户的守则。这些数字在你注册账号的时候有写到。微软账号至少要每三年登陆一次。(这个不用担心，你每天登录电脑的时候就是登录一遍账户。)至少每一年登陆一次outlook或者是onedrive，除非你没有。否则账户违规。</p>
+                <h2>你在电脑上登录你的账户</h2>
+                <p>在你刚买电脑准备登录账户的时候，它会有提示，你只要跟着提示一步步操作即可登录，你假如你已经买完电脑，并且你的电脑上没有登录你的微软账户，你可以使用<code class="code1">win</code>+<code class="code1">I</code>打开设置，假如你是系统内置管理员账户，在设置的上方会提示你登录，假如你不是内置管理员，你可以点击账户，然后登录。</p>
+                <h2>注销账户</h2>
+                <p>当你不想要你的微软账户的时候，我建议你给自己三天时间冷静一下。因为系统不会给你时间冷静，如果你执意选择注销，你可以点击你在任意已经登录的微软的界面的头像，然后下拉菜单就会有一个注销账户。点击它之后你的微软然后会被立刻注销。没有冷静的时间。(你别问我是怎么知道的，呜呜呜)</p>
+                <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
             </article>
-            <article class="page"> 
-            <h1 class="center">本地账户</h1>
-            <h2>权限等级</h2>
-            <ol>
-                <li>
-                    <h3>管理员账户</h3>
-                    <p>管理员账户是你计算机内权限等级最高的账户。在一般情况下，新的电脑会自动帮你创建一个管理员账户。<br>
-                    管理员账号具有系统的全部控制权。可以安装或卸载软件、修改系统设置、创建或删除用户账户、访问所有文件和文件夹。能够管理其他用户账户并赋予其不同的权限。可以执行需要高级权限的操作，通常系统提示管理员确认后才会执行相关操作。<b>注意:电脑上至少要保证有一个管理员在正常工作。</b></p>
-                </li>
-                <li>
-                    <h3>标准账户</h3>
-                    <p>你标准账号的权限等级相对于管理员比较低。不能安装或卸载程序，不能修改系统设置，也不能管理其他用户账户。对系统文件和文件夹的访问有限，主要可以访问自己创建的文件。在执行需要管理员权限的操作时，系统会要求输入管理员账户的凭证（如密码）。<br>
-                    在日常生活中，你可以使用标准账户而不是管理员账户。这样可以更有效的保证电脑安全，但在某些情况下，也会降低工作的效率。</p>
-                </li>
-                <li>
-                    <h3>来宾用户</h3>
-                    <p>这种用户的权限等级最低，一般是远程联机时的用户一般情况下，系统默认关闭此账户，或者被限制成非常基础的操作。你可以通过控制面板>账户 或者控制面板>远程操控 来开启来宾账户<br>
-                    默认情况下，来宾账户不能安装或卸载软件，也不能修改系统设置。只能访问部分共享文件或公共文件夹，无法访问其他用户的个人文件。</p>
-                </li>
-            </ol>
-            <h2>创建本地账户</h2>
-            <p>创建本地账户有很多种方式，本篇主要介绍通用的方式(其他方式游戏的非专业版系统使用不了。)。</p>
-            <p><b>注意，只有管理员账户才能创建账户。</b>首先 设置>账户>家庭和其他账户 然后选择新增账户，先选择账户的类型，然后再选择是否要设置密码，如果不输入密码，默认为不设密码。创建账户的过程中，你可以选择一个创建一个没有微软账户的账户(也就是一个本地账户，这种账户可以不需要微软账号登录，同样也只有你的电脑上可以登录。)。你当你是管理员的时候，你可以重新选择该账户的类型。</p>
-            <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
+
+            <!-- 页面6: 本地账户 -->
+            <article id="page6"> 
+                <h1 class="center">本地账户</h1>
+                <h2>权限等级</h2>
+                <ol>
+                    <li>
+                        <h3>管理员账户</h3>
+                        <p>管理员账户是你计算机内权限等级最高的账户。在一般情况下，新的电脑会自动帮你创建一个管理员账户。<br>
+                        管理员账号具有系统的全部控制权。可以安装或卸载软件、修改系统设置、创建或删除用户账户、访问所有文件和文件夹。能够管理其他用户账户并赋予其不同的权限。可以执行需要高级权限的操作，通常系统提示管理员确认后才会执行相关操作。<b>注意:电脑上至少要保证有一个管理员在正常工作。</b></p>
+                    </li>
+                    <li>
+                        <h3>标准账户</h3>
+                        <p>你标准账号的权限等级相对于管理员比较低。不能安装或卸载程序，不能修改系统设置，也不能管理其他用户账户。对系统文件和文件夹的访问有限，主要可以访问自己创建的文件。在执行需要管理员权限的操作时，系统会要求输入管理员账户的凭证（如密码）。<br>
+                        在日常生活中，你可以使用标准账户而不是管理员账户。这样可以更有效的保证电脑安全，但在某些情况下，也会降低工作的效率。</p>
+                    </li>
+                    <li>
+                        <h3>来宾用户</h3>
+                        <p>这种用户的权限等级最低，一般是远程联机时的用户一般情况下，系统默认关闭此账户，或者被限制成非常基础的操作。你可以通过控制面板>账户 或者控制面板>远程操控 来开启来宾账户<br>
+                        默认情况下，来宾账户不能安装或卸载软件，也不能修改系统设置。只能访问部分共享文件或公共文件夹，无法访问其他用户的个人文件。</p>
+                    </li>
+                </ol>
+                <h2>创建本地账户</h2>
+                <p>创建本地账户有很多种方式，本篇主要介绍通用的方式(其他方式游戏的非专业版系统使用不了。)。</p>
+                <p><b>注意，只有管理员账户才能创建账户。</b>首先 设置>账户>家庭和其他账户 然后选择新增账户，先选择账户的类型，然后再选择是否要设置密码，如果不输入密码，默认为不设密码。创建账户的过程中，你可以选择一个创建一个没有微软账户的账户(也就是一个本地账户，这种账户可以不需要微软账号登录，同样也只有你的电脑上可以登录。)。你当你是管理员的时候，你可以重新选择该账户的类型。</p>
+                <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
             </article>
-            <article class="page">
+
+            <!-- 页面7: 预备知识 -->
+            <article id="page7">
                 <h1 class="center">预备知识</h1>
                 <b>本页介绍一些基础概念和简单知识点。该页面不定时更新(具体是否更新可以看前言)</b>
                 <h2>内存单位</h2>
@@ -674,127 +825,304 @@ article.active {
                 <p>主机上有一个半圆加一个竖杠的标识符，他是二进制中0和1的组合图形，0代表关闭，1代表启动。<br>所以不要再说«我的电脑上只有开机键没有关机键»了</p>
                 <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
             </article>
-            <article class="page"> 
-            <h1 class="center">创建文件</h1> 
-            <h2>文件名</h2>
-            <p>文件是数据的载体。在系统上看到任何东西都是文件。</p>
-            <p>文件名一般由三部分组成。比如<code class="code1">Tank.37135</code>，现在假设他是一个文件名，嗯，他由<code class="code1">Tank</code>、<code class="code1">37135</code>和点组成。<br>
-            其中，那个小数点叫做句点，<code class="code1">Tank</code>叫做文件名，<code class="code1">37135</code>叫做文件的扩展名(有的人也成为后缀)。<b>有的文件没有后缀(比如hosts)。有的文件后缀会被隐藏(比如说快捷方式)。</b>根据文件的扩展名，我们可以较为轻松的判断文件的。通过改变某些文件扩展名可以改变他的功能，比如文本文档的后缀是txt，假如我在文本文档里写入了一串bat代码，通过把文档的后缀改成BAT，我就可以实现运行该程序</p>
-            <p><b>但是</b>改了扩展名文件的属性就变了吗？</p>
-            <p>答案当然是否定的。下面我们来详细讲解一下。<br>
-            你看到的文件其实是他的地址(在磁盘中所在的位置)的链接。双击你看到这个文档其实是把你引索到他的位置，然后把这个位置的内容编译(把内容变成哪一种内容的过程)后展示给你看。<br>
-            其中这个文件的地址也可以分为四个部分:分别是文件头、属性、内容和文件尾;其中文件头标记内容开始同时规定你文件的本质(比如到底是PPT还是MP4)，软件会通过识别文件头来你用特定的程序打开他，所以你看到里面的内容;属性部分写明了这个文件的名称(包括扩展名)，创建日期，修改日期，删除日期，作者等内容;内容部分就是你写入的内容;文件为标记文件的结束。<br>
-            所以说你讲扩展名改变了实质是改变文档内部的属性(就是只换了个名字)。对于这个文档到底是什么是没有改变的。比如说你把一个MP4(视频)文件改成MP3(音频)。(他的实质没有变)然后使用专业的技能播放视频，又能播放音频的播放器打开他(在软件内部使用打开)，你就会惊奇的发现，播放的仍然是视频。所以说改变扩展名并不会变他的本质。<br>
-            那为什么把txt改成BAT就可以呢，那是因为txt和bat没有文件头，所以他们俩可以简单地互相转化。没有文件头的文件还有VBS,HTML,C,CPP等，他们都可以通过简单的改变后缀来改变文件的本质<br>
-            这时候有人发现不对了：为什么把mp4改成mp3之后直接双击打开播放的就是音频了？<br>
-            这就要归功于系统的注册表。为什么有文件头还要有扩展名呢，因为扩展名可以帮用户更好的识别文件，还有上面所说的扩展名也可以改变没有头文件的文件的属性，然后就是系统通过识别扩展名来决定这个文件由哪个注册表中注册的程序打开，直接识别扩张免费直接识别文件头的速度更快，所以才有了扩展名。<br>
-            如果想要改变文件的本质，还是建议使用专业的转化工具。</p>
-            <p><b>注意</b>文件名字数长度是有限制(被文件系统限制，文件名的最大长度是255个字符(字的个数)，而不是255个字节(储存单位))的。准确来说微软并没有对文件名做限制，被限制是文件路径(就是你文件的所在的位置，假设M.txt文件在D盘的A文件夹里面，他的路径是D:\A\M.txt。那么这个文件的路径的长度就是11(如果你去数的话，那么你出来应该是10，Windows其实是用c语言写的，C语言中语句的末尾都会被加一个空字符"/0"所以实际路径的长度是10+1=11))的长度，他的最大值为260，假如你超出了这个长度，那么系统的资源管理器(系统软件，系统中管理文件的是神)就无法识这个文件，这个问题主要是Windows 10 1607以前的问题，但现在仍然存在。<br>
-            怎么解决呢？在Windows 10 1067后长度限制被改为了32767，但是需要用户手动修改注册表才能启用。因为原先的限制是写在Windows中的一个c++，c语言的头文件中。且使用#define定义，所以他是不能修改的不是人认为的不可修改，就是强制的不可修改。因为有很多程序，包括Windows内部程序都使用这个数值(专业术语叫宏)，一旦修改就会引起大部分的软件崩溃或错误。通过注册表会引导Windows自带程序走向其他分支不使用这个宏，但有一部分老程序不会通过注册表来判断是否该使用这个宏，微软也扩散了新的接口来避免缓冲区溢出，但是老的软件估计也用不了。所以不建议使用修改注册表来扩展名字长度的方法。<br>
-            由此可见，微软也在做努力，必须另一个电脑系统，直接停用软件</p>
-            <p>总之，文件名不要太长，然后要不要把你的学习资料放在一层层的文件夹里</p>
-            <p>这类长名字文件一般是下载来的，因为你的名字不管是超过路径限制还是长度限制，系统都会偷偷把超过部分截去，不告诉你的那种</p>
-            <p>然后我们讲一下怎么处理出现的这类文件，首先这类文件名因为超过了路径的长度，所以自愿管理器无法正常识别。我们俗称识别不到，拖进回收站或者<code class="code1">delete</code>都删除不了。还有就是因为识别不到，所以你也无法打开它。<br>一个简单的方法就是使用专业的文件粉碎软件，因为这类软件一般都是直接连接内核接口，而不是使用资源管理器检测到文件，所以这种专业粉碎文件的软件可以轻松删除这类文件，当然一部分杀毒软件内部也有自带的文件粉碎机。</p>
-            <p>除了文件名长度限制之外，还有些的符号不能出现在文件名中。<br>
-            正斜杠（/）‌：因为这是文件路径分隔符的一部分，所以文件名不允许包含正斜杠。<br>
-            反斜杠（\）‌：同样的道理，反斜杠也是文件路径分隔符的一部分，不允许出现在文件名中。<br>
-            冒号（:）‌：在Windows操作系统中用于标记文件路径和文件名之间的分隔符，因此不允许出现在文件名中。<br>
-            星号（*）‌：星号是通配符，用于表示匹配任意字符，因此不允许出现在文件名中。<br>
-            问号（?）‌：问号也是通配符，用于表示匹配单个字符，因此不允许出现在文件名中。<br>
-            双引号（"）‌：双引号用于包含字符串，因此不允许出现在文件名中。<br>
-            竖线（|）‌：在Windows操作系统中用于表示多个命令或操作符的选项，因此不允许出现在文件名中。<br>
-            点（.）‌：点用于文件名后缀的分隔符，因此不允许出现在文件名中，这并不完全正确，因为系统中的一个文件名其实可以有多个点(但文件夹不能有一个点)，但如果你这样做的话，可能会出现某些问题，说了点是用的分隔文件名和扩展名的，系统会将最后一个点的后部分作为扩展名。假设你在制作网站的时候需要创建一个链接连到某个文件夹里面的某个文件，而这个文件刚好又是引索文件(index.html)，是因为习惯性没有添加文件名(在制作网站时，如果你想要链接到的网页是一个引索文件，可以不写文件名(省内存))，如果恰好这个路径的文件夹上有一个点的话，那么你的链接链接最终的末尾是这个文件夹的同目录下的文件。这样就会导致网站错误。<br>
-            空格‌ ( ): 文件名中可以包含空格，但必须放在开头位置。<br>
-            其他特殊字符‌：如逗号、句号等通常也不推荐使用，尽管在某些情况下可能可以接受，但为了确保兼容性和可读性，最好避免使用这些字符。<br>
-            一般的文件名是不区分大小写的，也就是说两个文件名完全相同文件(只有大小写不同。)，系统会将他们看到同一个文件，再者在同一文件夹里面有两个文件的名字不能重复。<br>
-            这个不能重复，是不允许重复，而且不是完全不可能重复，想要实现重复其实可以创建两个名字相同的扩展名不同的文件，然后再把扩展名改成相同</p>
-            <p>最后，系统是不展示文件扩展名的，想要看到文件的扩展名，需要点击文件夹左侧的三条横线，或者是选项。然后在文件夹选项里面找到查看。向下翻动就能找到显示扩展名的选项(还有其他的选项不过多介绍。)。在Windows 10 及以上的系统里面。可以直接点击文件夹上方的查看，然后再查看的菜单里面找到显示扩展名，选中即可。</p>
-            <h2>创建文件</h2>
-            <p>创造我们进方式有很多种，比如使用鼠标右键，在右键菜单中找到新建，在新建的展开菜单中可以选择想要新建的文件，还有一些软件中可以直接新建一个项目之中保存成为文件，就不做过多描述了。</p>
-            <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
+
+            <!-- 页面8: 创建文件 -->
+            <article id="page8"> 
+                <h1 class="center">创建文件</h1> 
+                <h2>文件名</h2>
+                <p>文件是数据的载体。在系统上看到任何东西都是文件。</p>
+                <p>文件名一般由三部分组成。比如<code class="code1">Tank.37135</code>，现在假设他是一个文件名，嗯，他由<code class="code1">Tank</code>、<code class="code1">37135</code>和点组成。<br>
+                其中，那个小数点叫做句点，<code class="code1">Tank</code>叫做文件名，<code class="code1">37135</code>叫做文件的扩展名(有的人也成为后缀)。<b>有的文件没有后缀(比如hosts)。有的文件后缀会被隐藏(比如说快捷方式)。</b>根据文件的扩展名，我们可以较为轻松的判断文件的。通过改变某些文件扩展名可以改变他的功能，比如文本文档的后缀是txt，假如我在文本文档里写入了一串bat代码，通过把文档的后缀改成BAT，我就可以实现运行该程序</p>
+                <p><b>但是</b>改了扩展名文件的属性就变了吗？</p>
+                <p>答案当然是否定的。下面我们来详细讲解一下。<br>
+                你看到的文件其实是他的地址(在磁盘中所在的位置)的链接。双击你看到这个文档其实是把你引索到他的位置，然后把这个位置的内容编译(把内容变成哪一种内容的过程)后展示给你看。<br>
+                其中这个文件的地址也可以分为四个部分:分别是文件头、属性、内容和文件尾;其中文件头标记内容开始同时规定你文件的本质(比如到底是PPT还是MP4)，软件会通过识别文件头来你用特定的程序打开他，所以你看到里面的内容;属性部分写明了这个文件的名称(包括扩展名)，创建日期，修改日期，删除日期，作者等内容;内容部分就是你写入的内容;文件为标记文件的结束。<br>
+                所以说你讲扩展名改变了实质是改变文档内部的属性(就是只换了个名字)。对于这个文档到底是什么是没有改变的。比如说你把一个MP4(视频)文件改成MP3(音频)。(他的实质没有变)然后使用专业的技能播放视频，又能播放音频的播放器打开他(在软件内部使用打开)，你就会惊奇的发现，播放的仍然是视频。所以说改变扩展名并不会变他的本质。<br>
+                那为什么把txt改成BAT就可以呢，那是因为txt和bat没有文件头，所以他们俩可以简单地互相转化。没有文件头的文件还有VBS,HTML,C,CPP等，他们都可以通过简单的改变后缀来改变文件的本质<br>
+                这时候有人发现不对了：为什么把mp4改成mp3之后直接双击打开播放的就是音频了？<br>
+                这就要归功于系统的注册表。为什么有文件头还要有扩展名呢，因为扩展名可以帮用户更好的识别文件，还有上面所说的扩展名也可以改变没有头文件的文件的属性，然后就是系统通过识别扩展名来决定这个文件由哪个注册表中注册的程序打开，直接识别扩张免费直接识别文件头的速度更快，所以才有了扩展名。<br>
+                如果想要改变文件的本质，还是建议使用专业的转化工具。</p>
+                <p><b>注意</b>文件名字数长度是有限制(被文件系统限制，文件名的最大长度是255个字符(字的个数)，而不是255个字节(储存单位))的。准确来说微软并没有对文件名做限制，被限制是文件路径(就是你文件的所在的位置，假设M.txt文件在D盘的A文件夹里面，他的路径是D:\A\M.txt。那么这个文件的路径的长度就是11(如果你去数的话，那么你出来应该是10，Windows其实是用c语言写的，C语言中语句的末尾都会被加一个空字符"/0"所以实际路径的长度是10+1=11))的长度，他的最大值为260，假如你超出了这个长度，那么系统的资源管理器(系统软件，系统中管理文件的是神)就无法识这个文件，这个问题主要是Windows 10 1607以前的问题，但现在仍然存在。<br>
+                怎么解决呢？在Windows 10 1067后长度限制被改为了32767，但是需要用户手动修改注册表才能启用。因为原先的限制是写在Windows中的一个c++，c语言的头文件中。且使用#define定义，所以他是不能修改的不是人认为的不可修改，就是强制的不可修改。因为有很多程序，包括Windows内部程序都使用这个数值(专业术语叫宏)，一旦修改就会引起大部分的软件崩溃或错误。通过注册表会引导Windows自带程序走向其他分支不使用这个宏，但有一部分老程序不会通过注册表来判断是否该使用这个宏，微软也扩散了新的接口来避免缓冲区溢出，但是老的软件估计也用不了。所以不建议使用修改注册表来扩展名字长度的方法。<br>
+                由此可见，微软也在做努力，必须另一个电脑系统，直接停用软件</p>
+                <p>总之，文件名不要太长，然后要不要把你的学习资料放在一层层的文件夹里</p>
+                <p>这类长名字文件一般是下载来的，因为你的名字不管是超过路径限制还是长度限制，系统都会偷偷把超过部分截去，不告诉你的那种</p>
+                <p>然后我们讲一下怎么处理出现的这类文件，首先这类文件名因为超过了路径的长度，所以自愿管理器无法正常识别。我们俗称识别不到，拖进回收站或者<code class="code1">delete</code>都删除不了。还有就是因为识别不到，所以你也无法打开它。<br>
+                一个简单的方法就是使用专业的文件粉碎软件，因为这类软件一般都是直接连接内核接口，而不是使用资源管理器检测到文件，所以这种专业粉碎文件的软件可以轻松删除这类文件，当然一部分杀毒软件内部也有自带的文件粉碎机。</p>
+                <p>除了文件名长度限制之外，还有些的符号不能出现在文件名中。<br>
+                正斜杠（/）‌：因为这是文件路径分隔符的一部分，所以文件名不允许包含正斜杠。<br>
+                反斜杠（\）‌：同样的道理，反斜杠也是文件路径分隔符的一部分，不允许出现在文件名中。<br>
+                冒号（:）‌：在Windows操作系统中用于标记文件路径和文件名之间的分隔符，因此不允许出现在文件名中。<br>
+                星号（*）‌：星号是通配符，用于表示匹配任意字符，因此不允许出现在文件名中。<br>
+                问号（?）‌：问号也是通配符，用于表示匹配单个字符，因此不允许出现在文件名中。<br>
+                双引号（"）‌：双引号用于包含字符串，因此不允许出现在文件名中。<br>
+                竖线（|）‌：在Windows操作系统中用于表示多个命令或操作符的选项，因此不允许出现在文件名中。<br>
+                点（.）‌：点用于文件名后缀的分隔符，因此不允许出现在文件名中，这并不完全正确，因为系统中的一个文件名其实可以有多个点(但文件夹不能有一个点)，但如果你这样做的话，可能会出现某些问题，说了点是用的分隔文件名和扩展名的，系统会将最后一个点的后部分作为扩展名。假设你在制作网站的时候需要创建一个链接连到某个文件夹里面的某个文件，而这个文件刚好又是引索文件(index.html)，是因为习惯性没有添加文件名(在制作网站时，如果你想要链接到的网页是一个引索文件，可以不写文件名(省内存))，如果恰好这个路径的文件夹上有一个点的话，那么你的链接链接最终的末尾是这个文件夹的同目录下的文件。这样就会导致网站错误。<br>
+                空格‌ ( ): 文件名中可以包含空格，但必须放在开头位置。<br>
+                其他特殊字符‌：如逗号、句号等通常也不推荐使用，尽管在某些情况下可能可以接受，但为了确保兼容性和可读性，最好避免使用这些字符。<br>
+                一般的文件名是不区分大小写的，也就是说两个文件名完全相同文件(只有大小写不同。)，系统会将他们看到同一个文件，再者在同一文件夹里面有两个文件的名字不能重复。<br>
+                这个不能重复，是不允许重复，而且不是完全不可能重复，想要实现重复其实可以创建两个名字相同的扩展名不同的文件，然后再把扩展名改成相同</p>
+                <p>最后，系统是不展示文件扩展名的，想要看到文件的扩展名，需要点击文件夹左侧的三条横线，或者是选项。然后在文件夹选项里面找到查看。向下翻动就能找到显示扩展名的选项(还有其他的选项不过多介绍。)。在Windows 10 及以上的系统里面。可以直接点击文件夹上方的查看，然后再查看的菜单里面找到显示扩展名，选中即可。</p>
+                <h2>创建文件</h2>
+                <p>创造我们进方式有很多种，比如使用鼠标右键，在右键菜单中找到新建，在新建的展开菜单中可以选择想要新建的文件，还有一些软件中可以直接新建一个项目之中保存成为文件，就不做过多描述了。</p>
+                <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
             </article>
-            <article class="page">
-             <h1 class="center">分类与编辑</h1> 
-             <h2>分类</h2>
-             <h3>按结构分</h3>
-             <p>部分的文件的结构都是单一的这一类文件在本站我们称之为单一文件。这类文件的特点是内部没有其他可以独立分离出来的文件。这类文件主要是脚本程序。</p>
-             <p>大部分的文件的结构都是复合的，比如说PPT，他就是一种比较典型的复合文件，假如你用特殊手段把它拆开的话，你就会发现PPT的本质就是文本文档加图片，加视频，加一类其他的东西。被解压之后的PPT里面的东西都能单独被提取出来。<br>
-             这就是为什么把MP4的后缀改成MP3之后，音乐播放器可以播放MP3，因为MP4的实质就是音频文件加图像</p>
-             <p>那么了解上面的有什么用呢？好像确实没什么用。<br>
-             开玩笑的，其实我们可以利用那种复合文件的特性。用一个文件拼接的技巧，制作一个复合的复合文件。<br>
-             比如说我想把一压缩包藏在一个图片中，<br>
-             首先按<code class="code1">win</code>+<code class="code1">R</code>打开"运行"，在"运行"窗口中输入"cmd"打开命令提示符。<br>
-             在零命令提示符中输入以下指令。</p>
-             <div class="code-block">
-                 <button onclick="copyCode(this)">cmd复制</button>
-                 <pre><code class="code2">copy /b {pic_file}\图片.jpg+{zip_file}\压缩包.zip {output_file}\图种.jpg</code></pre>
-             </div>
-             <p>把 "{pic_file}\图片.jpg" 改为原始图片的实际路径，注意要包含扩展名。把 "{zip_file}\压缩包.zip" 改为原始压缩包所在路径，注意扩展名最好是zip或者是rar，把 "{output_file}\图种.jpg" 改为输出的图片路径，注意要包含扩展名。</p>
-             <p>使用命令输出之后，用图片查看器打开该文件就能看到原始图片内容，把扩展名改为原压缩文件的扩展名，用win RAR等压缩软件打开它就能显示压缩包里面的内容。</p>
-             <p><b>原理：</b>上述命令的功能是将图片和压缩文件拼接在一起，当使用图片查看器打开该文件的时候，图片查看器会从文件头开始读取到文件尾结束，所以我们看到的是图片;当我们使用win RAR等压缩软件打开的时，这类软件通常会跳过前面的部分，从压缩包的文件头开始读取到文件尾，所以打开的是压缩包的内容。<br>
-             同理，我们也可以把其他的文件和压缩包叠加起来。但是最好不要把压缩包和压缩包叠起来，因为这样压缩的软件会只读取第一个的文件头，到第一个的文件尾<br>
-             <b>免责声明:</b>上述内容仅用于教学用途，不得将其用于非法用途。否则后果自负。</p>
-             <h3>按功能分</h3>
-             <p>按功能分简单的讲就是按扩展名分，之前说过系统通过识别文件的扩展名来决定让注册表中注册该扩展名的哪个软件来打开它。<br>
-             绝大部分的软件对于不同的扩展名有不同图标，我们可以根据这些图标来判断它属于哪类文件。通过修改扩展名，系统会将文件分给不同的程序。可能会导致某些软件报错。<br>所以说在遇到因为格式不对啊，无法打开的文件时不要使用改扩展名的方法来改变它的文件格式。识别不到正确的文件头，依然不行</p>
-             <h2>修改文件</h2>
-             <p>修改文件没什么好说的，系统会自动通过你的扩展名，使用正确的软件打开它。但是如果你的电脑上没有可以打开这种类型的文件的软件，系统就会推荐你打开应用商店来查找这类软件。我的建议是你可以直接在浏览器上搜索该后缀。浏览器会更明确的给你指出这种文件该用哪类软件打开。</p>
-             <p>还有一些文件是不建议删改的。比如<br>
-             动态链接库（Dynamic Link Library 或者 Dynamic-link Library，扩展名为 DLL），这是微软在系统上共享函数的一种方式。删除它会导致部分程序无法正常运行。<br>
-             注册表文件(regedit，扩展名为reg)正如前面所说，注册表用来确定软件是否存在于这台电脑上，包含了软件的信息。没有注册表将会导致你的软件无法正常运行，比如说有些软件需要注册右键菜单，删除这个注册表会导致这个软件右键菜单失效。删除某些软件的开机自启的注册表，会导致该软件不能开机自启。当然删改注册表大多数都用在病毒软件上。</p>
-             <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
-             </article>
-            <article class="page"> 页面十内容 </article>
+
+            <!-- 页面9: 分类与编辑 -->
+            <article id="page9">
+                <h1 class="center">分类与编辑</h1> 
+                <h2>分类</h2>
+                <h3>按结构分</h3>
+                <p>部分的文件的结构都是单一的这一类文件在本站我们称之为单一文件。这类文件的特点是内部没有其他可以独立分离出来的文件。这类文件主要是脚本程序。</p>
+                <p>大部分的文件的结构都是复合的，比如说PPT，他就是一种比较典型的复合文件，假如你用特殊手段把它拆开的话，你就会发现PPT的本质就是文本文档加图片，加视频，加一类其他的东西。被解压之后的PPT里面的东西都能单独被提取出来。<br>
+                这就是为什么把MP4的后缀改成MP3之后，音乐播放器可以播放MP3，因为MP4的实质就是音频文件加图像</p>
+                <p>那么了解上面的有什么用呢？好像确实没什么用。<br>
+                开玩笑的，其实我们可以利用那种复合文件的特性。用一个文件拼接的技巧，制作一个复合的复合文件。<br>
+                比如说我想把一压缩包藏在一个图片中，<br>
+                首先按<code class="code1">win</code>+<code class="code1">R</code>打开"运行"，在"运行"窗口中输入"cmd"打开命令提示符。<br>
+                在零命令提示符中输入以下指令。</p>
+                <div class="code-block">
+                    <button onclick="copyCode(this)">cmd复制</button>
+                    <pre><code class="code2">copy /b {pic_file}\图片.jpg+{zip_file}\压缩包.zip {output_file}\图种.jpg</code></pre>
+                </div>
+                <p>把 "{pic_file}\图片.jpg" 改为原始图片的实际路径，注意要包含扩展名。把 "{zip_file}\压缩包.zip" 改为原始压缩包所在路径，注意扩展名最好是zip或者是rar，把 "{output_file}\图种.jpg" 改为输出的图片路径，注意要包含扩展名。</p>
+                <p>使用命令输出之后，用图片查看器打开该文件就能看到原始图片内容，把扩展名改为原压缩文件的扩展名，用win RAR等压缩软件打开它就能显示压缩包里面的内容。</p>
+                <p><b>原理：</b>上述命令的功能是将图片和压缩文件拼接在一起，当使用图片查看器打开该文件的时候，图片查看器会从文件头开始读取到文件尾结束，所以我们看到的是图片;当我们使用win RAR等压缩软件打开的时，这类软件通常会跳过前面的部分，从压缩包的文件头开始读取到文件尾，所以打开的是压缩包的内容。<br>
+                同理，我们也可以把其他的文件和压缩包叠加起来。但是最好不要把压缩包和压缩包叠起来，因为这样压缩的软件会只读取第一个的文件头，到第一个的文件尾<br>
+                <b>免责声明:</b>上述内容仅用于教学用途，不得将其用于非法用途。否则后果自负。</p>
+                <h3>按功能分</h3>
+                <p>按功能分简单的讲就是按扩展名分，之前说过系统通过识别文件的扩展名来决定让注册表中注册该扩展名的哪个软件来打开它。<br>
+                绝大部分的软件对于不同的扩展名有不同图标，我们可以根据这些图标来判断它属于哪类文件。通过修改扩展名，系统会将文件分给不同的程序。可能会导致某些软件报错。<br>所以说在遇到因为格式不对啊，无法打开的文件时不要使用改扩展名的方法来改变它的文件格式。识别不到正确的文件头，依然不行</p>
+                <h2>修改文件</h2>
+                <p>修改文件没什么好说的，系统会自动通过你的扩展名，使用正确的软件打开它。但是如果你的电脑上没有可以打开这种类型的文件的软件，系统就会推荐你打开应用商店来查找这类软件。我的建议是你可以直接在浏览器上搜索该后缀。浏览器会更明确的给你指出这种文件该用哪类软件打开。</p>
+                <p>还有一些文件是不建议删改的。比如<br>
+                动态链接库（Dynamic Link Library 或者 Dynamic-link Library，扩展名为 DLL），这是微软在系统上共享函数的一种方式。删除它会导致部分程序无法正常运行。<br>
+                注册表文件(regedit，扩展名为reg)正如前面所说，注册表用来确定软件是否存在于这台电脑上，包含了软件的信息。没有注册表将会导致你的软件无法正常运行，比如说有些软件需要注册右键菜单，删除这个注册表会导致这个软件右键菜单失效。删除某些软件的开机自启的注册表，会导致该软件不能开机自启。当然删改注册表大多数都用在病毒软件上。</p>
+                <a class="center" href="https://Tank37135.github.io/" target="_self">&copy Tank37135 Blog</a>
+            </article>
+            
+            <div style="height: 1000px;"></div>
         </div>
     </main>
-    <script id="rendered-js">
-        let currentPage = 1;
-        const pages = document.querySelectorAll('article');
-        const menu = document.getElementById('menu');
-        const hamburgerMenu = document.getElementById('hamburger-menu');
-        const overlay = document.getElementById('overlay');
+
+    <!-- 弹窗1 - 公告 -->
+    <div class="modal-overlay" id="modal1">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>公告</h3>
+            </div>
+            <div class="modal-body">
+                <p>暂无公告</p>
+            </div>
+            <div class="modal-footer">
+                <button class="mac-button close-modal">完成</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 弹窗2 - 目录 -->
+    <div class="modal-overlay" id="modal2">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>目录导航</h3>
+            </div>
+            <div class="modal-body">
+                <div class="section">
+                    <h4>前言</h4>
+                    <p>Windows基础教程介绍</p>
+                    <a class="section-link" href="#page1">查看前言 →</a>
+                </div>
+                <div class="section">
+                    <h4>系统选择</h4>
+                    <p>Windows、macOS、Linux和BSD系统的比较</p>
+                    <a class="section-link" href="#page2">查看系统选择 →</a>
+                </div>
+                <div class="section">
+                    <h4>鼠标</h4>
+                    <p>鼠标硬件知识和使用技巧</p>
+                    <a class="section-link" href="#page3">查看鼠标知识 →</a>
+                </div>
+                <div class="section">
+                    <h4>键盘</h4>
+                    <p>键盘硬件知识和使用技巧</p>
+                    <a class="section-link" href="#page4">查看键盘知识 →</a>
+                </div>
+                <div class="section">
+                    <h4>微软账户</h4>
+                    <p>微软账户的注册和使用</p>
+                    <a class="section-link" href="#page5">查看微软账户 →</a>
+                </div>
+                <div class="section">
+                    <h4>本地账户</h4>
+                    <p>本地账户的创建和管理</p>
+                    <a class="section-link" href="#page6">查看本地账户 →</a>
+                </div>
+                <div class="section">
+                    <h4>预备知识</h4>
+                    <p>计算机基础概念和知识</p>
+                    <a class="section-link" href="#page7">查看预备知识 →</a>
+                </div>
+                <div class="section">
+                    <h4>创建文件</h4>
+                    <p>文件命名规则和创建方法</p>
+                    <a class="section-link" href="#page8">查看创建文件 →</a>
+                </div>
+                <div class="section">
+                    <h4>分类与编辑</h4>
+                    <p>文件分类和编辑技巧</p>
+                    <a class="section-link" href="#page9">查看分类与编辑 →</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="mac-button close-modal">完成</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 弹窗3 - 音乐 -->
+    <div class="modal-overlay" id="modal3">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>音乐</h3>
+            </div>
+            <div class="modal-body">
+                <p>暂时没有开发音乐播放器。</p>
+            </div>
+            <div class="modal-footer">
+                <button class="mac-button close-modal">完成</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 弹窗4 - 高级设置 -->
+    <div class="modal-overlay" id="modal4">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>高级设置</h3>
+            </div>
+            <div class="modal-body">
+                <p>暂不提供此功能。</p>
+            </div>
+            <div class="modal-footer">
+                <button class="mac-button close-modal">完成</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 弹窗管理器
+        const ModalManager = {
+            scrollPosition: 0,
+            
+            init: function() {
+                // 初始化所有弹窗按钮
+                this.initModalButtons();
+                // 初始化返回顶部按钮
+                this.initBackToTop();
+                // 初始化关闭按钮
+                this.initCloseButtons();
+                // 初始化遮罩层点击
+                this.initOverlayClicks();
+                // 初始化目录链接
+                this.initTocLinks();
+            },
+            
+            initModalButtons: function() {
+                // 统一使用data-modal属性绑定弹窗按钮
+                document.querySelectorAll('[data-modal]').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const modalId = button.getAttribute('data-modal');
+                        this.openModal(modalId);
+                        
+                        // 特殊处理设置按钮的旋转动画
+                        if (button.id === 'settingsButton') {
+                            e.stopPropagation();
+                        }
+                    });
+                });
+            },
+            
+            initTocLinks: function() {
+                // 为目录弹窗中的链接添加点击事件
+                document.querySelectorAll('.section-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href');
+                        const modal = link.closest('.modal-overlay');
+                        
+                        // 关闭弹窗
+                        this.closeModal(modal);
+                        
+                        // 滚动到目标位置
+                        setTimeout(() => {
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement) {
+                                targetElement.scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }, 100); // 小延迟确保弹窗完全关闭
+                    });
+                });
+            },
+            
+            initBackToTop: function() {
+                document.getElementById('backToTop').addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            },
+            
+            initCloseButtons: function() {
+                document.querySelectorAll('.close-modal').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const modal = btn.closest('.modal-overlay');
+                        this.closeModal(modal);
+                    });
+                });
+            },
+            
+            initOverlayClicks: function() {
+                document.querySelectorAll('.modal-overlay').forEach(modal => {
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            this.closeModal(modal);
+                        }
+                    });
+                });
+            },
+            
+            openModal: function(modalId) {
+                const modal = document.getElementById(modalId);
+                if (!modal) return;
+                
+                // 保存当前滚动位置并禁止滚动
+                this.scrollPosition = window.scrollY;
+                document.body.classList.add('body-no-scroll');
+                document.body.style.top = `-${this.scrollPosition}px`;
+                
+                // 显示弹窗
+                modal.classList.add('active');
+                modal.querySelector('.modal-body').scrollTop = 0;
+            },
+            
+            closeModal: function(modal) {
+                if (!modal) return;
+                
+                // 恢复滚动
+                document.body.classList.remove('body-no-scroll');
+                document.body.style.top = '';
+                window.scrollTo(0, this.scrollPosition);
+                
+                // 隐藏弹窗
+                modal.classList.remove('active');
+            }
+        };
         
-        // 切换菜单的显示状态
-        function toggleMenu() {
-            menu.classList.toggle('open');
-            overlay.classList.toggle('visible');
-        }
-        
-        // 关闭菜单
-        function closeMenu() {
-            menu.classList.remove('open');
-            overlay.classList.remove('visible');
-        }
-        
-        // 切换子菜单的显示状态
-        function toggleSubmenu(submenuId) {
-            const submenu = document.getElementById(submenuId);
-            submenu.classList.toggle('open');
-        }
-        
-        // 切换页面内容
-        function changePage(pageNumber) {
-            if (pageNumber < 1 || pageNumber > pages.length) return;
-        
-            currentPage = pageNumber;
-        
-            // 将所有页面设置为不可见
-            pages.forEach((page) => {
-                page.classList.remove('active');
-            });
-        
-            // 设置当前页面为可见
-            pages[currentPage - 1].classList.add('active');
-        
-            // 关闭菜单
-            closeMenu();
-        }
-        
-        // 初始化第一个页面
-        document.addEventListener('DOMContentLoaded', () => {
-            changePage(1);
-        });
-               function copyCode(button) {
+        // 复制代码功能
+        function copyCode(button) {
             const code = button.nextElementSibling.textContent;
             
             navigator.clipboard.writeText(code).then(() => {
@@ -804,13 +1132,23 @@ article.active {
                 
                 setTimeout(() => {
                     button.textContent = originalText;
-                    button.style.background = '#4CAF50';
+                    button.style.background = '#6a5acd';
                 }, 2000);
             }).catch(err => {
                 console.error('复制失败:', err);
                 alert('复制失败，请手动复制');
             });
         }
+        
+        // 检测微信浏览器
+        if (/MicroMessenger/i.test(navigator.userAgent)) {
+            document.documentElement.classList.add('wechat-browser');
+        }
+        
+        // 初始化弹窗管理器
+        document.addEventListener('DOMContentLoaded', () => {
+            ModalManager.init();
+        });
     </script>
 </body>
 </html>
