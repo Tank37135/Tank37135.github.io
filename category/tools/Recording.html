@@ -3,356 +3,841 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/images/logo/favicon.ico" type="image/x-icon">
-<link rel="icon" href="../../assets/images/logo/favicon.ico" type="image/x-icon">
-
     <title>屏幕共享与录制</title>
     <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #8a2be2;
+            --accent-color: #00c6fb;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-radius: 12px;
+            --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #1a71d5, #c469f4);
+            color: var(--text-color);
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             line-height: 1.6;
         }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        video {
-            border: 2px solid #3498db;
-            border-radius: 5px;
+
+        .container {
             width: 100%;
-            max-height: 70vh;
-            margin-bottom: 15px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            background: linear-gradient(to right, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        video {
+            width: 100%;
+            border-radius: var(--border-radius);
             background: #000;
-            display: block;
+            aspect-ratio: 16/9;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        #controls {
+
+        .control-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .control-group {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-            margin-top: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 5px;
+            flex-direction: column;
+            gap: 8px;
         }
+
+        .control-group label {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        select, button {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+        }
+
+        select:focus, button:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2);
+        }
+
         button {
-            padding: 8px 16px;
-            background-color: #3498db;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
-            border-radius: 4px;
+            font-weight: 500;
             cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         button:hover {
-            background-color: #2980b9;
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
+
+        button:active {
+            transform: translateY(0);
+        }
+
         button:disabled {
-            background-color: #95a5a6;
+            background: #ccc;
             cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            opacity: 0.7;
         }
-        select {
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-        }
-        #errorMessage {
-            color: #e74c3c;
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            grid-column: 1 / -1;
             margin-top: 10px;
-            flex-basis: 100%;
         }
-        .status {
-            margin-left: auto;
-            font-style: italic;
-            color: #7f8c8d;
+
+        .button-group button {
+            flex: 1;
+        }
+
+        .primary-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        }
+
+        .secondary-btn {
+            background: linear-gradient(to right, #6c757d, #495057);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            user-select: none;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: var(--border-radius);
+        }
+
+        #status {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        #errorMessage {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            grid-column: 1 / -1;
+        }
+
+        .timer {
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: #495057;
+        }
+
+        @media (max-width: 768px) {
+            .control-panel {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .recording {
+            animation: pulse 1.5s infinite;
+            position: relative;
+        }
+
+        .recording::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #dc3545;
+            border-radius: 50%;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
         }
     </style>
 </head>
 <body>
-    <h1>屏幕共享与录制</h1>
-    <video id="video" controls></video>
-    <div id="controls">
-        <button id="startSharing">开始屏幕共享</button>
-        <button id="startRecording" disabled>开始录制</button>
-        <button id="stopRecording" disabled>停止录制</button>
-        
-        <label for="resolution">分辨率:</label>
-        <select id="resolution">
-            <option value="360">360p</option>
-            <option value="480">480p</option>
-            <option value="720" selected>720p</option>
-            <option value="1080">1080p</option>
-            <option value="1440">1440p</option>
-            <option value="2160">2160p</option>
-        </select>
-        
-        <label for="bitrate">比特率:</label>
-        <select id="bitrate">
-            <option value="500000">500 kbps</option>
-            <option value="1000000" selected>1 Mbps</option>
-            <option value="2000000">2 Mbps</option>
-            <option value="4000000">4 Mbps</option>
-            <option value="8000000">8 Mbps</option>
-            <option value="10000000">10 Mbps</option>
-        </select>
-        
-        <label for="format">格式:</label>
-        <select id="format">
-            <option value="video/webm" selected>WebM</option>
-            <option value="video/mp4">MP4</option>
-            <option value="video/ogg">OGG</option>
-            <option value="image/gif">GIF</option>
-        </select>
-        
-        <span id="status" class="status">准备就绪</span>
-        <p id="errorMessage"></p>
+    <div class="container">
+        <header>
+            <h1>高级屏幕共享与录制</h1>
+            <p class="subtitle">专业级屏幕录制工具 - 支持硬件加速与高质量输出</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <video id="video" controls></video>
+                
+                <div class="control-panel">
+                    <div class="control-group">
+                        <label for="displayType">共享类型</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="displayType" value="screen" checked> 整个屏幕</label>
+                            <label><input type="radio" name="displayType" value="window"> 应用窗口</label>
+                            <label><input type="radio" name="displayType" value="browser"> 浏览器标签</label>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="resolution">分辨率</label>
+                        <select id="resolution">
+                            <option value="360">360p (640×360)</option>
+                            <option value="480">480p (854×480)</option>
+                            <option value="720">720p (1280×720)</option>
+                            <option value="1080">1080p (1920×1080)</option>
+                            <option value="1440">1440p (2560×1440)</option>
+                            <option value="2160" selected>2160p (3840×2160)</option>
+                            <option value="4320">4320p (7680×4320)</option>
+                            <option value="8640">8640p (15360×8640)</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="fps">帧率</label>
+                        <select id="fps">
+                            <option value="10">10 fps</option>
+                            <option value="15">15 fps</option>
+                            <option value="24">24 fps</option>
+                            <option value="30">30 fps</option>
+                            <option value="60">60 fps</option>
+                            <option value="120" selected>120 fps</option>
+                            <option value="240">240 fps</option>
+                            <option value="320">320 fps</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="bitrate">视频比特率</label>
+                        <select id="bitrate">
+                            <option value="500000">500 kbps</option>
+                            <option value="1000000">1 Mbps</option>
+                            <option value="2000000">2 Mbps</option>
+                            <option value="4000000">4 Mbps</option>
+                            <option value="8000000">8 Mbps</option>
+                            <option value="10000000">10 Mbps</option>
+                            <option value="20000000">20 Mbps</option>
+                            <option value="50000000" selected>50 Mbps (4K推荐)</option>
+                            <option value="100000000">100 Mbps (8K推荐)</option>
+                            <option value="200000000">200 Mbps (16K推荐)</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="format">输出格式</label>
+                        <select id="format">
+                            <option value="video/webm" selected>WebM (VP9)</option>
+                            <option value="video/webm;codecs=vp8">WebM (VP8)</option>
+                            <option value="video/mp4">MP4 (H.264)</option>
+                            <option value="video/mp4;codecs=h265">MP4 (H.265)</option>
+                            <option value="video/x-matroska">MKV (H.264)</option>
+                            <option value="video/ogg">OGG (Theora)</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="quality">质量预设</label>
+                        <select id="quality">
+                            <option value="balanced" selected>平衡质量与性能</option>
+                            <option value="highQuality">高质量</option>
+                            <option value="highPerformance">高性能</option>
+                        </select>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="recordMicrophone" checked>
+                        <label for="recordMicrophone">录制麦克风</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="enableHardwareAcceleration" checked>
+                        <label for="enableHardwareAcceleration">启用硬件加速</label>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="audioBitrate">音频比特率</label>
+                        <select id="audioBitrate">
+                            <option value="64000">64 kbps</option>
+                            <option value="96000">96 kbps</option>
+                            <option value="128000" selected>128 kbps</option>
+                            <option value="192000">192 kbps</option>
+                            <option value="256000">256 kbps</option>
+                            <option value="320000">320 kbps</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="startSharing" class="primary-btn">开始屏幕共享</button>
+                        <button id="startRecording" class="primary-btn" disabled>开始录制</button>
+                        <button id="pauseRecording" class="secondary-btn" disabled>暂停录制</button>
+                        <button id="stopRecording" class="secondary-btn" disabled>停止录制</button>
+                    </div>
+
+                    <p id="errorMessage"></p>
+                </div>
+
+                <div class="status-bar">
+                    <span id="status">准备就绪</span>
+                    <span class="timer" id="timer">00:00:00</span>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const startSharingButton = document.getElementById("startSharing");
-            const startRecordingButton = document.getElementById("startRecording");
-            const stopRecordingButton = document.getElementById("stopRecording");
-            const videoElement = document.getElementById("video");
-            const resolutionSelect = document.getElementById("resolution");
-            const bitrateSelect = document.getElementById("bitrate");
-            const formatSelect = document.getElementById("format");
-            const errorMessage = document.getElementById("errorMessage");
-            const statusElement = document.getElementById("status");
+document.addEventListener('DOMContentLoaded', () => {
+    // 获取DOM元素
+    const startSharingButton = document.getElementById("startSharing");
+    const startRecordingButton = document.getElementById("startRecording");
+    const pauseRecordingButton = document.getElementById("pauseRecording");
+    const stopRecordingButton = document.getElementById("stopRecording");
+    const videoElement = document.getElementById("video");
+    const resolutionSelect = document.getElementById("resolution");
+    const bitrateSelect = document.getElementById("bitrate");
+    const formatSelect = document.getElementById("format");
+    const fpsSelect = document.getElementById("fps");
+    const qualitySelect = document.getElementById("quality");
+    const displayTypeRadios = document.querySelectorAll('input[name="displayType"]');
+    const recordMicrophoneCheckbox = document.getElementById("recordMicrophone");
+    const enableHardwareAccelerationCheckbox = document.getElementById("enableHardwareAcceleration");
+    const audioBitrateSelect = document.getElementById("audioBitrate");
+    const errorMessage = document.getElementById("errorMessage");
+    const statusElement = document.getElementById("status");
+    const timerElement = document.getElementById("timer");
 
-            let mediaStream = null;
-            let mediaRecorder = null;
-            let recordedChunks = [];
-            let recordingTimer = null;
-            let recordingStartTime = null;
+    // 状态变量
+    let mediaStream = null;
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let recordingInterval = null;
+    let recordingStartTime = null;
+    let pausedTime = 0;
+    let isPaused = false;
+    let autoStopTimer = null;
+    let currentRecordingNumber = 1;
 
-            // 检查浏览器是否支持屏幕共享
-            if (!navigator.mediaDevices?.getDisplayMedia) {
-                showError("您的浏览器不支持屏幕共享功能。请使用Chrome、Edge或Firefox等现代浏览器。");
-                startSharingButton.disabled = true;
+    // 检查浏览器支持
+    if (!navigator.mediaDevices?.getDisplayMedia) {
+        showError("您的浏览器不支持屏幕共享功能。请使用Chrome、Edge或Firefox等现代浏览器。");
+        startSharingButton.disabled = true;
+    }
+
+    if (!window.MediaRecorder) {
+        showError("您的浏览器不支持媒体录制功能。");
+        startRecordingButton.disabled = true;
+    }
+
+    // 开始屏幕共享
+    startSharingButton.addEventListener("click", async () => {
+        try {
+            clearError();
+            updateStatus("正在获取屏幕共享权限...");
+            
+            const displayType = document.querySelector('input[name="displayType"]:checked').value;
+            
+            // 设置媒体约束
+            const constraints = {
+                video: {
+                    displaySurface: displayType,
+                    logicalSurface: true,
+                    width: { ideal: getResolutionWidth() },
+                    height: { ideal: getResolutionHeight() },
+                    frameRate: { ideal: parseInt(fpsSelect.value, 10) },
+                    ...(enableHardwareAccelerationCheckbox.checked && {
+                        mediaSource: 'screen',
+                        googLeakyBucket: true,
+                        googTemporalLayeredScreencast: true
+                    })
+                },
+                audio: recordMicrophoneCheckbox.checked ? {
+                    autoGainControl: false,
+                    echoCancellation: false,
+                    noiseSuppression: false,
+                    sampleRate: 48000,
+                    sampleSize: 16,
+                    channelCount: 2,
+                    bitrate: parseInt(audioBitrateSelect.value, 10)
+                } : false,
+                preferCurrentTab: displayType === 'browser'
+            };
+
+            // 获取屏幕共享流
+            const stream = await navigator.mediaDevices.getDisplayMedia(constraints);
+
+            // 处理用户停止共享
+            stream.getVideoTracks()[0].onended = () => {
+                handleStreamEnd();
+            };
+
+            mediaStream = stream;
+            videoElement.srcObject = stream;
+            
+            // 更新UI状态
+            startSharingButton.disabled = true;
+            startRecordingButton.disabled = false;
+            updateStatus("屏幕共享已开始，准备录制...");
+            
+        } catch (err) {
+            showError(`无法开始屏幕共享: ${err.message}`);
+            updateStatus("屏幕共享失败");
+        }
+    });
+
+    // 开始录制
+    startRecordingButton.addEventListener("click", startRecording);
+
+    function startRecording() {
+        try {
+            clearError();
+            updateStatus("正在准备录制...");
+            
+            const selectedFormat = formatSelect.value;
+            const mimeType = getSupportedMimeType(selectedFormat);
+            
+            if (!mimeType) {
+                throw new Error(`浏览器不支持所选格式: ${selectedFormat}`);
             }
 
-            // 检查浏览器是否支持MediaRecorder
-            if (!window.MediaRecorder) {
-                showError("您的浏览器不支持媒体录制功能。");
-                startRecordingButton.disabled = true;
-            }
+            // 设置录制选项
+            const options = {
+                mimeType,
+                videoBitsPerSecond: parseInt(bitrateSelect.value, 10),
+                audioBitsPerSecond: parseInt(audioBitrateSelect.value, 10),
+                ...(enableHardwareAccelerationCheckbox.checked && {
+                    bitsPerSecond: parseInt(bitrateSelect.value, 10),
+                    videoKeyFrameInterval: 60,
+                    videoBitrateMode: 'constant'
+                })
+            };
 
-            // 开始屏幕共享
-            startSharingButton.addEventListener("click", async () => {
-                try {
-                    clearError();
-                    updateStatus("正在获取屏幕共享权限...");
-                    
-                    const stream = await navigator.mediaDevices.getDisplayMedia({
-                        video: {
-                            displaySurface: 'monitor',  // 或 'window', 'browser'
-                            logicalSurface: true,
-                            width: { ideal: 1920 },
-                            height: { ideal: 1080 },
-                            frameRate: { ideal: 30 }
-                        },
-                        audio: true,
-                        preferCurrentTab: true
-                    });
+            // 创建媒体录制器
+            mediaRecorder = new MediaRecorder(mediaStream, options);
 
-                    // 处理用户停止共享
-                    stream.getVideoTracks()[0].onended = () => {
-                        handleStreamEnd();
-                    };
-
-                    mediaStream = stream;
-                    videoElement.srcObject = stream;
-                    
-                    startSharingButton.disabled = true;
-                    startRecordingButton.disabled = false;
-                    updateStatus("屏幕共享已开始，准备录制...");
-                    
-                } catch (err) {
-                    showError(`无法开始屏幕共享: ${err.message}`);
-                    updateStatus("屏幕共享失败");
-                }
-            });
+            // 设置事件处理器
+            mediaRecorder.ondataavailable = handleDataAvailable;
+            mediaRecorder.onstart = handleRecordingStart;
+            mediaRecorder.onstop = handleRecordingStop;
+            mediaRecorder.onpause = handleRecordingPause;
+            mediaRecorder.onresume = handleRecordingResume;
+            mediaRecorder.onerror = handleRecordingError;
 
             // 开始录制
-            startRecordingButton.addEventListener("click", () => {
-                try {
-                    clearError();
-                    updateStatus("正在准备录制...");
-                    
-                    const selectedFormat = formatSelect.value;
-                    const mimeType = getSupportedMimeType(selectedFormat);
-                    
-                    if (!mimeType) {
-                        throw new Error(`浏览器不支持所选格式: ${selectedFormat}`);
-                    }
+            recordedChunks = [];
+            mediaRecorder.start(1000); // 每1秒收集一次数据
+            
+            // 更新UI状态
+            startRecordingButton.disabled = true;
+            pauseRecordingButton.disabled = false;
+            stopRecordingButton.disabled = false;
+            startRecordingButton.classList.add("recording");
+            
+            // 禁用其他控件
+            enableControls(false);
+            
+        } catch (err) {
+            showError(`录制开始失败: ${err.message}`);
+            updateStatus("录制失败");
+        }
+    }
 
-                    const options = {
-                        mimeType,
-                        videoBitsPerSecond: parseInt(bitrateSelect.value, 10),
-                        audioBitsPerSecond: 128000
-                    };
+    // 暂停/恢复录制
+    pauseRecordingButton.addEventListener("click", () => {
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+            mediaRecorder.pause();
+            isPaused = true;
+            pauseRecordingButton.textContent = "恢复录制";
+            pauseRecordingButton.classList.remove("secondary-btn");
+            pauseRecordingButton.classList.add("primary-btn");
+        } else if (mediaRecorder && mediaRecorder.state === 'paused') {
+            mediaRecorder.resume();
+            isPaused = false;
+            pauseRecordingButton.textContent = "暂停录制";
+            pauseRecordingButton.classList.remove("primary-btn");
+            pauseRecordingButton.classList.add("secondary-btn");
+        }
+    });
 
-                    mediaRecorder = new MediaRecorder(mediaStream, options);
+    // 停止录制
+    stopRecordingButton.addEventListener("click", () => {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+        }
+        pauseRecordingButton.disabled = true;
+        stopRecordingButton.disabled = true;
+        isPaused = false;
+        pauseRecordingButton.textContent = "暂停录制";
+    });
 
-                    mediaRecorder.ondataavailable = (event) => {
-                        if (event.data.size > 0) {
-                            recordedChunks.push(event.data);
-                        }
-                    };
+    // 质量预设变化处理
+    qualitySelect.addEventListener("change", () => {
+        switch(qualitySelect.value) {
+            case "highQuality":
+                resolutionSelect.value = "2160";
+                bitrateSelect.value = "50000000";
+                fpsSelect.value = "60";
+                formatSelect.value = "video/mp4;codecs=h265";
+                audioBitrateSelect.value = "192000";
+                break;
+            case "highPerformance":
+                resolutionSelect.value = "1080";
+                bitrateSelect.value = "8000000";
+                fpsSelect.value = "60";
+                formatSelect.value = "video/webm;codecs=vp8";
+                audioBitrateSelect.value = "96000";
+                break;
+            case "balanced":
+                resolutionSelect.value = "1440";
+                bitrateSelect.value = "20000000";
+                fpsSelect.value = "120";
+                formatSelect.value = "video/webm";
+                audioBitrateSelect.value = "128000";
+                break;
+        }
+    });
 
-                    mediaRecorder.onstart = () => {
-                        recordingStartTime = Date.now();
-                        recordingTimer = setInterval(updateRecordingTime, 1000);
-                        updateStatus("录制中... 00:00");
-                    };
+    // ========== 工具函数 ==========
 
-                    mediaRecorder.onstop = () => {
-                        clearInterval(recordingTimer);
-                        saveRecording();
-                        updateStatus("录制已保存");
-                    };
+    // 处理数据可用事件
+    function handleDataAvailable(event) {
+        if (event.data.size > 0) {
+            recordedChunks.push(event.data);
+        }
+    }
 
-                    mediaRecorder.onerror = (event) => {
-                        showError(`录制错误: ${event.error.name}`);
-                        updateStatus("录制失败");
-                        cleanup();
-                    };
+    // 处理录制开始事件
+    function handleRecordingStart() {
+        recordingStartTime = Date.now();
+        recordingInterval = setInterval(updateRecordingTime, 100);
+        updateStatus(`录制中 (第${currentRecordingNumber}段)`);
+        
+        // 设置30分钟自动停止
+        autoStopTimer = setTimeout(() => {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+            }
+        }, 30 * 60 * 1000);
+    }
 
-                    recordedChunks = [];
-                    mediaRecorder.start(1000); // 每1秒收集一次数据
-                    
-                    startRecordingButton.disabled = true;
-                    stopRecordingButton.disabled = false;
-                    
-                } catch (err) {
-                    showError(`录制开始失败: ${err.message}`);
-                    updateStatus("录制失败");
+    // 处理录制停止事件
+    function handleRecordingStop() {
+        clearInterval(recordingInterval);
+        clearTimeout(autoStopTimer);
+        saveRecording();
+        currentRecordingNumber++;
+        
+        // 自动开始新录制
+        if (mediaStream && mediaStream.active) {
+            setTimeout(() => {
+                if (mediaStream.active) {
+                    startRecording();
                 }
-            });
+            }, 1000);
+        } else {
+            updateStatus("录制已保存");
+            enableControls(true);
+        }
+    }
 
-            // 停止录制
-            stopRecordingButton.addEventListener("click", () => {
-                if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-                    mediaRecorder.stop();
-                }
-                stopRecordingButton.disabled = true;
-            });
+    // 处理录制暂停事件
+    function handleRecordingPause() {
+        pausedTime = Date.now();
+        updateStatus("录制已暂停");
+    }
 
-            // 获取浏览器支持的MIME类型
-            function getSupportedMimeType(desiredFormat) {
-                const possibleTypes = [
-                    `${desiredFormat};codecs=vp9,opus`,
-                    `${desiredFormat};codecs=vp8,opus`,
-                    `${desiredFormat};codecs=h264,opus`,
-                    desiredFormat
-                ];
-                
-                return possibleTypes.find(mimeType => 
-                    MediaRecorder.isTypeSupported(mimeType)
-                );
-            }
+    // 处理录制恢复事件
+    function handleRecordingResume() {
+        if (pausedTime) {
+            recordingStartTime += (Date.now() - pausedTime);
+            pausedTime = 0;
+        }
+        updateStatus("录制已恢复");
+    }
 
-            // 保存录制内容
-            function saveRecording() {
-                if (recordedChunks.length === 0) {
-                    showError("没有录制内容可保存");
-                    return;
-                }
+    // 处理录制错误事件
+    function handleRecordingError(event) {
+        showError(`录制错误: ${event.error.name}`);
+        updateStatus("录制失败");
+        cleanup();
+    }
 
-                const blob = new Blob(recordedChunks, { 
-                    type: mediaRecorder.mimeType 
-                });
-                
-                const url = URL.createObjectURL(blob);
-                const formatExtension = getFormatExtension(mediaRecorder.mimeType);
-                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-                
-                const link = document.createElement("a");
-                link.href = url;
-                link.download = `recording-${timestamp}.${formatExtension}`;
-                link.click();
-                
-                // 释放内存
-                URL.revokeObjectURL(url);
-            }
+    // 保存录制内容
+    function saveRecording() {
+        if (recordedChunks.length === 0) {
+            showError("没有录制内容可保存");
+            return;
+        }
 
-            // 获取文件扩展名
-            function getFormatExtension(mimeType) {
-                const extensions = {
-                    'video/webm': 'webm',
-                    'video/mp4': 'mp4',
-                    'video/ogg': 'ogg',
-                    'image/gif': 'gif'
-                };
-                return extensions[mimeType.split(';')[0]] || 'webm';
-            }
-
-            // 更新录制时间显示
-            function updateRecordingTime() {
-                const seconds = Math.floor((Date.now() - recordingStartTime) / 1000);
-                const minutes = Math.floor(seconds / 60);
-                const remainingSeconds = seconds % 60;
-                updateStatus(`录制中... ${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`);
-            }
-
-            // 处理流结束
-            function handleStreamEnd() {
-                if (mediaRecorder && mediaRecorder.state === 'recording') {
-                    mediaRecorder.stop();
-                }
-                cleanup();
-                updateStatus("屏幕共享已停止");
-            }
-
-            // 清理资源
-            function cleanup() {
-                if (mediaStream) {
-                    mediaStream.getTracks().forEach(track => track.stop());
-                    mediaStream = null;
-                }
-                
-                if (videoElement.srcObject) {
-                    videoElement.srcObject = null;
-                }
-                
-                recordedChunks = [];
-                clearInterval(recordingTimer);
-                
-                startSharingButton.disabled = false;
-                startRecordingButton.disabled = true;
-                stopRecordingButton.disabled = true;
-            }
-
-            // 显示错误信息
-            function showError(message) {
-                errorMessage.textContent = message;
-                console.error(message);
-            }
-
-            // 清除错误信息
-            function clearError() {
-                errorMessage.textContent = '';
-            }
-
-            // 更新状态信息
-            function updateStatus(message) {
-                statusElement.textContent = message;
-            }
-
-            // 页面卸载前清理
-            window.addEventListener('beforeunload', () => {
-                if (mediaRecorder && mediaRecorder.state === 'recording') {
-                    return "您正在录制屏幕，确定要离开吗？";
-                }
-            });
+        const blob = new Blob(recordedChunks, { 
+            type: mediaRecorder.mimeType 
         });
-    </script>
+        
+        const url = URL.createObjectURL(blob);
+        const formatExtension = getFormatExtension(mediaRecorder.mimeType);
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `recording-${timestamp}-part${currentRecordingNumber}.${formatExtension}`;
+        link.click();
+        
+        // 释放内存
+        URL.revokeObjectURL(url);
+        recordedChunks = [];
+    }
+
+    // 处理流结束
+    function handleStreamEnd() {
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+            mediaRecorder.stop();
+        }
+        cleanup();
+        updateStatus("屏幕共享已停止");
+        enableControls(true);
+    }
+
+    // 清理资源
+    function cleanup() {
+        if (mediaStream) {
+            mediaStream.getTracks().forEach(track => track.stop());
+            mediaStream = null;
+        }
+        
+        if (videoElement.srcObject) {
+            videoElement.srcObject = null;
+        }
+        
+        recordedChunks = [];
+        clearInterval(recordingInterval);
+        clearTimeout(autoStopTimer);
+        
+        startSharingButton.disabled = false;
+        startRecordingButton.disabled = true;
+        pauseRecordingButton.disabled = true;
+        stopRecordingButton.disabled = true;
+        startRecordingButton.classList.remove("recording");
+        
+        currentRecordingNumber = 1;
+        timerElement.textContent = "00:00:00";
+    }
+
+    // 更新录制时间
+    function updateRecordingTime() {
+        if (isPaused) return;
+        
+        const elapsedMs = Date.now() - recordingStartTime;
+        const date = new Date(elapsedMs);
+        const hours = date.getUTCHours().toString().padStart(2, '0');
+        const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+        const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+        
+        timerElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // 启用/禁用控件
+    function enableControls(enable) {
+        startSharingButton.disabled = !enable;
+        displayTypeRadios.forEach(radio => {
+            radio.disabled = !enable;
+        });
+        recordMicrophoneCheckbox.disabled = !enable;
+        enableHardwareAccelerationCheckbox.disabled = !enable;
+        resolutionSelect.disabled = !enable;
+        bitrateSelect.disabled = !enable;
+        formatSelect.disabled = !enable;
+        fpsSelect.disabled = !enable;
+        qualitySelect.disabled = !enable;
+        audioBitrateSelect.disabled = !enable;
+    }
+
+    // 获取分辨率宽度
+    function getResolutionWidth() {
+        const resolution = resolutionSelect.value;
+        const resolutions = {
+            '360': 640,
+            '480': 854,
+            '720': 1280,
+            '1080': 1920,
+            '1440': 2560,
+            '2160': 3840,
+            '4320': 7680,
+            '8640': 15360
+        };
+        return resolutions[resolution] || 3840;
+    }
+
+    // 获取分辨率高度
+    function getResolutionHeight() {
+        const resolution = resolutionSelect.value;
+        const resolutions = {
+            '360': 360,
+            '480': 480,
+            '720': 720,
+            '1080': 1080,
+            '1440': 1440,
+            '2160': 2160,
+            '4320': 4320,
+            '8640': 8640
+        };
+        return resolutions[resolution] || 2160;
+    }
+
+    // 获取支持的MIME类型
+    function getSupportedMimeType(desiredFormat) {
+        const possibleTypes = [
+            `${desiredFormat};codecs=vp9,opus`,
+            `${desiredFormat};codecs=vp8,opus`,
+            `${desiredFormat};codecs=h265,opus`,
+            `${desiredFormat};codecs=h264,opus`,
+            `${desiredFormat};codecs=av1,opus`,
+            desiredFormat
+        ];
+        
+        for (const mimeType of possibleTypes) {
+            if (MediaRecorder.isTypeSupported(mimeType)) {
+                return mimeType;
+            }
+        }
+        return null;
+    }
+
+    // 获取文件扩展名
+    function getFormatExtension(mimeType) {
+        const extensions = {
+            'video/webm': 'webm',
+            'video/mp4': 'mp4',
+            'video/x-matroska': 'mkv',
+            'video/ogg': 'ogv'
+        };
+        return extensions[mimeType.split(';')[0]] || 'webm';
+    }
+
+    // 显示错误
+    function showError(message) {
+        errorMessage.textContent = message;
+        console.error(message);
+    }
+
+    // 清除错误
+    function clearError() {
+        errorMessage.textContent = '';
+    }
+
+    // 更新状态
+    function updateStatus(message) {
+        statusElement.textContent = message;
+    }
+
+    // 页面卸载前警告
+    window.addEventListener('beforeunload', (e) => {
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+            e.preventDefault();
+            return e.returnValue = "您正在录制屏幕，确定要离开吗？";
+        }
+    });
+});
+</script>
 </body>
 </html>
