@@ -21,6 +21,8 @@
     }
 
     .home {
+    display: flex;
+  flex-direction: column; /* 使子元素垂直排列 */
     justify-content: center;  /* 水平居中 */
     align-items: center;
     display: flex;
