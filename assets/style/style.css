@@ -24,8 +24,8 @@
     justify-content: center;  /* 水平居中 */
     align-items: center;
     display: flex;
-    flex-wrap: wrap
-    min-height: 100hv;
+    flex-wrap: wrap;
+    height: calc(100vh - 20px);
     }
 
 
