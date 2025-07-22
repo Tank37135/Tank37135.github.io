@@ -271,7 +271,7 @@ img {
             border-right: 2px solid blue; 
             display: inline-block;
             padding-right: 1px;
-            white-space: nowrap;
+            white-space: pre-wrap;
             overflow: hidden;
             animation: blink 0.8s infinite step-end;
         }
