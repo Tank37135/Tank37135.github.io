@@ -14,8 +14,8 @@
     }
     
     .avatar{
-        width: 200px;           /* 设置图片宽度 */
-    height: 200px;          /* 设置图片高度，保持正方形 */
+        width: 150px;           /* 设置图片宽度 */
+    height: 150px;          /* 设置图片高度，保持正方形 */
     border-radius: 50%;     /* 使图片变成圆形 */
     object-fit: cover;
     }
@@ -25,7 +25,7 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    height: calc(100vh - 20px);
+    min-height: calc(100vh - 20px);
     }
 
 .body{
