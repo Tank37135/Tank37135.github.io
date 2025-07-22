@@ -197,8 +197,9 @@
     <section class="home section">
 
         <img class="avatar" src="assets/images/png/home.png" alt="Tank37135"><br>
-        <h1>Tank37135 Blog</h1><br><hr>
+        <h1>Tank37135 Blog</h1>
         <div id="text"></div>
+        <a href="category/tools/" target="_blank">在线工具</a><a href="category/article/" target="_blank">文章</a>
     </section>
 
     <!-- 其他section -->
@@ -401,7 +402,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let index = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let textElement = document.getElementById('text');
+let textElement = document.getElementById('text');
+textElement.textContent = " "; // 初始设置为一个空格
 
         function typeText() {
             let currentMessage = sentences[index];
