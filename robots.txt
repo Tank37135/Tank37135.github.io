@@ -1,17 +1,32 @@
+# 允许所有爬虫访问网站
 User-agent: *
-Allow: /  
+Allow: /
 
-Disallow: /index.html.bak
+# 禁止抓取不必要的临时文件和页面
 Disallow: /404.html
 Disallow: /Recovery.html
 Disallow: /LICENSE.md
+Disallow: /BingSiteAuth.xml
+Disallow: /index.html.bak
 Disallow: /*.bak$
 Disallow: /*.zip$
+Disallow: /download/zip/
 
+# 禁止抓取静态资源文件
+Disallow: /assets/video/
+Disallow: /assets/images/
+Disallow: /assets/audio/
+
+# 禁止抓取特定目录内容
+Disallow: /opus/
+Disallow: /article/
+
+# 针对特定爬虫设置抓取延迟
 User-agent: bingbot
-Crawl-delay: 2
+Crawl-delay: 5
 
 User-agent: Googlebot
-Crawl-delay: 2
+Crawl-delay: 3
 
+# 网站地图位置
 Sitemap: https://tank37135.github.io/sitemap.xml
