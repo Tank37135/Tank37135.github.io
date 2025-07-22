@@ -28,7 +28,9 @@
     height: calc(100vh - 20px);
     }
 
-
+.body{
+padding-top: 0px;
+}
 
     .a1 {
         font-size: 25px;
