@@ -20,10 +20,12 @@
             right: 0px; 
         }
 
-    .section1 {
-        display: flex;
+    .home {
+    justify-content: center;  /* 水平居中 */
+    align-items: center;
+    display: flex;
     flex-wrap: wrap
-    position: relative;
+    height: calc(100vh - 20px);
     }
 
 
