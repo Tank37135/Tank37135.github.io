@@ -13,12 +13,12 @@
         position: relative;
     }
     
-    
-            .image {
-            position: absolute;
-            bottom: 0px; 
-            right: 0px; 
-        }
+    .avatar{
+        width: 200px;           /* 设置图片宽度 */
+    height: 200px;          /* 设置图片高度，保持正方形 */
+    border-radius: 50%;     /* 使图片变成圆形 */
+    object-fit: cover;
+    }
 
     .home {
     justify-content: center;  /* 水平居中 */
@@ -29,11 +29,6 @@
     }
 
 
-    .links {
-        display: flex;
-        flex-direction: column;
-                align-items: center;
-    }
 
     .a1 {
         font-size: 25px;
