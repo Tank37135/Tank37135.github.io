@@ -272,6 +272,7 @@ img {
             display: inline-block;
             padding-right: 1px;
             white-space: nowrap;
+            min-height: 2px; 
             overflow: hidden;
             animation: blink 0.8s infinite step-end;
         }
