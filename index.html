@@ -18,22 +18,6 @@
 </head>
 <style>
 
-#text {
-            border-right: 2px solid blue; 
-            display: inline-block;
-            padding-right: 1px;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: blink 0.8s infinite step-end;
-        }
-
-        @keyframes blink {
-            50% {
-                border-color: transparent;
-            }
-        }
-
-
     /* 加载动画容器 */
             /* 加载动画容器 */
             .l-body {
@@ -206,7 +190,6 @@
             <li><a href="category/article/" class="menu-item" target="_blank">文章</a></li>
             <li><a href="category/tools/" class="menu-item" target="_blank">在线工具</a></li>
             <li><a href="about.html" class="menu-item" target="_blank">关于</a></li>
-            <li><a class="menu-item" href="javascript:void(0);" onclick="window.close();">关机</a></li>
         </ul>
     </nav>
 
@@ -214,8 +197,9 @@
     <section class="home section">
 
         <img class="avatar" src="assets/images/png/home.png" alt="Tank37135">
-        <h1>Tank37135 Blog</h1>
+        <h1>Tank37135 Blog</h1><br>
         <div id="text"></div>
+        <a href="category/article/" target="_blank">文章</a><a href="category/tools/" target="_blank">在线工具</a>
     </section>
 
     <!-- 其他section -->
@@ -308,6 +292,9 @@
     
 // 修改后的JavaScript部分
 document.addEventListener('DOMContentLoaded', function() {
+
+
+
     const loadingContainer = document.querySelector('.l-body');
     const loadingText = document.querySelector('.l-title');
     const timeoutMessage = document.querySelector('.timeout-message');
@@ -382,6 +369,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+
+
 // 根据当前时间获取问候语
         function getGreeting() {
             const hour = new Date().getHours();
@@ -437,6 +427,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         typeText();
+
+
+
     </script>
     
         <script type="text/javascript" src="assets/script/background.js"></script>
