@@ -298,65 +298,9 @@
     <footer>
         &copy; 2025 Tank37135. All rights reserved.
     </footer>
-    <script type="text/javascript" src="assets/script/background.js"></script>
-    <script type="text/javascript" src="assets/script/script.js"></script>
-    <script type="text/javascript" src="assets/script/subassembly.js"></script>
+
     <script>
-    // 根据当前时间获取问候语
-        function getGreeting() {
-            const hour = new Date().getHours();
-            
-            if (hour >= 5 && hour < 11) {
-                return "早上好，呼吸新鲜的空气吧";
-            } else if (hour >= 11 && hour < 13) {
-                return "中午好，吃午餐了吗";
-            } else if (hour >= 13 && hour < 18) {
-                return "下午好，去活动一下吧";
-            } else if (hour >= 18 && hour < 22) {
-                return "晚上好，记得准时睡觉哦";
-            } else {
-                return "休息一下吧，熬夜对身体不好";
-            }
-        }
-
-        // 打字机效果
-        const sentences = [
-            getGreeting(),
-            "记录生活，分享技术",
-            "html实践网站啦~",
-            "天天开心一点，不要emo了~",
-            "海内存知己，天涯若比邻"
-        ];
-
-        let index = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let textElement = document.getElementById('text');
-
-        function typeText() {
-            let currentMessage = sentences[index];
-            if (isDeleting) {
-                if (charIndex > 0) {
-                    charIndex--;
-                    textElement.textContent = currentMessage.substring(0, charIndex);
-                } else {
-                    isDeleting = false;
-                    index = (index + 1) % sentences.length;
-                }
-            } else {
-                if (charIndex < currentMessage.length) {
-                    charIndex++;
-                    textElement.textContent = currentMessage.substring(0, charIndex);
-                } else {
-                    isDeleting = true;
-                    setTimeout(typeText, 3000); // 等待3秒后删除
-                    return;
-                }
-            }
-            setTimeout(typeText, isDeleting ? 60 : 80); // 加快打字速度
-        }
-
-        typeText();
+    
     
     
     
@@ -438,6 +382,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
     </script>
+    
+        <script type="text/javascript" src="assets/script/background.js"></script>
+    <script type="text/javascript" src="assets/script/script.js"></script>
+    <script type="text/javascript" src="assets/script/subassembly.js"></script>
 </body>
 
 </html>
