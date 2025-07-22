@@ -17,6 +17,23 @@
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
 </head>
 <style>
+
+#text {
+            border-right: 2px solid blue; 
+            display: inline-block;
+            padding-right: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blink 0.8s infinite step-end;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+
     /* 加载动画容器 */
             /* 加载动画容器 */
             .l-body {
