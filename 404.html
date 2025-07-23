@@ -49,7 +49,7 @@
             timerElement.textContent = countdown;
             if (countdown === 0) {
                 clearInterval(interval);
-                if (previousPage) {
+                if (previousPage && previousPage !== window.location.href) {
                     window.history.back(); // 自动返回上一页
                 } else {
                     window.location.href = "https://tank37135.github.io"; // 跳转到指定URL
