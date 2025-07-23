@@ -44,14 +44,19 @@
         // 检查是否有上一页
         const previousPage = document.referrer;
         
+        // 标记是否已成功执行返回操作
+        let hasReturned = false;
+
         const interval = setInterval(() => {
             countdown--;
             timerElement.textContent = countdown;
             if (countdown === 0) {
                 clearInterval(interval);
-                if (previousPage && previousPage !== window.location.href) {
-                    window.history.back(); // 自动返回上一页
-                } else {
+                if (previousPage && !hasReturned) {
+                    window.history.back(); // 尝试返回上一页
+                    hasReturned = true; // 标记已执行返回操作
+                }
+                if (!hasReturned) {
                     window.location.href = "https://tank37135.github.io"; // 跳转到指定URL
                 }
             }
