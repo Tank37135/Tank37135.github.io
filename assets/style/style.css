@@ -13,12 +13,28 @@
         position: relative;
     }
     
-    .avatar{
-        width: 150px;           /* 设置图片宽度 */
+.avatar {
+    width: 150px;           /* 设置图片宽度 */
     height: 150px;          /* 设置图片高度，保持正方形 */
     border-radius: 50%;     /* 使图片变成圆形 */
     object-fit: cover;
-    }
+    position: relative;
+    background: linear-gradient(to bottom right, #1a71d5, #c469f4); /* 渐变背景 */
+    padding: 5px;           /* 给图片增加边距来显示边框 */
+    box-sizing: border-box; /* 确保边距不会影响图片的尺寸 */
+}
+
+.avatar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;     /* 使边框变成圆形 */
+    background: inherit;    /* 继承渐变背景 */
+    z-index: -1;            /* 确保边框在图片下层 */
+}
 
     .home {
     display: flex;
@@ -42,9 +58,7 @@ padding-top: 0px;
         margin-left: 50px;
     }
     @media (max-width: 768px) {
-    .section1 {
-        flex-direction: column; /* 设置为纵向排列 */
-    }
+
     .a1{
 
     margin-left: 0px;
