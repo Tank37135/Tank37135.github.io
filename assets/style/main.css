@@ -301,7 +301,7 @@ aside{
 
 
 /* 设置 main 的最大宽度为 100%，并保持水平居中 */
-main {
+.main {
   max-width: 1200px; /* 允许 main 容器自适应宽度 */
   width: 100%; /* 确保容器宽度跟随屏幕宽度变化 */
   margin: 0 auto; /* 横向居中 */
@@ -327,7 +327,7 @@ aside {
 
 /* 屏幕较小时，main 中的元素上下排列 */
 @media (max-width: 767px) {
-  main {
+  .main {
     flex-direction: column; /* 垂直排列 */
     align-items: center; /* 使内容居中 */
   }

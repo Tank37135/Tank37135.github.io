@@ -1,13 +1,10 @@
 .header {
-    top: 0;
-    /* 固定在顶部 */
-    left: 0;
-    /* 左侧对齐 */
-    right: 0;
-    /* 右侧对齐 */
-    width: 100%;
-    /* 全宽度 */
-    z-index: 1000;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+width: 100%;
+z-index: 1000;
 
 }
 
