@@ -6,11 +6,11 @@
                     navigator.clipboard.writeText(code).then(() => {
          const originalText = button.textContent;
          button.textContent = '已复制!';
-         button.style.background = '#28a745';
+         button.style.background = '#c469f4';
          
          setTimeout(() => {
              button.textContent = originalText;
-             button.style.background = '#ff9900';
+             button.style.background = '#1a71d5';
          }, 2000);
                     }).catch(err => {
          console.error('复制失败:', err);

@@ -1,27 +1,66 @@
-    .section {
-        background-color: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-        -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-        border-radius: 12px;
-        -webkit-border-radius: 12px;
-        color: rgba(255, 255, 255, 0.75);
-        padding: 10px;
-        margin: 10px;
-        position: relative;
-    }
-    
+.header {
+    top: 0;
+    /* 固定在顶部 */
+    left: 0;
+    /* 左侧对齐 */
+    right: 0;
+    /* 右侧对齐 */
+    width: 100%;
+    /* 全宽度 */
+    z-index: 1000;
+
+}
+
+.section {
+    /* 设置背景颜色，带有透明度 */
+    background-color: rgba(255, 255, 255, 0.18);
+
+    /* 应用模糊效果 */
+    backdrop-filter: blur(4px);
+    /* 兼容Safari浏览器的模糊效果 */
+    -webkit-backdrop-filter: blur(4px);
+
+    /* 设置边框颜色和透明度 */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    /* 添加阴影效果 */
+    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    /* 兼容Safari浏览器的阴影效果 */
+    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+
+    /* 设置圆角边框 */
+    border-radius: 12px;
+    /* 兼容Safari浏览器的圆角效果 */
+    -webkit-border-radius: 12px;
+
+    /* 设置字体颜色和透明度 */
+    color: rgba(255, 255, 255, 0.75);
+
+    /* 内边距，增加元素内部空间 */
+    padding: 10px;
+
+    /* 外边距，增加元素之间的间隔 */
+    margin: 10px;
+
+    /* 设置元素的定位为相对定位 */
+    position: relative;
+}
+
 .avatar {
-    width: 150px;           /* 设置图片宽度 */
-    height: 150px;          /* 设置图片高度，保持正方形 */
-    border-radius: 50%;     /* 使图片变成圆形 */
+    width: 150px;
+    /* 设置图片宽度 */
+    height: 150px;
+    /* 设置图片高度，保持正方形 */
+    border-radius: 50%;
+    /* 使图片变成圆形 */
     object-fit: cover;
     position: relative;
-    background: linear-gradient(to bottom right, #1a71d5, #c469f4); /* 渐变背景 */
-    padding: 5px;           /* 给图片增加边距来显示边框 */
-    box-sizing: border-box; /* 确保边距不会影响图片的尺寸 */
+    background: linear-gradient(to bottom right, #1a71d5, #c469f4);
+    /* 渐变背景 */
+    padding: 5px;
+    /* 给图片增加边距来显示边框 */
+    box-sizing: border-box;
+    /* 确保边距不会影响图片的尺寸 */
 }
 
 .avatar::before {
@@ -31,54 +70,62 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 50%;     /* 使边框变成圆形 */
-    background: inherit;    /* 继承渐变背景 */
-    z-index: -1;            /* 确保边框在图片下层 */
+    border-radius: 50%;
+    /* 使边框变成圆形 */
+    background: inherit;
+    /* 继承渐变背景 */
+    z-index: -1;
+    /* 确保边框在图片下层 */
 }
 
-    .home {
-    display: flex;
-  flex-direction: column; /* 使子元素垂直排列 */
-    justify-content: center;  /* 水平居中 */
+.home {
+
+    min-height: calc(100vh - 20px);
+
+}
+
+.centerbox{
+        display: flex;
+    flex-direction: column;
+    /* 使子元素垂直排列 */
+    justify-content: center;
+    /* 水平居中 */
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    min-height: calc(100vh - 20px);
-
-    }
-
-.body{
-padding-top: 0px;
 }
+
+.body {
+    padding-top: 0px;
+}
+
+.a1 {
+    font-size: 25px;
+    margin: 10px 0;
+
+    margin-left: 50px;
+}
+
+@media (max-width: 768px) {
 
     .a1 {
-        font-size: 25px;
-        margin: 10px 0;
 
-        margin-left: 50px;
+        margin-left: 0px;
     }
-    @media (max-width: 768px) {
 
-    .a1{
-
-    margin-left: 0px;
-    }
-    .links{
-    align-items: flex-start;
+    .links {
+        align-items: flex-start;
     }
 }
 
-
-
-.a2{
-position: absolute;
-right: 0;  /* 靠右对齐 */
-    bottom: 0; /* 靠下对齐 */
-    padding: 10px; 
+.a2 {
+    position: absolute;
+    right: 0;
+    /* 靠右对齐 */
+    bottom: 0;
+    /* 靠下对齐 */
+    padding: 10px;
 }
-
-
-
 
 
 

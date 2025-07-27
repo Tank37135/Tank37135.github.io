@@ -1,4 +1,18 @@
-/* Tank37135.github.io-TKB6 All rights reserved-Tank37135 */
+/* 定义颜色变量 */
+:root {
+    --primary-bg: #1a71d5;
+    --secondary-bg: #c469f4;
+    --button-bg-start: #8ae6f3;
+    --button-bg-end: #e18af3;
+    --button-hover-color: #d6e6f9;
+    --link-color: #4dec50;
+    --blockquote-bg-start: #6a4c9c;
+    --blockquote-bg-end: #9b5de5;
+    --blockquote-border: #1a71d5;
+    --footer-text-color: rgba(255, 255, 255, 0.75);
+    --footer-border-color: rgba(255, 255, 255, 0.18);
+}
+
 /* 全局(初始化) */
 * {
   margin: 0;
@@ -23,52 +37,52 @@ table {
   border-spacing: 0;
 }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #2b2d42;
-            background: linear-gradient(to bottom right, #1a71d5, #c469f4);
-        
-            min-height: 100vh; /* 确保body至少和视口一样高 */
-            background-size: cover; /* 覆盖整个区域 */
-            padding-top: 90px;
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #2b2d42;
+    background: linear-gradient(to bottom right, var(--primary-bg), var(--secondary-bg));
+    min-height: 100vh; /* 确保body至少和视口一样高 */
+    background-size: cover; /* 覆盖整个区域 */
+    padding-top: 90px;
+}
 
 html {
-            scroll-behavior: smooth;
-        }
-        
+    scroll-behavior: smooth;
+}
+
 /* 按钮 */
 button {
-            position: relative;
-            background: linear-gradient(to right, #8ae6f3, #e18af3);
-            background-size: 0 2px; 
-            background-position: bottom right; 
-            background-repeat: repeat-y; 
-            color: rgba(255, 255, 255, 0.7);
-            padding: 10px 20px;
-            margin: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            border-radius: 10px;
-            overflow: hidden;
-            font-weight: bold;
-            transition: background-size 0.3s ease;
-        }
-        
-        button:hover {
-            background-size: 100% 2px; 
-            background-position: bottom left; 
-            color: #d6e6f9;
-        }
+    position: relative;
+    background: linear-gradient(to right, var(--button-bg-start), var(--button-bg-end));
+    background-size: 0 2px; 
+    background-position: bottom right; 
+    background-repeat: repeat-y; 
+    color: rgba(255, 255, 255, 0.7);
+    padding: 10px 20px;
+    margin: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    font-weight: bold;
+    transition: background-size 0.3s ease;
+}
+
+button:hover {
+    background-size: 100% 2px; 
+    background-position: bottom left; 
+    color: var(--button-hover-color);
+}
+
 /* 链接 */
-    a {
-    background: linear-gradient(to right, #8ae6f3, #e18af3); 
+a {
+    background: linear-gradient(to right, var(--button-bg-start), var(--button-bg-end)); 
     background-size: 0 2px; 
     background-position: bottom right; 
     background-repeat: no-repeat;
     text-decoration: none; 
-    color: #4dec50; 
+    color: var(--link-color); 
     padding: 5px 10px; 
     border-radius: 5px; 
     transition: background-size 0.3s ease; 
@@ -77,14 +91,14 @@ button {
 a:hover {
     background-size: 100% 2px; 
     background-position: bottom left; 
-    color: #4dec50; 
+    color: var(--link-color); 
 }
 
 /* 引用样式 */
 blockquote {
-    background: linear-gradient(to right, #6a4c9c, #9b5de5); 
+    background: linear-gradient(to right, var(--blockquote-bg-start), var(--blockquote-bg-end)); 
     padding: 1rem;
-    border-left: 4px solid #1a71d5;
+    border-left: 4px solid var(--blockquote-border);
     color: #d6e6f9;
     margin: 1rem 0;
     font-style: italic;
@@ -93,18 +107,18 @@ blockquote {
 
 /* 页脚 */
 footer {
-            text-align: center;
-            padding: 1rem;
-            backdrop-filter:
-                blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255,
-                    255, 255, 0.18);
-            box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-            -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-            color:
-                rgba(255, 255, 255, 0.75);
-        }
+
+            background-color: rgba(255, 255, 255, 0.2); 
+        text-align: center;
+        padding: 1rem;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+        -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+        color: rgba(255, 255, 255, 0.75);
+}
+
 /* 背景 */
         
         #canvas {
@@ -129,6 +143,12 @@ img {
     margin-bottom: 25px; 
     object-fit: contain;  
   }
+
+aside{
+    background-color: transparent;
+    border: none;
+}
+
 /* 导航栏 */
 /* Logo容器样式 */
         .logo-container {
@@ -248,13 +268,8 @@ img {
 
         
             header {
-            position: fixed;  /* 固定定位 */
-            top: 0;          /* 固定在顶部 */
-            left: 0;         /* 左侧对齐 */
-            right: 0;        /* 右侧对齐 */
-            width: 100%;     /* 全宽度 */
-            z-index: 1000; 
-            background-color: rgba(255, 255, 255, 0.2); /* 新增背景色，0.3是透明度 */
+
+            background-color: rgba(255, 255, 255, 0.2); 
         text-align: center;
         padding: 1rem;
         backdrop-filter: blur(6px);
@@ -282,3 +297,49 @@ img {
                 border-color: transparent;
             }
         }
+
+
+
+/* 设置 main 的最大宽度为 100%，并保持水平居中 */
+main {
+  max-width: 1200px; /* 允许 main 容器自适应宽度 */
+  width: 100%; /* 确保容器宽度跟随屏幕宽度变化 */
+  margin: 0 auto; /* 横向居中 */
+  display: flex; /* 使用 flexbox 布局 */
+  gap: 0px; /* 给元素之间加点间隙 */
+  box-sizing: border-box; /* 包括内边距和边框在内 */
+  padding: 0px; /* 侧边留出一点边距 */
+  align-items: flex-start; /* 垂直方向上对齐 */
+}
+
+article {
+    float: left;
+  width: 70%;
+}
+
+aside {
+    float: left;
+  width: 30%;
+}
+
+
+
+
+/* 屏幕较小时，main 中的元素上下排列 */
+@media (max-width: 767px) {
+  main {
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 使内容居中 */
+  }
+
+  aside {
+    width: 100%; /* 侧边栏在小屏幕上宽度自适应 */
+    max-width: none; /* 取消最大宽度 */
+    min-width: 0; /* 取消最小宽度 */
+  }
+  article{
+    width: 100%;
+  }
+
+}
+

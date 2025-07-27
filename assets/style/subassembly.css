@@ -1,18 +1,10 @@
 /* Tank37135.github.io-TKB6 All rights reserved-Tank37135 */
-/* 代码块 */
 .code-block {
     position: relative;
     margin: 20px;
 }
 
 .code-block button {
-            position: relative;
-            background: linear-gradient(to right, #1a71d5, #c469f4);
-            background-size: 0 2px; 
-            background-position: bottom right; 
-            background-repeat: repeat-y; 
-            color: #386f92;
-
     position: absolute;
     right: 10px;
     top: 10px;
@@ -21,26 +13,29 @@
     cursor: pointer;
     border-radius: 4px;
     z-index: 1;
-                transition: background-size 0.3s ease;
+    background: #1a71d5;
+    background-size: 0 2px; 
+    background-position: bottom right; 
+    background-repeat: repeat-y; 
+    color: rgba(255, 255, 255, 0.75);
+    transition: background-size 0.3s ease;
 }
 
 .code-block button:hover {
-     background-size: 100% 2px; 
-            background-position: bottom left; 
-            color: #d6e6f9;
+    background-size: 100% 2px; 
+    background-position: bottom left; 
+    background: #c469f4;
+    color: #d6e6f9;
 }
 
 pre {
     background: linear-gradient(to right, #04385e, #2b014a); 
-    /* 深灰色背景 */
     padding: 15px;
     border-radius: 5px;
     overflow-x: auto;
     margin: 0;
     color: #ffffff;
-    /* 白色文本 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* 添加阴影效果 */
 }
 
 .code2 {
@@ -48,118 +43,34 @@ pre {
     font-size: 14px;
     line-height: 1.4;
     color: inherit;
-    /* 继承pre标签的文本颜色 */
 }
 
+/* 滚动条样式 - 跨浏览器兼容且使用渐变色 */
+/* WebKit/Blink 浏览器 (Chrome, Safari, Edge) */
 pre::-webkit-scrollbar {
     height: 8px;
 }
 
 pre::-webkit-scrollbar-track {
-    background: #1e1e1e;
+    background: transparent;
 }
 
 pre::-webkit-scrollbar-thumb {
-    background: #888;
+    /* 使用与按钮相同的渐变色 */
+    background: linear-gradient(to right, #1a71d5, #c469f4);
     border-radius: 4px;
+    /* 添加微妙的阴影增强立体感 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 pre::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    /* 悬停时略微加深渐变 */
+    background: linear-gradient(to right, #155db8, #b056e0);
 }
 
-/* 工具栏(待维护) */
-.toolbar-container {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 1000;
-        }
-        
-        .toolbar-button {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: linear-gradient(to right, #1a71d5, #c469f4) bottom / 0% 2px repeat-y;
-            color: #386f92;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: 
-                background-size 0.3s ease,
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                opacity 0.2s ease;
-            opacity: 0.9;
-            transform: scale(1);
-            will-change: transform;
-        }
-        
-        .toolbar-button:hover {
-            background-size: 100% 2px;
-            transform: translateY(-3px) scale(1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-            opacity: 1;
-            color: #d6e6f9;
-        }
-        
-        .toolbar-button.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(10px) scale(1);
-            position: absolute;
-        }
-        
-        .toolbar-button:active {
-            transform: scale(0.92) !important;
-            transition: transform 0.1s ease !important;
-        }
-        
-        /* 音符禁用状态 */
-        .music-icon.disabled {
-            position: relative;
-        }
-        
-        .music-icon.disabled::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 30px;
-            height: 2px;
-            background-color: white;
-            transform: translate(-50%, -50%) rotate(45deg);
-            transform-origin: center;
-        }
-        
-        /* 齿轮旋转效果 */
-        .settings-icon {
-            transition: transform 0.5s ease;
-        }
-        
-        #settingsBtn:hover .settings-icon {
-            transform: rotate(360deg);
-        }
-        
-        #settingsBtn:not(:hover) .settings-icon {
-            transform: rotate(0deg);
-        }
-        
-        /* 按钮容器相对定位，用于绝对定位的隐藏按钮 */
-        .button-wrapper {
-            position: relative;
-            height: 50px;
-            width: 50px;
-            transition: height 0.3s ease;
-        }
-        
-        .button-wrapper.collapsed {
-            height: 0;
-        }
+/* Firefox */
+pre {
+    scrollbar-width: thin;
+    /* Firefox 不支持渐变作为滚动条颜色，使用最接近的纯色 */
+    scrollbar-color: #7a5dd8 transparent;
+}
