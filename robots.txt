@@ -23,10 +23,10 @@ Disallow: /article/
 
 # 针对特定爬虫设置抓取延迟
 User-agent: bingbot
-Crawl-delay: 5
+Crawl-delay: 4
 
 User-agent: Googlebot
-Crawl-delay: 3
+Crawl-delay: 2
 
 # 网站地图位置
 Sitemap: https://tank37135.github.io/sitemap.xml
