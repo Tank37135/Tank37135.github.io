@@ -1,587 +1,930 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="icon" href="../../assets/images/logo/favicon.ico" type="image/x-icon">
-
-    <title>网址导航</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>网址导航-Tank37135</title>
+    <meta name="description" content="搜索引擎多合一,为用户提供新闻、视频、游戏、小说、彩票等各种分类和网站入口，简单便捷的上网导航">
+    <meta name="keywords" content="网址导航, 网页搜索, 网址合集">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../assets/style/main.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/style/style.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/style/subassembly.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/style/background.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
     <style>
-.box {
-	width: 140px;
-  /* 调整方框的宽度 */
-	height: 65px;
-  /* 调整方框的高度 */
-	background-color: #fff;
-	border: 1px solid #ccc;
-	margin: 5px;
-	text-align: left;
-	padding: 8px;
-  /* 减小内边距 */
-	box-sizing: border-box;
-	border-radius: 8px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	transition: box-shadow 0.3s ease;
-	display: flex;
-	align-items: center;
- /* 垂直居中 */
-}
+                :root {
+            --primary-color: #6a5acd;       /* 蓝紫色 */
+            --primary-light: #9370db;       /* 浅蓝紫 */
+            --secondary-color: #4169e1;     /* 皇家蓝 */
+            --accent-color: #8a2be2;        /* 蓝紫 */
+            --text-color: #333;             /* 深灰文字 */
+            --bg-color: #f8f9fa;            /* 浅灰背景 */
+            --card-bg: #ffffff;             /* 白色卡片 */
+            --border-color: #e0e0e0;        /* 浅灰边框 */
+        }
 
-.box:hover {
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
 
-.logo1 {
-	width: 25px;
-  /* 限制Logo图片大小 */
-	height: 25px;
-	margin-right: 8px;
-  /* 减小Logo与文字之间的间隔 */
-}
+        .button {
+            width: 42px;
+            height: 42px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.title {
-	font-size: 12px;
-  /* 减小标题字体 */
-	font-weight: bold;
-	color: #333;
-	text-decoration: none;
-	display: block;
-}
+        .button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
 
-.title:hover {
-	text-decoration: underline;
-}
+        /* 齿轮按钮动画效果 */
+        #settingsButton i {
+            transition: transform 0.5s ease;
+        }
 
-.description {
-	font-size: 10px;
-  /* 减小简介字体 */
-	color: #666;
-}
+        #settingsButton:hover i {
+            transform: rotate(360deg);
+        }
 
-.text-content {
-	flex-grow: 1;
- /* 确保文字部分占用剩余空间 */
-}
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease-out;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
 
-    
-    
-    
-    
-    
-    
-    /* 新增容器用于纵向排列 */
-.vertical-layout {
-	display: flex;
-	align-items: center;
- /* 居中对齐 */
-	width: 100%;
-	margin-top: 20px;
- /* 给容器添加间距 */
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	padding: 10px;
-}
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
 
-* {
-	box-sizing: border-box;
-}
+        .modal-container {
+            background-color: var(--card-bg);
+            border-radius: 14px;
+            width: 500px;
+            max-width: 90%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+            transform: scale(0.9) translateY(10px);
+            opacity: 0;
+            transition: 
+                transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.3),
+                opacity 0.15s ease;
+        }
 
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	background-color: #bcdefe;
-	color: #386f92;
-	max-width: 100vw; 
-}
+        .modal-overlay.active .modal-container {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            animation: quickBounce 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.3);
+        }
 
-.container {
-	text-align: center;
-	width: 100%;
-	padding: 20px;
-	box-sizing: border-box;
-	position: relative;
-	align-items: center;
- /* 垂直居中对齐 */
-	justify-content: space-between;
- /* 水平对齐，确保 logo 和输入框分布 */
-	position: relative;
-}
+        @keyframes quickBounce {
+            0% { transform: scale(0.9) translateY(10px); }
+            50% { transform: scale(1.03) translateY(-4px); }
+            70% { transform: scale(0.99) translateY(2px); }
+            100% { transform: scale(1) translateY(0); }
+        }
 
-.logo {
-	font-size: 36px;
-	font-weight: bold;
-	margin-bottom: 20px;
-	color: #007bff;
-}
+        .modal-header {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: center; /* 修改为居中对齐，因为移除了关闭按钮 */
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+        }
 
-.search-box {
-	position: relative;
-	width: 100%;
-	margin: 20px auto;
-}
+        .modal-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
 
-.search-input {
-	width: 100%;
-	padding: 10px 10px;
-	font-size: 18px;
-	border: 2px solid #007bff;
-	border-radius: 25px;
-	outline: none;
-}
+        .modal-body {
+            padding: 20px 24px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
 
-.search-input:focus {
-	border-color: #0056b3;
-}
+        .modal-footer {
+            padding: 16px 24px;
+            display: flex;
+            justify-content: flex-end;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+        }
 
-.search-icon {
-	position: absolute;
-	right: 10px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 20px;
-	height: 20px;
-	cursor: pointer;
-}
+        /* 页面内容样式 */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
 
-.settings-btn {
-	padding: 10px 20px;
-	margin-top: 20px;
-	background-color: transparent;
-	color: #007bff;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-	position: absolute;
-	right: 0;
-	border: 2px solid #386f92;
-}
 
-.settings-btn:hover {
-	background-color: #0056b3;
-	color: white;
-}
+        .section-link {
+            display: block;
+            margin: 12px 0;
+            padding: 12px 16px;
+            background-color: rgba(106, 90, 205, 0.08);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+            cursor: pointer;
+        }
 
-        /* Popup style */
-.popup {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	justify-content: center;
-	align-items: center;
-	animation: fadeIn 0.5s ease-out;
-}
+        .section-link:hover {
+            background-color: rgba(106, 90, 205, 0.15);
+            text-decoration: none;
+            transform: translateX(4px);
+        }
 
-.popup-content {
-	background-color: white;
-	width: 90%;
-	max-width: 500px;
-	padding: 20px;
-	border-radius: 10px;
-	display: flex;
-	flex-direction: column;
-	animation: slideUp 0.3s ease-out;
-}
+        .section h4 {
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
 
-.popup-header {
-	font-size: 24px;
-	font-weight: bold;
-	margin-bottom: 20px;
-	color: #007bff;
-}
+        .section p {
+            margin: 4px 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
 
-.popup-footer {
-	margin-top: 20px;
-	display: flex;
-	justify-content: space-between;
-}
+        /* 按钮样式 */
+        .mac-button {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
 
-.popup-footer button {
-	padding: 10px;
-	font-size: 16px;
-	cursor: pointer;
-	background-color: transparent;
-	border-radius: 10px;
-	transition: background-color 0.3s, color 0.3s;
-	border: 2px solid #386f92;
-}
+        .mac-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
 
-.popup-footer .confirm-btn {
-	color: #007bff;
-}
+        .mac-button:active {
+            background-color: var(--primary-color);
+            transform: translateY(0);
+        }
 
-.popup-footer .cancel-btn {
-	color: #007bff;
-}
+        /* 中心对齐 */
+        .center {
+            text-align: center;
+            display: block;
+            margin: 1.5rem auto;
+        }
+        .page-anchor {
+            display: block;
+            height: 0;
+            visibility: hidden;
+        }
+       .input-with-button {
+            min-width: 90%;
+            position: relative;
+            display: inline-block;
+        }
+       .input-with-button input[type="text"] {
+            padding-right: 40px; /* 按钮宽度 + 一定的间距 */
+        }
+       .input-with-button button {
+            position: absolute;
+            height: 65%;
+            right: 5px; 
+            padding: 5px 10px;
+        }
 
-.confirm-btn:hover {
-	background-color: #007bff;
-	color: white;
-}
+       .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* 自动填充，最小150px */
+            gap: 5px;
+        }
 
-.cancel-btn:hover {
-	background-color: #007bff;
-	color: white;
-}
+       .box {
+            height: 70px; 
+            display: flex;
+            flex-direction: column;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+       .pm{
+            padding: 2px;
+            margin: 5px;
+        }
+        a{
+            font-size: 0.9em;
+        }
 
-.search-engine-list {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	margin-bottom: 20px;
-	overflow-y: auto;
-	max-height: 200px;
-}
+        p{
+            text-indent: 10px;
+            font-size: 0.7em;
+        }
 
-.search-engine-item {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 10px;
-}
 
-.search-engine-item hr {
-	margin: 10px 0;
-	border: 0;
-	border-top: 1px solid #ccc;
-}
 
-.slider {
-	width: 20px;
-	height: 20px;
-	cursor: pointer;
-}
 
-.visit-btn {
-	background-color: transparent;
-	color: #007bff;
-	;
+
+
+            /* 弹窗样式 */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s ease-out;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+    }
+
+    .modal-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .modal-container {
+        background-color: var(--card-bg);
+        border-radius: 14px;
+        width: 500px;
+        max-width: 90%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        border: 1px solid var(--border-color);
+        transform: scale(0.9) translateY(10px);
+        opacity: 0;
+        transition: 
+            transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.3),
+            opacity 0.15s ease;
+    }
+
+    .modal-overlay.active .modal-container {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        animation: quickBounce 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.3);
+    }
+
+    @keyframes quickBounce {
+        0% { transform: scale(0.9) translateY(10px); }
+        50% { transform: scale(1.03) translateY(-4px); }
+        70% { transform: scale(0.99) translateY(2px); }
+        100% { transform: scale(1) translateY(0); }
+    }
+
+    .modal-header {
+        padding: 20px 24px;
+        display: flex;
+        justify-content: center; /* 修改为居中对齐，因为移除了关闭按钮 */
+        align-items: center;
+        border-bottom: 1px solid var(--border-color);
+        background-color: var(--card-bg);
+    }
+
+    .modal-header h3 {
+        color: var(--primary-color);
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .modal-body {
+        padding: 20px 24px;
+        overflow-y: auto;
+        flex-grow: 1;
+    }
+
+    .modal-footer {
+        padding: 16px 24px;
+        display: flex;
+        justify-content: flex-end;
+        background-color: var(--card-bg);
+        border-top: 1px solid var(--border-color);
+    }
+
+    /* 搜索引擎列表样式补充 */
+    .search-engine-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .search-engine-item {
+        padding: 12px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* 按钮样式优化 */
+    .modal-footer button {
+        margin-left: 10px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        background-color: var(--btn-bg);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .modal-footer button:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+
+    .modal-footer button:first-child {
+        margin-left: 0;
+    }
+
+    /* 复选框样式调整 */
+    .slider {
+        width: 40px;
+        height: 20px;
+        appearance: none;
+        background-color: #ddd;
+        border-radius: 10px;
+        position: relative;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .slider:checked {
+        background-color: var(--primary-color);
+    }
+
+    .slider::before {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        top: 2px;
+        left: 2px;
+        background-color: white;
+        transition: transform 0.2s ease;
+    }
+
+    .slider:checked::before {
+        transform: translateX(20px);
+
+
+
+        /* 透明按钮容器 */
+        .container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 10px;
-	border-radius: 5px;
-	cursor: pointer;
-}
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-.visit-btn:hover {
-	background-color: #007bff;
-	color: white;
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes slideUp {
-	from {
-		transform: translateY(50px);
-	}
-
-	to {
-		transform: translateY(0);
-	}
-}
-
-        /* Responsive Design */
-@media (max-width: 600px) {
-	.container {
-		padding: 10px;
-	}
-
-	.search-input {
-		font-size: 16px;
-	}
-
-	.popup-content {
-		width: 80%;
-	}
-
-	.popup-footer button {
-		font-size: 14px;
-	}
-}
     </style>
 </head>
-<body>
-<div class="container">
-    <div class="logo">Tank37135导航</div>
-    <div class="search-box">
-        <input type="text" class="search-input" id="search-input" placeholder="请输入搜索内容">
-        <svg id="search-icon" class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-    </div>
-    <button class="settings-btn" id="settings-btn">搜索引擎设置</button>
-    <br><br>
-
-    <div class="vertical-layout">
-     <!-- 新增纵向布局容器 -->
-     <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 1 Logo">
-      <div class="text-content">
-        <a href="https://www.minecraft.net/" target="_blank" class="title">我的世界官网</a>
-        <div class="description">我认为最棒的游戏</div>
-      </div>
-    </div>
-
-    <!-- Box 2 -->
-    <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 3 Logo">
-      <div class="text-content">
-        <a href="https://mc.163.com/" target="_blank" class="title">网易我的世界</a>
-        <div class="description">中国代理我的世界,免费</div>
-      </div>
-    </div>
-
-    <!-- Box 3 -->
-    <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 3 Logo">
-      <div class="text-content">
-        <a href="https://www.microsoft.com/" target="_blank" class="title">微软官网</a>
-        <div class="description">微软公司的官方网站</div>
-      </div>
-    </div>
-
-    </div>
-
-    <div class="vertical-layout">
-        
-        <!-- 邮箱-->
-    <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
-      <div class="text-content">
-        <a href="https://mail.google.com/" target="_blank" class="title">Gmail邮箱</a>
-        <div class="description">大量收集用户数据,15GB</div>
-      </div>
-    </div>
-    
-    
-    
-    <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
-      <div class="text-content">
-        <a href="https://outlook.live.com/" target="_blank" class="title">Outlook邮箱</a>
-        <div class="description">Microsoft Office集成,15GB,界面复杂</div>
-      </div>
-    </div>
-    
-    
-    
-    <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
-      <div class="text-content">
-        <a href="https://mail.yahoo.com/" target="_blank" class="title">Yahoo Mail邮箱</a>
-        <div class="description">丰富的设置,1TB,广告多,安全差</div>
-      </div>
-    </div>
-    
-    
-    
-    <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
-      <div class="text-content">
-        <a href="https://protonmail.com/" target="_blank" class="title">ProtonMail邮箱</a>
-        <div class="description">强调隐私,空间小,高级功能需要付费</div>
-      </div>
-    </div>
-    
-    
-    
-    <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
-      <div class="text-content">
-        <a href="https://www.zoho.com/mail/" target="_blank" class="title"> Zoho Mail邮箱</a>
-        <div class="description">无广告,大空间,体验差,高级功能付费</div>
-      </div>
-    </div>
-    
-    
-    
-    <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
-      <div class="text-content">
-        <a href="https://mail.aol.com//" target="_blank" class="title">AOL Mail邮箱</a>
-        <div class="description">无限空间,老旧,不安全</div>
-      </div>
-    </div>
-        
-    <div class="box">
-      <img class="logo1" src="https://via.placeholder.com/30" alt="Example 2 Logo">
-      <div class="text-content">
-        <a href="https://mail.google.com/" target="_blank" class="title">iCloud Mail邮箱</a>
-        <div class="description">苹果集成,Windows和安卓一般,5GB</div>
-      </div>
-    </div>
-        
-        
-        
+<body class="body">
         
 
-    
-    
-    
+    <section class="home section centerbox">
+        <h1>TK网址导航</h1><br>
+        <div class="input-with-button">
+            <input id="search" type="text" name="搜索框" placeholder="web搜索...">
+            <button><i class="bi bi-search-heart"></i>搜索</button>
+            <button class="button" data-modal="modal4" id="settingsButton" aria-label="设置"><i class="bi bi-gear"></i></button>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>推荐</h2>
+        <div class="row">
+            <div class="box section pm"><a href="https://www.minecraft.net/" target="_blank">minecraft</a><p>minecraft</p></div>
+            <div class="box section pm"><a href="https://mc.163.com/" target="_blank">minecraft</a><p>网易mc</p></div>
+            <div class="box section pm"><a href="https://www.microsoft.com" target="_blank">microsoft</a><p>微软官网</p></div>
+            <div class="box section pm"><a href="https://www.google.com" target="_blank">google</a><p>谷歌官网</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+            <h2>视频</h2>
+            <div class="row">
+            <!-- 国际视频平台 -->
+            <div class="box section pm"><a href="https://www.youtube.com/" target="_blank">YouTube</a><p>世界最大的视频平台</p></div>
+            <div class="box section pm"><a href="https://www.tiktok.com/" target="_blank">TikTok</a><p>抖音国际版</p></div>
+            <div class="box section pm"><a href="https://vimeo.com/" target="_blank">Vimeo</a><p>高质量视频平台</p></div>
+            <div class="box section pm"><a href="https://www.facebook.com/help/watch" target="_blank">Facebook Watch</a><p>Facebook集成平台</p></div>
+            <div class="box section pm"><a href="https://www.twitch.tv/" target="_blank">Twitch</a><p>游戏直播为主</p></div>
+            <div class="box section pm"><a href="https://www.netflix.com/" target="_blank">Netflix</a><p>流媒体巨头</p></div>
+            <div class="box section pm"><a href="https://www.amazon.com/primevideo" target="_blank">Amazon Prime</a><p>亚马逊视频</p></div>
+            <div class="box section pm"><a href="https://www.disneyplus.com/" target="_blank">Disney+</a><p>迪士尼流媒体</p></div>
+            
+            <!-- 国内视频平台 -->
+            <div class="box section pm"><a href="https://v.qq.com/" target="_blank">腾讯视频</a><p>国内领先视频平台</p></div>
+            <div class="box section pm"><a href="https://www.iqiyi.com/" target="_blank">爱奇艺</a><p>丰富正版资源</p></div>
+            <div class="box section pm"><a href="https://www.youku.com/" target="_blank">优酷</a><p>老牌视频平台</p></div>
+            <div class="box section pm"><a href="https://www.douyin.com/" target="_blank">抖音</a><p>短视频龙头</p></div>
+            <div class="box section pm"><a href="https://www.kuaishou.com/" target="_blank">快手</a><p>短视频社交平台</p></div>
+            <div class="box section pm"><a href="https://www.bilibili.com/" target="_blank">哔哩哔哩</a><p>弹幕视频社区</p></div>
+            <div class="box section pm"><a href="https://www.ixigua.com/" target="_blank">西瓜视频</a><p>中长视频平台</p></div>
+            <div class="box section pm"><a href="https://www.hunantv.com/" target="_blank">芒果TV</a><p>综艺特色平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>邮箱</h2>
+        <div class="row">
+            <!-- 国际邮箱 -->
+            <div class="box section pm"><a href="https://mail.google.com/" target="_blank">Gmail</a><p>谷歌邮箱</p></div>
+            <div class="box section pm"><a href="https://outlook.live.com/" target="_blank">Outlook</a><p>微软邮箱</p></div>
+            
+            <!-- 国内邮箱 -->
+            <div class="box section pm"><a href="https://mail.163.com/" target="_blank">网易邮箱</a><p>163邮箱</p></div>
+            <div class="box section pm"><a href="https://mail.qq.com/" target="_blank">QQ邮箱</a><p>腾讯QQ邮箱</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>新闻</h2>
+        <div class="row">
+            <!-- 国际新闻 -->
+            <div class="box section pm"><a href="https://www.bbc.com/" target="_blank">BBC News</a><p>英国广播公司新闻</p></div>
+            <div class="box section pm"><a href="https://www.nytimes.com/" target="_blank">纽约时报</a><p>美国主流媒体</p></div>
+            <div class="box section pm"><a href="https://www.cnn.com/" target="_blank">CNN</a><p>美国有线电视新闻网</p></div>
+            
+            <!-- 国内新闻 -->
+            <div class="box section pm"><a href="https://news.baidu.com/" target="_blank">百度新闻</a><p>综合新闻聚合</p></div>
+            <div class="box section pm"><a href="https://www.chinanews.com/" target="_blank">中国新闻网</a><p>国内权威新闻</p></div>
+            <div class="box section pm"><a href="https://news.sina.com.cn/" target="_blank">新浪新闻</a><p>综合新闻资讯</p></div>
+            <div class="box section pm"><a href="https://www.163.com/news/" target="_blank">网易新闻</a><p>新闻资讯平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>银行</h2>
+        <div class="row">
+            <div class="box section pm"><a href="https://www.icbc.com.cn/" target="_blank">工商银行</a><p>中国工商银行</p></div>
+            <div class="box section pm"><a href="https://www.abchina.com/" target="_blank">农业银行</a><p>中国农业银行</p></div>
+            <div class="box section pm"><a href="https://www.boc.cn/" target="_blank">中国银行</a><p>中国银行官网</p></div>
+            <div class="box section pm"><a href="https://www.ccb.com/" target="_blank">建设银行</a><p>中国建设银行</p></div>
+            <div class="box section pm"><a href="https://www.bankcomm.com/" target="_blank">交通银行</a><p>交通银行官网</p></div>
+            <div class="box section pm"><a href="https://www.cmbchina.com/" target="_blank">招商银行</a><p>招商银行官网</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>彩票</h2>
+        <div class="row">
+            <div class="box section pm"><a href="https://www.lottery.gov.cn/" target="_blank">中国福彩网</a><p>官方福利彩票</p></div>
+            <div class="box section pm"><a href="https://www.cwl.gov.cn/" target="_blank">中国体彩网</a><p>官方体育彩票</p></div>
+            <div class="box section pm"><a href="https://www.zhcw.com/" target="_blank">中彩网</a><p>彩票资讯平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>财经平台</h2>
+        <div class="row">
+            <!-- 国际财经 -->
+            <div class="box section pm"><a href="https://www.bloomberg.com/" target="_blank">Bloomberg</a><p>彭博财经</p></div>
+            <div class="box section pm"><a href="https://www.reuters.com/" target="_blank">Reuters</a><p>路透社财经</p></div>
+            
+            <!-- 国内财经 -->
+            <div class="box section pm"><a href="https://finance.sina.com.cn/" target="_blank">新浪财经</a><p>综合财经资讯</p></div>
+            <div class="box section pm"><a href="https://finance.qq.com/" target="_blank">腾讯财经</a><p>财经新闻平台</p></div>
+            <div class="box section pm"><a href="https://www.eastmoney.com/" target="_blank">东方财富网</a><p>金融资讯平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>音乐平台</h2>
+        <div class="row">
+            <!-- 国际音乐 -->
+            <div class="box section pm"><a href="https://www.spotify.com/" target="_blank">Spotify</a><p>流媒体音乐平台</p></div>
+            <div class="box section pm"><a href="https://music.apple.com/" target="_blank">Apple Music</a><p>苹果音乐</p></div>
+            
+            <!-- 国内音乐 -->
+            <div class="box section pm"><a href="https://y.qq.com/" target="_blank">QQ音乐</a><p>腾讯音乐平台</p></div>
+            <div class="box section pm"><a href="https://music.163.com/" target="_blank">网易云音乐</a><p>音乐社交平台</p></div>
+            <div class="box section pm"><a href="https://www.kugou.com/" target="_blank">酷狗音乐</a><p>音乐播放平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>旅游平台</h2>
+        <div class="row">
+            <!-- 国际旅游 -->
+            <div class="box section pm"><a href="https://www.booking.com/" target="_blank">Booking.com</a><p>酒店预订平台</p></div>
+            <div class="box section pm"><a href="https://www.airbnb.com/" target="_blank">Airbnb</a><p>民宿短租平台</p></div>
+            
+            <!-- 国内旅游 -->
+            <div class="box section pm"><a href="https://www.ctrip.com/" target="_blank">携程旅行</a><p>综合旅游服务</p></div>
+            <div class="box section pm"><a href="https://www.fliggy.com/" target="_blank">飞猪旅行</a><p>阿里旗下旅游平台</p></div>
+            <div class="box section pm"><a href="https://www.ly.com/" target="_blank">同程旅行</a><p>旅游预订平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>汽车平台</h2>
+        <div class="row">
+            <!-- 国际汽车 -->
+            <div class="box section pm"><a href="https://www.autoblog.com/" target="_blank">Autoblog</a><p>汽车资讯平台</p></div>
+            
+            <!-- 国内汽车 -->
+            <div class="box section pm"><a href="https://www.autohome.com.cn/" target="_blank">汽车之家</a><p>汽车资讯社区</p></div>
+            <div class="box section pm"><a href="https://www.bitauto.com/" target="_blank">易车网</a><p>汽车交易平台</p></div>
+            <div class="box section pm"><a href="https://www.dongchedi.com/" target="_blank">懂车帝</a><p>汽车内容平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>页游平台</h2>
+        <div class="row">
+            <div class="box section pm"><a href="https://www.4399.com/" target="_blank">4399小游戏</a><p>在线小游戏平台</p></div>
+            <div class="box section pm"><a href="https://www.7k7k.com/" target="_blank">7k7k小游戏</a><p>网页游戏平台</p></div>
+            <div class="box section pm"><a href="https://game.qq.com/" target="_blank">腾讯游戏</a><p>腾讯网页游戏</p></div>
+            <div class="box section pm"><a href="https://www.37.com/" target="_blank">37游戏</a><p>网页游戏运营平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>购物平台</h2>
+        <div class="row">
+            <!-- 国际购物 -->
+            <div class="box section pm"><a href="https://www.amazon.com/" target="_blank">Amazon</a><p>亚马逊购物</p></div>
+            <div class="box section pm"><a href="https://www.ebay.com/" target="_blank">eBay</a><p>在线拍卖平台</p></div>
+            
+            <!-- 国内购物 -->
+            <div class="box section pm"><a href="https://www.taobao.com/" target="_blank">淘宝</a><p>综合购物平台</p></div>
+            <div class="box section pm"><a href="https://www.jd.com/" target="_blank">京东</a><p>自营电商平台</p></div>
+            <div class="box section pm"><a href="https://www.pinduoduo.com/" target="_blank">拼多多</a><p>社交电商平台</p></div>
+            <div class="box section pm"><a href="https://mall.jd.com/" target="_blank">京东商城</a><p>综合购物平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>体育平台</h2>
+        <div class="row">
+            <!-- 国际体育 -->
+            <div class="box section pm"><a href="https://www.espn.com/" target="_blank">ESPN</a><p>体育新闻平台</p></div>
+            <div class="box section pm"><a href="https://www.fifa.com/" target="_blank">FIFA</a><p>国际足联官网</p></div>
+            
+            <!-- 国内体育 -->
+            <div class="box section pm"><a href="https://sports.qq.com/" target="_blank">腾讯体育</a><p>体育赛事直播</p></div>
+            <div class="box section pm"><a href="https://sports.sina.com.cn/" target="_blank">新浪体育</a><p>体育资讯平台</p></div>
+            <div class="box section pm"><a href="https://www.cctv5.com/" target="_blank">CCTV5</a><p>央视体育频道</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>小说平台</h2>
+        <div class="row">
+            <div class="box section pm"><a href="https://www.qidian.com/" target="_blank">起点中文网</a><p>原创文学平台</p></div>
+            <div class="box section pm"><a href="https://www.readnovel.com/" target="_blank">阅文小说</a><p>网络文学平台</p></div>
+            <div class="box section pm"><a href="https://www.zhihu.com/read" target="_blank">知乎盐选</a><p>精品小说平台</p></div>
+            <div class="box section pm"><a href="https://book.qq.com/" target="_blank">腾讯阅读</a><p>数字阅读平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>社交平台</h2>
+        <div class="row">
+            <!-- 国际社交 -->
+            <div class="box section pm"><a href="https://www.facebook.com/" target="_blank">Facebook</a><p>国际社交巨头</p></div>
+            <div class="box section pm"><a href="https://twitter.com/" target="_blank">Twitter</a><p>社交微博平台</p></div>
+            <div class="box section pm"><a href="https://www.instagram.com/" target="_blank">Instagram</a><p>图片社交平台</p></div>
+            
+            <!-- 国内社交 -->
+            <div class="box section pm"><a href="https://www.weixin.qq.com/" target="_blank">微信</a><p>社交即时通讯</p></div>
+            <div class="box section pm"><a href="https://qzone.qq.com/" target="_blank">QQ空间</a><p>社交分享平台</p></div>
+            <div class="box section pm"><a href="https://www.weibo.com/" target="_blank">微博</a><p>社交资讯平台</p></div>
+        </div>
+    </section>
+    <section class="section">
+    <h2>搜索引擎</h2>
+    <div class="row">
+        <!-- 国际搜索引擎 -->
+        <div class="box section pm"><a href="https://www.google.com/" target="_blank">Google</a><p>全球最大搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.bing.com/" target="_blank">Bing</a><p>微软搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.yahoo.com/" target="_blank">Yahoo</a><p>雅虎搜索引擎</p></div>
+        <div class="box section pm"><a href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a><p>注重隐私的搜索</p></div>
+        <div class="box section pm"><a href="https://yandex.com/" target="_blank">Yandex</a><p>俄罗斯的搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.ecosia.org/" target="_blank">Ecosia</a><p>用搜索广告收入种树</p></div>
+        <div class="box section pm"><a href="https://www.ask.com/" target="_blank">Ask.com</a><p>老牌搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.aol.com/" target="_blank">AOL</a><p>美国在线旗下搜索</p></div>
+        <div class="box section pm"><a href="https://www.naver.com/" target="_blank">Naver</a><p>韩国的搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.qwant.com/" target="_blank">Qwant</a><p>法国的搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.searchencrypt.com/" target="_blank">Searchencrypt</a><p>注重隐私的搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.magi.com/" target="_blank">Magi</a><p>AI驱动的知识引擎</p></div>
+        <div class="box section pm"><a href="https://www.fast.com/" target="_blank">Fast/AllTheWeb</a><p>数据库容量大</p></div>
+        <div class="box section pm"><a href="https://www.lycos.com/" target="_blank">Lycos</a><p>最早提供搜索服务的之一</p></div>
+        <div class="box section pm"><a href="https://www.inktomi.com/" target="_blank">Inktomi</a><p>曾为多个搜索引擎提供技术</p></div>
+        <div class="box section pm"><a href="https://www.looksmart.com/" target="_blank">LookSmart</a><p>点击付费索引目录</p></div>
+        <div class="box section pm"><a href="https://www.overture.com/" target="_blank">Overture</a><p>竞价排名的始作俑者</p></div>
+        <div class="box section pm"><a href="https://www.dmoz.org/" target="_blank">DMOZ</a><p>由义务编辑维护的目录索引</p></div>
+        <div class="box section pm"><a href="https://www.about.com/" target="_blank">About.com</a><p>人工操作的目录索引</p></div>
+        <div class="box section pm"><a href="https://www.swisscows.com/" target="_blank">Swisscows</a><p>瑞士公司开发的</p></div>
+        <div class="box section pm"><a href="https://www.startpagina.com/" target="_blank">Startpagina</a><p>来自荷兰的搜索</p></div>
+        <div class="box section pm"><a href="https://www.yep.com/" target="_blank">Yep</a><p>由Ahrefs推出</p></div>
+        <div class="box section pm"><a href="https://www.mail.ru/" target="_blank">Mail.ru</a><p>俄罗斯的搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.rambler.ru/" target="_blank">Rambler</a><p>俄罗斯的搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.mojeek.com/" target="_blank">Mojeek</a><p>英国公司开发的</p></div>
+        <div class="box section pm"><a href="https://www.wolframalpha.com/" target="_blank">WolframAlpha</a><p>可回答各种数学等问题</p></div>
+        <!-- 国内搜索引擎 -->
+        <div class="box section pm"><a href="https://www.baidu.com/" target="_blank">百度</a><p>国内主流搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.sogou.com/" target="_blank">搜狗</a><p>搜狐旗下搜索</p></div>
+        <div class="box section pm"><a href="https://www.so.com/" target="_blank">360搜索</a><p>奇虎360推出的搜索引擎</p></div>
+        <div class="box section pm"><a href="https://m.sm.cn/" target="_blank">神马搜索</a><p>UC和阿里巴巴合资推出的</p></div>
+        <div class="box section pm"><a href="https://so.toutiao.com/" target="_blank">头条搜索</a><p>今日头条推出的搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.qihoo.com/" target="_blank">好搜</a><p>360搜索曾用名</p></div>
+        <div class="box section pm"><a href="https://www.chinaso.com/" target="_blank">中国搜索</a><p>新华社主管主办</p></div>
+        <div class="box section pm"><a href="https://www.ifeng.com/" target="_blank">凤凰搜索</a><p>凤凰网旗下搜索引擎</p></div>
+        <div class="box section pm"><a href="https://www.kuaishou.com/" target="_blank">快手搜索</a><p>快手平台的搜索功能</p></div>
+        <div class="box section pm"><a href="https://www.douyin.com/" target="_blank">抖音搜索</a><p>抖音平台的搜索功能</p></div>
+        <div class="box section pm"><a href="https://www.qq.com/" target="_blank">腾讯搜一搜</a><p>腾讯旗下搜索平台</p></div>
+        <div class="box section pm"><a href="https://www.haosou.com/" target="_blank">非凡搜索</a><p>小众、无广告、</p></div>
+        <div class="box section pm"><a href="https://www.zhihu.com/" target="_blank">知乎搜索</a><p>知乎平台的搜索功能</p></div>
+        <div class="box section pm"><a href="https://www.cnki.net/" target="_blank">知网学术搜索</a><p>提供学术期刊等检索</p></div>
+        <div class="box section pm"><a href="https://www.gg搜搜.com/" target="_blank">GG搜搜</a><p>曾是腾讯早期的搜索引擎</p></div>
     </div>
+</section>
 </div>
-<!-- Popup -->
-<div class="popup" id="popup">
-    <div class="popup-content">
-        <div class="popup-header">搜索引擎设置</div>
-        <ul class="search-engine-list">
-            <li><b>tip:部分浏览器会阻止多窗口</b></li><hr>
-            <li class="search-engine-item">
-                <label>Bing</label>
-                <input type="checkbox" class="slider" data-engine="bing" checked>
-            </li>
-            <hr>
-            <li class="search-engine-item">
-                <label>Google</label>
-                <input type="checkbox" class="slider" data-engine="google">
-            </li>
-            <hr>
-            <li class="search-engine-item">
-                <label>Yahoo</label>
-                <input type="checkbox" class="slider" data-engine="yahoo">
-            </li>
-            <hr>
-            <li class="search-engine-item">
-                <label>DuckDuckGo</label>
-                <input type="checkbox" class="slider" data-engine="duckduckgo">
-            </li>
-            <hr>
-            <li class="search-engine-item">
-                <label>Baidu</label>
-                <input type="checkbox" class="slider" data-engine="baidu">
-            </li>
-            <hr>
-            <li class="search-engine-item">
-                <label>Ask.com</label>
-                <input type="checkbox" class="slider" data-engine="ask">
-            </li>
-            <hr>
-            <li class="search-engine-item">
-                <label>Yandex</label>
-                <input type="checkbox" class="slider" data-engine="yandex">
-            </li>
-            <hr>
-            <li class="search-engine-item">
-                <label>WolframAlpha</label>
-                <input type="checkbox" class="slider" data-engine="wolframalpha">
-            </li>
-            <hr>
-            <li class="search-engine-item">
-                <label>StartPage</label>
-                <input type="checkbox" class="slider" data-engine="startpage">
-            </li>
-            <hr>
-            <li class="search-engine-item">
-                <label>Qwant</label>
-                <input type="checkbox" class="slider" data-engine="qwant">
-            </li>
-        </ul>
 
-        <div class="popup-footer">
-            <button class="visit-btn" id="visit-btn">访问minecraft</button>
-            <button class="cancel-btn" id="random-btn">随机选择</button>
-            <button class="confirm-btn" id="confirm-btn">确定</button>
+    <footer>
+        &copy; 2025 Tank37135. All rights reserved.<br>
+        <p>欢迎投稿<a href="mailto:Tank37135@outlook.com?subject=投稿网址导航&body=您好，\n\n我想投稿Tank37135网址导航的网址，以下是详细信息\n网站名： \n 网址：\n分类">点击发送邮件</a>
+</p>
+    </footer>
+    <div class="modal-overlay" id="modal4">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>高级设置</h3>
+            </div>
+            <div class="modal-body">
+                            <ul class="search-engine-list">
+                <li><b>tip:部分浏览器会阻止多窗口</b></li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>Bing</label>
+                    <input type="checkbox" class="slider" data-engine="bing" checked>
+                </li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>Google</label>
+                    <input type="checkbox" class="slider" data-engine="google">
+                </li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>Yahoo</label>
+                    <input type="checkbox" class="slider" data-engine="yahoo">
+                </li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>DuckDuckGo</label>
+                    <input type="checkbox" class="slider" data-engine="duckduckgo">
+                </li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>Baidu</label>
+                    <input type="checkbox" class="slider" data-engine="baidu">
+                </li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>Ask.com</label>
+                    <input type="checkbox" class="slider" data-engine="ask">
+                </li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>Yandex</label>
+                    <input type="checkbox" class="slider" data-engine="yandex">
+                </li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>WolframAlpha</label>
+                    <input type="checkbox" class="slider" data-engine="wolframalpha">
+                </li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>StartPage</label>
+                    <input type="checkbox" class="slider" data-engine="startpage">
+                </li>
+                <hr>
+                <li class="search-engine-item">
+                    <label>Qwant</label>
+                    <input type="checkbox" class="slider" data-engine="qwant">
+                </li>
+            </ul>
+            </div>
+            <div class="modal-footer">
+            <button class="mac-button close-modal" id="random-btn">随机选择</button>
+                <button class="mac-button close-modal" id="confirm-btn">完成</button>
+            </div>
         </div>
     </div>
-</div>
-
 <script>
-    // Default search engine
-    let selectedEngines = ['bing'];
 
-    // Show popup when settings button is clicked
-    document.getElementById('settings-btn').addEventListener('click', function () {
-        document.getElementById('popup').style.display = 'flex';
-    });
-
-    // Close popup when clicking on random
-    document.getElementById('random-btn').addEventListener('click', function () {
-        const engines = ['bing', 'google', 'yahoo', 'duckduckgo', 'baidu', 'ask', 'yandex', 'wolframalpha', 'startpage', 'qwant'];
-        const randomEngine = engines[Math.floor(Math.random() * engines.length)];
-        selectedEngines = [randomEngine];
-        
-        // Update checkboxes to reflect the random choice
-        document.querySelectorAll('.slider').forEach(slider => {
-            if (slider.dataset.engine === randomEngine) {
-                slider.checked = true;
-            } else {
-                slider.checked = false;
-            }
-        });
-    });
-
-    // Confirm button logic
-    document.getElementById('confirm-btn').addEventListener('click', function () {
-        selectedEngines = [];
-        document.querySelectorAll('.slider').forEach(slider => {
-            if (slider.checked) {
-                selectedEngines.push(slider.dataset.engine);
-            }
-        });
-        if (selectedEngines.length === 0) {
-            selectedEngines = ['bing'];
-        }
-        document.getElementById('popup').style.display = 'none';
-    });
-
-    // Open "Minecraft" official website
-    document.getElementById('visit-btn').addEventListener('click', function () {
-        window.open('https://www.minecraft.net', '_blank');
-    });
-
-    // Search icon click logic
-    document.getElementById('search-icon').addEventListener('click', function () {
-        const query = document.getElementById('search-input').value;
-        if (query) {
-            selectedEngines.forEach(engine => {
-                const searchUrl = getSearchEngineUrl(engine, query);
-                window.open(searchUrl, '_blank');
+// 弹窗管理器
+const ModalManager = {
+    scrollPosition: 0,
+    
+    init: function() {
+        // 初始化所有弹窗按钮
+        this.initModalButtons();
+        // 初始化关闭按钮
+        this.initCloseButtons();
+        // 初始化遮罩层点击
+        this.initOverlayClicks();
+        // 初始化搜索功能
+        this.initSearchFunction();
+        // 初始化搜索引擎设置
+        this.initSearchEngineSettings();
+    },
+    
+    initModalButtons: function() {
+        // 统一使用data-modal属性绑定弹窗按钮
+        document.querySelectorAll('[data-modal]').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const modalId = button.getAttribute('data-modal');
+                this.openModal(modalId);
+                
+                // 特殊处理设置按钮的旋转动画
+                if (button.id === 'settingsButton') {
+                    e.stopPropagation();
+                }
             });
+        });
+    },
+    
+    openModal: function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            this.scrollPosition = window.scrollY;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${this.scrollPosition}px`;
         }
-    });
-
-    // Function to get the search URL based on selected engine
-    function getSearchEngineUrl(engine, query) {
-        switch (engine) {
-            case 'bing':
-                return `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-            case 'google':
-                return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-            case 'yahoo':
-                return `https://search.yahoo.com/search?p=${encodeURIComponent(query)}`;
-            case 'duckduckgo':
-                return `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
-            case 'baidu':
-                return `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
-            case 'ask':
-                return `https://www.ask.com/web?q=${encodeURIComponent(query)}`;
-            case 'yandex':
-                return `https://yandex.com/search/?text=${encodeURIComponent(query)}`;
-            case 'wolframalpha':
-                return `https://www.wolframalpha.com/input/?i=${encodeURIComponent(query)}`;
-            case 'startpage':
-                return `https://www.startpage.com/do/dsearch?query=${encodeURIComponent(query)}`;
-            case 'qwant':
-                return `https://www.qwant.com/?q=${encodeURIComponent(query)}`;
-            default:
-                return `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+    },
+    
+    closeModal: function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            window.scrollTo(0, this.scrollPosition);
         }
+    },
+    
+    initCloseButtons: function() {
+        document.querySelectorAll('.close-modal').forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal-overlay');
+                if (modal) {
+                    this.closeModal(modal.id);
+                }
+            });
+        });
+    },
+    
+    initOverlayClicks: function() {
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    this.closeModal(overlay.id);
+                }
+            });
+        });
+    },
+    
+    initSearchFunction: function() {
+        const searchInput = document.getElementById('search');
+        const searchButton = document.querySelector('.input-with-button button:not(#settingsButton)');
+        
+        // 搜索按钮点击事件
+        searchButton.addEventListener('click', () => {
+            this.performSearch();
+        });
+        
+        // 回车键触发搜索
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.performSearch();
+            }
+        });
+    },
+    
+    initSearchEngineSettings: function() {
+        // 随机选择按钮功能
+        document.getElementById('random-btn').addEventListener('click', () => {
+            const checkboxes = document.querySelectorAll('.search-engine-list .slider');
+            // 先取消所有选择
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            // 随机选择一个
+            const randomIndex = Math.floor(Math.random() * checkboxes.length);
+            checkboxes[randomIndex].checked = true;
+        });
+    },
+    
+    performSearch: function() {
+        const searchInput = document.getElementById('search');
+        const query = searchInput.value.trim();
+        
+        if (!query) return;
+        
+        // 获取选中的搜索引擎
+        const selectedEngines = [];
+        document.querySelectorAll('.search-engine-list .slider:checked').forEach(checkbox => {
+            selectedEngines.push(checkbox.getAttribute('data-engine'));
+        });
+        
+        // 如果没有选择搜索引擎，默认使用Bing
+        if (selectedEngines.length === 0) {
+            selectedEngines.push('bing');
+        }
+        
+        // 定义搜索引擎URL模板
+        const engineUrls = {
+            bing: `https://www.bing.com/search?q=${encodeURIComponent(query)}`,
+            google: `https://www.google.com/search?q=${encodeURIComponent(query)}`,
+            yahoo: `https://search.yahoo.com/search?p=${encodeURIComponent(query)}`,
+            duckduckgo: `https://duckduckgo.com/?q=${encodeURIComponent(query)}`,
+            baidu: `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`,
+            ask: `https://www.ask.com/web?q=${encodeURIComponent(query)}`,
+            yandex: `https://yandex.com/search/?text=${encodeURIComponent(query)}`,
+            wolframalpha: `https://www.wolframalpha.com/input?i=${encodeURIComponent(query)}`,
+            startpage: `https://www.startpage.com/sp/search?q=${encodeURIComponent(query)}`,
+            qwant: `https://www.qwant.com/?q=${encodeURIComponent(query)}`
+        };
+        
+        // 在新窗口打开所有选中的搜索引擎搜索结果
+        selectedEngines.forEach(engine => {
+            if (engineUrls[engine]) {
+                window.open(engineUrls[engine], '_blank');
+            }
+        });
     }
+};
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', () => {
+    ModalManager.init();
+});
 </script>
 </body>
 </html>
