@@ -175,14 +175,29 @@ z-index: 1000;
         }
         
         .article-card {
-            background-color: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-        -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-        border-radius: 12px;
-        -webkit-border-radius: 12px;
+    /* 设置背景颜色，带有透明度 */
+    background-color: rgba(255, 255, 255, 0.18);
+
+    /* 应用模糊效果 */
+    backdrop-filter: blur(4px);
+    /* 兼容Safari浏览器的模糊效果 */
+    -webkit-backdrop-filter: blur(4px);
+
+    /* 设置边框颜色和透明度 */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    /* 添加阴影效果 */
+    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    /* 兼容Safari浏览器的阴影效果 */
+    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+
+    /* 设置圆角边框 */
+    border-radius: 12px;
+    /* 兼容Safari浏览器的圆角效果 */
+    -webkit-border-radius: 12px;
+
+    /* 设置字体颜色和透明度 */
+    color: rgba(255, 255, 255, 0.75);
             overflow: hidden;
             transition: all 0.3s ease;
             padding: 20px;
