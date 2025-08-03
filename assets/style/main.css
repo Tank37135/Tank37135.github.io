@@ -343,3 +343,50 @@ aside {
 
 }
 
+/*表格*/
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* 添加水平滚动条 */
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(10px); /* 强化毛玻璃效果 */
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px; /* 设置表格最小宽度 */
+            white-space: nowrap; /* 防止单元格内容换行 */
+        }
+
+        th, td {
+            background-color: rgba(255, 255, 255, 0.25); /* 更柔和的背景 */
+            backdrop-filter: blur(6px); /* 强化毛玻璃效果 */
+            -webkit-backdrop-filter: blur(6px);
+            border: none; /* 去掉边框 */
+            color: rgba(255, 255, 255, 0.85);
+            padding: 12px 15px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.5); /* 提高表头透明度 */
+            backdrop-filter: blur(8px);
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1); /* 交替行的透明度 */
+        }
+
+        tr {
+            transition: background-color 0.3s ease;
+        }
+
+        tr:hover {
+            background-color: rgba(241, 241, 241, 0.4);
+        }

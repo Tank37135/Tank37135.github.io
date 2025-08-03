@@ -294,3 +294,16 @@ z-index: 1000;
         
         
         
+        
+        
+.responsive-img {
+            width: auto; /* 宽度自适应 */
+            height: auto; /* 高度自适应 */
+            max-width: 100%; /* 容器宽度的最大宽度 */
+            max-height: 400px; /* 限制最大高度 */
+            border-radius: 5px; /* 圆角效果 */
+            display: block; /* 避免图片下方出现空白 */
+            margin: 0 auto; /* 图片居中显示 */
+        }
+        
+        
