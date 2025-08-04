@@ -348,7 +348,7 @@ aside {
             width: 100%;
             overflow-x: auto; /* 添加水平滚动条 */
             margin: 20px 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
             border-radius: 10px;
             backdrop-filter: blur(10px); /* 强化毛玻璃效果 */
             -webkit-backdrop-filter: blur(10px);
@@ -366,7 +366,7 @@ aside {
             backdrop-filter: blur(6px); /* 强化毛玻璃效果 */
             -webkit-backdrop-filter: blur(6px);
             border: none; /* 去掉边框 */
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(196, 105, 244, 0.85);
             padding: 12px 15px;
             text-align: left;
             transition: all 0.3s ease;
@@ -375,7 +375,7 @@ aside {
         th {
             background-color: rgba(255, 255, 255, 0.5); /* 提高表头透明度 */
             backdrop-filter: blur(8px);
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(26, 113, 213, 0.85);
             font-weight: bold;
         }
 
