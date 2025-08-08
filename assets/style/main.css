@@ -19,6 +19,8 @@
   padding: 0;
   border: 0;
   font-family: 'SourceCodeProRegular', monospace, Arial, sans-serif;
+  font-weight: normal;
+   font-style: normal;
   font-display: swap;
   box-sizing: border-box;
 }
