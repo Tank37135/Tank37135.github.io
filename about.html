@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tank37135 Blog | About</title>
+        <meta name="description" content="Tank37135 Blog的网站信息，包括引用的库信息，网站建立信息">
+    <meta name="keywords" content="Tank37135博客, 关于本站, about Tank37135">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #7209b7;
+            --accent: #4895ef;
+            --light: #ffffff;
+            --light-bg: #f8f9ff;
+            --text: #2b2d42;
+            --text-light: #6c757d;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0e7ff, #f5f7ff);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* 头部样式 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            background: rgba(114, 9, 183, 0.1);
+        }
+
+        nav a.active {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 5px 15px rgba(114, 9, 183, 0.2);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 1rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--secondary), var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 2rem auto;
+            perspective: 1000px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            transition: var(--transition);
+            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80') center/cover;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .avatar-container:hover .avatar {
+            transform: rotateY(20deg) rotateX(10deg) translateZ(20px);
+            box-shadow: 0 30px 60px rgba(114, 9, 183, 0.3);
+        }
+
+        .avatar::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
+            border-radius: 50%;
+            z-index: 1;
+            animation: rotateBorder 3s linear infinite;
+        }
+
+        @keyframes rotateBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 卡片部分 */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 4rem 0 2rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(114, 9, 183, 0.1);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(114, 9, 183, 0.1);
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) translateZ(20px);
+            box-shadow: 0 20px 40px rgba(114, 9, 183, 0.15);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .card h3 i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .card p {
+            color: var(--text-light);
+        }
+
+        .card ul {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .card li::before {
+            content: "▹";
+            color: var(--accent);
+            position: absolute;
+            left: -1.2rem;
+        }
+
+        /* 技能图表 */
+        .skills-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: rgba(114, 9, 183, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .skill-level::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: calc(50% - 40px);
+            margin-bottom: 4rem;
+            perspective: 1000px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: calc(50% + 40px);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(114, 9, 183, 0.1);
+            transition: var(--transition);
+            transform: translateZ(0);
+            border: 1px solid rgba(114, 9, 183, 0.1);
+        }
+
+        .timeline-content:hover {
+            transform: translateZ(20px) rotateY(5deg);
+            box-shadow: 0 15px 35px rgba(114, 9, 183, 0.15);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .timeline-date {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+        }
+
+        /* 联系部分 */
+        .contact {
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+            transform: translateZ(0);
+            box-shadow: 0 5px 15px rgba(114, 9, 183, 0.2);
+        }
+
+        .social-link:hover {
+            transform: translateY(-8px) scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(114, 9, 183, 0.3);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 80px);
+                left: 60px !important;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .avatar-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        /* 粒子背景 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100vw) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* 装饰形状 */
+        .shape {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.1;
+            filter: blur(20px);
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: 10%;
+            left: 5%;
+            animation: floatShape 15s infinite alternate;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+            bottom: 10%;
+            right: 5%;
+            animation: floatShape 18s infinite alternate-reverse;
+        }
+
+        @keyframes floatShape {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(50px, -50px) rotate(20deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">Tank37135 Blog</div>
+            <nav>
+                <ul>
+                    <li><a href="https://Tank37135.github.io">首页</a></li>
+                    <li><a href="#" class="active">关于我</a></li>
+                    <li><a href="blog/">博客</a></li>
+                    <li><a href="category/article/">文章</a></li>
+                    <li><a href="category/tools/">工具</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="hero">
+            <h1>你好，我是Tank37135</h1>
+            <p>web前端开发者（我想成为全栈开发者） | 热衷于创造功能强大而实用的数字项目</p>
+            <div class="avatar-container">
+                <div class="avatar"></div>
+            </div>
+        </section>
+        
+        <h2 class="section-title">关于本站</h2>
+        <div class="cards-container">
+            <div class="card">
+                <h3><i class="fas fa-user"></i>网站简介</h3>
+                <p>Tank37135 Blog是Tank37135开发的纯前端网站，乐于制作纯前端工具，好于优化用户体验</p>
+                <p>Tank37135技术不强，但乐于参观他人的项目，忠于为他人提供帮助，本站也是Tank37135的心情指标站，主题色随着Tank37135朋友关系变化而变化（一些因为需要而改为独立css除外）</p>
+                <p>网站内有大量链接至Minecraft的链接（本质上不是广告）希望大家去逛逛（能买一份最好）</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-graduation-cap"></i>本站用到的库和素材源</h3>
+                <ul>
+                    <li>bootstrap icons - 图标库</li>
+                    <li>fontlibrary.org - 字体库</li>
+                    <li>Font Awesome - 图标库（仅本页）</li>
+                    <li>未知 - 音乐及音频库</li>
+                    <li>wallpaper - 图片库（未实装）</li>
+                    
+                </ul>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-info"></i>网站信息</h3>
+                <ul>
+                    <li>创建时间：2024年1月30日</li>
+                    <li>部署运行时间：2024年10月1日</li>
+                    <li>当前网站版本：第六代（TKB6）</li>
+                    <li>域名及服务器：GitHub pages</li>
+                    <li>开发者：Tank37135</li>
+                    
+                </ul>
+            </div>
+<!--
+*            <div class="card">
+*                <h3><i class="fas fa-laptop-code"></i>专业技能</h3>
+*                <div class="skills-chart">
+*                    <div class="skill">
+*                        <div class="skill-info">
+*                            <span>JavaScript/TypeScript</span>
+*                            <span>95%</span>
+*                        </div>
+*                        <div class="skill-bar">
+*                            <div class="skill-level" style="width: 95%"></div>
+*                        </div>
+*                    </div>
+*                    <div class="skill">
+*                        <div class="skill-info">
+*                            <span>React/Vue</span>
+*                            <span>90%</span>
+*                        </div>
+*                        <div class="skill-bar">
+*                            <div class="skill-level" style="width: 90%"></div>
+*                        </div>
+*                    </div>
+*                    <div class="skill">
+*                        <div class="skill-info">
+*                            <span>Node.js</span>
+*                            <span>85%</span>
+*                        </div>
+*                        <div class="skill-bar">
+*                            <div class="skill-level" style="width: 85%"></div>
+*                        </div>
+*                    </div>
+*                    <div class="skill">
+*                        <div class="skill-info">
+*                            <span>UI/UX设计</span>
+*                            <span>80%</span>
+*                        </div>
+*                        <div class="skill-bar">
+*                            <div class="skill-level" style="width: 80%"></div>
+*                        </div>
+*                    </div>
+*                </div>
+*            </div>
+*        </div>
+
+        <h2 class="section-title">职业经历</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2021 - 至今</span>
+                    <h4>高级全栈工程师 - TechInnovate</h4>
+                    <p>领导开发团队创建SaaS产品，优化前端架构，提升用户体验。实施微服务架构，提高系统可伸缩性。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2019 - 2021</span>
+                    <h4>前端开发主管 - DigitalAgency</h4>
+                    <p>负责客户项目的UI实现，建立前端开发标准和最佳实践。带领团队完成多个高流量网站开发。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2018 - 2019</span>
+                    <h4>全栈开发工程师 - StartupHub</h4>
+                    <p>参与创业公司核心产品开发，负责前后端功能实现。快速迭代产品功能，满足市场需求。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2016 - 2018</span>
+                    <h4>Web开发实习生 - DevStudio</h4>
+                    <p>参与网站开发项目，学习现代Web开发技术。协助团队完成多个企业网站开发。</p>
+                </div>
+            </div>
+        </div>
+        -->
+        <section class="contact">
+            <h2 class="section-title">与我联系</h2>
+            <p>对我感兴趣？或者想讨论潜在的机会？</p>
+            <div class="social-links">
+                <a href="https://github.com/Tank37135" class="social-link"><i class="fab fa-github"></i></a>
+
+                <a href="mailto:Tank37135@outlook.com?subject=联系请求&body=你好，我想" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // 创建粒子背景
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小 (2px 到 8px)
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画时长 (10s 到 30s)
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // 随机延迟 (0s 到 5s)
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 卡片3D效果
+        function initCardEffects() {
+            const cards = document.querySelectorAll('.card, .timeline-content');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateY = (x - centerX) / 25;
+                    const rotateX = (centerY - y) / 25;
+                    
+                    card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateZ(20px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateZ(0)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 300);
+                });
+            });
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            initCardEffects();
+        });
+    </script>
+</body>
+</html>
