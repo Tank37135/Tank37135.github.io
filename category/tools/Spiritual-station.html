@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵驿站 - 你的心灵栖息地</title>
+    <style>
+        /* 全局样式 */
+        :root {
+            --primary-color: #88c9d9;
+            --secondary-color: #a7d8c0;
+            --accent-color: #f0b7a4;
+            --light-color: #f8f5f2;
+            --dark-color: #3a3a3a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* 导航栏 */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* 主要内容 */
+        main {
+            padding-top: 80px;
+            min-height: calc(100vh - 120px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* 功能区块 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        /* 冥想区 */
+        .meditation-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .audio-player {
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+        
+        .audio-error {
+            color: #ff6b6b;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        /* 树洞倾诉 */
+        .confession-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 1rem 0;
+            min-height: 150px;
+            resize: vertical;
+            transition: border 0.3s;
+        }
+        
+        textarea.error {
+            border: 1px solid #ff6b6b;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        /* 心灵鸡汤区域 */
+        .quotes-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .quote-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .quote-text {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        /* 心灵文章 */
+        .articles-section {
+            margin: 3rem 0;
+        }
+        
+        .article-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .article-image {
+            height: 200px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .article-content {
+            padding: 1.5rem;
+        }
+        
+        .article-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-meta {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <nav>
+            <div class="logo">心灵驿站</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#meditation">冥想放松</a></li>
+                <li><a href="#confession">树洞倾诉</a></li>
+                <li><a href="#quotes">心灵鸡汤</a></li>
+                <li><a href="#articles">心灵文章</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- 主要内容 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>在这里，让心灵找到栖息之地</h1>
+                <p>心灵驿站是一个专为你打造的安全空间，提供冥想引导、情绪支持和心灵成长资源，帮助你找到内心的平静与力量。</p>
+                <div class="cta-buttons">
+                    <a href="#meditation" class="btn btn-primary">开始冥想</a>
+                    <a href="#confession" class="btn btn-secondary">倾诉心声</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 功能区块 -->
+        <section class="container">
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🧘</div>
+                    <h3>冥想放松</h3>
+                    <p>专业的冥想引导音频，帮助你缓解压力、改善睡眠、提升专注力。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💌</div>
+                    <h3>树洞倾诉</h3>
+                    <p>匿名分享你的心事，获得温暖的回应和支持。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>心灵成长</h3>
+                    <p>精选心理健康文章，助你更好地认识自己、管理情绪。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 冥想区 -->
+        <section id="meditation" class="container meditation-section">
+            <h2>冥想放松区</h2>
+            <p>选择一个冥想音频，找个舒适的地方，开始你的放松之旅。</p>
+            
+            <div class="audio-player">
+                <h3>5分钟快速放松</h3>
+                <audio controls style="width: 100%; margin: 1rem 0;" id="audio1">
+                    <source src="#" type="audio/mpeg">
+                    您的浏览器不支持音频元素。
+                </audio>
+                <div class="audio-error" id="error1">音频可能正在加载，要不，再等一下？如果长时间无法播放，请稍后再试。</div>
+            </div>
+            
+            <div class="audio-player">
+                <h3>深度睡眠引导</h3>
+                <audio controls style="width: 100%; margin: 1rem 0;" id="audio2">
+                    <source src="#" type="audio/mpeg">
+                    您的浏览器不支持音频元素。
+                </audio>
+                <div class="audio-error" id="error2">音频可能正在加载，要不，再等一下？如果长时间无法播放，请稍后再试。</div>
+            </div>
+            
+            <div class="audio-player">
+                <h3>焦虑缓解冥想</h3>
+                <audio controls style="width: 100%; margin: 1rem 0;" id="audio3">
+                    <source src="#" type="audio/mpeg">
+                    您的浏览器不支持音频元素。
+                </audio>
+                <div class="audio-error" id="error3">音频可能正在加载，要不，再等一下？如果长时间无法播放，请稍后再试。</div>
+            </div>
+        </section>
+        
+        <!-- 树洞倾诉 -->
+        <section id="confession" class="container confession-section">
+            <h2>树洞倾诉</h2>
+            <p>在这里，你可以匿名写下你的心事、烦恼或任何你想分享的内容。</p>
+            
+            <form id="confession-form">
+                <textarea placeholder="写下你想说的话..." id="confession-text"></textarea>
+                <div class="error-message" id="confession-error">请先写下你想说的话，树洞才能给你回应哦~</div>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+            
+            <div id="confession-response" style="margin-top: 2rem; display: none;">
+                <h3>来自心灵的回应：</h3>
+                <div id="response-text" style="background-color: #f5f5f5; padding: 1rem; border-radius: 10px; margin-top: 1rem;"></div>
+            </div>
+        </section>
+        
+        <!-- 心灵鸡汤区域 -->
+        <section id="quotes" class="container quotes-section">
+            <h2>心灵鸡汤</h2>
+            <p>每日一句，温暖你的心灵</p>
+            
+            <div id="quotes-container">
+                <div class="quote-container">
+                    <p class="quote-text">正在加载心灵鸡汤...</p>
+                </div>
+            </div>
+            
+            <button id="random-quote-btn" class="btn btn-primary">再来一碗</button>
+        </section>
+        
+        <!-- 心灵搜索 -->
+        <section id="articles" class="container articles-section">
+            <h2>心灵搜索</h2>
+            <p>精选心理健康和心灵成长搜索，帮助你更好地理解和管理自己的情绪。</p>
+            
+            <div class="article-card">
+                <div class="article-image">🌱</div>
+                <div class="article-content">
+                    <h3>如何应对日常焦虑</h3>
+                    <div class="article-meta">心理健康</div>
+                    <p>焦虑是现代社会常见的情绪反应，学习识别和应对焦虑可以帮助我们更好地生活...</p>
+                    <a href="https://cn.bing.com/search?q=%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E6%97%A5%E5%B8%B8%E7%84%A6%E8%99%91&setmkt=en-AU&PC=EMMX01&form=LBT003&scope=web" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">阅读更多 →</a>
+                </div>
+            </div>
+            
+            <div class="article-card">
+                <div class="article-image">💞</div>
+                <div class="article-content">
+                    <h3>建立健康的人际边界</h3>
+                    <div class="article-meta">人际关系</div>
+                    <p>学会设立健康的人际边界是自我关爱的重要部分，它能帮助我们保持情绪健康...</p>
+                    <a href="https://cn.bing.com/search?q=%E6%80%8E%E4%B9%88%E5%BB%BA%E7%AB%8B%E5%81%A5%E5%BA%B7%E7%9A%84%E4%BA%BA%E9%99%85%E8%BE%B9%E7%95%8C&setmkt=en-AU&PC=EMMX01&form=LWS002&scope=web" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">阅读更多 →</a>
+                </div>
+            </div>
+            
+            <div class="article-card">
+                <div class="article-image">🌙</div>
+                <div class="article-content">
+                    <h3>改善睡眠的10个方法</h3>
+                    <div class="article-meta">生活习惯</div>
+                    <p>良好的睡眠对心理健康至关重要。这里有一些经过验证的方法可以帮助你获得更好的睡眠...</p>
+                    <a href="https://cn.bing.com/search?q=%E6%94%B9%E5%96%84%E7%9D%A1%E7%9C%A0%E7%9A%8410%E4%B8%AA%E6%96%B9%E6%B3%95&setmkt=en-AU&PC=EMMX01&form=L2GV02&scope=web" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">阅读更多 →</a>
+                </div>
+            </div>
+        </section>
+                <section class="container">
+                <h2>心灵辅助网站</h2>
+            <p>本站的工具可能不足够帮助你，可以访问Tank37135推荐的网站</p>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>互动卡通动物</h3>
+                    <p>简单的鼠标操作就可以体验六种不同的互动！过程让人心情舒畅</p>
+                    <a href="https://moments.epic.net/" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">访问ta →</a>
+                </div>
+                <div class="feature-card">
+                    <h3>图片轮播</h3>
+                    <p>都是可爱至极、治愈人心的图片</p>
+                    <a href="https://eyebleach.me/" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">访问ta →</a>
+                </div>
+                <div class="feature-card">
+                    <h3>云吸猫模拟器</h3>
+                    <p>一只会发出呼噜声音的猫</p>
+                    <a href="https://m.niucodata.com/cat/" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">访问ta →</a>
+                </div>
+                <div class="feature-card">
+                    <h3>捏泡泡模拟器</h3>
+                    <p>超解压的捏泡泡模拟器，在线捏泡泡纸！</p>
+                    <a href="https://toolwa.com/bubble/" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">访问ta →</a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>心灵驿站 &copy; 2023 - 你的心灵栖息地|Tank37135 Blog</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">如果你需要专业帮助，请咨询心理健康专业人士</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 简单的树洞倾诉表单处理
+        document.getElementById('confession-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const textarea = document.getElementById('confession-text');
+            const confessionText = textarea.value.trim();
+            const errorMessage = document.getElementById('confession-error');
+            const responseContainer = document.getElementById('confession-response');
+            const responseText = document.getElementById('response-text');
+            
+            // 检查内容是否为空
+            if (!confessionText) {
+                errorMessage.style.display = 'block';
+                textarea.classList.add('error');
+                // 2秒后移除错误样式
+                setTimeout(() => {
+                    textarea.classList.remove('error');
+                    errorMessage.style.display = 'none';
+                }, 2000);
+                return;
+            }
+            
+            // 模拟AI回应
+            const responses = [
+                "感谢你分享这些感受。你的勇气值得赞赏，愿意表达自己已经是很重要的一步。",
+                "听起来你现在经历着不容易的时刻。请记住，你的感受是有效的，也是暂时的。",
+                "每个人都会有这样的时刻，你并不孤单。感谢你信任这个空间。",
+                "我能感受到你文字中的情感。照顾好自己的心灵就像照顾花园一样需要耐心和温柔。",
+                "你的分享让我想到了这句话：'即使在最黑暗的夜晚，星星依然在闪耀。'"
+            ];
+            
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            
+            responseText.textContent = randomResponse;
+            responseContainer.style.display = 'block';
+            
+            // 清空文本框
+            textarea.value = '';
+            
+            // 平滑滚动到回应
+            responseContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // 心灵鸡汤功能
+        let quotes = [];
+        
+        // 默认语录
+        function showDefaultQuote() {
+            quotes = [
+                {text: "生活就像一杯茶，不会苦一辈子，但总会苦一阵子。"},
+                {text: "每一个不曾起舞的日子，都是对生命的辜负。"},
+                {text: "世界上只有一种真正的英雄主义，那就是认清生活的真相后依然热爱生活。"},
+                {text: "生命不是要超越别人，而是要超越自己。"},
+                {text: "黑夜无论怎样悠长，白昼总会到来。"},
+                {text: "最难的不是别人的拒绝与不理解，而是你愿不愿意为你的梦想而作出改变。"},
+                {text: "人生没有白走的路，每一步都算数。"},
+                {text: "生活不是等待暴风雨过去，而是学会在雨中跳舞。"},
+                {text: "你的价值不取决于别人的评价，而取决于你如何看待自己。"},
+                {text: "有时候，我们需要停下来，不是为了放弃，而是为了重新出发。"}
+            ];
+            displayRandomQuote();
+        }
+        
+        // 显示随机语录
+        document.getElementById('random-quote-btn').addEventListener('click', displayRandomQuote);
+        
+        function displayRandomQuote() {
+            const container = document.getElementById('quotes-container');
+            
+            if (quotes.length === 0) {
+                container.innerHTML = `
+                    <div class="quote-container">
+                        <p class="quote-text">暂无语录，请稍后再试</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            container.innerHTML = `
+                <div class="quote-container">
+                    <p class="quote-text">${randomQuote.text}</p>
+                </div>
+            `;
+        }
+        
+        // 音频播放失败检测
+        function setupAudioErrorHandling() {
+            const audioElements = [
+                { element: document.getElementById('audio1'), error: document.getElementById('error1') },
+                { element: document.getElementById('audio2'), error: document.getElementById('error2') },
+                { element: document.getElementById('audio3'), error: document.getElementById('error3') }
+            ];
+            
+            audioElements.forEach(audio => {
+                // 检测错误事件
+                audio.element.addEventListener('error', function() {
+                    audio.error.style.display = 'block';
+                });
+                
+                // 检测长时间缓冲
+                let timeout;
+                audio.element.addEventListener('waiting', function() {
+                    timeout = setTimeout(() => {
+                        audio.error.style.display = 'block';
+                    }, 5000); // 5秒后显示加载提示
+                });
+                
+                // 当开始播放时清除超时
+                audio.element.addEventListener('playing', function() {
+                    clearTimeout(timeout);
+                    audio.error.style.display = 'none';
+                });
+                
+                // 当有足够数据播放时清除超时
+                audio.element.addEventListener('canplay', function() {
+                    clearTimeout(timeout);
+                    audio.error.style.display = 'none';
+                });
+            });
+        }
+        
+        // 页面加载时初始化
+        window.addEventListener('DOMContentLoaded', function() {
+            showDefaultQuote();
+            setupAudioErrorHandling();
+            
+            // 尝试从外部加载语录
+            try {
+                fetch('/assets/txt/quotes.txt')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('语录文件加载失败');
+                        }
+                        return response.text();
+                    })
+                    .then(text => {
+                        // 解析文本文件，每行一条语录
+                        const loadedQuotes = text.split('\n')
+                            .filter(line => line.trim() !== '')
+                            .map(line => ({text: line.trim()}));
+                        
+                        if (loadedQuotes.length > 0) {
+                            quotes = loadedQuotes;
+                            displayRandomQuote();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('加载外部语录失败:', error);
+                    });
+            } catch (e) {
+                console.error('加载语录时出错:', e);
+            }
+        });
+        
+        // 简单的导航平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
