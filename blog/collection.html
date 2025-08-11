@@ -161,18 +161,23 @@
   <script type="text/javascript" src="../../assets/script/script.js"></script>
   <script type="text/javascript" src="../../assets/script/subassembly.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const details = document.getElementById("myDetails");
-    const content = details.querySelector(".content");
+document.addEventListener("DOMContentLoaded", () => {
+  const details = document.getElementById("myDetails");
+  const content = details.querySelector(".content");
 
+  if (details.open) {
+    content.style.height = content.scrollHeight + "px";
+  }
+
+  details.addEventListener("toggle", () => {
     if (details.open) {
-      content.style.maxHeight = content.scrollHeight + "px";
+      content.style.height = content.scrollHeight + "px";
+    } else {
+      content.style.height = "0";
     }
-
-    details.addEventListener("toggle", () => {
-      content.style.maxHeight = details.open ? content.scrollHeight + "px" : "0";
-    });
   });
+});
+
 </script>
 </body>
 </html>
