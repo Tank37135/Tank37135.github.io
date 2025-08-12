@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="keywords" content="博客, 文章,在线工具, 项目">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TKBtools,为你创作，简化每一步，让工作更方便</title>
-<meta name="description" content="TKBtools提供专业免费的在线工具集合，包括番茄钟，高清录屏、声波发生器/检测器、754数学练习系统等。无需下载安装，直接网页使用，节省电脑内存。">
-<link rel="icon" href="/assets/images/logo/favicon.ico" type="image/x-icon">
+    <title>TKBtools,为你创作，简化每一步，让工作更方便</title>
+    <meta name="description" content="TKBtools提供专业免费的在线工具集合，包括番茄钟，高清录屏、声波发生器/检测器、754数学练习系统等。无需下载安装，直接网页使用，节省电脑内存。">
+    <link rel="icon" href="/assets/images/logo/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/assets/style/main.css">
     <link rel="stylesheet" type="text/css" href="/assets/style/style.css">
@@ -50,7 +50,7 @@
             margin-top: 20px;
             width: 100%;
         }
-        .card {
+        .article-card {
             background-color: white;
             border-radius: 8px;
             width: 250px;
@@ -61,20 +61,20 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .card:hover {
+        .article-card:hover {
             transform: scale(1.05);
         }
-        .card .time {
+        .article-date {
             font-size: 14px;
             color: #888;
             margin-bottom: 10px;
         }
-        .card .title {
+        .article-title {
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        .card .text {
+        .article-excerpt {
             font-size: 16px;
             color: #333;
         }
@@ -88,12 +88,12 @@
                 gap: 15px;
                 justify-content: center;
             }
-            .card {
+            .article-card {
                 width: 90%;
             }
         }
         @media (max-width: 480px) {
-            .card {
+            .article-card {
                 width: 100%;
             }
         }
@@ -104,7 +104,7 @@
     <h1>卡牌展示与搜索</h1>
     <input type="text" class="search-box" id="searchBox" placeholder="搜索标题..." oninput="filterCards()">
     <div id="loadingMessage" class="loading">正在载入...</div>
-    <div id="cards-container" class="article-card"></div>
+    <div id="cards-container" class="card-container"></div>
 
     <script>
         let allCards = [];  // 用于存储所有卡牌数据
@@ -155,12 +155,14 @@
 
             cards.forEach(card => {
                 var cardElement = document.createElement("div");
-                cardElement.classList.add("card");
+                cardElement.classList.add("article-card");
 
                 cardElement.innerHTML = `
-                    <div class="time">${card.time}</div>
-                    <div class="title">${card.title}</div>
-                    <div class="text">${card.text}</div>
+                    <div class="article-date">
+                        <i class="bi bi-calendar-check-fill"></i> ${card.time}
+                    </div>
+                    <div class="article-title">${card.title}</div>
+                    <div class="article-excerpt">${card.text}</div>
                 `;
 
                 container.appendChild(cardElement);
