@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="keywords" content="博客, 文章,在线工具, 项目">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XML 卡牌展示与搜索</title>
+<title>TKBtools,为你创作，简化每一步，让工作更方便</title>
+<meta name="description" content="TKBtools提供专业免费的在线工具集合，包括番茄钟，高清录屏、声波发生器/检测器、754数学练习系统等。无需下载安装，直接网页使用，节省电脑内存。">
+<link rel="icon" href="/assets/images/logo/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/style/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/style/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/style/subassembly.css">
+    <link rel="stylesheet" type="text/css" href="/assets/style/background.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -100,7 +104,7 @@
     <h1>卡牌展示与搜索</h1>
     <input type="text" class="search-box" id="searchBox" placeholder="搜索标题..." oninput="filterCards()">
     <div id="loadingMessage" class="loading">正在载入...</div>
-    <div id="cards-container" class="card-container"></div>
+    <div id="cards-container" class="article-card"></div>
 
     <script>
         let allCards = [];  // 用于存储所有卡牌数据
