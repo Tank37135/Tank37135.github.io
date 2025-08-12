@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XML 卡牌生成与搜索</title>
+    <title>XML 卡牌展示与搜索</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #f4f4f4;
             padding: 20px;
         }
         h1 {
@@ -23,12 +28,23 @@
             font-size: 16px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+        .search-box:focus {
+            border-color: #007bff;
+        }
+        .loading {
+            font-size: 20px;
+            color: #555;
+            font-weight: bold;
         }
         .card-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
+            margin-top: 20px;
+            width: 100%;
         }
         .card {
             background-color: white;
@@ -37,6 +53,9 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
             transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .card:hover {
             transform: scale(1.05);
@@ -55,12 +74,32 @@
             font-size: 16px;
             color: #333;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-box {
+                width: 80%;
+            }
+            .card-container {
+                gap: 15px;
+                justify-content: center;
+            }
+            .card {
+                width: 90%;
+            }
+        }
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
     <h1>卡牌展示与搜索</h1>
     <input type="text" class="search-box" id="searchBox" placeholder="搜索标题..." oninput="filterCards()">
+    <div id="loadingMessage" class="loading">正在载入...</div>
     <div id="cards-container" class="card-container"></div>
 
     <script>
@@ -100,7 +139,8 @@
             // 按时间降序排列
             allCards.sort((a, b) => new Date(b.time) - new Date(a.time));
 
-            // 显示排序后的卡牌
+            // 隐藏加载信息，显示卡牌
+            document.getElementById("loadingMessage").style.display = "none";
             renderCards(allCards);
         }
 
