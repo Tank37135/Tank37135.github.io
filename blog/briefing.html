@@ -52,32 +52,18 @@
         }
 
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .search-box {
-                width: 80%;
-            }
-            .card-container {
-                gap: 15px;
-                justify-content: center;
-            }
-            .article-card {
-                width: 90%;
-            }
-        }
-        @media (max-width: 480px) {
-            .article-card {
-                width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
 
     <h1>卡牌展示与搜索</h1>
-    <input type="text" class="search-box" id="searchBox" placeholder="搜索标题..." oninput="filterCards()">
+    <div class="search-container">
+    <input type="text" id="search" placeholder="搜索标题..." oninput="filterCards()">
+    <div class="search-container">
+    <div class="articles-container" id="articleResults">
     <div id="loadingMessage" class="loading">正在载入...</div>
     <div id="cards-container" class="card-container"></div>
+    </div>
 
     <script>
         let allCards = [];  // 用于存储所有卡牌数据
@@ -144,7 +130,7 @@
 
         // 动态过滤卡牌
         function filterCards() {
-            var searchQuery = document.getElementById("searchBox").value.toLowerCase();
+            var searchQuery = document.getElementById("search").value.toLowerCase();
             var filteredCards = allCards.filter(card => card.title.toLowerCase().includes(searchQuery));
 
             // 根据时间重新排序并渲染过滤后的卡牌
