@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cards>
+    <Card>
+        <Time>2025-08-12 10:12:32</Time>
+        <Title>XML数据保存示例</Title>
+        <Text>这段文本保存了一个时间、标题和正文内容。</Text>
+    </Card>
+    <Card>
+        <Time>2025-08-13 14:20:45</Time>
+        <Title>卡牌示例</Title>
+        <Text>这是另一个卡牌的文本内容。</Text>
+    </Card>
+    <Card>
+        <Time>2025-08-11 09:00:00</Time>
+        <Title>卡牌排序示例</Title>
+        <Text>演示如何根据时间排序卡牌。</Text>
+    </Card>
+</Cards>

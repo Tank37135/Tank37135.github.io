@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML 卡牌生成与搜索</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .search-box {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card .time {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .card .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .card .text {
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>卡牌展示与搜索</h1>
+    <input type="text" class="search-box" id="searchBox" placeholder="搜索标题..." oninput="filterCards()">
+    <div id="cards-container" class="card-container"></div>
+
+    <script>
+        let allCards = [];  // 用于存储所有卡牌数据
+
+        // 加载并解析 XML 文件
+        function loadXMLDoc(filename) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    displayCards(this);
+                }
+            };
+            xhttp.open("GET", filename, true);
+            xhttp.send();
+        }
+
+        // 显示所有卡牌，并根据时间排序
+        function displayCards(xml) {
+            var xmlDoc = xml.responseXML;
+            var cards = xmlDoc.getElementsByTagName("Card");
+            allCards = []; // 清空之前的数据
+
+            for (var i = 0; i < cards.length; i++) {
+                var card = cards[i];
+                var time = card.getElementsByTagName("Time")[0].childNodes[0].nodeValue;
+                var title = card.getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+                var text = card.getElementsByTagName("Text")[0].childNodes[0].nodeValue;
+
+                allCards.push({
+                    time: time,
+                    title: title,
+                    text: text
+                });
+            }
+
+            // 按时间降序排列
+            allCards.sort((a, b) => new Date(b.time) - new Date(a.time));
+
+            // 显示排序后的卡牌
+            renderCards(allCards);
+        }
+
+        // 根据数据渲染卡牌
+        function renderCards(cards) {
+            var container = document.getElementById("cards-container");
+            container.innerHTML = '';  // 清空容器
+
+            cards.forEach(card => {
+                var cardElement = document.createElement("div");
+                cardElement.classList.add("card");
+
+                cardElement.innerHTML = `
+                    <div class="time">${card.time}</div>
+                    <div class="title">${card.title}</div>
+                    <div class="text">${card.text}</div>
+                `;
+
+                container.appendChild(cardElement);
+            });
+        }
+
+        // 动态过滤卡牌
+        function filterCards() {
+            var searchQuery = document.getElementById("searchBox").value.toLowerCase();
+            var filteredCards = allCards.filter(card => card.title.toLowerCase().includes(searchQuery));
+
+            // 根据时间重新排序并渲染过滤后的卡牌
+            filteredCards.sort((a, b) => new Date(b.time) - new Date(a.time));
+            renderCards(filteredCards);
+        }
+
+        // 初次加载 XML 数据
+        loadXMLDoc("data.xml");
+    </script>
+
+</body>
+</html>
