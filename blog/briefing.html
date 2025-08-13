@@ -16,17 +16,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
     <style>
-main{
-top: 20px;
-}
+        main {
+            top: 20px;
+        }
 
         .loading {
             font-size: 20px;
-            color: #555;
+            color: rgba(255, 255, 255, 0.75);
             font-weight: bold;
         }
 
-
+        .error-message {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -35,24 +39,29 @@ top: 20px;
         <h1>简报</h1>
     </header>
     <main>
-    <div class="articles-container" id="articleResults">
-        <div id="loadingMessage" class="loading">正在载入...</div>
-    </div>
-</main>
+        <div class="articles-container" id="articleResults">
+            <div id="loadingMessage" class="loading">正在载入...</div>
+            <div id="errorMessage" class="error-message" style="display: none;">加载XML文件失败，请稍后再试。</div>
+        </div>
+    </main>
 
     <script>
-
         let allCards = [];  // 用于存储所有卡片数据
 
         // 加载并解析 XML 文件
         function loadXMLDoc(filename) {
             var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status === 200) {
-                    displayCards(this);
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4) {
+                    if (this.status === 200) {
+                        displayCards(this); // 如果加载成功，显示卡片
+                    } else {
+                        displayError(); // 如果加载失败，显示错误信息
+                    }
                 }
             };
-            xhttp.open("GET", filename, true);
+            // 修改为新的文件路径
+            xhttp.open("GET", "/assets/data/briefing.xml", true);
             xhttp.send();
         }
 
@@ -85,14 +94,14 @@ top: 20px;
 
         // 根据数据渲染卡牌
         function renderCards(cards) {
-            var container = document.getElementById("articleResults"); // 之前改成了 articleResults
+            var container = document.getElementById("articleResults");
             container.innerHTML = '';  // 清空容器
 
             cards.forEach(card => {
                 var cardElement = document.createElement("div");
                 cardElement.classList.add("article-card");
 
-                cardElement.setAttribute("data-tags", "exampleTag"); // 为卡片添加 tags 属性
+                cardElement.setAttribute("data-tags", "exampleTag");
 
                 cardElement.innerHTML = `
                     <div class="article-date">
@@ -106,14 +115,19 @@ top: 20px;
             });
         }
 
-        // 初次加载 XML 数据
-        loadXMLDoc("data.xml");
+        // 显示加载错误信息
+        function displayError() {
+            document.getElementById("loadingMessage").style.display = "none";
+            document.getElementById("errorMessage").style.display = "block";
+        }
 
+        // 初次加载 XML 数据
+        loadXMLDoc("/assets/data/briefing.xml");
     </script>
-<footer>
+    <footer>
         &copy; 2025 Tank37135. All rights reserved.<br>
-        本页是对于生活中的一些事情的简要记录，不具有评论性，仅记录
-</footer>
+        本页是对于生活中的一些事情的简要记录，不具有评论性，仅记录所以移除了搜索功能，还有他们仅是文章卡牌，没有链接
+    </footer>
 </body>
 
 </html>
