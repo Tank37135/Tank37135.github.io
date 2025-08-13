@@ -1,1 +1,18 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<Cards>
+    <Card>
+        <Time>2025-08-12</Time>
+        <Title>QQ礼物</Title>
+        <Text>哇哇哇，感谢TYT003716，她让我QQ有了第一个礼物，呜呜呜，好感动~</Text>
+    </Card>
+    <Card>
+        <Time>2025-07-26</Time>
+        <Title>初中母校照片</Title>
+        <Text> 撇清 把我初中的照片发给我了，感激不尽，毕竟我初中的照片太少了</Text>
+    </Card>
+    <Card>
+        <Time>2024-10-14</Time>
+        <Title>我的书被滑了一下</Title>
+        <Text>我心爱的C++ Primer Plus的第45页中下部被划了一笔，特写此报，以“悼念”我的书</Text>
+    </Card>
+</Cards>
