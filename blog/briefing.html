@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="keywords" content="博客, 文章,在线工具, 项目">
+    <meta name="keywords" content="博客, 生活简报">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TKBtools,为你创作，简化每一步，让工作更方便</title>
-    <meta name="description" content="TKBtools提供专业免费的在线工具集合，包括番茄钟，高清录屏、声波发生器/检测器、754数学练习系统等。无需下载安装，直接网页使用，节省电脑内存。">
+    <title>Tank37135的生活简报</title>
+    <meta name="description" content="Tank37135的生活简报，记录生活">
     <link rel="icon" href="/assets/images/logo/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/assets/style/main.css">
@@ -17,38 +17,29 @@
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
     <style>
         body {
-
             padding: 20px;
         }
-        h1 {
-            margin-bottom: 20px;
-        }
+
+
         .loading {
             font-size: 20px;
             color: #555;
             font-weight: bold;
         }
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-            width: 100%;
-        }
 
 
     </style>
 </head>
-<body>
 
-    <h1>卡牌展示与搜索</h1>
-    <div class="search-container">
-    <input type="text" id="search" placeholder="搜索标题..." oninput="filterCards()">
-    <div class="search-container">
+<body>
+    <header class="header">
+        <h1>简报</h1>
+    </header>
+    <main>
     <div class="articles-container" id="articleResults">
-    <div id="loadingMessage" class="loading">正在载入...</div>
+        <div id="loadingMessage" class="loading">正在载入...</div>
     </div>
+</main>
 
     <script>
 
@@ -116,27 +107,14 @@
             });
         }
 
-        // 动态过滤卡牌
-        function filterCards() {
-            const query = document.getElementById('search').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.article-card');
-
-            cards.forEach(card => {
-                const title = card.querySelector('.article-title').textContent.toLowerCase();
-                const excerpt = card.querySelector('.article-excerpt').textContent.toLowerCase();
-
-                if (title.includes(query) || excerpt.includes(query)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
         // 初次加载 XML 数据
         loadXMLDoc("data.xml");
 
     </script>
-
+<footer>
+        &copy; 2025 Tank37135. All rights reserved.<br>
+        本页是对于生活中的一些事情的简要记录，不具有评论性，仅记录
+</footer>
 </body>
+
 </html>
