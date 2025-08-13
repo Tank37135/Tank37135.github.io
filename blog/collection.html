@@ -38,9 +38,23 @@ ul {
     border-bottom: 1px dashed #ddd;
     background-color: transparent; /* 取消背景色，避免覆盖虚线 */
 }
-p{
-text-indent: 2em;
+
+
+.li1 br {
+  display: block; /* 确保 br 占一行 */
+  position: relative;
 }
+
+/* 选中 br 后的内容，设置缩进 */
+.li1 br::after {
+  content: "";
+  display: inline-block;
+  /* 缩进 2 个字符（适配中文常用习惯），可改 px 或其他单位 */
+  text-indent: 2em; 
+  /* 用空格占位触发缩进（可选，与 text-indent 配合更稳） */
+  width: 2em; 
+}
+
   </style>
   </head>
   <body class="body">
