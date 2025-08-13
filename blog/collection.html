@@ -16,27 +16,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
       <style>
+.li1 {
+    list-style-type: none;
+    padding: 8px 0;
+    margin-left: 0;
+    position: relative;
+}
 
-    .li1 {
-      list-style-type: none;
-      padding: 8px 0;
-      margin-left: 0;
-      position: relative;
-    }
+ul {
+    padding-left: 0;
+}
 
-    ul {
-      padding-left: 0;
-    }
-
-    .li1:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background-color: #ddd;
-    }
+.li1:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    /* 改为虚线边框 */
+    border-bottom: 1px dashed #ddd;
+    background-color: transparent; /* 取消背景色，避免覆盖虚线 */
+}
+p{
+text-indent: 2em;
+}
   </style>
   </head>
   <body class="body">
