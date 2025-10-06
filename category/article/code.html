@@ -38,94 +38,94 @@
        <div class="code-block">
        <button onclick="copyCode(this)">CSS复制</button>
        <pre><code class="code2">
-         body {
-         margin: 0;
-         overflow: hidden;
-         }
+body {
+    margin: 0;
+    overflow: hidden;
+}
       </code></pre>
       </div>
       <p>接着，我们需要把背景变成黑色的，我们可以通过创建一个画布来实现</p>
        <div class="code-block">
        <button onclick="copyCode(this)">html复制</button>
        <pre><code class="code2">
-       &lt;canvas id="canvas" style="background:#000000;"&gt;&lt;/canvas&gt;
+&lt;canvas id="canvas" style="background:#000000;"&gt;&lt;/canvas&gt;
       </code></pre>
       </div>
       <p>然后处理事件，首先获取Canvas元素及其绘图上下文</p>
        <div class="code-block">
        <button onclick="copyCode(this)">js复制</button>
        <pre><code class="code2">
-        var canvas = document.getElementById("canvas");
-        var ctx = canvas.getContext("2d");
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
       </code></pre>
       </div>
       <p>为了解决高度问题，我们可以设置画布的宽度和高度为窗口当前大小</p>
        <div class="code-block">
        <button onclick="copyCode(this)">js复制</button>
        <pre><code class="code2">
-         var w = window.innerWidth;
-         var h = window.innerHeight;
-         canvas.width = w;
-         canvas.height = h;
+var w = window.innerWidth;
+var h = window.innerHeight;
+canvas.width = w;
+canvas.height = h;
       </code></pre>
       </div>
       <p>现在要告诉系统字体和排列数，我们让他定义字体大小fontSize为14px，计算每行可以放多少个字符</p>
        <div class="code-block">
        <button onclick="copyCode(this)">js复制</button>
        <pre><code class="code2">
-         var fontSize = 14; 
-         var clos = Math.floor(w / fontSize);
+var fontSize = 14; 
+var clos = Math.floor(w / fontSize);
       </code></pre>
       </div>
       <p>创建一个数组drops用来记录每一列下落的位置</p>
        <div class="code-block">
        <button onclick="copyCode(this)">js复制</button>
        <pre><code class="code2">
-         var drops = [];
-         for (var i = 0; i < clos; i++) {
-             drops.push(0);
-         }
+var drops = [];
+for (var i = 0; i < clos; i++) {
+    drops.push(0);
+}
       </code></pre>
       </div>
       <p>定义字符串str为一组小写字母，从“q”到“m”，用于随机生成下落的字符</p>
        <div class="code-block">
        <button onclick="copyCode(this)">js复制</button>
        <pre><code class="code2">
-         var str = "qwertyuiopasdfghjklzxcvbnm";
+var str = "qwertyuiopasdfghjklzxcvbnm";
       </code></pre>
       </div>
       <p>清空画布，设置fillStyle为半透明黑色，覆盖整个canvas，模拟背景的逐渐暗淡</p>
        <div class="code-block">
        <button onclick="copyCode(this)">js复制</button>
        <pre><code class="code2">
-         ctx.fillStyle = "rgba(0,0,0,0.05)";
-         ctx.fillRect(0, 0, w, h);
+ctx.fillStyle = "rgba(0,0,0,0.05)";
+ctx.fillRect(0, 0, w, h);
       </code></pre>
       </div>
       <p>设置字体样式和颜色</p>
        <div class="code-block">
        <button onclick="copyCode(this)">js复制</button>
        <pre><code class="code2">
-         ctx.font = "600 " + fontSize + "px 流星雨";
-         ctx.fillStyle = "#00ff00"; 
+ctx.font = "600 " + fontSize + "px 流星雨";
+ctx.fillStyle = "#00ff00"; 
       </code></pre>
       </div>
       <p>循环遍历每一列，绘制字符并调整下落的位置</p>
        <div class="code-block">
        <button onclick="copyCode(this)">js复制</button>
        <pre><code class="code2">
-         for (var i = 0; i < clos; i++) {
-           var x = i * fontSize;
-           var y = drops[i] * fontSize;
-    
-           ctx.fillText(str[Math.floor(Math.random() * str.length)], x, y);
-     
-           if (y > h && Math.random() > 0.99) {
-               drops[i] = 0;
-           }
-    
-           drops[i]++;
-         }
+for (var i = 0; i < clos; i++) {
+  var x = i * fontSize;
+  var y = drops[i] * fontSize;
+
+  ctx.fillText(str[Math.floor(Math.random() * str.length)], x, y);
+
+  if (y > h && Math.random() > 0.99) {
+      drops[i] = 0;
+  }
+
+  drops[i]++;
+}
       </code></pre>
       </div>
       <p>使用setInterval(drawString, 30);每30毫秒调用一次drawString函数，保持动画效果。</p>
@@ -133,20 +133,20 @@
        <div class="code-block">
        <button onclick="copyCode(this)">js复制</button>
        <pre><code class="code2">
-         window.onresize = function() {
-           // 更新窗口大小、画布尺寸以及重置drops数组
-           w = window.innerWidth;
-           h = window.innerHeight;
-           canvas.width = w;
-           canvas.height = h;
-           clos = Math.floor(w / fontSize);
-    
-           // 重置drops数组为全0，以适应新的列数
-           drops = [];
-           for (var i = 0; i < clos; i++) {
-               drops.push(0);
-           }
-         }; 
+window.onresize = function() {
+  // 更新窗口大小、画布尺寸以及重置drops数组
+  w = window.innerWidth;
+  h = window.innerHeight;
+  canvas.width = w;
+  canvas.height = h;
+  clos = Math.floor(w / fontSize);
+
+  // 重置drops数组为全0，以适应新的列数
+  drops = [];
+  for (var i = 0; i < clos; i++) {
+      drops.push(0);
+  }
+}; 
       </code></pre>
       </div>
       <p>OK，以上就是大致原理，快拿去玩吧</p>
@@ -184,7 +184,7 @@
         <h3>本文信息</h3>
         <ul>
           <li><p>发布时间:<br>完了！时间让Tank37135给忘记了</p></li>
-          <li><p>最后修改日期:<br>2025年7月27日</p></li>
+          <li><p>最后修改日期:<br>2025年10月6日</p></li>
         </ul>
       </section>
     </aside>
