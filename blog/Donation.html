@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科幻风格打赏页面</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden; /* 禁止页面滚动 */
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #000046, #1CB5E0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #00FF99;
+      text-shadow: 0 0 30px rgba(0, 255, 153, 0.8);
+      margin-bottom: 30px;
+      animation: glowText 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowText {
+      0% {
+        text-shadow: 0 0 10px rgba(0, 255, 153, 0.6), 0 0 20px rgba(0, 255, 153, 0.4), 0 0 30px rgba(0, 255, 153, 0.2);
+      }
+      100% {
+        text-shadow: 0 0 30px rgba(0, 255, 153, 1), 0 0 50px rgba(0, 255, 153, 0.7), 0 0 70px rgba(0, 255, 153, 0.5);
+      }
+    }
+
+    .qr-code {
+      display: block;
+      margin: 20px auto;
+      width: 40vmin;
+      height: 40vmin;
+      border-radius: 15px;
+      background: url('sk.png') no-repeat center center / cover;
+      border: 5px solid #00FF99;
+    }
+
+    p {
+      font-size: 1.5rem;
+      color: #00FF99;
+      margin-top: 20px;
+    }
+
+    .background-effect,
+    .pulse-effect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .background-effect {
+      background: radial-gradient(circle, rgba(0, 255, 153, 0.1), rgba(0, 0, 0, 0.7));
+      animation: movingBackground 15s linear infinite;
+    }
+
+    @keyframes movingBackground {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 100%; }
+    }
+
+    .pulse-effect {
+      background: rgba(0, 255, 153, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.2;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="background-effect"></div>
+  <div class="pulse-effect"></div>
+  <div class="container">
+    <h1>感谢您的支持</h1>
+    <div class="qr-code"></div>
+    <p>扫码打赏，支持更多内容创作</p>
+  </div>
+</body>
+</html>
