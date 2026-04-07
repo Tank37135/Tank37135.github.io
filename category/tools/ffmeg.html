@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>FFmpeg 专业指令生成器 | 分步引导 · 功能全面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f6f9fc 0%, #eef2f5 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1rem;
+            color: #1a2c3e;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* 新手概念卡牌 - 可折叠，默认折叠，无表情 */
+        .concept-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            border-radius: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e0edf5;
+            transition: all 0.2s;
+        }
+        .concept-header {
+            background: #eef3fc;
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem 1.5rem 0 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1e4663;
+            user-select: none;
+        }
+        .concept-header:hover {
+            background: #e2edf7;
+        }
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+            font-weight: normal;
+        }
+        .concept-body {
+            padding: 0 1.5rem 1.2rem 1.5rem;
+            display: none;
+            border-top: 1px solid #e2edf2;
+            background: white;
+            border-radius: 0 0 1.5rem 1.5rem;
+        }
+        .concept-body.open {
+            display: block;
+        }
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .concept-item {
+            background: #f9fbfe;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            border-left: 4px solid #1e88e5;
+        }
+        .concept-item strong {
+            color: #1565c0;
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .concept-item p {
+            font-size: 0.8rem;
+            color: #2c4f6e;
+            line-height: 1.4;
+        }
+        .concept-note {
+            background: #fef7e0;
+            border-radius: 0.8rem;
+            padding: 0.6rem 1rem;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+            color: #8a6e2b;
+        }
+        @media (max-width: 680px) {
+            .concept-header { padding: 0.8rem 1rem; font-size: 1rem; }
+            .concept-grid { grid-template-columns: 1fr; }
+        }
+
+        /* 主卡片样式 */
+        .generator-card {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .header {
+            background: #1e2f3e;
+            padding: 1.5rem 2rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-weight: 600;
+            font-size: 1.8rem;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .header h1 small {
+            font-size: 0.85rem;
+            font-weight: 400;
+            background: #2c4c6c;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            opacity: 0.9;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.4rem;
+        }
+
+        .steps-nav {
+            display: flex;
+            background: #f0f4f8;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0 1rem;
+        }
+
+        .step-tab {
+            flex: 1;
+            text-align: center;
+            padding: 1rem 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #5a6e7c;
+            cursor: pointer;
+            transition: 0.2s;
+            border-bottom: 3px solid transparent;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: inherit;
+        }
+
+        .step-tab.active {
+            color: #1e88e5;
+            border-bottom-color: #1e88e5;
+            background: white;
+        }
+
+        .step-tab:hover:not(.active) {
+            background: #e6edf4;
+            color: #2c5a7a;
+        }
+
+        .step-panel {
+            display: none;
+            padding: 2rem 2rem;
+            animation: fade 0.25s ease;
+        }
+
+        .step-panel.active-panel {
+            display: block;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e4663;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            background: white;
+            transition: 0.2s;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1e88e5;
+            box-shadow: 0 0 0 3px rgba(30,136,229,0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            transform: scale(1.1);
+            margin-right: 0.2rem;
+        }
+
+        .inline-hint {
+            font-size: 0.75rem;
+            color: #5e7a93;
+            margin-top: 0.25rem;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            height: 1px;
+            background: #e2edf2;
+        }
+
+        .command-preview {
+            background: #0f1722;
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+            overflow-x: auto;
+        }
+
+        .command-preview pre {
+            color: #bbf0ff;
+            font-family: 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: #1e88e5;
+            border: none;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .copy-btn:hover {
+            background: #0b5e9e;
+            transform: scale(0.97);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.8rem;
+            border-radius: 2rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #e2e8f0;
+            color: #1e2f3e;
+        }
+
+        .btn-primary {
+            background: #1e88e5;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover {
+            background: #1565c0;
+        }
+
+        .dynamic-input-list {
+            background: #f9fafc;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid #e2edf2;
+        }
+
+        .merge-input-item {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.7rem;
+            align-items: center;
+        }
+
+        .add-btn {
+            background: #eef2ff;
+            border: 1px solid #cbd5e1;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 680px) {
+            .step-panel { padding: 1.5rem; }
+            .form-row { flex-direction: column; gap: 1rem; }
+            .step-tab { font-size: 0.8rem; padding: 0.8rem 0.2rem; }
+        }
+        .warning-note {
+            background: #fff7e5;
+            border-left: 4px solid #ffb74d;
+            padding: 0.6rem 1rem;
+            border-radius: 0.8rem;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 新手概念卡牌 (可折叠，默认折叠，无表情) -->
+    <div class="concept-card">
+        <div class="concept-header" id="conceptHeader">
+            <span>新手必备 · 概念解读卡牌</span>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="concept-body" id="conceptBody">
+            <div class="concept-grid">
+                <div class="concept-item"><strong>输入/输出文件</strong><p>输入是原始媒体文件路径，输出是生成结果的位置。支持几乎所有格式: mp4, mkv, avi, mov, flv, m4a, mp3, wav 等。</p></div>
+                <div class="concept-item"><strong>时间裁剪</strong><p>指定开始时间和持续时长，只保留视频片段。例如从第5秒开始截取10秒内容。</p></div>
+                <div class="concept-item"><strong>分辨率缩放</strong><p>改变视频宽高尺寸。保持宽高比可避免画面变形。适合调整视频适配不同设备。</p></div>
+                <div class="concept-item"><strong>帧率 (fps)</strong><p>每秒显示的帧数。常见24/30/60fps，降低帧率可减小文件体积，提升则更流畅。</p></div>
+                <div class="concept-item"><strong>图片水印</strong><p>在视频上叠加logo或图片，可放置在四角或中央，增加品牌标识。</p></div>
+                <div class="concept-item"><strong>视频比特率</strong><p>控制视频质量与大小。值越高越清晰，文件越大。常用2000k(2M)适合1080p。</p></div>
+                <div class="concept-item"><strong>音频编码器</strong><p>决定音频压缩格式：AAC(通用), MP3(经典), Opus(高效), 或直接复制原音频。</p></div>
+                <div class="concept-item"><strong>CRF 值</strong><p>恒定质量因子，范围0-51，数值越小质量越高(文件越大)。默认23是质量和体积的良好平衡。</p></div>
+                <div class="concept-item"><strong>编码预设</strong><p>ultrafast(极快但体积大) → veryslow(慢但压缩率高)。权衡编码速度和文件大小。</p></div>
+                <div class="concept-item"><strong>合并模式</strong><p>将多个视频无缝拼接成一个，要求所有视频编码格式一致，使用concat滤镜。</p></div>
+                <div class="concept-item"><strong>提取音频</strong><p>单独保留声音轨道，输出为音频文件。常用于从视频中获取背景音乐。</p></div>
+                <div class="concept-item"><strong>额外参数</strong><p>高级ffmpeg选项，例如 -movflags +faststart 优化网页播放，或 -threads 多线程加速。</p></div>
+            </div>
+            <div class="concept-note">
+                小贴士：生成的命令可在终端/命令行中直接运行，请确保已安装 FFmpeg 并添加到环境变量。未安装可访问 ffmpeg.org 下载。
+            </div>
+        </div>
+    </div>
+
+    <!-- 主生成器卡片 -->
+    <div class="generator-card">
+        <div class="header">
+            <h1>FFmpeg 指令生成器 <small>分步引导</small></h1>
+            <p>专业视频处理 · 智能组合滤镜 · 一键复制命令行</p>
+        </div>
+
+        <!-- 步骤选项卡 -->
+        <div class="steps-nav">
+            <button class="step-tab active" data-step="1">1. 输入输出</button>
+            <button class="step-tab" data-step="2">2. 视频滤镜</button>
+            <button class="step-tab" data-step="3">3. 音频编码</button>
+            <button class="step-tab" data-step="4">4. 高级 & 命令</button>
+        </div>
+
+        <!-- 步骤1: 基本设置 + 模式切换 -->
+        <div class="step-panel active-panel" id="step1Panel">
+            <div class="form-group">
+                <label>处理模式</label>
+                <div class="checkbox-group" style="gap: 1.5rem;">
+                    <label><input type="radio" name="mode" value="normal" checked> 标准模式（滤镜/水印/裁剪）</label>
+                    <label><input type="radio" name="mode" value="concat"> 合并模式（拼接多个视频）</label>
+                </div>
+                <div class="inline-hint">合并模式下视频滤镜不可用，可设置编码参数拼接多个输入</div>
+            </div>
+            <div id="normalInputsArea">
+                <div class="form-group">
+                    <label>输入文件路径</label>
+                    <input type="text" id="inputFile" placeholder="例如: input.mp4 或 /videos/clip.mp4" value="input.mp4">
+                </div>
+            </div>
+            <div id="concatInputsArea" style="display: none;">
+                <label>待合并视频列表（至少2个）</label>
+                <div id="concatFilesContainer" class="dynamic-input-list">
+                    <div class="merge-input-item"><input type="text" placeholder="视频1路径, 如: part1.mp4" value="part1.mp4"></div>
+                    <div class="merge-input-item"><input type="text" placeholder="视频2路径, 如: part2.mp4" value="part2.mp4"></div>
+                </div>
+                <button type="button" class="add-btn" id="addConcatInput">+ 添加视频</button>
+            </div>
+            <div class="form-group">
+                <label>输出文件路径</label>
+                <input type="text" id="outputFile" placeholder="output.mp4 / output.mkv / audio.mp3" value="output.mp4">
+            </div>
+            <div class="warning-note">
+                提示：所有路径为执行ffmpeg时的相对/绝对路径，请根据实际环境调整。水印/额外素材在步骤2设置。
+            </div>
+            <div class="nav-buttons">
+                <button class="btn" disabled style="visibility: hidden;">上一步</button>
+                <button class="btn btn-primary next-step" data-next="2">下一步：视频滤镜 →</button>
+            </div>
+        </div>
+
+        <!-- 步骤2: 视频滤镜组 (裁剪/缩放/帧率/水印) 仅在标准模式生效 -->
+        <div class="step-panel" id="step2Panel">
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="enableCrop"> <label>启用裁剪（时间裁剪）</label>
+                </div>
+                <div id="cropOptions" style="margin-top: 0.8rem; display: none;">
+                    <div class="form-row">
+                        <div class="form-group"><label>开始时间 (hh:mm:ss 或秒)</label><input type="text" id="startTime" placeholder="00:00:05 或 5"></div>
+                        <div class="form-group"><label>持续时间</label><input type="text" id="duration" placeholder="00:00:10 或 10"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="enableScale"> <label>调整分辨率 (缩放)</label>
+                </div>
+                <div id="scaleOptions" style="display: none; margin-top: 0.8rem;">
+                    <div class="form-row">
+                        <div class="form-group"><label>宽度</label><input type="number" id="scaleWidth" placeholder="1280" value="1280"></div>
+                        <div class="form-group"><label>高度</label><input type="number" id="scaleHeight" placeholder="720" value="720"></div>
+                    </div>
+                    <div class="checkbox-group"><input type="checkbox" id="keepAspect"> 保持宽高比（使用 -2 自适应）</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="enableFps"> <label>设置帧率 (fps)</label>
+                </div>
+                <div id="fpsOptions" style="display: none;"><input type="number" id="fpsValue" step="1" placeholder="24/30/60" value="30"></div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="enableWatermark"> <label>图片水印 (overlay)</label>
+                </div>
+                <div id="watermarkOptions" style="display: none; margin-top: 0.8rem;">
+                    <div class="form-group"><label>水印图片路径</label><input type="text" id="watermarkPath" placeholder="logo.png"></div>
+                    <div class="form-group"><label>水印位置</label>
+                        <select id="watermarkPos">
+                            <option value="top-left">左上角</option>
+                            <option value="top-right">右上角</option>
+                            <option value="bottom-left">左下角</option>
+                            <option value="bottom-right" selected>右下角</option>
+                            <option value="center">正中央</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>视频比特率 (可选)</label>
+                <input type="text" id="videoBitrate" placeholder="例如: 2000k, 2M, 不填则默认">
+            </div>
+            <div class="nav-buttons">
+                <button class="btn prev-step" data-prev="1">← 上一步</button>
+                <button class="btn btn-primary next-step" data-next="3">下一步：音频设置 →</button>
+            </div>
+        </div>
+
+        <!-- 步骤3: 音频处理 -->
+        <div class="step-panel" id="step3Panel">
+            <div class="form-group">
+                <label>音频编码器</label>
+                <select id="audioCodec">
+                    <option value="">拷贝原音频 (copy)</option>
+                    <option value="aac">AAC</option>
+                    <option value="mp3">MP3 (libmp3lame)</option>
+                    <option value="opus">Opus</option>
+                    <option value="pcm_s16le">WAV (pcm_s16le)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>音频比特率</label>
+                <input type="text" id="audioBitrate" placeholder="128k, 192k, 320k">
+            </div>
+            <div class="checkbox-group" style="margin-bottom: 1rem;">
+                <input type="checkbox" id="extractAudio"> <label>提取音频 (仅音频，输出为音频文件)</label>
+                <div class="inline-hint">勾选后将禁用视频流，输出需搭配.mp3/.m4a等扩展名</div>
+            </div>
+            <div class="checkbox-group" style="margin-bottom: 1rem;">
+                <input type="checkbox" id="disableVideo"> <label>禁用视频 (-vn)</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="disableAudio"> <label>禁用音频 (-an)</label>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn prev-step" data-prev="2">← 上一步</button>
+                <button class="btn btn-primary next-step" data-next="4">下一步：生成命令 →</button>
+            </div>
+        </div>
+
+        <!-- 步骤4: 高级参数 + 最终命令 -->
+        <div class="step-panel" id="step4Panel">
+            <div class="form-group">
+                <label>编码预设 (CRF / 预设)</label>
+                <div class="form-row">
+                    <div class="form-group"><label>CRF值 (0-51, 默认23)</label><input type="text" id="crfValue" placeholder="23"></div>
+                    <div class="form-group"><label>预设(preset)</label><select id="presetSelect"><option value="">自动</option><option value="ultrafast">ultrafast</option><option value="fast">fast</option><option value="medium">medium</option><option value="slow">slow</option><option value="veryslow">veryslow</option></select></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>额外参数 (自由追加)</label>
+                <input type="text" id="extraParams" placeholder="-movflags +faststart -threads 2">
+            </div>
+            <hr>
+            <label>生成的 FFmpeg 命令</label>
+            <div class="command-preview">
+                <pre id="commandOutput">ffmpeg -i input.mp4 output.mp4</pre>
+            </div>
+            <button class="copy-btn" id="copyCommandBtn">复制命令到剪贴板</button>
+            <div class="nav-buttons">
+                <button class="btn prev-step" data-prev="3">← 上一步修改</button>
+                <button class="btn btn-primary" id="refreshCommandBtn">刷新命令</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 折叠卡牌交互（默认折叠）
+    const conceptHeader = document.getElementById('conceptHeader');
+    const conceptBody = document.getElementById('conceptBody');
+    const toggleIcon = document.getElementById('toggleIcon');
+    // 确保初始状态为折叠（不包含open类，图标为▶）
+    conceptBody.classList.remove('open');
+    toggleIcon.textContent = '▶';
+    conceptHeader.addEventListener('click', () => {
+        const isOpen = conceptBody.classList.contains('open');
+        if (isOpen) {
+            conceptBody.classList.remove('open');
+            toggleIcon.textContent = '▶';
+        } else {
+            conceptBody.classList.add('open');
+            toggleIcon.textContent = '▼';
+        }
+    });
+
+    // DOM 元素
+    const modeNormal = document.querySelector('input[name="mode"][value="normal"]');
+    const modeConcat = document.querySelector('input[name="mode"][value="concat"]');
+    const normalArea = document.getElementById('normalInputsArea');
+    const concatArea = document.getElementById('concatInputsArea');
+    const inputFileEl = document.getElementById('inputFile');
+    const outputFileEl = document.getElementById('outputFile');
+    const concatContainer = document.getElementById('concatFilesContainer');
+    const addConcatBtn = document.getElementById('addConcatInput');
+    // 滤镜
+    const enableCrop = document.getElementById('enableCrop');
+    const cropOptions = document.getElementById('cropOptions');
+    const enableScale = document.getElementById('enableScale');
+    const scaleOptions = document.getElementById('scaleOptions');
+    const enableFps = document.getElementById('enableFps');
+    const fpsOptions = document.getElementById('fpsOptions');
+    const enableWatermark = document.getElementById('enableWatermark');
+    const watermarkOptions = document.getElementById('watermarkOptions');
+    const videoBitrate = document.getElementById('videoBitrate');
+    // 音频
+    const audioCodec = document.getElementById('audioCodec');
+    const audioBitrate = document.getElementById('audioBitrate');
+    const extractAudio = document.getElementById('extractAudio');
+    const disableVideo = document.getElementById('disableVideo');
+    const disableAudio = document.getElementById('disableAudio');
+    // 高级
+    const crfValue = document.getElementById('crfValue');
+    const presetSelect = document.getElementById('presetSelect');
+    const extraParams = document.getElementById('extraParams');
+    const commandPre = document.getElementById('commandOutput');
+
+    // 辅助显示/隐藏
+    function toggleSubOptions() {
+        cropOptions.style.display = enableCrop.checked ? 'block' : 'none';
+        scaleOptions.style.display = enableScale.checked ? 'block' : 'none';
+        fpsOptions.style.display = enableFps.checked ? 'block' : 'none';
+        watermarkOptions.style.display = enableWatermark.checked ? 'block' : 'none';
+    }
+    enableCrop.addEventListener('change', toggleSubOptions);
+    enableScale.addEventListener('change', toggleSubOptions);
+    enableFps.addEventListener('change', toggleSubOptions);
+    enableWatermark.addEventListener('change', toggleSubOptions);
+    toggleSubOptions();
+
+    // 模式切换
+    function updateModeUI() {
+        const isConcat = modeConcat.checked;
+        normalArea.style.display = isConcat ? 'none' : 'block';
+        concatArea.style.display = isConcat ? 'block' : 'none';
+        const step2Inputs = document.querySelectorAll('#step2Panel input, #step2Panel select');
+        if (isConcat) {
+            step2Inputs.forEach(inp => inp.disabled = true);
+        } else {
+            step2Inputs.forEach(inp => inp.disabled = false);
+        }
+    }
+    modeNormal.addEventListener('change', updateModeUI);
+    modeConcat.addEventListener('change', updateModeUI);
+    updateModeUI();
+
+    // 动态合并输入框管理
+    addConcatBtn.addEventListener('click', () => {
+        const div = document.createElement('div');
+        div.className = 'merge-input-item';
+        div.innerHTML = '<input type="text" placeholder="视频路径" value=""> <button type="button" class="add-btn" style="background:#fee2e2;" onclick="this.parentElement.remove()">✖</button>';
+        concatContainer.appendChild(div);
+    });
+
+    function getConcatFiles() {
+        const inputs = concatContainer.querySelectorAll('.merge-input-item input');
+        const paths = [];
+        inputs.forEach(inp => { if(inp.value.trim()) paths.push(inp.value.trim()); });
+        return paths;
+    }
+
+    // 核心命令生成器
+    function generateCommand() {
+        const isConcat = modeConcat.checked;
+        if (isConcat) {
+            return generateConcatCommand();
+        } else {
+            return generateNormalCommand();
+        }
+    }
+
+    function generateNormalCommand() {
+        let input = inputFileEl.value.trim() || 'input.mp4';
+        let output = outputFileEl.value.trim() || 'output.mp4';
+        let cmd = `ffmpeg -i "${input}"`;
+        
+        let ss = '', t = '';
+        if (enableCrop.checked) {
+            let start = document.getElementById('startTime').value.trim();
+            let dur = document.getElementById('duration').value.trim();
+            if (start) ss = `-ss ${start}`;
+            if (dur) t = `-t ${dur}`;
+        }
+        if (ss) cmd += ` ${ss}`;
+        
+        let videoFilters = [];
+        if (enableScale.checked) {
+            let w = document.getElementById('scaleWidth').value;
+            let h = document.getElementById('scaleHeight').value;
+            let keep = document.getElementById('keepAspect').checked;
+            if (w && h) {
+                if (keep) videoFilters.push(`scale=${w}:${h}:force_original_aspect_ratio=decrease,pad=${w}:${h}:(ow-iw)/2:(oh-ih)/2`);
+                else videoFilters.push(`scale=${w}:${h}`);
+            }
+        }
+        if (enableFps.checked) {
+            let fpsVal = document.getElementById('fpsValue').value;
+            if (fpsVal) videoFilters.push(`fps=${fpsVal}`);
+        }
+        
+        let hasComplex = false;
+        let watermarkFilter = '';
+        let watermarkPath = '';
+        if (enableWatermark.checked) {
+            watermarkPath = document.getElementById('watermarkPath').value.trim();
+            if (watermarkPath) {
+                hasComplex = true;
+                let posMap = {
+                    'top-left': '10:10',
+                    'top-right': 'W-w-10:10',
+                    'bottom-left': '10:H-h-10',
+                    'bottom-right': 'W-w-10:H-h-10',
+                    'center': '(W-w)/2:(H-h)/2'
+                };
+                let pos = document.getElementById('watermarkPos').value;
+                let overlayPos = posMap[pos] || 'W-w-10:H-h-10';
+                watermarkFilter = `[1:v]scale=iw*0.2:-1[wm];[0:v][wm]overlay=${overlayPos}`;
+                cmd = `ffmpeg -i "${input}" -i "${watermarkPath}"`;
+            }
+        }
+        
+        let vfString = videoFilters.join(',');
+        if (hasComplex && watermarkFilter) {
+            let filterGraph = watermarkFilter;
+            if (vfString) {
+                filterGraph = `[0:v]${vfString}[main];${watermarkFilter.replace('[0:v]', '[main]')}`;
+            }
+            cmd += ` -filter_complex "${filterGraph}" -map "[out]" -map 0:a?`;
+        } else if (vfString) {
+            cmd += ` -vf "${vfString}"`;
+        }
+        
+        if (t) cmd += ` ${t}`;
+        
+        let vb = videoBitrate.value.trim();
+        if (vb) cmd += ` -b:v ${vb}`;
+        let crf = crfValue.value.trim();
+        if (crf && !vb) cmd += ` -crf ${crf}`;
+        let preset = presetSelect.value;
+        if (preset) cmd += ` -preset ${preset}`;
+        
+        let audioExtract = extractAudio.checked;
+        let vn = disableVideo.checked || audioExtract;
+        let an = disableAudio.checked;
+        if (vn) cmd += ` -vn`;
+        if (an) cmd += ` -an`;
+        if (!an && !audioExtract) {
+            let acodec = audioCodec.value;
+            if (acodec === '') cmd += ` -c:a copy`;
+            else if (acodec === 'aac') cmd += ` -c:a aac`;
+            else if (acodec === 'mp3') cmd += ` -c:a libmp3lame`;
+            else if (acodec === 'opus') cmd += ` -c:a libopus`;
+            else if (acodec === 'pcm_s16le') cmd += ` -c:a pcm_s16le`;
+            let abit = audioBitrate.value.trim();
+            if (abit) cmd += ` -b:a ${abit}`;
+        } else if (audioExtract && !an) {
+            let acodec = audioCodec.value;
+            if (acodec === '') cmd += ` -c:a copy`;
+            else if (acodec === 'aac') cmd += ` -c:a aac`;
+            else if (acodec === 'mp3') cmd += ` -c:a libmp3lame`;
+            else if (acodec === 'opus') cmd += ` -c:a libopus`;
+            else if (acodec === 'pcm_s16le') cmd += ` -c:a pcm_s16le`;
+            let abit = audioBitrate.value.trim();
+            if (abit) cmd += ` -b:a ${abit}`;
+        }
+        
+        let extra = extraParams.value.trim();
+        if (extra) cmd += ` ${extra}`;
+        cmd += ` "${output}"`;
+        cmd = cmd.replace(/\s+/g, ' ').trim();
+        return cmd;
+    }
+    
+    function generateConcatCommand() {
+        let files = getConcatFiles();
+        if (files.length < 2) {
+            return "警告: 合并模式至少需要2个视频文件，请添加路径";
+        }
+        let output = outputFileEl.value.trim() || "merged.mp4";
+        let inputs = [];
+        for (let i=0; i<files.length; i++) {
+            inputs.push(`-i "${files[i]}"`);
+        }
+        let concatFilter = `concat=n=${files.length}:v=1:a=1[outv][outa]`;
+        let cmd = `ffmpeg ${inputs.join(' ')} -filter_complex "${concatFilter}" -map "[outv]" -map "[outa]"`;
+        let vb = videoBitrate.value.trim();
+        if (vb) cmd += ` -b:v ${vb}`;
+        let crf = crfValue.value.trim();
+        if (crf && !vb) cmd += ` -crf ${crf}`;
+        let preset = presetSelect.value;
+        if (preset) cmd += ` -preset ${preset}`;
+        let acodec = audioCodec.value;
+        if (acodec === 'aac') cmd += ` -c:a aac`;
+        else if (acodec === 'mp3') cmd += ` -c:a libmp3lame`;
+        else if (acodec === 'opus') cmd += ` -c:a libopus`;
+        else if (acodec === '') cmd += ` -c:a copy`;
+        let abit = audioBitrate.value.trim();
+        if (abit) cmd += ` -b:a ${abit}`;
+        let extra = extraParams.value.trim();
+        if (extra) cmd += ` ${extra}`;
+        cmd += ` "${output}"`;
+        return cmd;
+    }
+    
+    function updateCommandPreview() {
+        let cmd = generateCommand();
+        commandPre.innerText = cmd;
+    }
+    
+    document.getElementById('copyCommandBtn').addEventListener('click', async () => {
+        let text = commandPre.innerText;
+        try {
+            await navigator.clipboard.writeText(text);
+            alert('命令已复制到剪贴板');
+        } catch(e) {
+            alert('手动复制: \n'+text);
+        }
+    });
+    document.getElementById('refreshCommandBtn')?.addEventListener('click', updateCommandPreview);
+    
+    // 步骤导航
+    let currentStep = 1;
+    function showStep(step) {
+        document.querySelectorAll('.step-panel').forEach(panel => panel.classList.remove('active-panel'));
+        document.getElementById(`step${step}Panel`).classList.add('active-panel');
+        document.querySelectorAll('.step-tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelector(`.step-tab[data-step="${step}"]`).classList.add('active');
+        currentStep = step;
+        if (step === 4) updateCommandPreview();
+    }
+    document.querySelectorAll('.step-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            let stepNum = parseInt(tab.getAttribute('data-step'));
+            showStep(stepNum);
+        });
+    });
+    document.querySelectorAll('.next-step').forEach(btn => {
+        btn.addEventListener('click', () => {
+            let next = parseInt(btn.getAttribute('data-next'));
+            if (!isNaN(next)) showStep(next);
+        });
+    });
+    document.querySelectorAll('.prev-step').forEach(btn => {
+        btn.addEventListener('click', () => {
+            let prev = parseInt(btn.getAttribute('data-prev'));
+            if (!isNaN(prev)) showStep(prev);
+        });
+    });
+    
+    const allInputs = document.querySelectorAll('input, select, textarea');
+    allInputs.forEach(el => {
+        el.addEventListener('change', () => { if(currentStep === 4) updateCommandPreview(); });
+        el.addEventListener('input', () => { if(currentStep === 4) updateCommandPreview(); });
+    });
+    modeNormal.addEventListener('change', () => { if(currentStep === 4) updateCommandPreview(); updateModeUI(); });
+    modeConcat.addEventListener('change', () => { if(currentStep === 4) updateCommandPreview(); updateModeUI(); });
+    addConcatBtn.addEventListener('click', () => { if(currentStep === 4) updateCommandPreview(); });
+    setInterval(() => { if(currentStep === 4 && modeConcat.checked) updateCommandPreview(); }, 200);
+    updateModeUI();
+    toggleSubOptions();
+    updateCommandPreview();
+</script>
+</body>
+</html>
