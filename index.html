@@ -1,457 +1,224 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-    <meta name="msvalidate.01" content="52C62D292F6FA1FDA95F9F7305E3BC9E" />
-    <meta charset="UTF-8">
-    <meta name="description" content="程序员Tank37135的技术博客 | 分享C++/Java实战、Web开发、效率工具开发心得，附3D作品与极客生活记录。提供原创教程和工具下载。">
-    <title>C++/Web开发实战 - Tank37135随心更新，记录生活，分享技术</title>
-    <meta name="keywords" content="博客, 文章,在线工具, 项目">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="assets/style/main.css">
-    <link rel="stylesheet" type="text/css" href="assets/style/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/style/subassembly.css">
-    <link rel="stylesheet" type="text/css" href="assets/style/background.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tank37135 的个人网站 | 分享C++/Java实战、Web开发、效率工具开发心得，3D作品与极客生活记录">
+  <meta name="keywords" content="Tank37135, 博客, 技术博客, C++, Java, Web开发, 编程">
+  <meta name="msvalidate.01" content="52C62D292F6FA1FDA95F9F7305E3BC9E" />
+  <title>Tank37135 | 记录生活，分享技术</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/style/main.css">
+  <link rel="stylesheet" href="assets/style/style.css">
+  <link rel="stylesheet" href="assets/style/subassembly.css">
+  <link rel="stylesheet" href="assets/style/background.css">
 </head>
-<style>
+<body>
 
-    /* 加载动画容器 */
-            /* 加载动画容器 */
-            .l-body {
-                background: linear-gradient(to bottom right, #1a71d5, #c469f4);
-                height: 100vh;
-                color: #fff;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 9999;
-                transition: opacity 0.5s ease-out;
-            }
-            
-            /* 旋转动画元素 */
-            .loading {
-                width: 70px;
-                height: 70px;
-                position: relative;
-            }
-            
-            .loading i {
-                margin: auto;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                display: block;
-            }
-            
-            .loading span {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-            }
-            
-            .loading span:after {
-                content: '';
-                display: block;
-                width: 13%;
-                height: 13%;
-                background: #fff;
-                border-radius: 50%;
-            }
-            
-            /* 6个圆点的旋转动画 */
-            .loading span:nth-child(1) { animation: i1 5.5s 0.2s infinite; }
-            .loading span:nth-child(2) { animation: i2 5.5s 0.4s infinite; }
-            .loading span:nth-child(3) { animation: i3 5.5s 0.6s infinite; }
-            .loading span:nth-child(4) { animation: i4 5.5s 0.8s infinite; }
-            .loading span:nth-child(5) { animation: i5 5.5s 1s infinite; }
-            .loading span:nth-child(6) { animation: i6 5.5s 1.2s infinite; }
-            
-            /* 动画关键帧 */
-            @keyframes i1 {
-                0% { opacity: 1; transform: rotate(190deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
-                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
-                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
-                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
-                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
-                68% { opacity: 1; transform: rotate(920deg); animation-timing-function: ease-in; }
-                69% { opacity: 0; transform: rotate(930deg); }
-            }
-            
-            @keyframes i2 {
-                0% { opacity: 1; transform: rotate(180deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
-                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
-                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
-                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
-                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
-                68% { opacity: 1; transform: rotate(910deg); animation-timing-function: ease-in; }
-                69% { opacity: 0; transform: rotate(920deg); }
-            }
-            
-            @keyframes i3 {
-                0% { opacity: 1; transform: rotate(170deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
-                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
-                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
-                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
-                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
-                68% { opacity: 1; transform: rotate(900deg); animation-timing-function: ease-in; }
-                69% { opacity: 0; transform: rotate(910deg); }
-            }
-            
-            @keyframes i4 {
-                0% { opacity: 1; transform: rotate(160deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
-                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
-                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
-                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
-                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
-                68% { opacity: 1; transform: rotate(890deg); animation-timing-function: ease-in; }
-                69% { opacity: 0; transform: rotate(900deg); }
-            }
-            
-            @keyframes i5 {
-                0% { opacity: 1; transform: rotate(150deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
-                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
-                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
-                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
-                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
-                68% { opacity: 1; transform: rotate(880deg); animation-timing-function: ease-in; }
-                69% { opacity: 0; transform: rotate(880deg); }
-            }
-            
-            @keyframes i6 {
-                0% { opacity: 1; transform: rotate(140deg); animation-timing-function: cubic-bezier(0.29, 0.44, 0.32, 0.74); }
-                7% { opacity: 1; transform: rotate(300deg); animation-timing-function: linear; }
-                30% { opacity: 1; transform: rotate(450deg); animation-timing-function: cubic-bezier(0.53, 0.27, 0.37, 0.81); }
-                39% { opacity: 1; transform: rotate(645deg); animation-timing-function: linear; }
-                63% { opacity: 1; transform: rotate(800deg); animation-timing-function: cubic-bezier(0.5, 0.32, 0.82, 0.54); }
-                68% { opacity: 1; transform: rotate(870deg); animation-timing-function: ease-in; }
-                69% { opacity: 0; transform: rotate(880deg); }
-            }
-            
-            /* 文本样式 */
-            .l-title {
-                font-size: 22px;
-                line-height: 50px;
-                margin-top: 15px;
-                text-align: center;
-            }
-            
-            .timeout-message {
-                display: none;
-                font-size: 18px;
-                margin-top: 20px;
-                color: #fff;
-                text-align: center;
-                max-width: 80%;
-            }
-            
-            /* 加载完成后的状态 */
-            .loaded .l-body {
-                opacity: 0;
-                pointer-events: none;
-            }
-    body {
-      background-image: url('/assets/images/jpg/dark.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;  /* 背景固定不随页面滚动 */
-      margin: 0;
-    }
-</style>
-
-<body class="body">
-    <div class="l-body">
-        <div class="loading">
-            <i>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </i>
-        </div>
-        <div class="l-title">正在加载...</div>
-        <div class="timeout-message">加载时间过长，我们将为您跳过加载动画</div>
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-overlay__spinner">
+      <div class="loading-overlay__core"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--outer"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--inner"></div>
     </div>
-    <canvas id="canvas"></canvas>
+    <div class="loading-overlay__text">Loading</div>
+  </div>
 
-    <div class="logo-container">
-        <!-- 替换为您的Logo图片 -->
-        <img src="assets/images/logo/favicon.ico" alt="Logo" class="logo">
-        <div class="logo-text">Tank37135</div>
+  <canvas id="canvas"></canvas>
+
+  <header class="nav" role="navigation">
+    <div class="nav__brand" onclick="location.href='index.html'">
+      <img class="nav__logo" src="assets/images/png/home.png" alt="Tank37135 Logo">
+      <span class="nav__brand-text">Tank37135</span>
     </div>
-
-    <nav class="dropdown-menu">
-        <ul class="menu-items">
-            <li><a href="https://Tank37135.github.io" class="menu-item">首页</a></li>
-            <li><a href="blog/" class="menu-item">博客</a></li>
-            <li><a href="category/article/" class="menu-item">文章</a></li>
-            <li><a href="category/tools/" class="menu-item">在线工具</a></li>
-            <li><a href="about.html" class="menu-item">关于</a></li>
-        </ul>
+    <div class="nav__toggle" aria-label="Toggle menu">
+      <span class="nav__toggle-line"></span><span class="nav__toggle-line"></span><span class="nav__toggle-line"></span>
+    </div>
+    <nav class="nav__menu">
+      <a class="nav__link nav__link--active" href="index.html">首页</a>
+      <a class="nav__link" href="category/article/">文章</a>
+      <a class="nav__link" href="blog/">博客</a>
+      <a class="nav__link" href="category/">分类</a>
+      <a class="nav__link" href="category/tools/">工具</a>
+      <a class="nav__link" href="#about">关于</a>
     </nav>
+  </header>
 
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <div class="hero__bg-gradient"></div>
+      <div class="hero__bg-grid"></div>
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+    </div>
+    <div class="hero__content">
+      <div class="hero__badge"><span class="hero__badge-dot"></span>Tank37135 的个人空间</div>
+      <h1 class="hero__title"><span class="hero__title-gradient">记录生活</span><br><span class="hero__title-sub">分享技术</span></h1>
+      <p class="hero__subtitle">一个热爱编程的极客，用代码构建数字世界</p>
+      <div class="hero__typewriter"><span id="typewriter-text"></span><span class="hero__typewriter-cursor"></span></div>
+      <div class="hero__actions">
+        <a href="category/article/" class="btn btn--primary">浏览文章 <i class="bi bi-arrow-right btn__icon"></i></a>
+        <a href="#about" class="btn btn--ghost"><i class="bi bi-person btn__icon"></i> 关于我</a>
+      </div>
+    </div>
+    <div class="hero__scroll-indicator"><div class="hero__scroll-mouse"></div><span>向下探索</span></div>
+  </section>
 
-    <section class="home section centerbox">
-
-        <img class="avatar" src="assets/images/png/home.gif" alt="Tank37135"><br>
-        <h1>Tank37135 Blog</h1>
-        <div id="text"></div>
-        <hr>
-        <a href="category/tools/">在线工具</a><a href="category/article/">文章</a>
-    </section>
-
-    <!-- 其他section -->
-    <section class="section">
-        <div>
-            <h3>Tank37135 Blog</h3>
-            <p>随心更新一点点</p>
-            <img class="section-image" src="assets/images/png/blog.png" alt="Tank37135 Blog">
-            <a class="a2" href="blog/">了解更多 &gt;&gt;</a>
-        </div>
-    </section>
-
-    <section class="section">
-        <div>
-            <h3>文章</h3>
-            <p>在本站，我们通过提供中、高质量的文章，帮助您获取有价值的资讯和实用的知识。每篇文章都经过精心编写，旨在为您提供有实用性的内容，帮助您更好地应对日常工作和生活中的挑战。</p>
-            <img class="section-image" src="assets/images/png/aritcle.png" alt="知识之书">
-            <a class="a2" href="category/article/">了解更多 &gt;&gt;</a>
-        </div>
-    </section>
-
-    <section class="section">
-        <div>
-            <h3>工具</h3>
-            <p>我们开发了多款高效的在线工具，帮助您摆脱对本地软件的依赖，释放宝贵的内存空间。通过使用我们的工具，您可以更轻松地进行工作，不再受到传统软件的限制，享受更加便捷的使用体验。我们始终致力于为用户提供简洁的解决方案，让您的每一天都更加轻松自在。</p>
-            <img class="section-image" src="assets/images/png/tools.png" alt="在线工具">
-            <a class="a2" href="category/tools/">了解更多 &gt;&gt;</a>
-        </div>
-    </section>
-
-    <section class="section">
-        <div>
-            <h3>软件</h3>
-            <p>我们始终专注于技术创新，努力提升软件的性能和用户体验。以轻便、高效、快速为核心理念，我们致力于为您提供稳定、流畅的使用感受。每一次优化和改进，都是为了让您的工作更加高效、顺畅。</p>
-            <img class="section-image" src="assets/images/png/software.png" alt="技术图片">
-            <a class="a2" href="#">了解更多 &gt;&gt;</a>
-        </div>
-    </section>
-
-    <section class="section">
-        <div>
-            <h3>图片以及视频</h3>
-            <p>Tank37135对建模和渲染相关的内容有一定了解，掌握了基本的概念和技术。已经具备了对这些领域的基本认识，能够理解和应用一些常见的建模和渲染方法。</p>
-            <img class="section-image" src="assets/images/png/img.png" alt="联系图片">
-            <a class="a2" href="#">了解更多 &gt;&gt;</a>
-        </div>
-    </section>
-
-
-    <section class="section">
-        <div>
-            <h3>探索minevraft</h3>
-            <p>在这款终极沙盒游戏中建造出你能想到的所有奇景，揭开诡异秘事的神秘面纱，并在漫漫长夜中生存下来。在 Minecraft 中，每次游玩都有不同体验，世界各处都蕴藏着让人难以忘怀的冒险。在无限世界中探索创造，一步一个方块，这个世界任你塑造。</p>
-            <img class="section-image" src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/PDP-Hero_Triple-Bundle_16x9.jpg" alt="我的世界宣传图片">
-            <a class="a2" href="https://www.minecraft.net/">了解更多 &gt;&gt;</a>
-        </div>
-    </section>
-
-    <section class="section">
-        <div>
-            <h3><i class="bi bi-megaphone-fill"></i>公告</h3>
-            <p>欢迎来到TKB6(Tank37135-6)，眨眼间，我的网站已经来到了第六代改版，每次改变都意味着布局的改变和URL的变更，给喜欢老布局和习惯输入URL的用户带了了不便，这里Tank37135深表歉意，我们在你的屏幕左上角放置了我的logo，你可以通过点击他打开菜单<br>
-            </p>
-        </div>
-    </section>
-
-    <section class="section">
-        <div>
-            <h3><i class="bi bi-megaphone-fill"></i>公告</h3>
-            <p>自2025年8月3日起，TKB5的文章界面和工具界面开始重定向只新工具，文章页</p>
-        </div>
-    </section>
-
-    <footer>
-        &copy; 2025 Tank37135. All rights reserved.
-    </footer>
-
-    <script>
+  <section class="section" id="articles">
+    <div class="section__header">
+      <h2 class="section__title section__title--gradient">最新内容</h2>
+      <p class="section__subtitle">探索技术前沿，发现有趣的项目</p>
+    </div>
     
-    
-    
-    
-    
-    
-// 修改后的JavaScript部分
-document.addEventListener('DOMContentLoaded', function() {
+    <div class="articles-grid" id="articleResults" data-json="assets/json/articles.json">
+    <!-- Cards loaded from JSON -->
+    </div><div class="articles-more">
+      <a href="category/article/" class="btn btn--ghost">查看全部文章 <i class="bi bi-grid-3x3-gap btn__icon"></i></a>
+    </div>
+  </section>
 
+  <section class="section" id="about">
+    <div class="section__header">
+      <h2 class="section__title section__title--gradient">关于我</h2>
+      <p class="section__subtitle">一个热爱编程、设计与游戏的极客</p>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-lg);margin-bottom:var(--space-2xl);">
+      <div class="avatar" style="width:140px;height:140px;background:url('assets/images/png/home.png') center/cover, linear-gradient(135deg,var(--color-primary),var(--color-accent));"></div>
+      <p style="color:var(--color-white-glass);font-size:1.05rem;max-width:500px;text-align:center;line-height:1.8;">用代码构建世界，用文字记录生活。<br>6 年全栈开发经验，热衷于探索新技术、分享实战心得。</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-md);max-width:700px;margin:0 auto var(--space-2xl);">
+      <div class="card" style="text-align:center;cursor:default;padding:var(--space-lg) var(--space-md);"><div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">6+</div><div style="font-size:0.8rem;color:var(--color-white-glass);margin-top:var(--space-xs);">年编程经验</div></div>
+      <div class="card" style="text-align:center;cursor:default;padding:var(--space-lg) var(--space-md);"><div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">50+</div><div style="font-size:0.8rem;color:var(--color-white-glass);margin-top:var(--space-xs);">篇技术文章</div></div>
+      <div class="card" style="text-align:center;cursor:default;padding:var(--space-lg) var(--space-md);"><div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">30+</div><div style="font-size:0.8rem;color:var(--color-white-glass);margin-top:var(--space-xs);">个开源项目</div></div>
+      <div class="card" style="text-align:center;cursor:default;padding:var(--space-lg) var(--space-md);"><div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">∞</div><div style="font-size:0.8rem;color:var(--color-white-glass);margin-top:var(--space-xs);">对技术的热爱</div></div>
+    </div>
+  </section>
 
+  <section class="section">
+    <div class="section__header">
+      <h2 class="section__title section__title--gradient">技术栈</h2>
+      <p class="section__subtitle">日常使用的技术与工具</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-lg);">
+      <div class="card" style="cursor:default;"><h3 class="card__title" style="font-size:1rem;margin-bottom:var(--space-md);"><i class="bi bi-code-slash" style="color:var(--color-primary-light);margin-right:var(--space-sm);"></i>前端开发</h3><div class="card__tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Vue</span><span class="tag">Tailwind</span></div></div>
+      <div class="card" style="cursor:default;"><h3 class="card__title" style="font-size:1rem;margin-bottom:var(--space-md);"><i class="bi bi-server" style="color:var(--color-primary-light);margin-right:var(--space-sm);"></i>后端开发</h3><div class="card__tags"><span class="tag">C++</span><span class="tag">Java</span><span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">SQL</span></div></div>
+      <div class="card" style="cursor:default;"><h3 class="card__title" style="font-size:1rem;margin-bottom:var(--space-md);"><i class="bi bi-tools" style="color:var(--color-primary-light);margin-right:var(--space-sm);"></i>工具 &amp; 平台</h3><div class="card__tags"><span class="tag">Git</span><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">VS Code</span><span class="tag">Figma</span></div></div>
+      <div class="card" style="cursor:default;"><h3 class="card__title" style="font-size:1rem;margin-bottom:var(--space-md);"><i class="bi bi-palette" style="color:var(--color-primary-light);margin-right:var(--space-sm);"></i>创意 &amp; 设计</h3><div class="card__tags"><span class="tag">Blender</span><span class="tag">3D建模</span><span class="tag">UI设计</span><span class="tag">Minecraft</span></div></div>
+    </div>
+  </section>
 
-    const loadingContainer = document.querySelector('.l-body');
-    const loadingText = document.querySelector('.l-title');
-    const timeoutMessage = document.querySelector('.timeout-message');
-    
-    // 获取页面中所有需要加载的资源
-    const resources = document.querySelectorAll('img, link[rel="stylesheet"], script');
-    let loadedCount = 0;
-    let totalResources = resources.length;
-    
-    // 如果没有需要加载的资源，立即隐藏加载动画
-    if (totalResources === 0) {
-        hideLoader();
-        return;
-    }
-    
-    // 3分钟超时计时器
-    const timeoutTimer = setTimeout(() => {
-        timeoutMessage.style.display = 'block';
-        hideLoader();
-    }, 180000); // 3分钟 = 180000毫秒
+  <section class="section">
+    <div class="section__header">
+      <h2 class="section__title section__title--gradient">与我联系</h2>
+      <p class="section__subtitle">对我感兴趣？或者想讨论潜在的机会？</p>
+    </div>
+    <div style="display:flex;justify-content:center;gap:var(--space-lg);flex-wrap:wrap;">
+      <a href="https://github.com/Tank37135" target="_blank" rel="noopener" class="btn btn--ghost"><i class="bi bi-github btn__icon"></i> GitHub</a>
+      <a href="mailto:Tank37135@outlook.com" class="btn btn--ghost"><i class="bi bi-envelope btn__icon"></i> 发送邮件</a>
+    </div>
+  </section>
 
-    // 隐藏加载器函数
-    function hideLoader() {
-        loadingContainer.style.opacity = '0';
-        setTimeout(() => {
-            loadingContainer.style.display = 'none';
-        }, 500); // 等待淡出动画完成
-    }
-    
-    // 为每个资源添加加载和错误事件监听器
-    resources.forEach(resource => {
-        if (resource.tagName === 'LINK' || resource.tagName === 'SCRIPT') {
-            // 对于CSS和JS，使用onload事件
-            resource.onload = () => {
-                loadedCount++;
-                checkAllLoaded();
-            };
-            resource.onerror = () => {
-                loadedCount++;
-                checkAllLoaded();
-            };
-        } else {
-            // 对于图片
-            if (resource.complete) {
-                loadedCount++;
-                checkAllLoaded();
-            } else {
-                resource.addEventListener('load', () => {
-                    loadedCount++;
-                    checkAllLoaded();
-                });
-                resource.addEventListener('error', () => {
-                    loadedCount++;
-                    checkAllLoaded();
-                });
-            }
-        }
+  <footer class="footer">
+    <div class="footer__content">
+      <div class="footer__links">
+        <a class="footer__link" href="https://github.com/Tank37135" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
+        <a class="footer__link" href="mailto:Tank37135@outlook.com"><i class="bi bi-envelope"></i></a>
+        <a class="footer__link" href="index.html"><i class="bi bi-house"></i></a>
+      </div>
+      <p>&copy; 2025 Tank37135. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="float-bar">
+    <button class="float-bar__btn float-bar__btn--hidden" id="toTopBtn" title="回到顶部"><i class="bi bi-arrow-up"></i></button>
+    <button class="float-bar__btn" id="toBottomBtn" title="回到底部"><i class="bi bi-arrow-down"></i></button>
+  </div>
+
+  <script>
+    (function() {
+      var o = document.getElementById("loadingOverlay");
+      if (!o) return;
+      document.body.style.overflow = "hidden";
+      var total = document.querySelectorAll("link[rel=stylesheet], script[src]").length, loaded = 0, hidden = false;
+      function hide() { if (hidden) return; hidden = true; o.classList.add("loading-overlay--hidden"); setTimeout(function() { o.style.display = "none"; document.body.style.overflow = ""; }, 600); }
+      function c() { loaded++; if (loaded >= total) hide(); }
+      window.addEventListener("load", hide); setTimeout(hide, 180000);
+      if (total === 0) { hide(); return; }
+      document.querySelectorAll("link[rel=stylesheet], script[src]").forEach(function(r) {
+        if (r.tagName === "LINK") { r.onload = c; r.onerror = c; }
+        else { if (r.src) { r.onload = c; r.onerror = c; } else { c(); } }
+      });
+    })();
+  </script>
+  <script src="assets/script/background.js"></script>
+  <script src="assets/script/script.js"></script>
+  <script src="assets/script/subassembly.js"></script>
+
+<script>
+(function() {
+  var grid = document.querySelector("#articleResults[data-json]");
+  if (!grid) return;
+  var jsonPath = grid.getAttribute("data-json");
+  
+  function renderCards(data) {
+    grid.innerHTML = "";
+    data.slice(0, 6).forEach(function(item) {
+      var card = document.createElement("article");
+      card.className = "card";
+      card.setAttribute("data-tags", (item.tags || []).join(","));
+      
+      var dateDiv = document.createElement("div");
+      dateDiv.className = "card__date";
+      dateDiv.innerHTML = '<i class="bi bi-calendar3"></i> ' + (item.date || "");
+      card.appendChild(dateDiv);
+      
+      var title = document.createElement("h3");
+      title.className = "card__title";
+      title.textContent = item.title;
+      card.appendChild(title);
+      
+      var excerpt = document.createElement("p");
+      excerpt.className = "card__excerpt";
+      excerpt.textContent = item.excerpt;
+      card.appendChild(excerpt);
+      
+      var tagsDiv = document.createElement("div");
+      tagsDiv.className = "card__tags";
+      (item.tags || []).forEach(function(tag) {
+        var span = document.createElement("span");
+        span.className = "tag";
+        span.textContent = tag;
+        tagsDiv.appendChild(span);
+      });
+      card.appendChild(tagsDiv);
+      
+      var link = document.createElement("a");
+      link.className = "card__read-more";
+      link.href = item.link;
+      link.innerHTML = "阅读更多 <i class=\"bi bi-arrow-right\"></i>";
+      card.appendChild(link);
+      
+      grid.appendChild(card);
     });
-    
-    // 检查所有资源是否加载完成
-    function checkAllLoaded() {
-        if (loadedCount >= totalResources) {
-            clearTimeout(timeoutTimer);
-            hideLoader();
-        }
+  }
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", jsonPath, true);
+  xhr.onload = function() {
+    if (xhr.status >= 200 && xhr.status < 400) {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        renderCards(data);
+      } catch(e) { console.error("JSON error:", e); }
     }
-    
-    // 添加window.onload作为最后保障
-    window.addEventListener('load', () => {
-        clearTimeout(timeoutTimer);
-        hideLoader();
-    });
-});
-
-
-
-
-// 根据当前时间获取问候语
-        function getGreeting() {
-            const hour = new Date().getHours();
-            
-            if (hour >= 5 && hour < 11) {
-                return "早上好，呼吸新鲜的空气吧";
-            } else if (hour >= 11 && hour < 13) {
-                return "中午好，吃午餐了吗";
-            } else if (hour >= 13 && hour < 18) {
-                return "下午好，去活动一下吧";
-            } else if (hour >= 18 && hour < 22) {
-                return "晚上好，记得准时睡觉哦";
-            } else {
-                return "休息一下吧，熬夜对身体不好";
-            }
-        }
-
-        // 打字机效果
-        const sentences = [
-            getGreeting(),
-            "记录生活，分享技术",
-            "html实践网站啦~",
-            "天天开心，不要emo了~",
-            "海内存知己，天涯若比邻",
-            "Also try Minecraft",
-            "来都来了，随便逛逛"
-        ];
-
-        let index = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-let textElement = document.getElementById('text');
-textElement.textContent = " "; // 初始设置为一个空格
-
-        function typeText() {
-            let currentMessage = sentences[index];
-            if (isDeleting) {
-                if (charIndex > 0) {
-                    charIndex--;
-                    textElement.textContent = currentMessage.substring(0, charIndex);
-                } else {
-                    isDeleting = false;
-                    index = (index + 1) % sentences.length;
-                }
-            } else {
-                if (charIndex < currentMessage.length) {
-                    charIndex++;
-                    textElement.textContent = currentMessage.substring(0, charIndex);
-                } else {
-                    isDeleting = true;
-                    setTimeout(typeText, 3000); // 等待3秒后删除
-                    return;
-                }
-            }
-            setTimeout(typeText, isDeleting ? 60 : 80); // 加快打字速度
-        }
-
-        typeText();
-        
-document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'visible') {
-                initTypewriter();
-            }
-        });
-
-        window.addEventListener('pageshow', function(event) {
-            if (event.persisted) {
-                initTypewriter();
-            }
-        });
-
-
-
-    </script>
-    
-        <script type="text/javascript" src="assets/script/background.js"></script>
-    <script type="text/javascript" src="assets/script/script.js"></script>
-    <script type="text/javascript" src="assets/script/subassembly.js"></script>
-</body>
-
+  };
+  xhr.send();
+})();
+</script></body>
 </html>
