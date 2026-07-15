@@ -1,0 +1,40 @@
+﻿/* ========================================
+   Tank37135 - Sub-components
+   代码块 · 表格
+   ======================================== */
+
+.code-block { position: relative; margin: var(--space-lg) 0; border-radius: var(--radius-md); overflow: hidden; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); }
+.code-block__header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-sm) var(--space-md); background: rgba(0,0,0,0.2); border-bottom: 1px solid var(--glass-border); }
+.code-block__lang { font-size: 0.75rem; color: var(--color-white-glass-2); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; }
+.code-block__copy-btn { padding: 4px 12px; font-size: 0.75rem; color: var(--color-white-glass); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition-base); }
+.code-block__copy-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.code-block__copy-btn--copied { background: rgba(74,222,128,0.2); border-color: rgba(74,222,128,0.3); color: #4ade80; }
+.code-block pre { padding: var(--space-md); overflow-x: auto; margin: 0; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6; color: #e2e8f0; }
+.code-block pre::-webkit-scrollbar { height: 4px; }
+.code-block pre::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 2px; }
+.code-block pre { scrollbar-width: thin; scrollbar-color: var(--color-primary) transparent; }
+
+/* ===== 表格 ===== */
+.table-wrapper, .table-container, section.section table { width: 100%; overflow-x: auto; margin: var(--space-lg) 0; border-radius: var(--radius-md); background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); -webkit-overflow-scrolling: touch; }
+.table-wrapper table, .table-container table, section.section table { width: 100%; border-collapse: collapse; min-width: 500px; }
+.table-wrapper thead th, .table-container thead th, section.section table thead th { background: rgba(255,255,255,0.08); color: #fff; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.8px; padding: 14px 16px; text-align: left; border-bottom: 2px solid rgba(255,255,255,0.08); white-space: nowrap; }
+.table-wrapper td, .table-container td, section.section table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--color-white-glass); font-size: 0.9rem; }
+.table-wrapper tbody tr:last-child td, .table-container tbody tr:last-child td, section.section table tbody tr:last-child td { border-bottom: none; }
+.table-wrapper tbody tr:hover td, .table-container tbody tr:hover td, section.section table tbody tr:hover td { background: rgba(255,255,255,0.04); }
+.table-wrapper tbody tr:nth-child(even) td, .table-container tbody tr:nth-child(even) td, section.section table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+.table-wrapper a, .table-container a, section.section table a { color: var(--color-primary-light); text-decoration: none; font-weight: 500; transition: var(--transition-base); }
+.table-wrapper a:hover, .table-container a:hover, section.section table a:hover { color: var(--color-accent-light); text-decoration: underline; }
+.table-wrapper img, .table-container img, section.section table img { max-width: 40px; max-height: 40px; border-radius: var(--radius-sm); object-fit: cover; }
+@media (max-width: 768px) {
+  .table-wrapper td, .table-container td, section.section table td { padding: 10px 12px; font-size: 0.82rem; }
+  .table-wrapper thead th, .table-container thead th, section.section table thead th { padding: 12px; font-size: 0.75rem; }
+}
+
+/* ===== 引用块 ===== */
+blockquote { position: relative; padding: var(--space-md) var(--space-lg); margin: var(--space-lg) 0; background: rgba(124,77,255,0.06); border-left: 3px solid var(--color-accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; color: var(--color-white-glass); font-style: italic; }
+
+/* ===== 头像 ===== */
+.avatar { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; padding: 4px; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); box-shadow: 0 8px 32px rgba(26,115,232,0.2); transition: var(--transition-base); }
+.avatar:hover { transform: scale(1.05); box-shadow: 0 12px 48px rgba(26,115,232,0.3); }
+
+.responsive-img { width: auto; height: auto; max-width: 100%; max-height: 400px; border-radius: var(--radius-md); display: block; margin: 0 auto; }
