@@ -7,7 +7,7 @@
       "ffmeg",
       "生成"
     ],
-    "link": "ffmeg.html",
+    "link": "/category/tools/ffmeg.html",
     "category": "tool"
   },
   {
@@ -17,7 +17,7 @@
     "tags": [
       "心理"
     ],
-    "link": "Spiritual-station.html",
+    "link": "/category/tools/Spiritual-station.html",
     "category": "tool"
   },
   {
@@ -29,7 +29,7 @@
       "生成器",
       "字符"
     ],
-    "link": "ASCIIart.html",
+    "link": "/category/tools/ASCIIart.html",
     "category": "tool"
   },
   {
@@ -40,7 +40,7 @@
       "时间",
       "管理"
     ],
-    "link": "Pomodoro-Timer.html",
+    "link": "/category/tools/Pomodoro-Timer.html",
     "category": "tool"
   },
   {
@@ -51,7 +51,7 @@
       "测试",
       "压力"
     ],
-    "link": "view-source.html",
+    "link": "/category/tools/view-source.html",
     "category": "tool"
   },
   {
@@ -61,7 +61,7 @@
     "tags": [
       "录屏"
     ],
-    "link": "Recording.html",
+    "link": "/category/tools/Recording.html",
     "category": "tool"
   },
   {
@@ -72,7 +72,7 @@
       "物理",
       "声音"
     ],
-    "link": "Tone.html",
+    "link": "/category/tools/Tone.html",
     "category": "tool"
   },
   {
@@ -83,7 +83,7 @@
       "物理",
       "声音"
     ],
-    "link": "Sound-Detection.html",
+    "link": "/category/tools/Sound-Detection.html",
     "category": "tool"
   },
   {
@@ -95,7 +95,7 @@
       "数学",
       "练习"
     ],
-    "link": "754-pro.html",
+    "link": "/category/tools/754-pro.html",
     "category": "tool"
   },
   {
@@ -107,7 +107,7 @@
       "数学",
       "练习"
     ],
-    "link": "754.html",
+    "link": "/category/tools/754.html",
     "category": "tool"
   },
   {
@@ -118,7 +118,7 @@
       "导航",
       "网址"
     ],
-    "link": "guide.html",
+    "link": "/category/tools/guide.html",
     "category": "tool"
   }
 ]

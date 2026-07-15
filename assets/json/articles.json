@@ -7,7 +7,7 @@
       "回归",
       "更新"
     ],
-    "link": "New-Return.html",
+    "link": "/category/article/New-Return.html",
     "category": "article"
   },
   {
@@ -18,7 +18,7 @@
       "系统",
       "修复"
     ],
-    "link": "DLL.html",
+    "link": "/category/article/DLL.html",
     "category": "article"
   },
   {
@@ -29,7 +29,7 @@
       "SEO",
       "前端"
     ],
-    "link": "SEO.html",
+    "link": "/category/article/SEO.html",
     "category": "article"
   },
   {
@@ -41,7 +41,7 @@
       "HTML",
       "动画"
     ],
-    "link": "code.html",
+    "link": "/category/article/code.html",
     "category": "article"
   },
   {
@@ -53,7 +53,7 @@
       "学习",
       "资源"
     ],
-    "link": "18.html",
+    "link": "/category/article/18.html",
     "category": "article"
   },
   {
@@ -65,7 +65,7 @@
       "法律",
       "资源"
     ],
-    "link": "essay1.html",
+    "link": "/category/article/essay1.html",
     "category": "article"
   },
   {
@@ -77,7 +77,7 @@
       "系统",
       "滚动更新"
     ],
-    "link": "computer-win.html",
+    "link": "/category/article/computer-win.html",
     "category": "article"
   },
   {
@@ -89,7 +89,7 @@
       "快捷键",
       "滚动更新"
     ],
-    "link": "Key-combinations.html",
+    "link": "/category/article/Key-combinations.html",
     "category": "article"
   }
 ]
