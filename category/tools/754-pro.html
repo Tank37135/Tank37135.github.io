@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../assets/style/main.css">
+  <link rel="stylesheet" href="../../assets/style/style.css">
+  <link rel="stylesheet" href="../../assets/style/subassembly.css">
+  <link rel="stylesheet" href="../../assets/style/background.css">
+</head>
+<body>  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-overlay__spinner">
+      <div class="loading-overlay__core"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--outer"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--inner"></div>
+    </div>
+    <div class="loading-overlay__text">Loading</div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+  <header class="nav" role="navigation">
+    <div class="nav__brand" onclick="location.href='../../index.html'">
+      <img class="nav__logo" src="../../assets/images/png/home.png" alt="Tank37135 Logo">
+      <span class="nav__brand-text">Tank37135</span>
+    </div>
+    <div class="nav__toggle" aria-label="Toggle menu">
+      <span class="nav__toggle-line"></span><span class="nav__toggle-line"></span><span class="nav__toggle-line"></span>
+    </div>
+    <nav class="nav__menu">
+      <a class="nav__link" href="../../index.html">首页</a>
+      <a class="nav__link" href="../../category/article/">文章</a>
+      <a class="nav__link" href="../../blog/">博客</a>
+      <a class="nav__link" href="../../category/">分类</a>
+      <a class="nav__link" href="../../category/tools/">工具</a>
+      <a class="nav__link" href="../../index.html#about">关于</a>
+    </nav>
+  </header><section class="section" style="max-width:900px;margin:0 auto;padding:var(--space-2xl) var(--space-md);">
+
+
+        <h1 style="text-align:center;font-size:clamp(1.5rem,3vw,2rem);color:#fff;margin-bottom:var(--space-lg);font-weight:700;">754练习-pro</h1>
+        <div class="buttons">
+            <button id="startButton" class="btn btn--primary">开始</button>
+            <button id="submitButton" disabled class="btn btn--primary">提交</button>
+        </div>
+        <div id="timer">时间：00:00</div>
+        
+        <div class="inputs">
+            <div class="input-group">
+                <div style="margin-bottom:var(--space-md);">
+<label id="label1" style="display:block;margin-bottom:var(--space-xs);color:var(--color-white-glass);font-size:0.85rem;font-weight:500;">1. </label>
+                <input type="number" id="input1" class="input" disabled style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;">
+</div>
+            </div>
+            <div class="input-group">
+                <div style="margin-bottom:var(--space-md);">
+<label id="label2" style="display:block;margin-bottom:var(--space-xs);color:var(--color-white-glass);font-size:0.85rem;font-weight:500;">2. </label>
+                <input type="number" id="input2" class="input" disabled style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;">
+</div>
+            </div>
+            <div class="input-group">
+                <div style="margin-bottom:var(--space-md);">
+<label id="label3" style="display:block;margin-bottom:var(--space-xs);color:var(--color-white-glass);font-size:0.85rem;font-weight:500;">3. </label>
+                <input type="number" id="input3" class="input" disabled style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;">
+</div>
+            </div>
+            <div class="input-group">
+                <div style="margin-bottom:var(--space-md);">
+<label id="label4" style="display:block;margin-bottom:var(--space-xs);color:var(--color-white-glass);font-size:0.85rem;font-weight:500;">4. </label>
+                <input type="number" id="input4" class="input" disabled style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;">
+</div>
+            </div>
+            <div class="input-group">
+                <div style="margin-bottom:var(--space-md);">
+<label id="label5" style="display:block;margin-bottom:var(--space-xs);color:var(--color-white-glass);font-size:0.85rem;font-weight:500;">5. </label>
+                <input type="number" id="input5" class="input" disabled style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;">
+</div>
+            </div>
+        </div>
+        <b>7分钟内合格</b><br>
+        
+        <!-- 新增记录表格 -->
+        <div class="record-container">
+            <div class="record-title">练习记录</div>
+            <div class="card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);overflow-x:auto;">
+<table class="record-table" style="width:100%;border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th style="padding:var(--space-sm);border-bottom:1px solid var(--glass-border);color:var(--color-white-glass);font-size:0.85rem;">错误题序</th>
+                        <th style="padding:var(--space-sm);border-bottom:1px solid var(--glass-border);color:var(--color-white-glass);font-size:0.85rem;">用时</th>
+                    </tr>
+                </thead>
+                <tbody id="recordBody">
+                    <!-- 记录将通过JavaScript动态添加 -->
+                </tbody>
+            </table>
+</div>
+        </div>
+                <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">使用介绍：7分钟内算除5道四位数相乘的计算题，多多练习可以培养流程能力和提升计算速度，该版本数值大，重复率低，难度更高</p>
+
+        <a href="https://Tank37135.github.io/" target="_self" style="color:var(--color-primary-light);text-decoration:none;">&copy; 2025 Tank37135. All rights reserved.</a><br>
+        <a href="../../assets/download/zip/754.zip" download="754脱机文件.zip" style="color:var(--color-primary-light);text-decoration:none;">我希望下载本地文件</a>
+    </div>
+
+    
+  
+</section><footer class="footer">
+    <div class="footer__content">
+      <div class="footer__links">
+        <a class="footer__link" href="https://github.com/Tank37135" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
+        <a class="footer__link" href="mailto:Tank37135@outlook.com"><i class="bi bi-envelope"></i></a>
+        <a class="footer__link" href="../../index.html"><i class="bi bi-house"></i></a>
+      </div>
+          <p>&copy; 2024-2026 Tank37135. All rights reserved.</p>
+    </div>
+  </footer>
+  <div class="float-bar">
+    <button class="btn btn--primary" id="toTopBtn" title="回到顶部"><i class="bi bi-arrow-up"></i></button>
+    <button class="btn btn--primary" id="toBottomBtn" title="回到底部"><i class="bi bi-arrow-down"></i></button>
+  </div>
+    <script>
+    (function() {
+      var o = document.getElementById("loadingOverlay");
+      if (!o) return;
+      document.body.style.overflow = "hidden";
+      var total = document.querySelectorAll("link[rel=stylesheet], script[src]").length, loaded = 0, hidden = false;
+      function hide() { if (hidden) return; hidden = true; o.classList.add("loading-overlay--hidden"); setTimeout(function() { o.style.display = "none"; document.body.style.overflow = ""; }, 600); }
+      function c() { loaded++; if (loaded >= total) hide(); }
+      window.addEventListener("load", hide); setTimeout(hide, 180000);
+      if (total === 0) { hide(); return; }
+      document.querySelectorAll("link[rel=stylesheet], script[src]").forEach(function(r) {
+        if (r.tagName === "LINK") { r.onload = c; r.onerror = c; }
+        else { if (r.src) { r.onload = c; r.onerror = c; } else { c(); } }
+      });
+    })();
+  </script>
+<script src="../../assets/script/background.js"></script>
+  <script src="../../assets/script/script.js"></script>
+  <script>
+        let startButton = document.getElementById('startButton');
+        let submitButton = document.getElementById('submitButton');
+        let timerElement = document.getElementById('timer');
+        let inputs = document.querySelectorAll('.input');
+        let labels = ['label1', 'label2', 'label3', 'label4', 'label5'];
+        let recordBody = document.getElementById('recordBody');
+
+        let equations = [];
+        let timer;
+        let seconds = 0;
+        let lastClickTime = 0;
+        let records = [];
+        let usedEquations = new Set();
+
+        // 数字生成逻辑
+        function getFirstDigit() {
+            return Math.random() < 0.05 ? 2 : Math.floor(Math.random() * 7) + 3;
+        }
+
+        function getDigit() {
+            return Math.random() < 0.1 ? 2 : Math.floor(Math.random() * 7) + 3;
+        }
+
+        function generateFourDigitNumber() {
+            let digits = [];
+            digits.push(getFirstDigit());
+            
+            for (let i = 1; i < 4; i++) {
+                let digit;
+                do {
+                    digit = getDigit();
+                } while (digits.includes(digit));
+                digits.push(digit);
+            }
+
+            if (Math.random() < 0.05) {
+                const replaceIndex = Math.floor(Math.random() * 4);
+                digits[replaceIndex] = digits[Math.floor(Math.random() * 4)];
+            }
+
+            const numberStr = digits.join('');
+            return /[01]/.test(numberStr) ? generateFourDigitNumber() : parseInt(numberStr);
+        }
+
+        // 算式生成逻辑
+        function generateRandomEquation() {
+            const rangeType = Math.random();
+            let num1, num2;
+            
+            if (rangeType < 0.4) {
+                num1 = generateFourDigitNumberInRange(6000, 9000);
+                num2 = generateFourDigitNumberInRange(3000, 5000);
+            } else if (rangeType < 0.8) {
+                num1 = generateFourDigitNumberInRange(4000, 6000);
+                num2 = generateFourDigitNumberInRange(4000, 6000);
+            } else {
+                num1 = generateFourDigitNumber();
+                num2 = generateFourDigitNumber();
+            }
+            
+            return { 
+                num1,
+                num2,
+                str: `${num1} × ${num2} = ` 
+            };
+        }
+
+        function generateFourDigitNumberInRange(min, max) {
+            let num;
+            do {
+                num = generateFourDigitNumber();
+            } while (num < min || num > max);
+            return num;
+        }
+
+        function generateUniqueEquation() {
+            let equation;
+            do {
+                equation = generateRandomEquation();
+            } while (usedEquations.has(equation.str));
+            usedEquations.add(equation.str);
+            return equation;
+        }
+
+        // 计时器功能
+        function startTimer() {
+            timer = setInterval(() => {
+                seconds++;
+                timerElement.textContent = `时间：${Math.floor(seconds/60).toString().padStart(2,'0')}:${(seconds%60).toString().padStart(2,'0')}`;
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            seconds = 0;
+            timerElement.textContent = '时间：00:00';
+        }
+
+        // 输入框重置
+        function resetInputs() {
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('error', 'correct');
+            });
+        }
+
+        // 记录表格重置
+        function resetRecords() {
+            records = [];
+            recordBody.innerHTML = '';
+        }
+
+        // 双击结束功能
+        function handleStartButtonClick() {
+            const now = Date.now();
+            if (now - lastClickTime < 300) {
+                resetGame();
+            }
+            lastClickTime = now;
+        }
+
+        // 游戏控制
+        function startGame() {
+            resetTimer();
+            resetInputs();
+            resetRecords();
+            equations = [];
+            usedEquations.clear();
+
+            for (let i = 0; i < labels.length; i++) {
+                const equation = generateUniqueEquation();
+                equations.push({
+                    str: equation.str,
+                    num1: equation.num1,
+                    num2: equation.num2
+                });
+                document.getElementById(labels[i]).textContent = `${i + 1}. ${equation.str}`;
+                document.getElementById(`input${i + 1}`).disabled = false;
+            }
+
+            submitButton.disabled = false;
+            startButton.textContent = '结束（双击）';
+            startButton.removeEventListener('click', startGame);
+            startButton.addEventListener('click', handleStartButtonClick);
+            startTimer();
+        }
+
+        function resetGame() {
+            resetTimer();
+            startButton.textContent = '开始';
+            startButton.removeEventListener('click', handleStartButtonClick);
+            startButton.addEventListener('click', startGame);
+            submitButton.disabled = true;
+            resetInputs();
+        }
+
+        // 添加记录到表格
+        function addRecord(errorQuestions) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            const timeUsed = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+            
+            const record = {
+                errors: errorQuestions.length ? errorQuestions.join(', ') : '无',
+                duration: timeUsed
+            };
+            
+            records.unshift(record);
+            updateRecordTable();
+        }
+
+        // 更新记录表格
+        function updateRecordTable() {
+            recordBody.innerHTML = '';
+            
+            records.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${record.errors}</td>
+                    <td>${record.duration}</td>
+                `;
+                recordBody.appendChild(row);
+            });
+        }
+
+        // 答案检查
+        function checkAnswers() {
+            let allCorrect = true;
+            const errorQuestions = [];
+            
+            inputs.forEach((input, index) => {
+                const questionNumber = index + 1;
+                const equation = equations[index];
+                const correct = equation.num1 * equation.num2;
+                const answer = parseInt(input.value) || 0;
+                
+                if (answer !== correct) {
+                    input.classList.add('error');
+                    input.value = '';
+                    errorQuestions.push(questionNumber);
+                    allCorrect = false;
+                } else {
+                    input.classList.add('correct');
+                }
+            });
+
+            addRecord(errorQuestions);
+
+            if (allCorrect) {
+                clearInterval(timer);
+                alert('全部正确!');
+                startButton.textContent = '重新开始';
+                startButton.removeEventListener('click', handleStartButtonClick);
+                startButton.addEventListener('click', startGame);
+            }
+        }
+
+        // 事件监听
+        startButton.addEventListener('click', startGame);
+        submitButton.addEventListener('click', checkAnswers);
+    </script>
+<script src="../../assets/script/subassembly.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../assets/style/main.css">
+  <link rel="stylesheet" href="../../assets/style/style.css">
+  <link rel="stylesheet" href="../../assets/style/subassembly.css">
+  <link rel="stylesheet" href="../../assets/style/background.css">
+</head>
+<body>  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-overlay__spinner">
+      <div class="loading-overlay__core"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--outer"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--inner"></div>
+    </div>
+    <div class="loading-overlay__text">Loading</div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+  <header class="nav" role="navigation">
+    <div class="nav__brand" onclick="location.href='../../index.html'">
+      <img class="nav__logo" src="../../assets/images/png/home.png" alt="Tank37135 Logo">
+      <span class="nav__brand-text">Tank37135</span>
+    </div>
+    <div class="nav__toggle" aria-label="Toggle menu">
+      <span class="nav__toggle-line"></span><span class="nav__toggle-line"></span><span class="nav__toggle-line"></span>
+    </div>
+    <nav class="nav__menu">
+      <a class="nav__link" href="../../index.html">首页</a>
+      <a class="nav__link" href="../../category/article/">文章</a>
+      <a class="nav__link" href="../../blog/">博客</a>
+      <a class="nav__link" href="../../category/">分类</a>
+      <a class="nav__link" href="../../category/tools/">工具</a>
+      <a class="nav__link" href="../../index.html#about">关于</a>
+    </nav>
+  </header>
+<section class="home section centerbox">
+        <h1 style="text-align:center;font-size:clamp(1.5rem,3vw,2rem);color:#fff;margin-bottom:var(--space-lg);font-weight:700;">TK网址导航</h1><br>
+        <div class="input-with-button" style="display:flex;gap:var(--space-sm);justify-content:center;align-items:center;margin:var(--space-lg) 0;">
+            <input style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;" id="search" type="text" name="搜索框" placeholder="web搜索...">
+            <button class="btn btn--primary"><i class="bi bi-search-heart"></i>搜索</button>
+            <button class="btn btn--ghost" data-modal="modal4" id="settingsButton" aria-label="设置"><i class="bi bi-gear"></i></button>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">推荐</h2>
+        <div class="row">
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.google.com/" target="_blank">Google</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">全球最大搜索引擎</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.github.com/" target="_blank">GitHub</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">全球最大代码托管平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.wikipedia.org/" target="_blank">Wikipedia</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">自由百科全书</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.youtube.com/" target="_blank">YouTube</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">全球最大视频平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.reddit.com/" target="_blank">Reddit</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">全球社区论坛</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.microsoft.com/" target="_blank">Microsoft</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">微软官网</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.apple.com/" target="_blank">Apple</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">苹果官网</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.minecraft.net/" target="_blank">Minecraft</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">Minecraft 官网</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">AI 工具</h2>
+        <div class="row">
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://chat.openai.com/" target="_blank">ChatGPT</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">OpenAI 对话 AI</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://claude.ai/" target="_blank">Claude</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">Anthropic AI 助手</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://gemini.google.com/" target="_blank">Gemini</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">Google AI 助手</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.perplexity.ai/" target="_blank">Perplexity</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">AI 搜索引擎</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://github.com/features/copilot" target="_blank">Copilot</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">GitHub AI 编程助手</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.midjourney.com/" target="_blank">Midjourney</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">AI 图像生成</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">开发 & 设计</h2>
+        <div class="row">
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://stackoverflow.com/" target="_blank">Stack Overflow</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">程序员问答社区</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.npmjs.com/" target="_blank">npm</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">Node.js 包管理</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://pypi.org/" target="_blank">PyPI</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">Python 包索引</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://developer.mozilla.org/" target="_blank">MDN</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">Web 技术文档</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://codepen.io/" target="_blank">CodePen</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">前端代码实验</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://dribbble.com/" target="_blank">Dribbble</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">设计师社区</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.figma.com/" target="_blank">Figma</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">在线 UI 设计工具</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.canva.com/" target="_blank">Canva</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">在线平面设计</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">视频</h2>
+        <div class="row">
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.bilibili.com/" target="_blank">Bilibili</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">哔哩哔哩</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.youtube.com/" target="_blank">YouTube</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">国际视频平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.douyin.com/" target="_blank">抖音</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">短视频平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.tiktok.com/" target="_blank">TikTok</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">国际版抖音</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.kuaishou.com/" target="_blank">快手</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">短视频社区</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.netflix.com/" target="_blank">Netflix</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">流媒体平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.twitch.tv/" target="_blank">Twitch</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">游戏直播平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://vimeo.com/" target="_blank">Vimeo</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">高清视频平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">社交</h2>
+        <div class="row">
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.zhihu.com/" target="_blank">知乎</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">中文问答社区</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.weibo.com/" target="_blank">微博</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">社交媒体平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://twitter.com/" target="_blank">X (Twitter)</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">国际社交平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.facebook.com/" target="_blank">Facebook</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">社交网络</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.instagram.com/" target="_blank">Instagram</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">图片社交平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.xiaohongshu.com/" target="_blank">小红书</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">生活方式社区</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://tieba.baidu.com/" target="_blank">贴吧</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">百度贴吧</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://discord.com/" target="_blank">Discord</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">游戏语音社区</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">音乐</h2>
+        <div class="row">
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://music.163.com/" target="_blank">网易云音乐</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">音乐平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.spotify.com/" target="_blank">Spotify</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">全球音乐流媒体</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://music.apple.com/" target="_blank">Apple Music</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">苹果音乐</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.qqmusic.com/" target="_blank">QQ音乐</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">腾讯音乐平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.kugou.com/" target="_blank">酷狗音乐</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">音乐平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://soundcloud.com/" target="_blank">SoundCloud</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">独立音乐社区</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">购物</h2>
+        <div class="row">
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.taobao.com/" target="_blank">淘宝</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">综合购物平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.jd.com/" target="_blank">京东</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">综合购物平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.amazon.com/" target="_blank">Amazon</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">全球购物平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.pinduoduo.com/" target="_blank">拼多多</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">社交电商</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.ebay.com/" target="_blank">eBay</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">全球拍卖购物</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.etsy.com/" target="_blank">Etsy</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">手工艺品平台</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">资讯 & 学习</h2>
+        <div class="row">
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.36kr.com/" target="_blank">36氪</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">科技资讯</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.huxiu.com/" target="_blank">虎嗅</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">商业科技资讯</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.coursera.org/" target="_blank">Coursera</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">在线课程平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.udemy.com/" target="_blank">Udemy</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">技能学习平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.khanacademy.org/" target="_blank">Khan Academy</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">免费教育平台</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://news.ycombinator.com/" target="_blank">Hacker News</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">技术新闻社区</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">搜索引擎</h2>
+        <div class="row">
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.google.com/" target="_blank">Google</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">全球搜索引擎</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.bing.com/" target="_blank">Bing</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">微软搜索引擎</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">隐私搜索引擎</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://www.baidu.com/" target="_blank">百度</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">中文搜索引擎</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://search.yahoo.com/" target="_blank">Yahoo</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">雅虎搜索</p></div>
+            <div class="box section pm"><a style="color:var(--color-primary-light);text-decoration:none;" href="https://yandex.com/" target="_blank">Yandex</a><p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">俄罗斯搜索引擎</p></div>
+        </div>
+    </section>
+
+>

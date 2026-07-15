@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../assets/style/main.css">
+  <link rel="stylesheet" href="../../assets/style/style.css">
+  <link rel="stylesheet" href="../../assets/style/subassembly.css">
+  <link rel="stylesheet" href="../../assets/style/background.css">
+</head>
+<body>  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-overlay__spinner">
+      <div class="loading-overlay__core"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--outer"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--inner"></div>
+    </div>
+    <div class="loading-overlay__text">Loading</div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+  <header class="nav" role="navigation">
+    <div class="nav__brand" onclick="location.href='../../index.html'">
+      <img class="nav__logo" src="../../assets/images/png/home.png" alt="Tank37135 Logo">
+      <span class="nav__brand-text">Tank37135</span>
+    </div>
+    <div class="nav__toggle" aria-label="Toggle menu">
+      <span class="nav__toggle-line"></span><span class="nav__toggle-line"></span><span class="nav__toggle-line"></span>
+    </div>
+    <nav class="nav__menu">
+      <a class="nav__link" href="../../index.html">首页</a>
+      <a class="nav__link" href="../../category/article/">文章</a>
+      <a class="nav__link" href="../../blog/">博客</a>
+      <a class="nav__link" href="../../category/">分类</a>
+      <a class="nav__link" href="../../opus/">作品</a>
+      <a class="nav__link" href="../../index.html#about">关于</a>
+    </nav>
+  </header>
+<main>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="搜索文章标题或标签...">
+    </div>
+    <div class="articles-container" id="articleResults"></div>
+</main>
+    
+  <footer class="footer">
+    <div class="footer__content">
+      <div class="footer__links">
+        <a class="footer__link" href="https://github.com/Tank37135" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
+        <a class="footer__link" href="mailto:Tank37135@outlook.com"><i class="bi bi-envelope"></i></a>
+        <a class="footer__link" href="../../index.html"><i class="bi bi-house"></i></a>
+      </div>
+      <p>&copy; 2024-2026 Tank37135. All rights reserved.</p>
+    </div>
+  </footer>
+  <div class="float-bar">
+    <button class="float-bar__btn float-bar__btn--hidden" id="toTopBtn" title="回到顶部"><i class="bi bi-arrow-up"></i></button>
+    <button class="float-bar__btn" id="toBottomBtn" title="回到底部"><i class="bi bi-arrow-down"></i></button>
+  </div>
+    <script>
+    (function() {
+      var o = document.getElementById("loadingOverlay");
+      if (!o) return;
+      document.body.style.overflow = "hidden";
+      var total = document.querySelectorAll("link[rel=stylesheet], script[src]").length, loaded = 0, hidden = false;
+      function hide() { if (hidden) return; hidden = true; o.classList.add("loading-overlay--hidden"); setTimeout(function() { o.style.display = "none"; document.body.style.overflow = ""; }, 600); }
+      function c() { loaded++; if (loaded >= total) hide(); }
+      window.addEventListener("load", hide); setTimeout(hide, 180000);
+      if (total === 0) { hide(); return; }
+      document.querySelectorAll("link[rel=stylesheet], script[src]").forEach(function(r) {
+        if (r.tagName === "LINK") { r.onload = c; r.onerror = c; }
+        else { if (r.src) { r.onload = c; r.onerror = c; } else { c(); } }
+      });
+    })();
+  </script>
+<script src="../../assets/script/background.js"></script>
+  <script src="../../assets/script/script.js"></script>
+  <script src="../../assets/script/subassembly.js"></script>
+
+<script>
+(function() {
+  var container = document.getElementById("articleResults");
+  if (!container) return;
+  
+  function renderCards(data) {
+    container.innerHTML = "";
+    data.forEach(function(item) {
+      var card = document.createElement("div");
+      card.className = "article-card";
+      card.setAttribute("data-tags", (item.tags || []).join(","));
+      
+      var dateEl = document.createElement("div");
+      dateEl.className = "article-date";
+      dateEl.innerHTML = '<i class="bi bi-calendar-check-fill"></i>' + (item.date || "未记录");
+      card.appendChild(dateEl);
+      
+      var titleEl = document.createElement("h3");
+      titleEl.className = "article-title";
+      titleEl.textContent = item.title;
+      card.appendChild(titleEl);
+      
+      var excerptEl = document.createElement("p");
+      excerptEl.className = "article-excerpt";
+      excerptEl.textContent = item.excerpt;
+      card.appendChild(excerptEl);
+      
+      var tagsDiv = document.createElement("div");
+      tagsDiv.className = "article-tags";
+      (item.tags || []).forEach(function(tag) {
+        var span = document.createElement("span");
+        span.className = "tag";
+        span.textContent = tag;
+        tagsDiv.appendChild(span);
+      });
+      card.appendChild(tagsDiv);
+      
+      var link = document.createElement("a");
+      link.className = "read-more";
+      link.href = item.link;
+      link.textContent = "阅读更多";
+      card.appendChild(link);
+      
+      container.appendChild(card);
+    });
+  }
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../../assets/json/articles.json", true);
+  xhr.onload = function() {
+    if (xhr.status >= 200 && xhr.status < 400) {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        renderCards(data);
+      } catch(e) {
+        console.error("JSON parse error:", e);
+      }
+    }
+  };
+  xhr.onerror = function() {
+    console.error("Failed to load articles.json");
+  };
+  xhr.send();
+})();
+</script></body>
+</html>

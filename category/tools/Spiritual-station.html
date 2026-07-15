@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../assets/style/main.css">
+  <link rel="stylesheet" href="../../assets/style/style.css">
+  <link rel="stylesheet" href="../../assets/style/subassembly.css">
+  <link rel="stylesheet" href="../../assets/style/background.css">
+</head>
+<body>  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-overlay__spinner">
+      <div class="loading-overlay__core"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--outer"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--inner"></div>
+    </div>
+    <div class="loading-overlay__text">Loading</div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+  <header class="nav" role="navigation">
+    <div class="nav__brand" onclick="location.href='../../index.html'">
+      <img class="nav__logo" src="../../assets/images/png/home.png" alt="Tank37135 Logo">
+      <span class="nav__brand-text">Tank37135</span>
+    </div>
+    <div class="nav__toggle" aria-label="Toggle menu">
+      <span class="nav__toggle-line"></span><span class="nav__toggle-line"></span><span class="nav__toggle-line"></span>
+    </div>
+    <nav class="nav__menu">
+      <a class="nav__link" href="../../index.html">首页</a>
+      <a class="nav__link" href="../../category/article/">文章</a>
+      <a class="nav__link" href="../../blog/">博客</a>
+      <a class="nav__link" href="../../category/">分类</a>
+      <a class="nav__link" href="../../category/tools/">工具</a>
+      <a class="nav__link" href="../../index.html#about">关于</a>
+    </nav>
+  </header>
+<!-- 导航栏 -->
+    <header>
+        <nav>
+            <div class="logo">心灵驿站</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#meditation">冥想放松</a></li>
+                <li><a href="#confession">树洞倾诉</a></li>
+                <li><a href="#quotes">心灵鸡汤</a></li>
+                <li><a href="#articles">心灵文章</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- 主要内容 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1 style="text-align:center;font-size:clamp(1.5rem,3vw,2rem);color:#fff;margin-bottom:var(--space-lg);font-weight:700;">在这里，让心灵找到栖息之地</h1>
+                <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">心灵驿站是一个专为你打造的安全空间，提供冥想引导、情绪支持和心灵成长资源，帮助你找到内心的平静与力量。</p>
+                <div class="cta-buttons">
+                    <a href="#meditation" class="btn btn--primary" style="color:#fff;background:var(--color-primary);padding:12px 24px;border-radius:var(--radius-md);text-decoration:none;font-weight:600;">开始冥想</a>
+                    <a href="#confession" class="btn btn--ghost" style="color:var(--color-primary-light);padding:12px 24px;border-radius:var(--radius-md);text-decoration:none;font-weight:600;border:1px solid var(--glass-border);">倾诉心声</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 功能区块 -->
+        <section class="container">
+            <div class="features">
+                <div class="feature-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                    <div class="feature-icon"></div>
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">冥想放松</h3>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">专业的冥想引导音频，帮助你缓解压力、改善睡眠、提升专注力。</p>
+                </div>
+                <div class="feature-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                    <div class="feature-icon"></div>
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">树洞倾诉</h3>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">匿名分享你的心事，获得温暖的回应和支持。</p>
+                </div>
+                <div class="feature-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                    <div class="feature-icon"></div>
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">心灵成长</h3>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">精选心理健康文章，助你更好地认识自己、管理情绪。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 冥想区 -->
+        <section id="meditation" class="container meditation-section">
+            <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">冥想放松区</h2>
+            <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">选择一个冥想音频，找个舒适的地方，开始你的放松之旅。</p>
+            
+            <div class="audio-player" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">4分钟快速放松</h3>
+                <audio controls style="width: 100%; margin: 1rem 0;" id="audio1">
+                    <source src="/assets/audio/relax.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频元素。
+                </audio>
+                <div class="audio-error" id="error1">音频可能正在加载，要不，再等一下？如果长时间无法播放，请稍后再试。</div>
+            </div>
+            
+            <div class="audio-player" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">睡眠引导</h3>
+                <audio controls style="width: 100%; margin: 1rem 0;" id="audio2">
+                    <source src="/assets/audio/sleep.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频元素。
+                </audio>
+                <div class="audio-error" id="error2">音频可能正在加载，要不，再等一下？如果长时间无法播放，请稍后再试。</div>
+            </div>
+            
+            <div class="audio-player" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">焦虑缓解冥想</h3>
+                <audio controls style="width: 100%; margin: 1rem 0;" id="audio3">
+                    <source src="/assets/audio/Relieves_anxiety.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频元素。
+                </audio>
+                <div class="audio-error" id="error3">音频可能正在加载，要不，再等一下？如果长时间无法播放，请稍后再试。</div>
+            </div>
+        </section>
+        
+        <!-- 树洞倾诉 -->
+        <section id="confession" class="container confession-section">
+            <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">树洞倾诉</h2>
+            <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">在这里，你可以匿名写下你的心事、烦恼或任何你想分享的内容。</p>
+            
+            <form id="confession-form" style="margin:var(--space-lg) 0;">
+                <textarea style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;" placeholder="写下你想说的话..." id="confession-text"></textarea>
+                <div class="error-message" id="confession-error">请先写下你想说的话，树洞才能给你回应哦~</div>
+                <button type="submit" class="btn btn--primary">提交</button>
+            </form>
+            
+            <div id="confession-response" style="margin-top: 2rem; display: none;">
+                <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">来自心灵的回应：</h3>
+                <div id="response-text" style="background-color: #f5f5f5; padding: 1rem; border-radius: 10px; margin-top: 1rem;"></div>
+            </div>
+        </section>
+        
+        <!-- 心灵鸡汤区域 -->
+        <section id="quotes" class="container quotes-section">
+            <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">心灵鸡汤</h2>
+            <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">每日一句，温暖你的心灵</p>
+            
+            <div id="quotes-container">
+                <div class="quote-container" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                    <p class="quote-text">正在加载心灵鸡汤...</p>
+                </div>
+            </div>
+            
+            <button id="random-quote-btn" class="btn btn--primary">再来一碗</button>
+        </section>
+        
+        <!-- 心灵搜索 -->
+        <section id="articles" class="container articles-section">
+            <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">心灵搜索</h2>
+            <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">精选心理健康和心灵成长搜索，帮助你更好地理解和管理自己的情绪。</p>
+            
+            <div class="article-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                <div class="article-image"></div>
+                <div class="article-content">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">如何应对日常焦虑</h3>
+                    <div class="article-meta">心理健康</div>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">焦虑是现代社会常见的情绪反应，学习识别和应对焦虑可以帮助我们更好地生活...</p>
+                    <a href="https://cn.bing.com/search?q=%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E6%97%A5%E5%B8%B8%E7%84%A6%E8%99%91&setmkt=en-AU&PC=EMMX01&form=LBT003&scope=web" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">阅读更多 →</a>
+                </div>
+            </div>
+            
+            <div class="article-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                <div class="article-image"></div>
+                <div class="article-content">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">建立健康的人际边界</h3>
+                    <div class="article-meta">人际关系</div>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">学会设立健康的人际边界是自我关爱的重要部分，它能帮助我们保持情绪健康...</p>
+                    <a href="https://cn.bing.com/search?q=%E6%80%8E%E4%B9%88%E5%BB%BA%E7%AB%8B%E5%81%A5%E5%BA%B7%E7%9A%84%E4%BA%BA%E9%99%85%E8%BE%B9%E7%95%8C&setmkt=en-AU&PC=EMMX01&form=LWS002&scope=web" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">阅读更多 →</a>
+                </div>
+            </div>
+            
+            <div class="article-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                <div class="article-image"></div>
+                <div class="article-content">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">改善睡眠的10个方法</h3>
+                    <div class="article-meta">生活习惯</div>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">良好的睡眠对心理健康至关重要。这里有一些经过验证的方法可以帮助你获得更好的睡眠...</p>
+                    <a href="https://cn.bing.com/search?q=%E6%94%B9%E5%96%84%E7%9D%A1%E7%9C%A0%E7%9A%8410%E4%B8%AA%E6%96%B9%E6%B3%95&setmkt=en-AU&PC=EMMX01&form=L2GV02&scope=web" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">阅读更多 →</a>
+                </div>
+            </div>
+        </section>
+                <section class="container">
+                <h2 style="font-size:1.2rem;color:#fff;margin:var(--space-lg) 0 var(--space-md);font-weight:600;">心灵辅助网站</h2>
+            <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">本站的工具可能不足够帮助你，可以访问Tank37135推荐的网站</p>
+            <div class="features">
+                <div class="feature-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">互动卡通动物</h3>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">简单的鼠标操作就可以体验六种不同的互动！过程让人心情舒畅</p>
+                    <a href="https://moments.epic.net/" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">访问ta →</a>
+                </div>
+                <div class="feature-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">图片轮播</h3>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">都是可爱至极、治愈人心的图片</p>
+                    <a href="https://eyebleach.me/" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">访问ta →</a>
+                </div>
+                <div class="feature-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">云吸猫模拟器</h3>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">一只会发出呼噜声音的猫</p>
+                    <a href="https://m.niucodata.com/cat/" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">访问ta →</a>
+                </div>
+                <div class="feature-card" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">捏泡泡模拟器</h3>
+                    <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">超解压的捏泡泡模拟器，在线捏泡泡纸！</p>
+                    <a href="https://toolwa.com/bubble/" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">访问ta →</a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- 页脚 -->
+    
+    
+    
+  <footer class="footer">
+    <div class="footer__content">
+      <div class="footer__links">
+        <a class="footer__link" href="https://github.com/Tank37135" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
+        <a class="footer__link" href="mailto:Tank37135@outlook.com"><i class="bi bi-envelope"></i></a>
+        <a class="footer__link" href="../../index.html"><i class="bi bi-house"></i></a>
+      </div>
+        <p>&copy; 2024-2026 Tank37135. All rights reserved.</p>
+    </div>
+  </footer>
+  <div class="float-bar">
+    <button class="float-bar__btn float-bar__btn--hidden" id="toTopBtn" title="回到顶部"><i class="bi bi-arrow-up"></i></button>
+    <button class="float-bar__btn" id="toBottomBtn" title="回到底部"><i class="bi bi-arrow-down"></i></button>
+  </div>
+    <script>
+    (function() {
+      var o = document.getElementById("loadingOverlay");
+      if (!o) return;
+      document.body.style.overflow = "hidden";
+      var total = document.querySelectorAll("link[rel=stylesheet], script[src]").length, loaded = 0, hidden = false;
+      function hide() { if (hidden) return; hidden = true; o.classList.add("loading-overlay--hidden"); setTimeout(function() { o.style.display = "none"; document.body.style.overflow = ""; }, 600); }
+      function c() { loaded++; if (loaded >= total) hide(); }
+      window.addEventListener("load", hide); setTimeout(hide, 180000);
+      if (total === 0) { hide(); return; }
+      document.querySelectorAll("link[rel=stylesheet], script[src]").forEach(function(r) {
+        if (r.tagName === "LINK") { r.onload = c; r.onerror = c; }
+        else { if (r.src) { r.onload = c; r.onerror = c; } else { c(); } }
+      });
+    })();
+  </script>
+<script src="../../assets/script/background.js"></script>
+  <script src="../../assets/script/script.js"></script>
+  <script>
+        // 简单的树洞倾诉表单处理
+        document.getElementById('confession-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const textarea = document.getElementById('confession-text');
+            const confessionText = textarea.value.trim();
+            const errorMessage = document.getElementById('confession-error');
+            const responseContainer = document.getElementById('confession-response');
+            const responseText = document.getElementById('response-text');
+            
+            // 检查内容是否为空
+            if (!confessionText) {
+                errorMessage.style.display = 'block';
+                textarea.classList.add('error');
+                // 2秒后移除错误样式
+                setTimeout(() => {
+                    textarea.classList.remove('error');
+                    errorMessage.style.display = 'none';
+                }, 2000);
+                return;
+            }
+            
+            // 模拟AI回应
+            const responses = [
+                "感谢你分享这些感受。你的勇气值得赞赏，愿意表达自己已经是很重要的一步。",
+                "听起来你现在经历着不容易的时刻。请记住，你的感受是有效的，也是暂时的。",
+                "每个人都会有这样的时刻，你并不孤单。感谢你信任这个空间。",
+                "我能感受到你文字中的情感。照顾好自己的心灵就像照顾花园一样需要耐心和温柔。",
+                "你的分享让我想到了这句话：'即使在最黑暗的夜晚，星星依然在闪耀。'"
+            ];
+            
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            
+            responseText.textContent = randomResponse;
+            responseContainer.style.display = 'block';
+            
+            // 清空文本框
+            textarea.value = '';
+            
+            // 平滑滚动到回应
+            responseContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // 心灵鸡汤功能
+        let quotes = [];
+        
+        // 默认语录
+        function showDefaultQuote() {
+            quotes = [
+                {text: "生活就像一杯茶，不会苦一辈子，但总会苦一阵子。"},
+                {text: "每一个不曾起舞的日子，都是对生命的辜负。"},
+                {text: "世界上只有一种真正的英雄主义，那就是认清生活的真相后依然热爱生活。"},
+                {text: "生命不是要超越别人，而是要超越自己。"},
+                {text: "黑夜无论怎样悠长，白昼总会到来。"},
+                {text: "最难的不是别人的拒绝与不理解，而是你愿不愿意为你的梦想而作出改变。"},
+                {text: "人生没有白走的路，每一步都算数。"},
+                {text: "生活不是等待暴风雨过去，而是学会在雨中跳舞。"},
+                {text: "你的价值不取决于别人的评价，而取决于你如何看待自己。"},
+                {text: "有时候，我们需要停下来，不是为了放弃，而是为了重新出发。"}
+            ];
+            displayRandomQuote();
+        }
+        
+        // 显示随机语录
+        document.getElementById('random-quote-btn').addEventListener('click', displayRandomQuote);
+        
+        function displayRandomQuote() {
+            const container = document.getElementById('quotes-container');
+            
+            if (quotes.length === 0) {
+                container.innerHTML = `
+                    <div class="quote-container" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                        <p class="quote-text">暂无语录，请稍后再试</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            container.innerHTML = `
+                <div class="quote-container" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                    <p class="quote-text">${randomQuote.text}</p>
+                </div>
+            `;
+        }
+        
+        // 音频播放失败检测
+        function setupAudioErrorHandling() {
+            const audioElements = [
+                { element: document.getElementById('audio1'), error: document.getElementById('error1') },
+                { element: document.getElementById('audio2'), error: document.getElementById('error2') },
+                { element: document.getElementById('audio3'), error: document.getElementById('error3') }
+            ];
+            
+            audioElements.forEach(audio => {
+                // 检测错误事件
+                audio.element.addEventListener('error', function() {
+                    audio.error.style.display = 'block';
+                });
+                
+                // 检测长时间缓冲
+                let timeout;
+                audio.element.addEventListener('waiting', function() {
+                    timeout = setTimeout(() => {
+                        audio.error.style.display = 'block';
+                    }, 5000); // 5秒后显示加载提示
+                });
+                
+                // 当开始播放时清除超时
+                audio.element.addEventListener('playing', function() {
+                    clearTimeout(timeout);
+                    audio.error.style.display = 'none';
+                });
+                
+                // 当有足够数据播放时清除超时
+                audio.element.addEventListener('canplay', function() {
+                    clearTimeout(timeout);
+                    audio.error.style.display = 'none';
+                });
+            });
+        }
+        
+        // 页面加载时初始化
+        window.addEventListener('DOMContentLoaded', function() {
+            showDefaultQuote();
+            setupAudioErrorHandling();
+            
+            // 尝试从外部加载语录
+            try {
+                fetch('/assets/txt/quotes.txt')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('语录文件加载失败');
+                        }
+                        return response.text();
+                    })
+                    .then(text => {
+                        // 解析文本文件，每行一条语录
+                        const loadedQuotes = text.split('\n')
+                            .filter(line => line.trim() !== '')
+                            .map(line => ({text: line.trim()}));
+                        
+                        if (loadedQuotes.length > 0) {
+                            quotes = loadedQuotes;
+                            displayRandomQuote();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('加载外部语录失败:', error);
+                    });
+            } catch (e) {
+                console.error('加载语录时出错:', e);
+            }
+        });
+        
+        // 简单的导航平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+<script src="../../assets/script/subassembly.js"></script>
+</body>
+</html>

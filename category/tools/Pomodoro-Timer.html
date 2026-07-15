@@ -1,0 +1,556 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/source-code-pro" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../assets/style/main.css">
+  <link rel="stylesheet" href="../../assets/style/style.css">
+  <link rel="stylesheet" href="../../assets/style/subassembly.css">
+  <link rel="stylesheet" href="../../assets/style/background.css">
+</head>
+<body>  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-overlay__spinner">
+      <div class="loading-overlay__core"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--outer"></div>
+      <div class="loading-overlay__ring loading-overlay__ring--inner"></div>
+    </div>
+    <div class="loading-overlay__text">Loading</div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+  <header class="nav" role="navigation">
+    <div class="nav__brand" onclick="location.href='../../index.html'">
+      <img class="nav__logo" src="../../assets/images/png/home.png" alt="Tank37135 Logo">
+      <span class="nav__brand-text">Tank37135</span>
+    </div>
+    <div class="nav__toggle" aria-label="Toggle menu">
+      <span class="nav__toggle-line"></span><span class="nav__toggle-line"></span><span class="nav__toggle-line"></span>
+    </div>
+    <nav class="nav__menu">
+      <a class="nav__link" href="../../index.html">首页</a>
+      <a class="nav__link" href="../../category/article/">文章</a>
+      <a class="nav__link" href="../../blog/">博客</a>
+      <a class="nav__link" href="../../category/">分类</a>
+      <a class="nav__link" href="../../category/tools/">工具</a>
+      <a class="nav__link" href="../../index.html#about">关于</a>
+    </nav>
+  </header>
+<div class="digital-clock section">
+        <h1 style="text-align:center;font-size:clamp(1.5rem,3vw,2rem);color:#fff;margin-bottom:var(--space-lg);font-weight:700;">极简番茄钟</h1>
+        <div class="time" style="text-align:center;padding:var(--space-2xl) 0;background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);margin-bottom:var(--space-lg);">
+            <div class="time-container" style="font-size:clamp(3rem,10vw,6rem);font-weight:800;color:#fff;letter-spacing:0.05em;">
+                <span class="hours">00</span>
+                <span class="dots">:</span>
+                <span class="minutes">25</span>
+                <span class="dots">:</span>
+                <span class="seconds">00</span>
+            </div>
+        </div>
+        <!-- 进度条和百分比显示 -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+            <div class="progress-text" id="progress-text">0%</div>
+        </div>
+        <div class="buttons" style="display:flex;flex-wrap:wrap;gap:var(--space-sm);justify-content:center;margin:var(--space-lg) 0;">
+            <div class="mode-buttons" style="display:flex;flex-wrap:wrap;gap:var(--space-sm);justify-content:center;margin:var(--space-lg) 0;">
+                <button class="btn btn--primary active-mode" id="work-btn">工作</button>
+                <button class="btn btn--ghost" id="short-break-btn">短休息</button>
+                <button class="btn btn--ghost" id="long-break-btn">长休息</button>
+                
+            </div>
+            <div class="control-buttons" style="display:flex;flex-wrap:wrap;gap:var(--space-sm);justify-content:center;margin:var(--space-lg) 0;">
+                <button class="btn btn--primary" id="start-btn">开始</button>
+                <button class="btn btn--ghost" id="pause-btn" disabled>暂停</button>
+                <button class="btn btn--ghost" id="reset-btn" disabled>重置</button>
+                <button class="btn btn--ghost" id="custom-btn">设置</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Time Modal -->
+    <div class="modal" id="custom-modal">
+        <div class="modal-content" style="background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:var(--space-lg);">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">自定义设置</h2>
+            
+            <div class="modal-body">
+                <div class="time-settings">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">时间设置</h3>
+                    <div class="input-group" style="margin-bottom:var(--space-md);">
+                        <label for="custom-hours">小时 (0-99)</label>
+                        <input style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;" type="number" id="custom-hours" min="0" max="99" value="0" required>
+                        <div class="error-message" id="hours-error">请输入0-99之间的数字</div>
+                    </div>
+                    
+                    <div class="input-group" style="margin-bottom:var(--space-md);">
+                        <label for="custom-minutes">分钟 (0-59)</label>
+                        <input style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;" type="number" id="custom-minutes" min="0" max="59" value="25" required>
+                        <div class="error-message" id="minutes-error">请输入0-59之间的数字</div>
+                    </div>
+                    
+                    <div class="input-group" style="margin-bottom:var(--space-md);">
+                        <label for="custom-seconds">秒 (0-59)</label>
+                        <input style="width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:#fff;font-size:0.85rem;" type="number" id="custom-seconds" min="0" max="59" value="0" required>
+                        <div class="error-message" id="seconds-error">请输入0-59之间的数字</div>
+                    </div>
+                </div>
+                
+                <div class="sound-settings">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">铃声设置</h3>
+                    <div class="sound-options">
+                        <div class="sound-option" style="margin-bottom:var(--space-sm);">
+                            <input type="radio" style="accent-color:var(--color-primary);cursor:pointer;" id="sound-default" name="sound" value="default" checked>
+                            <label for="sound-default">默认铃声</label>
+                        </div>
+                        
+                        <div class="sound-option" style="margin-bottom:var(--space-sm);">
+                            <input type="radio" style="accent-color:var(--color-primary);cursor:pointer;" id="sound-bell" name="sound" value="bell">
+                            <label for="sound-bell">钟声</label>
+                        </div>
+                        
+                        <div class="sound-option" style="margin-bottom:var(--space-sm);">
+                            <input type="radio" style="accent-color:var(--color-primary);cursor:pointer;" id="sound-chime" name="sound" value="chime">
+                            <label for="sound-chime">风铃声</label>
+                        </div>
+                        
+                        <div class="sound-option" style="margin-bottom:var(--space-sm);">
+                            <input type="radio" style="accent-color:var(--color-primary);cursor:pointer;" id="sound-none" name="sound" value="none">
+                            <label for="sound-none">无铃声</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="other-settings">
+                    <h3 style="font-size:1rem;color:var(--color-primary-light);margin:var(--space-md) 0;font-weight:600;">其他设置</h3>
+                    <div class="other-options">
+                        <div class="other-option" style="margin-bottom:var(--space-sm);">
+                            <input type="checkbox" style="accent-color:var(--color-primary);cursor:pointer;" id="auto-fullscreen" name="auto-fullscreen">
+                            <label for="auto-fullscreen">计时开始后自动全屏</label>
+                        </div>
+                    </div>
+                </div>
+                <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">由于本页面的布局设置和一些原因，此页面使用独立的样式表，这意味着你无法通过网站提供的设置项改变本页样式</p>
+                <p style="color:var(--color-white-glass);font-size:0.85rem;line-height:1.6;">&copy; 2025 Tank37135. All rights reserved.</p>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn--ghost" id="cancel-custom">取消</button>
+                <button class="btn btn--primary" id="save-custom">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio elements for sounds -->
+    <a style="color:var(--color-primary-light);text-decoration:none;"udio id="default-sound" src="../../assets/audio/sound/default.mp3" preload="auto"></audio>
+    <a style="color:var(--color-primary-light);text-decoration:none;"udio id="bell-sound" src="../../assets/audio/sound/bell.mp3" preload="auto"></audio>
+    <a style="color:var(--color-primary-light);text-decoration:none;"udio id="chime-sound" src="../../assets/audio/sound/chime.mp3" preload="auto"></audio>
+
+    
+  <footer class="footer">
+    <div class="footer__content">
+      <div class="footer__links">
+        <a class="footer__link" href="https://github.com/Tank37135" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
+        <a class="footer__link" href="mailto:Tank37135@outlook.com"><i class="bi bi-envelope"></i></a>
+        <a class="footer__link" href="../../index.html"><i class="bi bi-house"></i></a>
+      </div>
+        <p>&copy; 2024-2026 Tank37135. All rights reserved.</p>
+    </div>
+  </footer>
+  <div class="float-bar">
+    <button class="float-bar__btn float-bar__btn--hidden" id="toTopBtn" title="回到顶部"><i class="bi bi-arrow-up"></i></button>
+    <button class="float-bar__btn" id="toBottomBtn" title="回到底部"><i class="bi bi-arrow-down"></i></button>
+  </div>
+    <script>
+    (function() {
+      var o = document.getElementById("loadingOverlay");
+      if (!o) return;
+      document.body.style.overflow = "hidden";
+      var total = document.querySelectorAll("link[rel=stylesheet], script[src]").length, loaded = 0, hidden = false;
+      function hide() { if (hidden) return; hidden = true; o.classList.add("loading-overlay--hidden"); setTimeout(function() { o.style.display = "none"; document.body.style.overflow = ""; }, 600); }
+      function c() { loaded++; if (loaded >= total) hide(); }
+      window.addEventListener("load", hide); setTimeout(hide, 180000);
+      if (total === 0) { hide(); return; }
+      document.querySelectorAll("link[rel=stylesheet], script[src]").forEach(function(r) {
+        if (r.tagName === "LINK") { r.onload = c; r.onerror = c; }
+        else { if (r.src) { r.onload = c; r.onerror = c; } else { c(); } }
+      });
+    })();
+  </script>
+<script src="../../assets/script/background.js"></script>
+  <script src="../../assets/script/script.js"></script>
+  <script>
+        // DOM Elements
+        const hoursDisplay = document.querySelector('.hours');
+        const minutesDisplay = document.querySelector('.minutes');
+        const secondsDisplay = document.querySelector('.seconds');
+        const dots = document.querySelectorAll('.dots');
+        const workBtn = document.getElementById('work-btn');
+        const shortBreakBtn = document.getElementById('short-break-btn');
+        const longBreakBtn = document.getElementById('long-break-btn');
+        const customBtn = document.getElementById('custom-btn');
+        const startBtn = document.getElementById('start-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        
+        // Modal elements
+        const customModal = document.getElementById('custom-modal');
+        const closeModal = document.querySelector('.close-modal');
+        const cancelCustom = document.getElementById('cancel-custom');
+        const saveCustom = document.getElementById('save-custom');
+        const customHours = document.getElementById('custom-hours');
+        const customMinutes = document.getElementById('custom-minutes');
+        const customSeconds = document.getElementById('custom-seconds');
+        const hoursError = document.getElementById('hours-error');
+        const minutesError = document.getElementById('minutes-error');
+        const secondsError = document.getElementById('seconds-error');
+        const autoFullscreenCheckbox = document.getElementById('auto-fullscreen');
+        
+        // Sound elements
+        const defaultSound = document.getElementById('default-sound');
+        const bellSound = document.getElementById('bell-sound');
+        const chimeSound = document.getElementById('chime-sound');
+        
+        // Timer variables
+        let countdown;
+        let totalSeconds = 25 * 60; // Default to 25 minutes (work mode)
+        let initialSeconds = 25 * 60; // Track initial time for progress calculation
+        let isRunning = false;
+        let currentMode = 'work';
+        let selectedSound = 'default';
+        let autoFullscreen = false;
+        
+        // Update the timer display
+        function updateDisplay() {
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            
+            hoursDisplay.textContent = hours.toString().padStart(2, '0');
+            minutesDisplay.textContent = minutes.toString().padStart(2, '0');
+            secondsDisplay.textContent = seconds.toString().padStart(2, '0');
+            
+            // 更新进度条和百分比
+            updateProgressBar();
+            
+            checkNumberSize();
+        }
+        
+        // 更新进度条和百分比
+        function updateProgressBar() {
+            const elapsed = initialSeconds - totalSeconds;
+            const progress = (elapsed / initialSeconds) * 100;
+            const progressPercentage = Math.round(progress);
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${progressPercentage}%`;
+            
+            // 根据进度改变颜色
+            if (progress < 50) {
+                progressBar.style.background = 'linear-gradient(90deg, #24ff6d, #2f93f1)';
+            } else if (progress < 75) {
+                progressBar.style.background = 'linear-gradient(90deg, #ffb960, #ff5e9e)';
+            } else {
+                progressBar.style.background = 'linear-gradient(90deg, #ff5e9a, #ff2e63)';
+            }
+        }
+        
+        // Check number size and adjust styling
+        function checkNumberSize() {
+            const hoursText = hoursDisplay.textContent;
+            const minutesText = minutesDisplay.textContent;
+            const secondsText = secondsDisplay.textContent;
+            
+            // 根据数字长度调整布局
+            if (hoursText.length > 2 || minutesText.length > 2 || secondsText.length > 2) {
+                const fontSize = 'clamp(1.8em, 6vw, 3.5em)';
+                hoursDisplay.style.fontSize = fontSize;
+                minutesDisplay.style.fontSize = fontSize;
+                secondsDisplay.style.fontSize = fontSize;
+                dots.forEach(dot => dot.style.fontSize = 'clamp(1.5em, 5vw, 3em)');
+            } else {
+                hoursDisplay.style.fontSize = '';
+                minutesDisplay.style.fontSize = '';
+                secondsDisplay.style.fontSize = '';
+                dots.forEach(dot => dot.style.fontSize = '');
+            }
+        }
+        
+        // Validate time input
+        function validateTimeInput() {
+            let isValid = true;
+            
+            // Reset error messages
+            hoursError.style.display = 'none';
+            minutesError.style.display = 'none';
+            secondsError.style.display = 'none';
+            
+            // Validate hours (0-23)
+            const hours = parseInt(customHours.value);
+            if (isNaN(hours) || hours < 0 || hours > 99) {
+                hoursError.style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate minutes (0-59)
+            const minutes = parseInt(customMinutes.value);
+            if (isNaN(minutes) || minutes < 0 || minutes > 59) {
+                minutesError.style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate seconds (0-59)
+            const seconds = parseInt(customSeconds.value);
+            if (isNaN(seconds) || seconds < 0 || seconds > 59) {
+                secondsError.style.display = 'block';
+                isValid = false;
+            }
+            
+            // Additional validation: total time must be > 0
+            if (isValid && hours === 0 && minutes === 0 && seconds === 0) {
+                minutesError.style.display = 'block';
+                minutesError.textContent = '总时间必须大于0';
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        // Toggle fullscreen mode
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+        
+        // Start the timer
+        function startTimer() {
+            if (isRunning) return;
+            
+            isRunning = true;
+            toggleButtons(true);
+            
+            // Enter fullscreen if auto fullscreen is enabled
+            if (autoFullscreen && !document.fullscreenElement) {
+                toggleFullscreen();
+            }
+            
+            countdown = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    clearInterval(countdown);
+                    isRunning = false;
+                    toggleButtons(false);
+                    playSound();
+                    alert('时间到！');
+                    return;
+                }
+                
+                totalSeconds--;
+                updateDisplay();
+            }, 1000);
+        }
+        
+        // Pause the timer
+        function pauseTimer() {
+            clearInterval(countdown);
+            isRunning = false;
+            toggleButtons(false);
+        }
+        
+        // Reset the timer
+        function resetTimer() {
+            pauseTimer();
+            setTimeForMode(currentMode);
+            updateDisplay();
+        }
+        
+        // Set time based on mode
+        function setTimeForMode(mode) {
+            switch(mode) {
+                case 'work':
+                    totalSeconds = 25 * 60;
+                    initialSeconds = 25 * 60;
+                    break;
+                case 'short-break':
+                    totalSeconds = 5 * 60;
+                    initialSeconds = 5 * 60;
+                    break;
+                case 'long-break':
+                    totalSeconds = 15 * 60;
+                    initialSeconds = 15 * 60;
+                    break;
+                case 'custom':
+                    // Custom time is set when saving modal
+                    break;
+            }
+        }
+        
+        // Play selected sound
+        function playSound() {
+            if (selectedSound === 'none') return;
+            
+            // Stop all sounds first
+            defaultSound.pause();
+            defaultSound.currentTime = 0;
+            bellSound.pause();
+            bellSound.currentTime = 0;
+            chimeSound.pause();
+            chimeSound.currentTime = 0;
+            
+            // Play selected sound
+            switch(selectedSound) {
+                case 'default':
+                    defaultSound.play();
+                    break;
+                case 'bell':
+                    bellSound.play();
+                    break;
+                case 'chime':
+                    chimeSound.play();
+                    break;
+            }
+        }
+        
+        // Toggle buttons state
+        function toggleButtons(timerRunning) {
+            startBtn.disabled = timerRunning;
+            pauseBtn.disabled = !timerRunning;
+            resetBtn.disabled = !timerRunning;
+            
+            // Disable mode buttons when timer is running
+            workBtn.disabled = timerRunning;
+            shortBreakBtn.disabled = timerRunning;
+            longBreakBtn.disabled = timerRunning;
+            customBtn.disabled = timerRunning;
+        }
+        
+        // Set active mode
+        function setActiveMode(mode) {
+            currentMode = mode;
+            
+            // Remove active class from all buttons
+            workBtn.classList.remove('active-mode');
+            shortBreakBtn.classList.remove('active-mode');
+            longBreakBtn.classList.remove('active-mode');
+            customBtn.classList.remove('active-mode');
+            
+            // Add active class to current mode button
+            switch(mode) {
+                case 'work':
+                    workBtn.classList.add('active-mode');
+                    break;
+                case 'short-break':
+                    shortBreakBtn.classList.add('active-mode');
+                    break;
+                case 'long-break':
+                    longBreakBtn.classList.add('active-mode');
+                    break;
+                case 'custom':
+                    customBtn.classList.add('active-mode');
+                    break;
+            }
+            
+            // Reset timer for new mode
+            if (!isRunning && mode !== 'custom') {
+                setTimeForMode(mode);
+                updateDisplay();
+            }
+        }
+        
+        // Open custom time modal with animation
+        function openCustomModal() {
+            customModal.style.display = 'flex';
+            setTimeout(() => {
+                customModal.classList.add('show');
+            }, 10);
+        }
+        
+        // Close custom time modal with animation
+        function closeCustomModal() {
+            customModal.classList.remove('show');
+            setTimeout(() => {
+                customModal.style.display = 'none';
+                // Reset error messages
+                hoursError.style.display = 'none';
+                minutesError.style.display = 'none';
+                secondsError.style.display = 'none';
+            }, 300);
+        }
+        
+        // Save custom time settings
+        function saveCustomSettings() {
+            if (!validateTimeInput()) {
+                return;
+            }
+            
+            const hours = parseInt(customHours.value) || 0;
+            const minutes = parseInt(customMinutes.value) || 0;
+            const seconds = parseInt(customSeconds.value) || 0;
+            
+            totalSeconds = hours * 3600 + minutes * 60 + seconds;
+            initialSeconds = totalSeconds; // Set initial time for progress calculation
+            
+            // Update selected sound
+            selectedSound = document.querySelector('input[name="sound"]:checked').value;
+            
+            // Update auto fullscreen setting
+            autoFullscreen = autoFullscreenCheckbox.checked;
+            
+            setActiveMode('custom');
+            updateDisplay();
+            closeCustomModal();
+        }
+        
+        // Event listeners
+        workBtn.addEventListener('click', () => {
+            setActiveMode('work');
+        });
+        
+        shortBreakBtn.addEventListener('click', () => {
+            setActiveMode('short-break');
+        });
+        
+        longBreakBtn.addEventListener('click', () => {
+            setActiveMode('long-break');
+        });
+        
+        customBtn.addEventListener('click', openCustomModal);
+        startBtn.addEventListener('click', startTimer);
+        pauseBtn.addEventListener('click', pauseTimer);
+        resetBtn.addEventListener('click', resetTimer);
+        
+        // Modal event listeners
+        closeModal.addEventListener('click', closeCustomModal);
+        cancelCustom.addEventListener('click', closeCustomModal);
+        saveCustom.addEventListener('click', saveCustomSettings);
+        
+        // Input validation on change
+        customHours.addEventListener('change', validateTimeInput);
+        customMinutes.addEventListener('change', validateTimeInput);
+        customSeconds.addEventListener('change', validateTimeInput);
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === customModal) {
+                closeCustomModal();
+            }
+        });
+        
+        // Initialize
+        updateDisplay();
+    </script>
+<script src="../../assets/script/subassembly.js"></script>
+</body>
+</html>
