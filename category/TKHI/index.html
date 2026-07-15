@@ -1353,10 +1353,11 @@
 
                 <h3 style="margin-top: 2.5rem; font-size: 1.1rem; color: var(--light); text-align: center;">组织架构</h3>
                 <div class="org-chart">
-                    <div class="org-node">会长 <span class="sub">Tank37135</span></div>
-                    <div class="org-node">武装团 <span class="sub">战斗</span></div>
-                    <div class="org-node">工部 <span class="sub">建筑与红石机械</span></div>
-                    <div class="org-node">商务部 <span class="sub">贸易，采购与销售</span></div>
+                    <div class="org-node">会委团 <span class="sub">领导机构</span></div>
+                    <div class="org-node">武装团 <span class="sub">PVP 对抗</span></div>
+                    <div class="org-node">工部 <span class="sub">建筑/红石工程</span></div>
+                    <div class="org-node">物资组 <span class="sub">发装备，探索，后勤</span></div>
+                    <div class="org-node">自由职员 <span class="sub">不强受组织安排</span></div>
                 </div>
             </div>
         </section>
@@ -1526,8 +1527,8 @@
             // ============================================================
 
             const members = [
-                { id: 1, name: 'Tank37135', role: '首席执行官', bio: '主导者，呃就这样介绍吧', seed: 'steve_avatar' },
-                { id: 2, name: 'Jenooo123', role: '副会长', bio: '呃呃呃不知道讲什么', seed: 'redstone_avatar' }
+                { id: 1, name: 'Tank37135', role: '首席执行官', bio: '主导者，呃就这样介绍吧，嗯对', seed: 'steve_avatar' },
+                { id: 2, name: 'Jenooo123', role: '全能副会', bio: '是会长的左膀右臂，有产品报销，以及战斗需求均可找我', seed: 'redstone_avatar' }
             ];
 
             const announcements = [ {
@@ -1543,9 +1544,15 @@
             ];
 
             // 资源中心 — 每个资源带下载链接 (a 标签 download)
-            const resources = [
-                
-            ];
+            const resources = [{
+                id: 2,
+                title: '40核心竹子机',
+                desc: '状态更新式收割，不抗卸载，含收集',
+                type: '原理图',
+                size: '4kB',
+                icon: 'bi-file-text',
+                filename: '40-core-Bamboo-Machine.litematic'
+            }];
 
             // ============================================================
             // DOM 引用
