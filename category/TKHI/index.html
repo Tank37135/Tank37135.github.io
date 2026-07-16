@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TK重工 | 我的世界红石科技 & 物资交易工会</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
     <style>
         * {
             margin: 0;
@@ -1353,11 +1353,10 @@
 
                 <h3 style="margin-top: 2.5rem; font-size: 1.1rem; color: var(--light); text-align: center;">组织架构</h3>
                 <div class="org-chart">
-                    <div class="org-node">会委团 <span class="sub">领导机构</span></div>
-                    <div class="org-node">武装团 <span class="sub">PVP 对抗</span></div>
-                    <div class="org-node">工部 <span class="sub">建筑/红石工程</span></div>
-                    <div class="org-node">物资组 <span class="sub">发装备，探索，后勤</span></div>
-                    <div class="org-node">自由职员 <span class="sub">不强受组织安排</span></div>
+                    <div class="org-node">会长 <span class="sub">Tank37135</span></div>
+                    <div class="org-node">武装团 <span class="sub">战斗</span></div>
+                    <div class="org-node">工部 <span class="sub">建筑与红石机械</span></div>
+                    <div class="org-node">商务部 <span class="sub">贸易，采购与销售</span></div>
                 </div>
             </div>
         </section>
@@ -1525,34 +1524,25 @@
             // ============================================================
             // 数据
             // ============================================================
-
-            const members = [
-                { id: 1, name: 'Tank37135', role: '首席执行官', bio: '主导者，呃就这样介绍吧，嗯对', seed: 'steve_avatar' },
-                { id: 2, name: 'Jenooo123', role: '全能副会', bio: '是会长的左膀右臂，有产品报销，以及战斗需求均可找我', seed: 'redstone_avatar' }
+            let members = [
+                { id: 1, name: 'Tank37135', role: '首席执行官', bio: '主导者，呃就这样介绍吧', seed: 'steve_avatar' },
+                { id: 2, name: 'Jenooo123', role: '技术总监', bio: '红石电路专家，设计过数十套自动化系统。', seed: 'redstone_avatar' }
             ];
-
-            const announcements = [ {
+            let announcements = [ {
                 id: 4,
                 title: '新成员招募通道开启 · 欢迎红石爱好者',
                 date: '2026-07-10',
                 tag: '建设',
                 body: 'TK重工2026年在创世之境成立！！！'
             }];
-
-            const galleryItems = [
-
+            let galleryItems = [
+                { id: '2026-07-16_10.14.45', category: 'machine', title: '40核心竹子机' }
             ];
 
             // 资源中心 — 每个资源带下载链接 (a 标签 download)
-            const resources = [{
-                id: 2,
-                title: '40核心竹子机',
-                desc: '状态更新式收割，不抗卸载，含收集',
-                type: '原理图',
-                size: '4kB',
-                icon: 'bi-file-text',
-                filename: '40-core-Bamboo-Machine.litematic'
-            }];
+            let resources = [
+                { id: 1, title: '40核心竹子机', desc: '状态更新式收割，不抗卸载，含收集', type: '原理图', size: '4kB', icon: 'bi-file-text', filename: '40-core-Bamboo-Machine.litematic' }
+            ];
 
             // ============================================================
             // DOM 引用
@@ -1796,17 +1786,18 @@
                 });
             }
 
-            // ============================================================
-            // 渲染: 风貌展示 (图片 3:2 + 点击放大)
-            // ============================================================
 
             function renderGallery(filter) {
                 filter = filter || 'all';
                 const grid = document.getElementById('galleryGrid');
                 const filtered = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
 
+                if (filtered.length === 0) {
+                    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--color-white-glass);"><div style="font-size:3rem;margin-bottom:0.5rem;opacity:0.3"><i class="bi bi-search"></i></div><div>暂无结果</div></div>';
+                    return;
+                }
                 grid.innerHTML = filtered.map(item => {
-                    const imgUrl = `appearance/${item.id}.jpg`;
+                    const imgUrl = `appearance/${item.id}.png`;
                     const tagMap = {
                         machine: '机器',
                         build: '建筑',
@@ -2013,14 +2004,50 @@
                 });
             }
 
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
-            } else {
-                init();
+            function showLoadError(containerId) {
+                var el = document.getElementById(containerId);
+                if (el) el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--color-accent-light);"><div style="font-size:3rem;margin-bottom:0.5rem;opacity:0.3"><i class="bi bi-wifi-off"></i></div><div>数据导入失败，请更换网络后重试</div><div style="font-size:0.9rem;color:var(--color-white-glass);margin-top:0.5rem;">或者联系网站管理员</div></div>';
             }
+
+            function onReady(fn) {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', fn);
+                } else {
+                    fn();
+                }
+            }
+
+            // 先渲染内联数据，再尝试从 JSON 更新
+            onReady(function() {
+                init(); // 先用内联数据渲染
+
+                // 尝试从 JSON 加载最新数据
+                fetch('../../assets/json/tkhi.json')
+                    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                    .then(function(data) {
+                        if (data.members) members = data.members;
+                        if (data.announcements) announcements = data.announcements;
+                        if (data.galleryItems) galleryItems = data.galleryItems;
+                        if (data.resources) resources = data.resources;
+                        // 重新渲染
+                        renderMembers();
+                        renderAnnouncements();
+                        renderGallery('all');
+                        renderResources();
+                        setTimeout(animateStats, 400);
+                    })
+                    .catch(function(e) {
+                        console.warn('JSON 加载失败，使用内联数据:', e);
+                    });
+            });
 
         })();
     </script>
 
 </body>
 </html>
+
+
+
+
+
