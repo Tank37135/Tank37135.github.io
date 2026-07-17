@@ -1,0 +1,124 @@
+[
+  {
+    "title": "ffmeg指令生成器",
+    "excerpt": "ffmeg快捷指令生成工具，媒体掌控在手中",
+    "date": "2026-4-4",
+    "tags": [
+      "ffmeg",
+      "生成"
+    ],
+    "link": "/category/tools/ffmeg.html",
+    "category": "tool"
+  },
+  {
+    "title": "心灵驿站",
+    "excerpt": "不开心就进来看看吧，希望你天天快乐",
+    "date": "2025-8-10",
+    "tags": [
+      "心理"
+    ],
+    "link": "/category/tools/Spiritual-station.html",
+    "category": "tool"
+  },
+  {
+    "title": "字符图片生成器",
+    "excerpt": "将图片转换为字符艺术，ASCII艺术，简约美观实用",
+    "date": "2025-7-23",
+    "tags": [
+      "图片",
+      "生成器",
+      "字符"
+    ],
+    "link": "/category/tools/ASCIIart.html",
+    "category": "tool"
+  },
+  {
+    "title": "番茄钟",
+    "excerpt": "番茄钟，旨在帮助人们提高工作效率，减少拖延",
+    "date": "2025-6-18",
+    "tags": [
+      "时间",
+      "管理"
+    ],
+    "link": "/category/tools/Pomodoro-Timer.html",
+    "category": "tool"
+  },
+  {
+    "title": "毒蘑菇测试",
+    "excerpt": "毒蘑菇测试，考验设备CPU和GPU性能，低端设备慎入",
+    "date": "2025-6-8",
+    "tags": [
+      "测试",
+      "压力"
+    ],
+    "link": "/category/tools/view-source.html",
+    "category": "tool"
+  },
+  {
+    "title": "在线录屏",
+    "excerpt": "网页录屏，支持8k，240帧，可以录制多种格式，包括动图，可以使用你的计算机的极限录制",
+    "date": "2025-5-25",
+    "tags": [
+      "录屏"
+    ],
+    "link": "/category/tools/Recording.html",
+    "category": "tool"
+  },
+  {
+    "title": "声波发生器",
+    "excerpt": "可以发出20至20000赫兹的恒定频率的声波",
+    "date": "2025-06-4",
+    "tags": [
+      "物理",
+      "声音"
+    ],
+    "link": "/category/tools/Tone.html",
+    "category": "tool"
+  },
+  {
+    "title": "声波检测器",
+    "excerpt": "可以动态检查附近声波的频率和响度",
+    "date": "2025-05-3",
+    "tags": [
+      "物理",
+      "声音"
+    ],
+    "link": "/category/tools/Sound-Detection.html",
+    "category": "tool"
+  },
+  {
+    "title": "754 pro",
+    "excerpt": "新算法出题，难度更高",
+    "date": "2023-5-1",
+    "tags": [
+      "754",
+      "数学",
+      "练习"
+    ],
+    "link": "/category/tools/754-pro.html",
+    "category": "tool"
+  },
+  {
+    "title": "754算数",
+    "excerpt": "7分钟，5道4位数乘法，提高正确率和计算速度",
+    "date": "2025-5-1",
+    "tags": [
+      "754",
+      "数学",
+      "练习"
+    ],
+    "link": "/category/tools/754.html",
+    "category": "tool"
+  },
+  {
+    "title": "TK网址导航",
+    "excerpt": "没有广告，多引擎搜索，网址导航",
+    "date": "2025-4-29",
+    "tags": [
+      "导航",
+      "网址"
+    ],
+    "link": "/category/tools/guide.html",
+    "category": "tool"
+  }
+]

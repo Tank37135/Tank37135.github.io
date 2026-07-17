@@ -1,0 +1,104 @@
+/* ========================================
+   Tank37135 - Design System Core
+   现代简约高级蓝 · 毛玻璃 · 弹性动画
+   BEM命名规范
+   ======================================== */
+
+:root {
+  --color-primary: #1a73e8;
+  --color-primary-dark: #0d47a1;
+  --color-primary-light: #42a5f5;
+  --color-primary-subtle: rgba(26, 115, 232, 0.08);
+  --color-accent: #7c4dff;
+  --color-accent-light: #b388ff;
+  --color-white: #ffffff;
+  --color-white-glass: rgba(255, 255, 255, 0.75);
+  --color-white-glass-2: rgba(255, 255, 255, 0.15);
+  --color-white-glass-3: rgba(255, 255, 255, 0.08);
+  --color-dark: #0f172a;
+  --color-dark-glass: rgba(15, 23, 42, 0.6);
+  --color-text: #1e293b;
+  --color-text-light: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-bg-hover: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-border-hover: rgba(255, 255, 255, 0.3);
+  --glass-blur: blur(20px);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: 'Source Code Pro', 'Fira Code', monospace;
+  --transition-fast: 0.2s var(--ease-smooth);
+  --transition-base: 0.35s var(--ease-spring);
+  --transition-slow: 0.5s var(--ease-out-expo);
+}
+
+*,
+*::before,
+*::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text);
+  background: linear-gradient(135deg, #0a1628 0%, #0d2137 40%, #1a1a3e 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+ul, ol { list-style: none; }
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; outline: none; }
+input, textarea { font-family: inherit; outline: none; border: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+
+/* 滚动条 */
+/* Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar { width: 6px; height: 6px; background: transparent; }
+::-webkit-scrollbar-track { background: transparent; border: none; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--color-primary), var(--color-primary-light)); border-radius: 3px; }
+::-webkit-scrollbar-corner { background: transparent; }
+/* Firefox */
+* { scrollbar-width: thin; scrollbar-color: var(--color-primary) transparent; }
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+@keyframes animSpring {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes animFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes animSlideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes animFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes animPulse { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.1); opacity: 1; } }
+@keyframes animShimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+@keyframes animGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes animBlink { 50% { border-color: transparent; } }
+@keyframes animFloatAround { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 25% { transform: translate(30px, -20px) rotate(5deg); } 50% { transform: translate(-10px, -40px) rotate(-3deg); } 75% { transform: translate(-30px, -10px) rotate(4deg); } }

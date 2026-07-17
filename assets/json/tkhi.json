@@ -1,0 +1,43 @@
+﻿{
+  "members": [
+    {
+      "name": "Tank37135",
+      "role": "首席执行官",
+      "bio": "主导者，呃就这样介绍吧，嗯对",
+      "seed": "steve_avatar"
+    },
+    {
+      "name": "Jenooo123",
+      "role": "全能副会",
+      "bio": "是会长的左膀右臂，有产品报销，以及战斗需求均可找我",
+      "seed": "redstone_avatar"
+    }
+  ],
+  "announcements": [
+    {
+      "title": "新成员招募通道开启 · 欢迎红石爱好者",
+      "date": "2026-07-10",
+      "tag": "建设",
+      "body": "TK重工2026年在创世之境成立！！！"
+    }
+  ],
+  "galleryItems": [
+    {
+      "id": "2026-07-16_10.14.45",
+      "category": "machine",
+      "title": "40核心竹子机"
+    }
+  ],
+
+  "resources": [
+    {
+      "id": 1,
+      "title": "40核心竹子机",
+      "desc": "状态更新式收割，不抗卸载，含收集",
+      "type": "原理图",
+      "size": "4kB",
+      "icon": "bi-file-text",
+      "filename": "40-core-Bamboo-Machine.litematic"
+    }
+  ]
+}
