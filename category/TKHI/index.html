@@ -1282,7 +1282,7 @@
                     </div>
                     <div class="stat-item">
                         <i class="bi bi-cpu"></i>
-                        <span class="number" data-count="2">0</span>
+                        <span class="number" data-count="1">0</span>
                         <span class="label">红石机器</span>
                     </div>
                     <div class="stat-item">
@@ -1356,10 +1356,11 @@
 
                 <h3 style="margin-top: 2.5rem; font-size: 1.1rem; color: var(--light); text-align: center;">组织架构</h3>
                 <div class="org-chart">
-                    <div class="org-node">会长 <span class="sub">Tank37135</span></div>
-                    <div class="org-node">武装团 <span class="sub">战斗</span></div>
+                    <div class="org-node">会委<span class="sub">工会管理</span></div>
+                    <div class="org-node">武装团 <span class="sub">PVP</span></div>
                     <div class="org-node">工部 <span class="sub">建筑与红石机械</span></div>
                     <div class="org-node">商务部 <span class="sub">贸易，采购与销售</span></div>
+                    <div class="org-node">成员 <span class="sub">成员</span></div>
                 </div>
             </div>
         </section>
@@ -1367,9 +1368,9 @@
         <section class="page" id="page-members">
             <div class="container">
                 <div class="title-wrap">
-                    <h2 class="section-title"><i class="bi bi-person-badge"></i> 核心成员</h2>
+                    <h2 class="section-title"><i class="bi bi-person-badge"></i> 成员</h2>
                 </div>
-                <div class="section-sub">工会管理团队与技术骨干</div>
+                <div class="section-sub">工会管理团队与成员</div>
 
                 <div class="members-grid" id="membersGrid">
                 </div>
@@ -1378,7 +1379,7 @@
         <section class="page" id="page-announce">
             <div class="container">
                 <div class="title-wrap">
-                    <h2 class="section-title"><i class="bi bi-megaphone"></i> 最新公告</h2>
+                    <h2 class="section-title"><i class="bi bi-megaphone"></i> 公告</h2>
                 </div>
                 <div class="section-sub">工会动态 · 活动通知 · 重要信息</div>
 
@@ -1389,7 +1390,7 @@
         <section class="page" id="page-gallery">
             <div class="container">
                 <div class="title-wrap">
-                    <h2 class="section-title"><i class="bi bi-images"></i> 风貌展示</h2>
+                    <h2 class="section-title"><i class="bi bi-images"></i> 风貌</h2>
                 </div>
                 <div class="section-sub">红石机器 · 建筑作品 · 工会活动</div>
 
@@ -1410,7 +1411,7 @@
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-database"></i> 资源中心</h2>
                 </div>
-                <div class="section-sub">红石图纸 · 物资清单</div>
+                <div class="section-sub">投影原理图·建筑·红石</div>
 
                 <div class="resource-grid" id="resourceGrid">
                 </div>
@@ -1446,7 +1447,7 @@
                                 <div class="num">04</div>
                                 <div class="content">
                                     <h4>正式入驻</h4>
-                                    <p>通过试用后成为正式成员，享受工会资源与权益。</p>
+                                    <p>成为正式成员，享受工会资源与权益。</p>
                                 </div>
                             </div>
                         </div>
@@ -1527,25 +1528,7 @@
             // ============================================================
             // 数据
             // ============================================================
-            let members = [
-                { id: 1, name: 'Tank37135', role: '首席执行官', bio: '主导者，呃就这样介绍吧', seed: 'steve_avatar' },
-                { id: 2, name: 'Jenooo123', role: '技术总监', bio: '红石电路专家，设计过数十套自动化系统。', seed: 'redstone_avatar' }
-            ];
-            let announcements = [ {
-                id: 4,
-                title: '新成员招募通道开启 · 欢迎红石爱好者',
-                date: '2026-07-10',
-                tag: '建设',
-                body: 'TK重工2026年在创世之境成立！！！'
-            }];
-            let galleryItems = [
-                { id: '2026-07-16_10.14.45', category: 'machine', title: '40核心竹子机' }
-            ];
-
-            // 资源中心 — 每个资源带下载链接 (a 标签 download)
-            let resources = [
-                { id: 1, title: '40核心竹子机', desc: '状态更新式收割，不抗卸载，含收集', type: '原理图', size: '4kB', icon: 'bi-file-text', filename: '40-core-Bamboo-Machine.litematic' }
-            ];
+            let members = [], announcements = [], galleryItems = [], resources = [];
 
             // ============================================================
             // DOM 引用
@@ -2020,27 +2003,19 @@
                 }
             }
 
-            // 先渲染内联数据，再尝试从 JSON 更新
+            // 从 JSON 加载数据
             onReady(function() {
-                init(); // 先用内联数据渲染
-
-                // 尝试从 JSON 加载最新数据
                 fetch('../../assets/json/tkhi.json')
                     .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
                     .then(function(data) {
-                        if (data.members) members = data.members;
-                        if (data.announcements) announcements = data.announcements;
-                        if (data.galleryItems) galleryItems = data.galleryItems;
-                        if (data.resources) resources = data.resources;
-                        // 重新渲染
-                        renderMembers();
-                        renderAnnouncements();
-                        renderGallery('all');
-                        renderResources();
-                        setTimeout(animateStats, 400);
+                        members = data.members || [];
+                        announcements = data.announcements || [];
+                        galleryItems = data.galleryItems || [];
+                        resources = data.resources || [];
+                        init();
                     })
                     .catch(function(e) {
-                        console.warn('JSON 加载失败，使用内联数据:', e);
+                        console.error('JSON 加载失败:', e);
                     });
             });
 
@@ -2049,6 +2024,7 @@
 
 </body>
 </html>
+
 
 
 
