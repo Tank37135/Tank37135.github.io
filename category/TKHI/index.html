@@ -1,0 +1,2032 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="TK重工 - 我的世界红石科技与物资交易工会，提供红石机器设计、建筑作品展示和资源下载。">
+  <meta name="keywords" content="我的世界, Minecraft, 红石, 红石科技, TK重工, 物资交易, 工会, 建筑">
+  <title>TK重工 | 我的世界红石科技 & 物资交易工会</title>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        :root {
+            --main: #222831;
+            --second: #393E46;
+            --accent: #00ADB5;
+            --light: #EEEEEE;
+            --card-bg: #2d3440;
+            --border-color: #4a5260;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 8px 32px rgba(0, 173, 181, 0.18);
+            --radius: 6px;
+            --transition: 0.30s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-smooth: 0.25s ease;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: var(--main);
+            color: var(--light);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            color: var(--light);
+        }
+        .section-title i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        .title-wrap {
+            text-align: center;
+        }
+        .section-sub {
+            text-align: center;
+            color: rgba(238, 238, 238, 0.7);
+            margin-top: -1.8rem;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        header {
+            background: var(--second);
+            padding: 0.8rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid var(--accent);
+        }
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo i {
+            font-size: 1.4rem;
+        }
+        .nav-toggle {
+            display: none;
+            font-size: 1.4rem;
+            background: none;
+            border: none;
+            color: var(--light);
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: var(--transition-smooth);
+        }
+        .nav-toggle:hover {
+            color: var(--accent);
+        }
+        .nav-list {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-list a {
+            color: rgba(238, 238, 238, 0.75);
+            text-decoration: none;
+            padding: 6px 16px;
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .nav-list a:hover {
+            color: #fff;
+            background: rgba(0, 173, 181, 0.12);
+        }
+        .nav-list a.active {
+            color: #fff;
+            background: var(--accent);
+            box-shadow: 0 2px 12px rgba(0, 173, 181, 0.25);
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            .nav-list {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transform: scaleY(0.8);
+                transform-origin: top center;
+                transition: max-height 0.40s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    opacity 0.35s ease,
+                    transform 0.40s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    padding 0.35s ease;
+                padding: 0 0;
+                gap: 2px;
+                background: transparent;
+                pointer-events: none;
+            }
+            .nav-list.open {
+                max-height: 420px;
+                opacity: 1;
+                transform: scaleY(1);
+                padding: 0.8rem 0 0.4rem;
+                pointer-events: auto;
+            }
+            .nav-list a {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+                font-size: 0.95rem;
+                border-radius: var(--radius);
+            }
+            .nav-list a.active::after {
+                display: none;
+            }
+        }
+
+        .page {
+            display: none;
+            animation: pageIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            padding: 2.5rem 0 3.5rem;
+            flex: 1;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes pageIn {
+            0% {
+                opacity: 0;
+                transform: translateY(24px) scale(0.97);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .banner {
+            height: 55vh;
+            min-height: 340px;
+            background:
+                linear-gradient(135deg, rgba(34, 40, 49, 0.85) 0%, rgba(34, 40, 49, 0.60) 100%),
+                url('https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Media-Block-B_DII-Promo_1920x1080.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            border-radius: var(--radius);
+            margin-bottom: 2.5rem;
+            border-bottom: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        .banner::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: -60px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(0, 173, 181, 0.04);
+            pointer-events: none;
+        }
+        .banner-content {
+            position: relative;
+            z-index: 1;
+        }
+        .banner h1 {
+            font-size: 3.6rem;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+        .banner h1 i {
+            font-size: 3rem;
+            margin-right: 12px;
+        }
+        .banner p {
+            font-size: 1.2rem;
+            max-width: 680px;
+            opacity: 0.85;
+            color: var(--light);
+        }
+        .banner .btn-group {
+            margin-top: 1.8rem;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 2px 12px rgba(0, 173, 181, 0.25);
+            letter-spacing: 0.5px;
+        }
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 28px rgba(0, 173, 181, 0.35);
+            opacity: 0.92;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #000;
+            opacity: 1;
+        }
+        .btn-sm {
+            padding: 5px 16px;
+            font-size: 0.8rem;
+        }
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 18px;
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .btn-download:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 16px rgba(0, 173, 181, 0.3);
+            opacity: 0.9;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.6rem 1.8rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 2.8rem;
+        }
+        .stat-item {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: default;
+        }
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .stat-item .number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            line-height: 1.2;
+        }
+        .stat-item .label {
+            font-size: 0.85rem;
+            color: rgba(238, 238, 238, 0.6);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+        .stat-item i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 6px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 1.8rem 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: default;
+            text-align: center;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .feature-card .icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: var(--transition-smooth);
+        }
+        .feature-card:hover .icon {
+            transform: scale(1.08);
+        }
+        .feature-card h3 {
+            font-size: 1.1rem;
+            color: var(--light);
+            margin-bottom: 4px;
+        }
+        .feature-card p {
+            color: rgba(238, 238, 238, 0.65);
+            font-size: 0.9rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 2rem;
+        }
+        .about-text p {
+            margin-bottom: 0.8rem;
+            color: rgba(238, 238, 238, 0.85);
+            font-size: 0.95rem;
+        }
+        .about-text strong {
+            color: var(--accent);
+        }
+        .about-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .about-meta .meta-item {
+            background: var(--card-bg);
+            padding: 1.2rem 1.4rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .about-meta .meta-item:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .about-meta .meta-item h4 {
+            font-size: 0.75rem;
+            color: rgba(238, 238, 238, 0.5);
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        .about-meta .meta-item p {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--light);
+            margin-top: 2px;
+        }
+        .org-chart {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+        .org-node {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 0.8rem 1.6rem;
+            transition: var(--transition);
+            flex: 1 0 auto;
+            min-width: 90px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--light);
+            font-size: 0.9rem;
+        }
+        .org-node:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .org-node .sub {
+            display: block;
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: rgba(238, 238, 238, 0.5);
+            margin-top: 2px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .member-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem 1.2rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: default;
+        }
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .member-card .avatar-wrap {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px; 
+            overflow: hidden;
+            margin: 0 auto 8px;
+            border: 2px solid var(--accent);
+            background: var(--second);
+            flex-shrink: 0;
+        }
+        .member-card .avatar-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .member-card .name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+        .member-card .role {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+        .member-card .bio {
+            font-size: 0.8rem;
+            color: rgba(238, 238, 238, 0.6);
+            margin-top: 8px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px;
+        }
+
+        .announce-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .announce-item {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .announce-item:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+        .announce-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.4rem;
+            gap: 12px;
+        }
+        .announce-header .title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--light);
+        }
+        .announce-header .date {
+            font-size: 0.75rem;
+            color: rgba(238, 238, 238, 0.5);
+            white-space: nowrap;
+        }
+        .announce-header .tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #000;
+            letter-spacing: 0.5px;
+        }
+        .announce-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.3s ease;
+            padding: 0 1.4rem;
+            color: rgba(238, 238, 238, 0.7);
+            font-size: 0.9rem;
+            border-top: 1px solid transparent;
+        }
+        .announce-item.open .announce-body {
+            max-height: 300px;
+            padding: 0.8rem 1.4rem 1.2rem;
+            border-top-color: var(--border-color);
+        }
+        .announce-item .toggle-icon {
+            font-size: 0.8rem;
+            color: rgba(238, 238, 238, 0.4);
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+        .announce-item.open .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .gallery-filter {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1.8rem;
+        }
+        .gallery-filter button {
+            padding: 4px 20px;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: rgba(238, 238, 238, 0.6);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .gallery-filter button:hover {
+            border-color: var(--accent);
+            color: var(--light);
+            transform: translateY(-2px);
+        }
+        .gallery-filter button.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+        }
+        .gallery-item {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 3 / 2;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition-smooth);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+        .gallery-item .g-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--light);
+            background: rgba(34, 40, 49, 0.8);
+            padding: 5px 10px;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 173, 181, 0.2);
+            pointer-events: none;
+        }
+        .gallery-item .g-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            background: var(--accent);
+            color: #000;
+            padding: 2px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+        .gallery-item .zoom-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.4rem;
+            color: #fff;
+            opacity: 0;
+            transition: var(--transition-smooth);
+            pointer-events: none;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+        .gallery-item:hover .zoom-hint {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: modalFade 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            cursor: pointer;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        @keyframes modalFade {
+            0% {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .modal-content {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--radius);
+            box-shadow: 0 8px 60px rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--accent);
+            overflow: hidden;
+            background: var(--main);
+            cursor: default;
+            position: relative;
+        }
+        .modal-content img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .modal-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: rgba(0, 173, 181, 0.4);
+            border-color: var(--accent);
+        }
+        .modal-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .download-modal-content {
+            max-width: 440px;
+            padding: 0;
+            overflow: visible;
+            background: var(--card-bg);
+            border: 2px solid var(--accent);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 60px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+        .download-modal-body {
+            padding: 2rem 2rem 1.8rem;
+            text-align: center;
+        }
+        .download-modal-body .lock-icon {
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        .download-modal-body h3 {
+            color: var(--light);
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+        .download-modal-body .desc {
+            color: rgba(238, 238, 238, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+        }
+        .download-modal-body .input-wrap {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .download-modal-body .input-wrap input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 1.05rem;
+            font-family: inherit;
+            transition: var(--transition-smooth);
+            background: var(--main);
+            color: var(--light);
+            text-align: center;
+            letter-spacing: 6px;
+        }
+        .download-modal-body .input-wrap input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.15);
+            background: var(--second);
+        }
+        .download-modal-body .input-wrap input.error {
+            border-color: #e74c3c;
+        }
+        .download-modal-body .error-msg {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 6px;
+            display: none;
+        }
+        .download-modal-body .error-msg.show {
+            display: block;
+        }
+        .download-modal-body .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 1.4rem;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .resource-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            padding: 1.4rem 1.4rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .resource-card .r-icon {
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .resource-card h4 {
+            font-size: 1rem;
+            color: var(--light);
+            margin-bottom: 4px;
+        }
+        .resource-card p {
+            color: rgba(238, 238, 238, 0.6);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            flex: 1;
+        }
+        .resource-card .meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: rgba(238, 238, 238, 0.4);
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px;
+            margin-bottom: 10px;
+        }
+        .resource-card .meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .resource-card .download-wrap {
+            margin-top: auto;
+        }
+
+        .coop-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .coop-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: var(--card-bg);
+            padding: 1rem 1.4rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .step:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+        .step .num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            min-width: 30px;
+            line-height: 1.4;
+        }
+        .step .content h4 {
+            font-size: 0.95rem;
+            color: var(--light);
+        }
+        .step .content p {
+            font-size: 0.85rem;
+            color: rgba(238, 238, 238, 0.6);
+        }
+
+        .coop-form {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            padding: 1.8rem 2rem;
+            transition: var(--transition);
+        }
+        .coop-form:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-hover);
+        }
+        .coop-form h3 {
+            font-size: 1.2rem;
+            color: var(--light);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .coop-form h3 i {
+            color: var(--accent);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: rgba(238, 238, 238, 0.7);
+            margin-bottom: 3px;
+            letter-spacing: 0.5px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 14px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: var(--transition-smooth);
+            background: var(--main);
+            color: var(--light);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.15);
+            background: var(--second);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .form-group .error-msg {
+            color: #e74c3c;
+            font-size: 0.75rem;
+            margin-top: 3px;
+            display: none;
+        }
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #e74c3c;
+        }
+        .form-group.error .error-msg {
+            display: block;
+        }
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--second);
+            color: var(--light);
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transform: translateY(70px) scale(0.9);
+            opacity: 0;
+            transition: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 9999;
+            border-left: 4px solid var(--accent);
+            max-width: 420px;
+        }
+        .toast.show {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        footer {
+            background: #111;
+            text-align: center;
+            padding: 2rem 5%;
+            margin-top: auto;
+            border-top: 2px solid var(--second);
+        }
+        footer p {
+            color: rgba(238, 238, 238, 0.5);
+            font-size: 0.85rem;
+        }
+        footer .social {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 0.8rem;
+        }
+        footer .social a {
+            color: rgba(238, 238, 238, 0.35);
+            font-size: 1.2rem;
+            transition: var(--transition-smooth);
+        }
+        footer .social a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .resource-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .coop-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 2.4rem;
+            }
+            .banner h1 i {
+                font-size: 2rem;
+            }
+            .banner p {
+                font-size: 1rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .stat-item .number {
+                font-size: 1.8rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            .members-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .coop-form {
+                padding: 1.2rem;
+            }
+            .announce-header {
+                flex-wrap: wrap;
+            }
+            .announce-header .title {
+                flex: 1;
+                min-width: 100px;
+            }
+            .container {
+                padding: 0 4%;
+            }
+            .modal-content {
+                max-width: 95vw;
+                max-height: 80vh;
+            }
+            .download-modal-content {
+                max-width: 92vw;
+            }
+            .download-modal-body {
+                padding: 1.5rem 1.2rem 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+            .members-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .banner h1 {
+                font-size: 1.8rem;
+            }
+            .banner {
+                min-height: 260px;
+            }
+            .btn {
+                padding: 8px 20px;
+                font-size: 0.85rem;
+            }
+            .member-card .avatar-wrap {
+                width: 60px;
+                height: 60px;
+            }
+            .download-modal-body .input-wrap input {
+                font-size: 0.95rem;
+                letter-spacing: 4px;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav">
+            <div class="logo">
+                <i class="bi bi-gear"></i> TK 重工
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="导航菜单">
+                <i class="bi bi-list"></i>
+            </button>
+            <nav class="nav-list" id="navList">
+                <a class="active" data-page="home">首页</a>
+                <a data-page="about">工会介绍</a>
+                <a data-page="members">成员介绍</a>
+                <a data-page="announce">最新公告</a>
+                <a data-page="gallery">风貌展示</a>
+                <a data-page="resources">资源中心</a>
+                <a data-page="coop">招纳贤士</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="page active" id="page-home">
+            <div class="container">
+
+                <div class="banner">
+                    <div class="banner-content">
+                        <h1><i class="bi bi-gear"></i> TK 重工</h1>
+                        <p>我的世界红石科技工会 · 匠心造机械，诚信做交易</p>
+                        <div class="btn-group">
+                            <a class="btn" data-page="coop"><i class="bi bi-handshake"></i> 加入我们</a>
+                            <a class="btn btn-outline" data-page="about"><i class="bi bi-info-circle"></i> 了解详情</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <i class="bi bi-people"></i>
+                        <span class="number" data-count="2">0</span>
+                        <span class="label">工会成员</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="bi bi-cpu"></i>
+                        <span class="number" data-count="1">0</span>
+                        <span class="label">红石机器</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="bi bi-arrow-left-right"></i>
+                        <span class="number" data-count="2">0</span>
+                        <span class="label">累计交易 (万)</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="bi bi-calendar3"></i>
+                        <span class="number" data-count="2026">0</span>
+                        <span class="label">成立年份</span>
+                    </div>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon"><i class="bi bi-robot"></i></div>
+                        <h3>红石机器</h3>
+                        <p>自动化农场、物品分类、传送装置、防卫系统，全品类红石机械制造。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="bi bi-truck"></i></div>
+                        <h3>物资贸易</h3>
+                        <p>稀有矿物、附魔装备、建筑方块、红石元件，诚信交易。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="bi bi-chat-dots"></i></div>
+                        <h3>工会社区</h3>
+                        <p>活跃的玩家社区，技术交流、合作共建、活动组织，共同成长。</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="page" id="page-about">
+            <div class="container">
+                <div class="title-wrap">
+                    <h2 class="section-title"><i class="bi bi-flag"></i> 工会介绍</h2>
+                </div>
+                <div class="section-sub">了解 TK 重工的历史、宗旨与组织</div>
+
+                <div class="about-grid">
+                    <div class="card about-text">
+                        <h2>工会介绍</h2>
+                        <p><strong>TK重工</strong> 成立于2026年，是minecraft服务器中专注于 <strong>红石科技</strong> 与 <strong>物资贸易</strong> 的工会，在此网站提供工会资源下载。我们以技术为核心，汇聚了红石工程师、建筑师与贸易家。</p>
+                        <p>工会名称 "TK" 取自 "Tank37135" 的缩写，寓意 <strong>防御和力量</strong> 的融合。致力于将红石技术应用于游戏生存的各个方面，从自动化生产到防御系统，从资源采集到贸易网络，构建完整的工业生态。</p>
+                        <p><strong>核心理念：</strong> 创新 · 合作 · 诚信 · 卓越。我们相信，通过技术的不断突破和成员的紧密协作，能够在方块世界中创造无限可能。</p>
+                        <p>目前工会拥有 <strong>2</strong> 名成员，已建造 <strong>1</strong> 台红石机器，累计贸易额突破 <strong>1万</strong> 单位物资。</p>
+                        <h2>如何贡献资源</h2>
+                        <ul>
+                            <li>前往加入工会时获取的联系方式</li>
+                            <li>前往加入工会的群聊（未建设）</li>
+                        </ul>
+                    </div>
+                    <div class="about-meta">
+                        <div class="meta-item">
+                            <h4>工会宗旨</h4>
+                            <p>以红石科技驱动生存效率，以诚信贸易构建繁荣生态</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>核心成员</h4>
+                            <p>会长 · Tank37135 &nbsp;|&nbsp; 副会长 · Jenooo123</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>服务器</h4>
+                            <p>创世之境：mccszj.cc:25565</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2.5rem; font-size: 1.1rem; color: var(--light); text-align: center;">组织架构</h3>
+                <div class="org-chart">
+                    <div class="org-node">会委<span class="sub">工会管理</span></div>
+                    <div class="org-node">武装团 <span class="sub">PVP</span></div>
+                    <div class="org-node">工部 <span class="sub">建筑与红石机械</span></div>
+                    <div class="org-node">商务部 <span class="sub">贸易，采购与销售</span></div>
+                    <div class="org-node">成员 <span class="sub">成员</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page-members">
+            <div class="container">
+                <div class="title-wrap">
+                    <h2 class="section-title"><i class="bi bi-person-badge"></i> 成员</h2>
+                </div>
+                <div class="section-sub">工会管理团队与成员</div>
+
+                <div class="members-grid" id="membersGrid">
+                </div>
+            </div>
+        </section>
+        <section class="page" id="page-announce">
+            <div class="container">
+                <div class="title-wrap">
+                    <h2 class="section-title"><i class="bi bi-megaphone"></i> 公告</h2>
+                </div>
+                <div class="section-sub">工会动态 · 活动通知 · 重要信息</div>
+
+                <div class="announce-list" id="announceList">
+                </div>
+            </div>
+        </section>
+        <section class="page" id="page-gallery">
+            <div class="container">
+                <div class="title-wrap">
+                    <h2 class="section-title"><i class="bi bi-images"></i> 风貌</h2>
+                </div>
+                <div class="section-sub">红石机器 · 建筑作品 · 工会活动</div>
+
+                <div class="gallery-filter" id="galleryFilter">
+                    <button class="active" data-filter="all">全部</button>
+                    <button data-filter="machine">红石机器</button>
+                    <button data-filter="build">建筑作品</button>
+                    <button data-filter="activity">工会活动</button>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page-resources">
+            <div class="container">
+                <div class="title-wrap">
+                    <h2 class="section-title"><i class="bi bi-database"></i> 资源中心</h2>
+                </div>
+                <div class="section-sub">投影原理图·建筑·红石</div>
+
+                <div class="resource-grid" id="resourceGrid">
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="page-coop">
+            <div class="container">
+                <div class="title-wrap">
+                    <h2 class="section-title"><i class="bi bi-handshake"></i> 招纳贤士</h2>
+                </div>
+                <div class="section-sub">加入 TK 重工，共创未来</div>
+
+                <div class="coop-grid">
+                    <div>
+                        <h3 style="font-size: 1.1rem; color: var(--light); margin-bottom: 1rem;">加入流程</h3>
+                        <div class="coop-steps">
+                            <div class="step">
+                                <div class="num">01</div>
+                                <div class="content">
+                                    <h4>提交申请</h4>
+                                    <p>填写表单，提供账号ID、服务器信息及申请理由。在邮件中备注正版名称，或者提供皮肤正版所有者名，或者提供皮肤文件</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="num">02</div>
+                                <div class="content">
+                                    <h4>审核评估</h4>
+                                    <p>工会管理团队进行资质与能力评估。</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="num">04</div>
+                                <div class="content">
+                                    <h4>正式入驻</h4>
+                                    <p>成为正式成员，享受工会资源与权益。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="coop-form">
+                        <h3><i class="bi bi-pencil"></i> 入驻申请</h3>
+                        <form id="coopForm" novalidate>
+                            <div class="form-group">
+                                <label for="coopId">申请人游戏账号 ID</label>
+                                <input type="text" id="coopId" placeholder="例如：Steve" required>
+                                <div class="error-msg">请输入游戏账号 ID</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="coopServer">服务器名称</label>
+                                <input type="text" id="coopServer" placeholder="例如：生存服-主世界" required>
+                                <div class="error-msg">请输入服务器名称</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="coopAddress">服务器地址</label>
+                                <input type="text" id="coopAddress" placeholder="例如：mc.example.com:25565" required>
+                                <div class="error-msg">请输入服务器地址</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="coopReason">申请理由 / 专长介绍</label>
+                                <textarea id="coopReason" placeholder="请介绍你的红石技术、贸易经验或建筑能力..." required></textarea>
+                                <div class="error-msg">请填写申请理由</div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn"><i class="bi bi-send"></i> 提交申请</button>
+                                <button type="reset" class="btn btn-outline"><i class="bi bi-undo"></i> 重置</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>TK 重工 · 我的世界红石科技工会 &copy; 2026</p>
+    </footer>
+
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content" id="modalContent">
+            <span class="modal-close" id="modalClose"><i class="bi bi-x"></i></span>
+            <img id="modalImage" src="" alt="放大图片">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="downloadModal">
+        <div class="modal-content download-modal-content">
+            <span class="modal-close" id="downloadModalClose"><i class="bi bi-x"></i></span>
+            <div class="download-modal-body">
+                <span class="lock-icon"><i class="bi bi-lock"></i></span>
+                <h3>输入下载口令</h3>
+                <p class="desc">请输入正确的口令以获取图纸下载权限</p>
+                <div class="input-wrap">
+                    <input type="password" id="downloadPassword" placeholder="请输入口令" autocomplete="off" maxlength="20">
+                    <div class="error-msg" id="downloadError">口令错误，请重试</div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn" id="downloadConfirmBtn"><i class="bi bi-check"></i> 确认</button>
+                    <button class="btn btn-outline" id="downloadCancelBtn"><i class="bi bi-x"></i> 取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // 数据
+            // ============================================================
+            let members = [], announcements = [], galleryItems = [], resources = [];
+
+            // ============================================================
+            // DOM 引用
+            // ============================================================
+
+            const navLinks = document.querySelectorAll('.nav-list a');
+            const pages = document.querySelectorAll('.page');
+            const navToggle = document.getElementById('navToggle');
+            const navList = document.getElementById('navList');
+            const toast = document.getElementById('toast');
+            let toastTimer = null;
+
+            // 图片放大模态框
+            const modalOverlay = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            const modalClose = document.getElementById('modalClose');
+
+            // 下载验证模态框
+            const downloadModal = document.getElementById('downloadModal');
+            const downloadPassword = document.getElementById('downloadPassword');
+            const downloadError = document.getElementById('downloadError');
+            const downloadConfirmBtn = document.getElementById('downloadConfirmBtn');
+            const downloadCancelBtn = document.getElementById('downloadCancelBtn');
+            const downloadModalClose = document.getElementById('downloadModalClose');
+
+            // 待下载文件信息
+            let pendingDownload = null;
+
+            // 正确口令
+            const CORRECT_PASSWORD = '2747460';
+
+            // ============================================================
+            // 导航切换
+            // ============================================================
+
+            function switchPage(pageId) {
+                pages.forEach(p => p.classList.remove('active'));
+                const target = document.getElementById('page-' + pageId);
+                if (target) target.classList.add('active');
+
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.page === pageId);
+                });
+
+                navList.classList.remove('open');
+                const icon = navToggle.querySelector('i');
+                if (icon) icon.className = 'bi-list';
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    if (page) switchPage(page);
+                });
+            });
+
+            document.querySelectorAll('[data-page]').forEach(el => {
+                if (el.tagName === 'A' && el.closest('.nav-list')) return;
+                el.addEventListener('click', function(e) {
+                    const page = this.dataset.page;
+                    if (page) {
+                        e.preventDefault();
+                        switchPage(page);
+                    }
+                });
+            });
+
+            // ============================================================
+            // 汉堡菜单 (带动画)
+            // ============================================================
+
+            navToggle.addEventListener('click', function() {
+                const isOpen = navList.classList.toggle('open');
+                const icon = this.querySelector('i');
+                icon.className = isOpen ? 'bi-x' : 'bi-list';
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.nav')) {
+                    navList.classList.remove('open');
+                    const icon = navToggle.querySelector('i');
+                    if (icon) icon.className = 'bi-list';
+                }
+            });
+
+            // ============================================================
+            // Toast
+            // ============================================================
+
+            function showToast(message, duration) {
+                duration = duration || 3000;
+                toast.textContent = message;
+                toast.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, duration);
+            }
+
+            // ============================================================
+            // 模态框 (图片放大)
+            // ============================================================
+
+            function openImageModal(imgSrc, caption) {
+                modalImage.src = imgSrc;
+                modalImage.alt = caption || '放大图片';
+                modalCaption.textContent = caption || '';
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeImageModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeImageModal();
+                }
+            });
+
+            modalClose.addEventListener('click', closeImageModal);
+
+
+            function resetDownloadModal() {
+                downloadPassword.value = '';
+                downloadPassword.classList.remove('error');
+                downloadError.classList.remove('show');
+                downloadPassword.focus();
+            }
+
+            function openDownloadModal(filename, filepath) {
+                pendingDownload = { filename, filepath };
+                resetDownloadModal();
+                downloadModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => {
+                    downloadPassword.focus();
+                }, 300);
+            }
+
+            function closeDownloadModal() {
+                downloadModal.classList.remove('active');
+                document.body.style.overflow = '';
+                pendingDownload = null;
+            }
+
+            downloadModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeDownloadModal();
+                }
+            });
+
+            downloadModalClose.addEventListener('click', closeDownloadModal);
+            downloadCancelBtn.addEventListener('click', closeDownloadModal);
+
+            downloadConfirmBtn.addEventListener('click', function() {
+                verifyAndDownload();
+            });
+
+            downloadPassword.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    verifyAndDownload();
+                }
+            });
+
+            downloadPassword.addEventListener('input', function() {
+                this.classList.remove('error');
+                downloadError.classList.remove('show');
+            });
+
+            function verifyAndDownload() {
+                const input = downloadPassword.value.trim();
+                if (input === CORRECT_PASSWORD) {
+                    if (pendingDownload) {
+                        const { filename, filepath } = pendingDownload;
+                        const a = document.createElement('a');
+                        a.href = filepath;
+                        a.download = filename; 
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        showToast(' 下载已开始: ' + filename, 2500);
+                        closeDownloadModal();
+                    } else {
+                        showToast(' 文件信息丢失，请重试', 2000);
+                        closeDownloadModal();
+                    }
+                } else {
+                    downloadPassword.classList.add('error');
+                    downloadError.classList.add('show');
+                    downloadPassword.value = '';
+                    downloadPassword.focus();
+                }
+            }
+
+            function renderMembers() {
+                const grid = document.getElementById('membersGrid');
+                grid.innerHTML = members.map(m => `
+                    <div class="member-card">
+                        <div class="avatar-wrap">
+                            <img src="head/${m.name}.png" 
+                                 alt="${m.name}" 
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect width=%22200%22 height=%22200%22 fill=%22%23393E46%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%2300ADB5%22 font-size=%2236%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${m.name.charAt(0)}%3C/text%3E%3C/svg%3E'">
+                        </div>
+                        <div class="name">${m.name}</div>
+                        <div class="role">${m.role}</div>
+                        <div class="bio">${m.bio}</div>
+                    </div>
+                `).join('');
+            }
+            // ============================================================
+            // 渲染: 公告
+            // ============================================================
+
+            function renderAnnouncements() {
+                const container = document.getElementById('announceList');
+                container.innerHTML = announcements.map((item, index) => `
+                    <div class="announce-item ${index === 0 ? 'open' : ''}" data-id="${item.id}">
+                        <div class="announce-header">
+                            <span class="title">${item.title}</span>
+                            <span class="tag">${item.tag}</span>
+                            <span class="date"><i class="bi bi-calendar3"></i> ${item.date}</span>
+                            <span class="toggle-icon"><i class="bi bi-chevron-down"></i></span>
+                        </div>
+                        <div class="announce-body">${item.body}</div>
+                    </div>
+                `).join('');
+
+                container.querySelectorAll('.announce-item').forEach(el => {
+                    el.addEventListener('click', function() {
+                        this.classList.toggle('open');
+                    });
+                });
+            }
+
+
+            function renderGallery(filter) {
+                filter = filter || 'all';
+                const grid = document.getElementById('galleryGrid');
+                const filtered = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--color-white-glass);"><div style="font-size:3rem;margin-bottom:0.5rem;opacity:0.3"><i class="bi bi-search"></i></div><div>暂无结果</div></div>';
+                    return;
+                }
+                grid.innerHTML = filtered.map(item => {
+                    const imgUrl = `appearance/${item.id}.png`;
+                    const tagMap = {
+                        machine: '机器',
+                        build: '建筑',
+                        activity: '活动'
+                    };
+                    return `
+                        <div class="gallery-item" data-category="${item.category}" data-img="${imgUrl}" data-title="${item.title}">
+                            <img src="${imgUrl}" 
+                                 alt="${item.title}" 
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect width=%22600%22 height=%22400%22 fill=%22%23393E46%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%2300ADB5%22 font-size=%2224%22 text-anchor=%22middle%22 dy=%22.3em%22%3E%20${item.title}%3C/text%3E%3C/svg%3E'">
+                            <div class="g-tag">${tagMap[item.category] || item.category}</div>
+                            <div class="g-label">${item.title}</div>
+                            <div class="zoom-hint"><i class="bi bi-arrows-expand"></i></div>
+                        </div>
+                    `;
+                }).join('');
+
+                grid.querySelectorAll('.gallery-item').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const imgSrc = this.dataset.img;
+                        const title = this.dataset.title;
+                        if (imgSrc) {
+                            openImageModal(imgSrc, title);
+                        }
+                    });
+                });
+            }
+
+            // 风貌筛选
+            document.getElementById('galleryFilter').addEventListener('click', function(e) {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+                const filter = btn.dataset.filter;
+                this.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderGallery(filter);
+            });
+
+            // ============================================================
+            // 渲染: 资源中心 (修正: 传递正确的 filename 和 filepath)
+            // ============================================================
+
+            function renderResources() {
+                const grid = document.getElementById('resourceGrid');
+                grid.innerHTML = resources.map(item => {
+                    // 构建文件路径：resources/ + 文件名
+                    const filePath = `resources/${item.filename}`;
+                    return `
+                        <div class="resource-card">
+                            <div class="r-icon"><i class="${item.icon}"></i></div>
+                            <h4>${item.title}</h4>
+                            <p>${item.desc}</p>
+                            <div class="meta">
+                                <span><i class="bi bi-tag"></i> ${item.type}</span>
+                                <span><i class="bi bi-file-earmark"></i> ${item.size}</span>
+                            </div>
+                            <div class="download-wrap">
+                                <button class="btn-download download-btn" data-filename="${item.filename}" data-path="${filePath}">
+                                    <i class="bi bi-download"></i> 下载图纸
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // 绑定下载按钮事件（带口令验证）
+                grid.querySelectorAll('.download-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const filePath = this.dataset.path;
+                        const fileName = this.dataset.filename; 
+                        if (filePath && fileName) {
+                            openDownloadModal(fileName, filePath);
+                        } else {
+                            showToast(' 文件信息缺失', 2000);
+                        }
+                    });
+                });
+            }
+
+            function animateStats() {
+                const items = document.querySelectorAll('.stat-item .number');
+                items.forEach(el => {
+                    const target = parseInt(el.dataset.count, 10);
+                    if (isNaN(target)) return;
+                    const duration = 1200;
+                    const startTime = performance.now();
+
+                    function update(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3) * Math.cos(progress * Math.PI * 0.3);
+                        const current = Math.round(eased * target);
+                        el.textContent = current.toLocaleString();
+                        if (progress < 1) {
+                            requestAnimationFrame(update);
+                        } else {
+                            el.textContent = target.toLocaleString();
+                        }
+                    }
+                    requestAnimationFrame(update);
+                });
+            }
+
+            // ============================================================
+            // 表单提交
+            // ============================================================
+
+            const coopForm = document.getElementById('coopForm');
+            coopForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let valid = true;
+                const fields = [
+                    { id: 'coopId', msg: '请输入游戏账号 ID' },
+                    { id: 'coopServer', msg: '请输入服务器名称' },
+                    { id: 'coopAddress', msg: '请输入服务器地址' },
+                    { id: 'coopReason', msg: '请填写申请理由' }
+                ];
+
+                fields.forEach(f => {
+                    const input = document.getElementById(f.id);
+                    const group = input.closest('.form-group');
+                    if (!input.value.trim()) {
+                        group.classList.add('error');
+                        valid = false;
+                    } else {
+                        group.classList.remove('error');
+                    }
+                });
+
+                if (!valid) {
+                    showToast('请完善所有必填信息', 2500);
+                    return;
+                }
+
+                const id = document.getElementById('coopId').value.trim();
+                const server = document.getElementById('coopServer').value.trim();
+                const address = document.getElementById('coopAddress').value.trim();
+                const reason = document.getElementById('coopReason').value.trim();
+
+                const subject = 'TK重工入驻申请';
+                const body =
+                    `申请人账号 ID：${id}\n服务器名称：${server}\n服务器地址：${address}\n申请理由：\n${reason}\n\n—— 此邮件由 TK重工 官网自动生成，请审核。`;
+                const mailtoLink =
+                    `mailto:Tank37135@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                const win = window.open(mailtoLink, '_blank');
+                if (win) {
+                    showToast('已打开邮件客户端，请发送申请。', 4000);
+                } else {
+                    const fullText = `收件人：Tank37135@outlook.com\n主题：${subject}\n\n${body}`;
+                    navigator.clipboard.writeText(fullText).then(() => {
+                        showToast('申请内容已复制，请手动发送邮件至 Tank37135@outlook.com', 5000);
+                    }).catch(() => {
+                        alert('请手动发送邮件至 Tank37135@outlook.com，内容如下：\n\n' + fullText);
+                    });
+                }
+            });
+
+            coopForm.querySelectorAll('input, textarea').forEach(el => {
+                el.addEventListener('input', function() {
+                    const group = this.closest('.form-group');
+                    if (group) group.classList.remove('error');
+                });
+            });
+
+            // ============================================================
+            // 初始化
+            // ============================================================
+
+            function init() {
+                renderMembers();
+                renderAnnouncements();
+                renderGallery('all');
+                renderResources();
+                setTimeout(animateStats, 400);
+
+                const hash = window.location.hash.replace('#', '');
+                const validPages = ['home', 'about', 'members', 'announce', 'gallery', 'resources', 'coop'];
+                if (hash && validPages.includes(hash)) {
+                    switchPage(hash);
+                }
+
+                window.addEventListener('hashchange', function() {
+                    const h = window.location.hash.replace('#', '');
+                    if (validPages.includes(h)) {
+                        switchPage(h);
+                    }
+                });
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        if (downloadModal.classList.contains('active')) {
+                            closeDownloadModal();
+                        }
+                        if (modalOverlay.classList.contains('active')) {
+                            closeImageModal();
+                        }
+                        navList.classList.remove('open');
+                        const icon = navToggle.querySelector('i');
+                        if (icon) icon.className = 'bi-list';
+                    }
+                });
+            }
+
+            function showLoadError(containerId) {
+                var el = document.getElementById(containerId);
+                if (el) el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--color-accent-light);"><div style="font-size:3rem;margin-bottom:0.5rem;opacity:0.3"><i class="bi bi-wifi-off"></i></div><div>数据导入失败，请更换网络后重试</div><div style="font-size:0.9rem;color:var(--color-white-glass);margin-top:0.5rem;">或者联系网站管理员</div></div>';
+            }
+
+            function onReady(fn) {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', fn);
+                } else {
+                    fn();
+                }
+            }
+
+            // 从 JSON 加载数据
+            onReady(function() {
+                fetch('../../assets/json/tkhi.json')
+                    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                    .then(function(data) {
+                        members = data.members || [];
+                        announcements = data.announcements || [];
+                        galleryItems = data.galleryItems || [];
+                        resources = data.resources || [];
+                        init();
+                    })
+                    .catch(function(e) {
+                        console.error('JSON 加载失败:', e);
+                    });
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
