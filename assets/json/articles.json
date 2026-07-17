@@ -1,5 +1,16 @@
 [
   {
+    "title": "VMware Pro VT-X打开经验",
+    "excerpt": "VT-X无法开启，总有各种问题",
+    "date": "2026-7-17",
+    "tags": [
+      "VMware",
+      "技术"
+    ],
+    "link": "/category/article/New-Return.html",
+    "category": "article"
+  },
+   {
     "title": "致歉与回归：久违更新，全新归来",
     "excerpt": "很抱歉断更这么久，我带来了全新的风貌",
     "date": "2026-7-15",
@@ -7,7 +18,7 @@
       "回归",
       "更新"
     ],
-    "link": "/category/article/New-Return.html",
+    "link": "/category/article/Virtual-Machine-VT.html",
     "category": "article"
   },
   {
