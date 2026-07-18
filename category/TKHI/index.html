@@ -27,6 +27,11 @@
             --radius: 6px;
             --transition: 0.30s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-smooth: 0.25s ease;
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-fast: cubic-bezier(0, 0, 0.2, 1);
+            --transition-sm: 0.15s var(--ease-out-fast);
+            --transition-spring: 0.35s var(--ease-spring);
         }
         html {
             scroll-behavior: smooth;
@@ -197,7 +202,7 @@
 
         .page {
             display: none;
-            animation: pageIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation: pageIn 0.4s var(--ease-spring) forwards;
             padding: 2.5rem 0 3.5rem;
             flex: 1;
         }
@@ -207,7 +212,7 @@
         @keyframes pageIn {
             0% {
                 opacity: 0;
-                transform: translateY(24px) scale(0.97);
+                transform: translateY(20px) scale(0.97);
             }
             100% {
                 opacity: 1;
@@ -289,11 +294,13 @@
             box-shadow: 0 2px 12px rgba(0, 173, 181, 0.25);
             letter-spacing: 0.5px;
         }
-        .btn:hover {
+        @media (hover: hover) {
+.btn:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 6px 28px rgba(0, 173, 181, 0.35);
             opacity: 0.92;
         }
+}
         .btn:active {
             transform: scale(0.96);
         }
@@ -341,11 +348,13 @@
             transition: var(--transition);
             box-shadow: var(--shadow);
         }
-        .card:hover {
+        @media (hover: hover) {
+.card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
             border-color: var(--accent);
         }
+}
 
         .stats-grid {
             display: grid;
@@ -362,11 +371,13 @@
             transition: var(--transition);
             cursor: default;
         }
-        .stat-item:hover {
+        @media (hover: hover) {
+.stat-item:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
             border-color: var(--accent);
         }
+}
         .stat-item .number {
             font-size: 2.4rem;
             font-weight: 800;
@@ -403,11 +414,13 @@
             cursor: default;
             text-align: center;
         }
-        .feature-card:hover {
+        @media (hover: hover) {
+.feature-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
             border-color: var(--accent);
         }
+}
         .feature-card .icon {
             font-size: 2.2rem;
             color: var(--accent);
@@ -490,11 +503,13 @@
             color: var(--light);
             font-size: 0.9rem;
         }
-        .org-node:hover {
+        @media (hover: hover) {
+.org-node:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-hover);
             border-color: var(--accent);
         }
+}
         .org-node .sub {
             display: block;
             font-weight: 400;
@@ -517,11 +532,13 @@
             transition: var(--transition);
             cursor: default;
         }
-        .member-card:hover {
+        @media (hover: hover) {
+.member-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
             border-color: var(--accent);
         }
+}
         .member-card .avatar-wrap {
             width: 80px;
             height: 80px;
@@ -668,11 +685,13 @@
             position: relative;
             aspect-ratio: 3 / 2;
         }
-        .gallery-item:hover {
+        @media (hover: hover) {
+.gallery-item:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
             border-color: var(--accent);
         }
+}
         .gallery-item img {
             width: 100%;
             height: 100%;
@@ -754,7 +773,7 @@
             justify-content: center;
             align-items: center;
             padding: 2rem;
-            animation: modalFade 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation: modalFade 0.35s var(--ease-spring) forwards;
             cursor: pointer;
         }
         .modal-overlay.active {
@@ -763,7 +782,7 @@
         @keyframes modalFade {
             0% {
                 opacity: 0;
-                transform: scale(0.92);
+                transform: scale(0.95);
             }
             100% {
                 opacity: 1;
@@ -913,11 +932,13 @@
             display: flex;
             flex-direction: column;
         }
-        .resource-card:hover {
+        @media (hover: hover) {
+.resource-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
             border-color: var(--accent);
         }
+}
         .resource-card .r-icon {
             font-size: 1.6rem;
             color: var(--accent);
@@ -972,11 +993,13 @@
             border: 1px solid var(--border-color);
             transition: var(--transition);
         }
-        .step:hover {
+        @media (hover: hover) {
+.step:hover {
             transform: translateX(4px);
             box-shadow: var(--shadow-hover);
             border-color: var(--accent);
         }
+}
         .step .num {
             font-size: 1.4rem;
             font-weight: 800;
@@ -1081,7 +1104,7 @@
             font-size: 0.9rem;
             transform: translateY(70px) scale(0.9);
             opacity: 0;
-            transition: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.3s var(--ease-spring), opacity 0.2s var(--ease-out);
             z-index: 9999;
             border-left: 4px solid var(--accent);
             max-width: 420px;
@@ -1559,7 +1582,7 @@
             let pendingDownload = null;
 
             // 正确口令
-            const CORRECT_PASSWORD = '2747460';
+            const CORRECT_PASSWORD = atob('Mjc0NzQ2MA==');
 
             // ============================================================
             // 导航切换
@@ -1605,9 +1628,31 @@
             // ============================================================
 
             navToggle.addEventListener('click', function() {
-                const isOpen = navList.classList.toggle('open');
-                const icon = this.querySelector('i');
+                var wasOpen = navList.classList.contains('open');
+                var isOpen = navList.classList.toggle('open');
+                var icon = this.querySelector('i');
                 icon.className = isOpen ? 'bi-x' : 'bi-list';
+                if (isOpen && !wasOpen) {
+                    var links = navList.querySelectorAll('a');
+                    links.forEach(function(link, i) {
+                        link.style.opacity = '0';
+                        link.style.transform = 'translateY(6px)';
+                        requestAnimationFrame(function() {
+                            link.style.transition = 'opacity 0.25s ease-out, transform 0.25s ease-out';
+                            link.style.transitionDelay = (i * 40) + 'ms';
+                            link.style.opacity = '1';
+                            link.style.transform = 'translateY(0)';
+                        });
+                    });
+                } else if (!isOpen) {
+                    var links = navList.querySelectorAll('a');
+                    links.forEach(function(link) {
+                        link.style.opacity = '';
+                        link.style.transform = '';
+                        link.style.transition = '';
+                        link.style.transitionDelay = '';
+                    });
+                }
             });
 
             document.addEventListener('click', function(e) {
@@ -1665,8 +1710,8 @@
                 downloadPassword.focus();
             }
 
-            function openDownloadModal(filename, filepath) {
-                pendingDownload = { filename, filepath };
+            function openDownloadModal(filename) {
+                pendingDownload = { filename };
                 resetDownloadModal();
                 downloadModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -1710,10 +1755,11 @@
                 const input = downloadPassword.value.trim();
                 if (input === CORRECT_PASSWORD) {
                     if (pendingDownload) {
-                        const { filename, filepath } = pendingDownload;
+                        const { filename } = pendingDownload;
+                        const filepath = 'resources/' + filename;
                         const a = document.createElement('a');
                         a.href = filepath;
-                        a.download = filename; 
+                        a.download = filename;
                         document.body.appendChild(a);
                         a.click();
                         document.body.removeChild(a);
@@ -1830,8 +1876,6 @@
             function renderResources() {
                 const grid = document.getElementById('resourceGrid');
                 grid.innerHTML = resources.map(item => {
-                    // 构建文件路径：resources/ + 文件名
-                    const filePath = `resources/${item.filename}`;
                     return `
                         <div class="resource-card">
                             <div class="r-icon"><i class="${item.icon}"></i></div>
@@ -1842,7 +1886,7 @@
                                 <span><i class="bi bi-file-earmark"></i> ${item.size}</span>
                             </div>
                             <div class="download-wrap">
-                                <button class="btn-download download-btn" data-filename="${item.filename}" data-path="${filePath}">
+                                <button class="btn-download download-btn" data-filename="${item.filename}">
                                     <i class="bi bi-download"></i> 下载图纸
                                 </button>
                             </div>
@@ -1854,10 +1898,9 @@
                 grid.querySelectorAll('.download-btn').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         e.preventDefault();
-                        const filePath = this.dataset.path;
-                        const fileName = this.dataset.filename; 
-                        if (filePath && fileName) {
-                            openDownloadModal(fileName, filePath);
+                        const fileName = this.dataset.filename;
+                        if (fileName) {
+                            openDownloadModal(fileName);
                         } else {
                             showToast(' 文件信息缺失', 2000);
                         }
@@ -1866,6 +1909,19 @@
             }
 
             function animateStats() {
+                var grid = document.querySelector('#page-home .stats-grid');
+                if (grid) {
+                    var statItems = grid.querySelectorAll('.stat-item');
+                    statItems.forEach(function(item, i) {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(14px)';
+                        item.style.transition = 'opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out)';
+                        setTimeout(function() {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 80 + i * 60);
+                    });
+                }
                 const items = document.querySelectorAll('.stat-item .number');
                 items.forEach(el => {
                     const target = parseInt(el.dataset.count, 10);
