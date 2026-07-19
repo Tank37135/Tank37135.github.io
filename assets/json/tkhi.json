@@ -55,6 +55,15 @@
       "size": "17kB",
       "icon": "bi-file-text",
       "filename": "ghfcz.litematic"
+    },
+    {
+      "id": 4,
+      "title": "16核恐吓刷铁机",
+      "desc": "超高速刷铁机，记得给僵尸命名",
+      "type": "原理图",
+      "size": "10kB",
+      "icon": "bi-file-text",
+      "filename": "16-core-stj.litematic"
     }
   ]
 }
