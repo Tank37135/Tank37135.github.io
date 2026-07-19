@@ -1591,7 +1591,11 @@
             function switchPage(pageId) {
                 pages.forEach(p => p.classList.remove('active'));
                 const target = document.getElementById('page-' + pageId);
-                if (target) target.classList.add('active');
+                if (target) {
+                    target.classList.add('active');
+                    animatePageCards(target);
+                    if (pageId === 'home') animateStats();
+                }
 
                 navLinks.forEach(link => {
                     link.classList.toggle('active', link.dataset.page === pageId);
@@ -1867,6 +1871,7 @@
                 this.querySelectorAll('button').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 renderGallery(filter);
+                animatePageCards(document.getElementById('page-gallery'));
             });
 
             // ============================================================
@@ -1905,6 +1910,21 @@
                             showToast(' 文件信息缺失', 2000);
                         }
                     });
+                });
+            }
+
+            function animatePageCards(pageEl) {
+                var selectors = '.feature-card, .meta-item, .org-node, .member-card, .announce-item, .gallery-item, .resource-card, .step, .about-grid > .card';
+                var items = pageEl.querySelectorAll(selectors);
+                if (!items.length) return;
+                items.forEach(function(el, i) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(16px)';
+                    el.style.transition = 'opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out)';
+                    setTimeout(function() {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 50 + i * 55);
                 });
             }
 
@@ -2080,6 +2100,11 @@
 
 </body>
 </html>
+
+
+
+
+
 
 
 
