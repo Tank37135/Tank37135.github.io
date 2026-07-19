@@ -28,7 +28,6 @@
       "title": "40核心竹子机"
     }
   ],
-
   "resources": [
     {
       "id": 1,
@@ -38,10 +37,9 @@
       "size": "4kB",
       "icon": "bi-file-text",
       "filename": "40-core-Bamboo-Machine.litematic"
-    }
-  ],
-  {
-      "id": 1,
+    },
+    {
+      "id": 2,
       "title": "800FTL珍珠炮",
       "desc": "1.21+，超远距离传送",
       "type": "原理图",
