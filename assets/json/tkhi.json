@@ -46,6 +46,15 @@
       "size": "732B",
       "icon": "bi-file-text",
       "filename": "1600TNTzzp.rar"
+    },
+    {
+      "id": 3,
+      "title": "工会大楼（复仇者）",
+      "desc": "创世之境工会总部大楼",
+      "type": "原理图",
+      "size": "17kB",
+      "icon": "bi-file-text",
+      "filename": "ghfcz.litematic"
     }
   ]
 }
