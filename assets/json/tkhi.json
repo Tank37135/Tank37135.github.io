@@ -73,6 +73,15 @@
       "size": "6kB",
       "icon": "bi-file-text",
       "filename": "Radiator-sgt.litematic"
+    },
+    {
+      "id": 6,
+      "title": "21点游戏机",
+      "desc": "也许算轻赌游戏，严禁用于现实货币交易",
+      "type": "原理图",
+      "size": "6kB",
+      "icon": "bi-file-text",
+      "filename": "21point.litematic"
     }
   ]
 }
