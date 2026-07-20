@@ -64,6 +64,15 @@
       "size": "10kB",
       "icon": "bi-file-text",
       "filename": "16-core-stj.litematic"
+    },
+    {
+      "id": 5,
+      "title": "散热器式刷怪塔",
+      "desc": "无法获取经验，高效，不包含分类机",
+      "type": "原理图",
+      "size": "6kB",
+      "icon": "bi-file-text",
+      "filename": "Radiator-sgt.litematic"
     }
   ]
 }
