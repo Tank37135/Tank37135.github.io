@@ -22,7 +22,7 @@
     {
       "name": "Tank37135",
       "role": "首席执行官",
-      "bio": "看我装阴糖他一手",
+      "bio": "看我装阴糖他们一手",
       "data": "2026-7-10"
     },
     {
@@ -118,6 +118,15 @@
       "size": "6kB",
       "icon": "bi-file-text",
       "filename": "21point.litematic"
+    },
+    {
+      "id": 7,
+      "title": "TK重工的一个LOGO，紫色衬线蓝字",
+      "desc": "一个小logo，TKHI字样（英文首字母缩写是这样的）",
+      "type": "原理图",
+      "size": "6kB",
+      "icon": "bi-file-text",
+      "filename": "TKHI.litematic"
     }
   ]
 }
