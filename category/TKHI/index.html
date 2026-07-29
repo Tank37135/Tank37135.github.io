@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="TK重工公社 - 我的世界红石科技与物资交易公社，提供红石机器设计、建筑作品展示和资源下载。">
-    <meta name="keywords" content="我的世界, Minecraft, 红石, 红石科技, TK重工公社, 物资交易, 工会, 建筑">
-    <title>TK重工公社 | 我的世界红石科技 & 物资交易工会</title>
+    <meta name="keywords" content="我的世界, Minecraft, 红石, 红石科技, TK重工公社, 物资交易, 公社, 建筑">
+    <title>TK重工公社 | 我的世界红石科技 & 物资交易公社</title>
     <style>
         /* Inline body background to prevent flash on load */
         body { background: #f8f9fa; }
@@ -871,6 +871,7 @@
 
         /* ===== Download Modal ===== */
         .download-modal-content {
+            min-width: 30%;
             max-width: 440px;
             padding: 0;
             overflow: visible;
@@ -1236,7 +1237,7 @@
             </button>
             <nav class="nav-list" id="navList">
                 <a class="active" data-page="home">首页</a>
-                <a data-page="about">工会介绍</a>
+                <a data-page="about">公社介绍</a>
                 <a data-page="members">成员介绍</a>
                 <a data-page="announce">最新公告</a>
                 <a data-page="gallery">风貌展示</a>
@@ -1252,7 +1253,7 @@
                 <div class="banner">
                     <div class="banner-content">
                         <h1><i class="bi bi-gear"></i> TK重工公社</h1>
-                        <p>我的世界红石科技工会 · 匠心造机械，诚信做交易</p>
+                        <p>我的世界红石科技公社 · 匠心造机械，诚信做交易</p>
                         <div class="btn-group">
                             <a class="btn" data-page="coop"><i class="bi bi-handshake"></i> 加入我们</a>
                             <a class="btn btn-outline" data-page="about"><i class="bi bi-info-circle"></i> 了解详情</a>
@@ -1264,7 +1265,7 @@
                     <div class="stat-item">
                         <i class="bi bi-people"></i>
                         <span class="number" data-count="0">0</span>
-                        <span class="label">工会成员</span>
+                        <span class="label">公社成员</span>
                     </div>
                     <div class="stat-item">
                         <i class="bi bi-cpu"></i>
@@ -1296,7 +1297,7 @@
                     </div>
                     <div class="feature-card">
                         <div class="icon"><i class="bi bi-chat-dots"></i></div>
-                        <h3>工会社区</h3>
+                        <h3>公社社区</h3>
                         <p>活跃的玩家社区，技术交流、合作共建、活动组织，共同成长。</p>
                     </div>
                 </div>
@@ -1306,7 +1307,7 @@
         <section class="page" id="page-about">
             <div class="container">
                 <div class="title-wrap">
-                    <h2 class="section-title"><i class="bi bi-flag"></i> 工会介绍</h2>
+                    <h2 class="section-title"><i class="bi bi-flag"></i> 公社介绍</h2>
                 </div>
                 <div class="section-sub">了解 TK重工公社 的历史、宗旨与组织</div>
 
@@ -1314,7 +1315,7 @@
                     <div class="card about-text" id="aboutContent"></div>
                     <div class="about-meta" id="aboutMeta">
                         <div class="meta-item">
-                            <h4>工会宗旨</h4>
+                            <h4>公社宗旨</h4>
                             <p id="aboutPrinciples"></p>
                         </div>
                         <div class="meta-item">
@@ -1330,7 +1331,7 @@
 
                 <h3 style="margin-top: 2.5rem; font-size: 1.1rem; color: var(--light); text-align: center;">组织架构</h3>
                 <div class="org-chart">
-                    <div class="org-node">会委<span class="sub">工会管理</span></div>
+                    <div class="org-node">会委<span class="sub">公社管理</span></div>
                     <div class="org-node">武装团 <span class="sub">PVP</span></div>
                     <div class="org-node">工部 <span class="sub">建筑与红石机械</span></div>
                     <div class="org-node">商务部 <span class="sub">贸易，采购与销售</span></div>
@@ -1344,7 +1345,7 @@
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-person-badge"></i> 成员</h2>
                 </div>
-                <div class="section-sub">工会管理团队与成员</div>
+                <div class="section-sub">公社管理团队与成员</div>
                 <div class="members-grid" id="membersGrid"></div>
             </div>
         </section>
@@ -1354,7 +1355,7 @@
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-megaphone"></i> 公告</h2>
                 </div>
-                <div class="section-sub">工会动态 · 活动通知 · 重要信息</div>
+                <div class="section-sub">公社动态 · 活动通知 · 重要信息</div>
                 <div class="announce-list" id="announceList"></div>
             </div>
         </section>
@@ -1364,12 +1365,12 @@
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-images"></i> 风貌</h2>
                 </div>
-                <div class="section-sub">红石机器 · 建筑作品 · 工会活动</div>
+                <div class="section-sub">红石机器 · 建筑作品 · 公社活动</div>
                 <div class="gallery-filter" id="galleryFilter">
                     <button class="active" data-filter="all">全部</button>
                     <button data-filter="machine">红石机器</button>
                     <button data-filter="build">建筑作品</button>
-                    <button data-filter="activity">工会活动</button>
+                    <button data-filter="activity">公社活动</button>
                 </div>
                 <div class="gallery-grid" id="galleryGrid"></div>
             </div>
@@ -1406,14 +1407,14 @@
                                 <div class="num">02</div>
                                 <div class="content">
                                     <h4>审核评估</h4>
-                                    <p>工会管理团队进行资质与能力评估。</p>
+                                    <p>公社管理团队进行资质与能力评估。</p>
                                 </div>
                             </div>
                             <div class="step">
                                 <div class="num">04</div>
                                 <div class="content">
                                     <h4>正式入驻</h4>
-                                    <p>成为正式成员，享受工会资源与权益。</p>
+                                    <p>成为正式成员，享受公社资源与权益。</p>
                                 </div>
                             </div>
                         </div>
@@ -1454,7 +1455,7 @@
     </main>
 
     <footer>
-        <p>TK重工公社 · 我的世界红石科技工会 &copy; 2026</p>
+        <p>TK重工公社 · 我的世界红石科技公社 &copy; 2026</p>
     </footer>
 
     <!-- Image Modal -->
@@ -1471,7 +1472,7 @@
         <div class="modal-content download-modal-content">
             <span class="modal-close" id="downloadModalClose"><i class="bi bi-x"></i></span>
             <div class="download-modal-body">
-                <span class="lock-icon"><i class="bi bi-lock"></i></span>
+                <span class="lock-icon"><i class="bi bi-file-earmark-lock"></i></span>
                 <h3>输入下载口令</h3>
                 <p class="desc">请输入正确的口令以获取图纸下载权限</p>
                 <div class="input-wrap">
