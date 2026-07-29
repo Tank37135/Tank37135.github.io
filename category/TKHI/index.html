@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TK重工公社 - 我的世界红石科技与物资交易公社，提供红石机器设计、建筑作品展示和资源下载。">
-    <meta name="keywords" content="我的世界, Minecraft, 红石, 红石科技, TK重工公社, 物资交易, 公社, 建筑">
-    <title>TK重工公社 | 我的世界红石科技 & 物资交易公社</title>
+    <meta name="description" content="TK重工 - 我的世界红石科技与物资交易公社，提供红石机器设计、建筑作品展示和资源下载。">
+    <meta name="keywords" content="我的世界, Minecraft, 红石, 红石科技, TK重工, 物资交易, 公社, 建筑">
+    <title>TK重工 | 我的世界红石科技 & 物资交易公社</title>
     <style>
         /* Inline body background to prevent flash on load */
         body { background: #f8f9fa; }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
     <style>
-
+        /* ========================================
+           TK重工 — Light Theme
+           Blue-White Minimalist · 蓝白简约亮色主题
+           ======================================== */
         * {
             margin: 0;
             padding: 0;
@@ -871,7 +874,6 @@
 
         /* ===== Download Modal ===== */
         .download-modal-content {
-            min-width: 30%;
             max-width: 440px;
             padding: 0;
             overflow: visible;
@@ -1230,7 +1232,7 @@
     <header>
         <div class="nav">
             <div class="logo">
-                <i class="bi bi-gear"></i> TK重工公社
+                <i class="bi bi-gear"></i> TK重工
             </div>
             <button class="nav-toggle" id="navToggle" aria-label="导航菜单">
                 <i class="bi bi-list"></i>
@@ -1252,7 +1254,7 @@
             <div class="container">
                 <div class="banner">
                     <div class="banner-content">
-                        <h1><i class="bi bi-gear"></i> TK重工公社</h1>
+                        <h1><i class="bi bi-gear"></i> TK重工</h1>
                         <p>我的世界红石科技公社 · 匠心造机械，诚信做交易</p>
                         <div class="btn-group">
                             <a class="btn" data-page="coop"><i class="bi bi-handshake"></i> 加入我们</a>
@@ -1275,7 +1277,7 @@
                     <div class="stat-item">
                         <i class="bi bi-arrow-left-right"></i>
                         <span class="number trade-value" data-count="0">0</span>
-                        <span class="label">累计交易 (万)</span>
+                        <span class="label">公社成立总天数</span>
                     </div>
                     <div class="stat-item">
                         <i class="bi bi-calendar3"></i>
@@ -1309,7 +1311,7 @@
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-flag"></i> 公社介绍</h2>
                 </div>
-                <div class="section-sub">了解 TK重工公社 的历史、宗旨与组织</div>
+                <div class="section-sub">了解 TK重工 的历史、宗旨与组织</div>
 
                 <div class="about-grid">
                     <div class="card about-text" id="aboutContent"></div>
@@ -1331,7 +1333,7 @@
 
                 <h3 style="margin-top: 2.5rem; font-size: 1.1rem; color: var(--light); text-align: center;">组织架构</h3>
                 <div class="org-chart">
-                    <div class="org-node">会委<span class="sub">公社管理</span></div>
+                    <div class="org-node">社委<span class="sub">公社管理</span></div>
                     <div class="org-node">武装团 <span class="sub">PVP</span></div>
                     <div class="org-node">工部 <span class="sub">建筑与红石机械</span></div>
                     <div class="org-node">商务部 <span class="sub">贸易，采购与销售</span></div>
@@ -1391,7 +1393,7 @@
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-handshake"></i> 招纳贤士</h2>
                 </div>
-                <div class="section-sub">加入 TK重工公社，共创未来</div>
+                <div class="section-sub">加入 TK重工，共创未来</div>
                 <div class="coop-grid">
                     <div>
                         <h3 style="font-size: 1.1rem; color: var(--light); margin-bottom: 1rem;">加入流程</h3>
@@ -1455,7 +1457,7 @@
     </main>
 
     <footer>
-        <p>TK重工公社 · 我的世界红石科技公社 &copy; 2026</p>
+        <p>TK重工 · 我的世界红石科技公社 &copy; 2026</p>
     </footer>
 
     <!-- Image Modal -->
@@ -1472,7 +1474,7 @@
         <div class="modal-content download-modal-content">
             <span class="modal-close" id="downloadModalClose"><i class="bi bi-x"></i></span>
             <div class="download-modal-body">
-                <span class="lock-icon"><i class="bi bi-file-earmark-lock"></i></span>
+                <span class="lock-icon"><i class="bi bi-lock"></i></span>
                 <h3>输入下载口令</h3>
                 <p class="desc">请输入正确的口令以获取图纸下载权限</p>
                 <div class="input-wrap">
@@ -1775,7 +1777,7 @@
                     statNumbers[0].textContent = '0';
                     statNumbers[1].setAttribute('data-count', s.machines);
                     statNumbers[1].textContent = '0';
-                    statNumbers[2].setAttribute('data-count', s.tradeValue);
+                    statNumbers[2].setAttribute('data-count', Math.floor((Date.now() - new Date(s.foundedDate).getTime()) / 86400000));
                     statNumbers[2].textContent = '0';
                     statNumbers[3].setAttribute('data-count', s.founded);
                     statNumbers[3].textContent = '0';
@@ -2043,8 +2045,8 @@
                 var address = document.getElementById('coopAddress').value.trim();
                 var reason = document.getElementById('coopReason').value.trim();
 
-                var subject = 'TK重工公社入驻申请';
-                var body = '申请人账号 ID：' + id + '\n服务器名称：' + server + '\n服务器地址：' + address + '\n申请理由：\n' + reason + '\n\n—— 此邮件由 TK重工公社 官网自动生成，请审核。';
+                var subject = 'TK重工入驻申请';
+                var body = '申请人账号 ID：' + id + '\n服务器名称：' + server + '\n服务器地址：' + address + '\n申请理由：\n' + reason + '\n\n—— 此邮件由 TK重工 官网自动生成，请审核。';
                 var mailtoLink = 'mailto:Tank37135@outlook.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
                 var win = window.open(mailtoLink, '_blank');
