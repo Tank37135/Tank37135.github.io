@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="description" content="TK重工 - 我的世界红石科技与物资交易工会，提供红石机器设计、建筑作品展示和资源下载。">
-  <meta name="keywords" content="我的世界, Minecraft, 红石, 红石科技, TK重工, 物资交易, 工会, 建筑">
-  <title>TK重工 | 我的世界红石科技 & 物资交易工会</title>
-  
+    <meta name="description" content="TK重工公社 - 我的世界红石科技与物资交易工会，提供红石机器设计、建筑作品展示和资源下载。">
+    <meta name="keywords" content="我的世界, Minecraft, 红石, 红石科技, TK重工公社, 物资交易, 工会, 建筑">
+    <title>TK重工公社 | 我的世界红石科技 & 物资交易工会</title>
+    <style>
+        /* Inline body background to prevent flash on load */
+        body { background: #f8f9fa; }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -16,19 +20,22 @@
             font-family: "Microsoft Yahei", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
         }
         :root {
-            --main: #222831;
-            --second: #393E46;
-            --accent: #00ADB5;
-            --light: #EEEEEE;
-            --card-bg: #2d3440;
-            --border-color: #4a5260;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            --shadow-hover: 0 8px 32px rgba(0, 173, 181, 0.18);
+            --main: #f8f9fa;
+            --second: #ffffff;
+            --accent: #1a73e8;
+            --accent-light: #42a5f5;
+            --light: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 32px rgba(26, 115, 232, 0.12);
             --radius: 6px;
             --transition: 0.30s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-smooth: 0.25s ease;
             --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
             --ease-out-fast: cubic-bezier(0, 0, 0.2, 1);
             --transition-sm: 0.15s var(--ease-out-fast);
             --transition-spring: 0.35s var(--ease-spring);
@@ -74,7 +81,7 @@
         }
         .section-sub {
             text-align: center;
-            color: rgba(238, 238, 238, 0.7);
+            color: var(--text-muted);
             margin-top: -1.8rem;
             margin-bottom: 2.5rem;
             font-size: 1rem;
@@ -97,7 +104,7 @@
             position: sticky;
             top: 0;
             z-index: 999;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             border-bottom: 2px solid var(--accent);
         }
         .nav {
@@ -128,7 +135,7 @@
             color: var(--light);
             cursor: pointer;
             padding: 4px 8px;
-            transition: var(--transition-smooth);
+            transition: color 0.25s var(--ease-out);
         }
         .nav-toggle:hover {
             color: var(--accent);
@@ -140,23 +147,25 @@
             flex-wrap: wrap;
         }
         .nav-list a {
-            color: rgba(238, 238, 238, 0.75);
+            color: var(--text-muted);
             text-decoration: none;
             padding: 6px 16px;
             border-radius: var(--radius);
             font-size: 0.95rem;
-            transition: var(--transition-smooth);
+            transition: color 0.25s var(--ease-out), background 0.25s var(--ease-out);
             cursor: pointer;
             font-weight: 500;
         }
-        .nav-list a:hover {
-            color: #fff;
-            background: rgba(0, 173, 181, 0.12);
+        @media (hover: hover) and (pointer: fine) {
+            .nav-list a:hover {
+                color: var(--accent);
+                background: rgba(26, 115, 232, 0.06);
+            }
         }
         .nav-list a.active {
             color: #fff;
             background: var(--accent);
-            box-shadow: 0 2px 12px rgba(0, 173, 181, 0.25);
+            box-shadow: 0 2px 12px rgba(26, 115, 232, 0.25);
         }
 
         @media (max-width: 768px) {
@@ -172,9 +181,9 @@
                 opacity: 0;
                 transform: scaleY(0.8);
                 transform-origin: top center;
-                transition: max-height 0.40s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transition: max-height 0.40s var(--ease-spring),
                     opacity 0.35s ease,
-                    transform 0.40s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    transform 0.40s var(--ease-spring),
                     padding 0.35s ease;
                 padding: 0 0;
                 gap: 2px;
@@ -195,36 +204,28 @@
                 font-size: 0.95rem;
                 border-radius: var(--radius);
             }
-            .nav-list a.active::after {
-                display: none;
-            }
         }
 
+        /* ===== Page transitions (transition-based, interruptible) ===== */
         .page {
             display: none;
-            animation: pageIn 0.4s var(--ease-spring) forwards;
             padding: 2.5rem 0 3.5rem;
             flex: 1;
         }
         .page.active {
             display: block;
+            animation: pageIn 0.35s var(--ease-spring) forwards;
         }
         @keyframes pageIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px) scale(0.97);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            0% { opacity: 0; transform: translateY(20px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .banner {
             height: 55vh;
             min-height: 340px;
             background:
-                linear-gradient(135deg, rgba(34, 40, 49, 0.85) 0%, rgba(34, 40, 49, 0.60) 100%),
+                linear-gradient(135deg, rgba(248, 249, 250, 0.88) 0%, rgba(248, 249, 250, 0.60) 100%),
                 url('https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Media-Block-B_DII-Promo_1920x1080.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
@@ -246,7 +247,7 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            background: rgba(0, 173, 181, 0.04);
+            background: rgba(26, 115, 232, 0.04);
             pointer-events: none;
         }
         .banner-content {
@@ -288,21 +289,22 @@
             font-size: 0.95rem;
             border: none;
             cursor: pointer;
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), opacity 0.25s var(--ease-out), background 0.25s var(--ease-out);
             background: var(--accent);
-            color: #000;
-            box-shadow: 0 2px 12px rgba(0, 173, 181, 0.25);
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(26, 115, 232, 0.25);
             letter-spacing: 0.5px;
         }
-        @media (hover: hover) {
-.btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 6px 28px rgba(0, 173, 181, 0.35);
-            opacity: 0.92;
-        }
-}
         .btn:active {
-            transform: scale(0.96);
+            transform: scale(0.97);
+            transition: transform 160ms var(--ease-out);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .btn:hover {
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 6px 28px rgba(26, 115, 232, 0.35);
+                opacity: 0.92;
+            }
         }
         .btn-outline {
             background: transparent;
@@ -312,7 +314,7 @@
         }
         .btn-outline:hover {
             background: var(--accent);
-            color: #000;
+            color: #fff;
             opacity: 1;
         }
         .btn-sm {
@@ -328,16 +330,22 @@
             font-size: 0.8rem;
             font-weight: 600;
             background: var(--accent);
-            color: #000;
+            color: #fff;
             border: none;
             cursor: pointer;
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), opacity 0.25s var(--ease-out);
             text-decoration: none;
         }
-        .btn-download:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 4px 16px rgba(0, 173, 181, 0.3);
-            opacity: 0.9;
+        .btn-download:active {
+            transform: scale(0.97);
+            transition: transform 160ms var(--ease-out);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .btn-download:hover {
+                transform: translateY(-2px) scale(1.02);
+                box-shadow: 0 4px 16px rgba(26, 115, 232, 0.3);
+                opacity: 0.9;
+            }
         }
 
         .card {
@@ -345,16 +353,16 @@
             padding: 1.6rem 1.8rem;
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), border-color 0.25s var(--ease-out);
             box-shadow: var(--shadow);
         }
-        @media (hover: hover) {
-.card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
+        @media (hover: hover) and (pointer: fine) {
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--accent);
+            }
         }
-}
 
         .stats-grid {
             display: grid;
@@ -368,16 +376,16 @@
             padding: 1.5rem 1rem;
             text-align: center;
             border: 1px solid var(--border-color);
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), border-color 0.25s var(--ease-out);
             cursor: default;
         }
-        @media (hover: hover) {
-.stat-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
+        @media (hover: hover) and (pointer: fine) {
+            .stat-item:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--accent);
+            }
         }
-}
         .stat-item .number {
             font-size: 2.4rem;
             font-weight: 800;
@@ -387,7 +395,7 @@
         }
         .stat-item .label {
             font-size: 0.85rem;
-            color: rgba(238, 238, 238, 0.6);
+            color: var(--text-muted);
             margin-top: 4px;
             letter-spacing: 0.5px;
         }
@@ -410,23 +418,23 @@
             border-radius: var(--radius);
             padding: 1.8rem 1.5rem;
             border: 1px solid var(--border-color);
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), border-color 0.25s var(--ease-out);
             cursor: default;
             text-align: center;
         }
-        @media (hover: hover) {
-.feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
+        @media (hover: hover) and (pointer: fine) {
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--accent);
+            }
         }
-}
         .feature-card .icon {
             font-size: 2.2rem;
             color: var(--accent);
             margin-bottom: 10px;
             display: inline-block;
-            transition: var(--transition-smooth);
+            transition: transform 0.25s var(--ease-spring);
         }
         .feature-card:hover .icon {
             transform: scale(1.08);
@@ -437,10 +445,9 @@
             margin-bottom: 4px;
         }
         .feature-card p {
-            color: rgba(238, 238, 238, 0.65);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
-
         .about-grid {
             display: grid;
             grid-template-columns: 1.6fr 1fr;
@@ -448,7 +455,7 @@
         }
         .about-text p {
             margin-bottom: 0.8rem;
-            color: rgba(238, 238, 238, 0.85);
+            color: var(--text-secondary);
             font-size: 0.95rem;
         }
         .about-text strong {
@@ -464,7 +471,7 @@
             padding: 1.2rem 1.4rem;
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), border-color 0.25s var(--ease-out);
         }
         .about-meta .meta-item:hover {
             transform: translateX(4px);
@@ -473,7 +480,7 @@
         }
         .about-meta .meta-item h4 {
             font-size: 0.75rem;
-            color: rgba(238, 238, 238, 0.5);
+            color: var(--text-muted);
             font-weight: 500;
             letter-spacing: 0.8px;
             text-transform: uppercase;
@@ -495,7 +502,7 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             padding: 0.8rem 1.6rem;
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), border-color 0.25s var(--ease-out);
             flex: 1 0 auto;
             min-width: 90px;
             text-align: center;
@@ -503,18 +510,18 @@
             color: var(--light);
             font-size: 0.9rem;
         }
-        @media (hover: hover) {
-.org-node:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
+        @media (hover: hover) and (pointer: fine) {
+            .org-node:hover {
+                transform: translateY(-3px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--accent);
+            }
         }
-}
         .org-node .sub {
             display: block;
             font-weight: 400;
             font-size: 0.75rem;
-            color: rgba(238, 238, 238, 0.5);
+            color: var(--text-muted);
             margin-top: 2px;
         }
 
@@ -529,24 +536,24 @@
             border: 1px solid var(--border-color);
             padding: 1.5rem 1.2rem;
             text-align: center;
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), border-color 0.25s var(--ease-out);
             cursor: default;
         }
-        @media (hover: hover) {
-.member-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
+        @media (hover: hover) and (pointer: fine) {
+            .member-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--accent);
+            }
         }
-}
         .member-card .avatar-wrap {
             width: 80px;
             height: 80px;
-            border-radius: 8px; 
+            border-radius: 8px;
             overflow: hidden;
             margin: 0 auto 8px;
             border: 2px solid var(--accent);
-            background: var(--second);
+            background: var(--main);
             flex-shrink: 0;
         }
         .member-card .avatar-wrap img {
@@ -568,7 +575,7 @@
         }
         .member-card .bio {
             font-size: 0.8rem;
-            color: rgba(238, 238, 238, 0.6);
+            color: var(--text-secondary);
             margin-top: 8px;
             border-top: 1px solid var(--border-color);
             padding-top: 8px;
@@ -584,7 +591,7 @@
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
             overflow: hidden;
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), border-color 0.25s var(--ease-out);
             cursor: pointer;
         }
         .announce-item:hover {
@@ -606,7 +613,7 @@
         }
         .announce-header .date {
             font-size: 0.75rem;
-            color: rgba(238, 238, 238, 0.5);
+            color: var(--text-muted);
             white-space: nowrap;
         }
         .announce-header .tag {
@@ -615,15 +622,15 @@
             padding: 2px 12px;
             border-radius: 12px;
             background: var(--accent);
-            color: #000;
+            color: #fff;
             letter-spacing: 0.5px;
         }
         .announce-body {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.3s ease;
+            transition: max-height 0.45s var(--ease-spring), padding 0.3s ease;
             padding: 0 1.4rem;
-            color: rgba(238, 238, 238, 0.7);
+            color: var(--text-secondary);
             font-size: 0.9rem;
             border-top: 1px solid transparent;
         }
@@ -634,8 +641,8 @@
         }
         .announce-item .toggle-icon {
             font-size: 0.8rem;
-            color: rgba(238, 238, 238, 0.4);
-            transition: var(--transition-smooth);
+            color: var(--text-muted);
+            transition: transform 0.25s var(--ease-spring);
             flex-shrink: 0;
         }
         .announce-item.open .toggle-icon {
@@ -656,48 +663,57 @@
             background: transparent;
             font-weight: 600;
             font-size: 0.8rem;
-            color: rgba(238, 238, 238, 0.6);
+            color: var(--text-muted);
             cursor: pointer;
-            transition: var(--transition);
+            transition: border-color 0.25s var(--ease-out), color 0.25s var(--ease-out), transform 0.25s var(--ease-spring), background 0.25s var(--ease-out);
         }
         .gallery-filter button:hover {
             border-color: var(--accent);
-            color: var(--light);
+            color: var(--accent);
             transform: translateY(-2px);
         }
         .gallery-filter button.active {
             background: var(--accent);
             border-color: var(--accent);
-            color: #000;
+            color: #fff;
         }
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.2rem;
+            transition: filter 0.35s var(--ease-out);
+        }
+        .gallery-grid.is-blurred {
+            filter: blur(6px);
         }
         .gallery-item {
             background: var(--card-bg);
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
             overflow: hidden;
-            transition: var(--transition);
+            transition: transform 0.35s var(--ease-spring), opacity 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
             cursor: pointer;
             position: relative;
             aspect-ratio: 3 / 2;
         }
-        @media (hover: hover) {
-.gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
+        .gallery-item.is-dimmed {
+            opacity: 0.3;
+            transform: scale(0.9);
+            pointer-events: none;
         }
-}
+        @media (hover: hover) and (pointer: fine) {
+            .gallery-item:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--accent);
+            }
+        }
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: var(--transition-smooth);
+            transition: transform 0.3s var(--ease-out);
         }
         .gallery-item:hover img {
             transform: scale(1.03);
@@ -710,12 +726,12 @@
             text-align: center;
             font-weight: 600;
             font-size: 0.85rem;
-            color: var(--light);
-            background: rgba(34, 40, 49, 0.8);
+            color: #fff;
+            background: rgba(15, 23, 42, 0.75);
             padding: 5px 10px;
             border-radius: 4px;
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(0, 173, 181, 0.2);
+            border: 1px solid rgba(26, 115, 232, 0.2);
             pointer-events: none;
         }
         .gallery-item .g-tag {
@@ -725,7 +741,7 @@
             font-size: 0.65rem;
             font-weight: 600;
             background: var(--accent);
-            color: #000;
+            color: #fff;
             padding: 2px 12px;
             border-radius: 12px;
             letter-spacing: 0.3px;
@@ -740,7 +756,7 @@
             font-size: 2.4rem;
             color: #fff;
             opacity: 0;
-            transition: var(--transition-smooth);
+            transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
             pointer-events: none;
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
             background: rgba(0, 0, 0, 0.3);
@@ -759,46 +775,53 @@
         .gallery-item.hidden {
             display: none;
         }
-
+        /* ========================================
+           Modal (Image + Download) — Fixed Animation
+           Uses visibility/opacity for overlay + transition for content
+           ======================================== */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(6px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 9999;
-            display: none;
+            display: flex;
             justify-content: center;
             align-items: center;
             padding: 2rem;
-            animation: modalFade 0.35s var(--ease-spring) forwards;
             cursor: pointer;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s 0.35s, opacity 0.35s var(--ease-out), backdrop-filter 0.35s var(--ease-out);
         }
         .modal-overlay.active {
-            display: flex;
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0s 0s, opacity 0.35s var(--ease-out), backdrop-filter 0.35s var(--ease-out);
         }
-        @keyframes modalFade {
-            0% {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        .modal-content {
+
+        /* Image Modal Content */
+        .modal-overlay .modal-content {
             max-width: 90vw;
             max-height: 85vh;
             border-radius: var(--radius);
-            box-shadow: 0 8px 60px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 8px 60px rgba(0, 0, 0, 0.15);
             border: 2px solid var(--accent);
             overflow: hidden;
-            background: var(--main);
+            background: #fff;
             cursor: default;
             position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.35s var(--ease-spring), opacity 0.35s var(--ease-out);
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
         }
         .modal-content img {
             display: block;
@@ -815,7 +838,7 @@
             font-size: 2rem;
             color: #fff;
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: transform 0.25s var(--ease-spring), background 0.25s var(--ease-out);
             z-index: 10;
             background: rgba(0, 0, 0, 0.5);
             border-radius: 50%;
@@ -829,7 +852,7 @@
         }
         .modal-close:hover {
             transform: rotate(90deg) scale(1.1);
-            background: rgba(0, 173, 181, 0.4);
+            background: rgba(26, 115, 232, 0.4);
             border-color: var(--accent);
         }
         .modal-caption {
@@ -846,6 +869,7 @@
             letter-spacing: 0.5px;
         }
 
+        /* ===== Download Modal ===== */
         .download-modal-content {
             max-width: 440px;
             padding: 0;
@@ -853,8 +877,15 @@
             background: var(--card-bg);
             border: 2px solid var(--accent);
             border-radius: var(--radius);
-            box-shadow: 0 8px 60px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 8px 60px rgba(0, 0, 0, 0.15);
             position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.35s var(--ease-spring), opacity 0.35s var(--ease-out);
+        }
+        .modal-overlay.active .download-modal-content {
+            transform: scale(1);
+            opacity: 1;
         }
         .download-modal-body {
             padding: 2rem 2rem 1.8rem;
@@ -872,7 +903,7 @@
             margin-bottom: 0.4rem;
         }
         .download-modal-body .desc {
-            color: rgba(238, 238, 238, 0.6);
+            color: var(--text-muted);
             font-size: 0.9rem;
             margin-bottom: 1.2rem;
         }
@@ -887,7 +918,7 @@
             border-radius: var(--radius);
             font-size: 1.05rem;
             font-family: inherit;
-            transition: var(--transition-smooth);
+            transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), background 0.25s var(--ease-out);
             background: var(--main);
             color: var(--light);
             text-align: center;
@@ -896,7 +927,7 @@
         .download-modal-body .input-wrap input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.15);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
             background: var(--second);
         }
         .download-modal-body .input-wrap input.error {
@@ -917,7 +948,6 @@
             justify-content: center;
             margin-top: 1.4rem;
         }
-
         .resource-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -928,17 +958,17 @@
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
             padding: 1.4rem 1.4rem;
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), border-color 0.25s var(--ease-out);
             display: flex;
             flex-direction: column;
         }
-        @media (hover: hover) {
-.resource-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
+        @media (hover: hover) and (pointer: fine) {
+            .resource-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--accent);
+            }
         }
-}
         .resource-card .r-icon {
             font-size: 1.6rem;
             color: var(--accent);
@@ -950,7 +980,7 @@
             margin-bottom: 4px;
         }
         .resource-card p {
-            color: rgba(238, 238, 238, 0.6);
+            color: var(--text-secondary);
             font-size: 0.85rem;
             margin-bottom: 10px;
             flex: 1;
@@ -959,7 +989,7 @@
             display: flex;
             justify-content: space-between;
             font-size: 0.75rem;
-            color: rgba(238, 238, 238, 0.4);
+            color: var(--text-muted);
             border-top: 1px solid var(--border-color);
             padding-top: 8px;
             margin-bottom: 10px;
@@ -991,15 +1021,15 @@
             padding: 1rem 1.4rem;
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
-            transition: var(--transition);
+            transition: transform 0.30s var(--ease-spring), box-shadow 0.30s var(--ease-spring), border-color 0.25s var(--ease-out);
         }
-        @media (hover: hover) {
-.step:hover {
-            transform: translateX(4px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent);
+        @media (hover: hover) and (pointer: fine) {
+            .step:hover {
+                transform: translateX(4px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--accent);
+            }
         }
-}
         .step .num {
             font-size: 1.4rem;
             font-weight: 800;
@@ -1013,7 +1043,7 @@
         }
         .step .content p {
             font-size: 0.85rem;
-            color: rgba(238, 238, 238, 0.6);
+            color: var(--text-secondary);
         }
 
         .coop-form {
@@ -1021,7 +1051,7 @@
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
             padding: 1.8rem 2rem;
-            transition: var(--transition);
+            transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
         }
         .coop-form:hover {
             border-color: var(--accent);
@@ -1035,17 +1065,13 @@
             align-items: center;
             gap: 8px;
         }
-        .coop-form h3 i {
-            color: var(--accent);
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
+        .coop-form h3 i { color: var(--accent); }
+        .form-group { margin-bottom: 1rem; }
         .form-group label {
             display: block;
             font-weight: 600;
             font-size: 0.8rem;
-            color: rgba(238, 238, 238, 0.7);
+            color: var(--text-muted);
             margin-bottom: 3px;
             letter-spacing: 0.5px;
         }
@@ -1057,7 +1083,7 @@
             border-radius: var(--radius);
             font-size: 0.9rem;
             font-family: inherit;
-            transition: var(--transition-smooth);
+            transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), background 0.25s var(--ease-out);
             background: var(--main);
             color: var(--light);
         }
@@ -1065,7 +1091,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.15);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
             background: var(--second);
         }
         .form-group textarea {
@@ -1079,12 +1105,8 @@
             display: none;
         }
         .form-group.error input,
-        .form-group.error textarea {
-            border-color: #e74c3c;
-        }
-        .form-group.error .error-msg {
-            display: block;
-        }
+        .form-group.error textarea { border-color: #e74c3c; }
+        .form-group.error .error-msg { display: block; }
         .form-actions {
             display: flex;
             gap: 10px;
@@ -1099,7 +1121,7 @@
             color: var(--light);
             padding: 12px 24px;
             border-radius: var(--radius);
-            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.1);
             font-weight: 500;
             font-size: 0.9rem;
             transform: translateY(70px) scale(0.9);
@@ -1115,14 +1137,14 @@
         }
 
         footer {
-            background: #111;
+            background: var(--second);
             text-align: center;
             padding: 2rem 5%;
             margin-top: auto;
-            border-top: 2px solid var(--second);
+            border-top: 2px solid var(--border-color);
         }
         footer p {
-            color: rgba(238, 238, 238, 0.5);
+            color: var(--text-muted);
             font-size: 0.85rem;
         }
         footer .social {
@@ -1132,139 +1154,82 @@
             margin-top: 0.8rem;
         }
         footer .social a {
-            color: rgba(238, 238, 238, 0.35);
+            color: var(--text-muted);
             font-size: 1.2rem;
-            transition: var(--transition-smooth);
+            transition: color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
         }
         footer .social a:hover {
             color: var(--accent);
             transform: translateY(-2px);
         }
 
+        /* ===== Reduced motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.15s !important;
+            }
+            .modal-overlay { transition-duration: 0.01ms !important; }
+            .modal-overlay .modal-content { transition-duration: 0.01ms !important; }
+            .modal-overlay .download-modal-content { transition-duration: 0.01ms !important; }
+            .page.active {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* ===== Responsive ===== */
         @media (max-width: 992px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .feature-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .resource-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .coop-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            .members-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .resource-grid { grid-template-columns: 1fr 1fr; }
+            .coop-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+            .members-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .banner h1 {
-                font-size: 2.4rem;
-            }
-            .banner h1 i {
-                font-size: 2rem;
-            }
-            .banner p {
-                font-size: 1rem;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
-            }
-            .stat-item .number {
-                font-size: 1.8rem;
-            }
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
-            }
-            .resource-grid {
-                grid-template-columns: 1fr;
-            }
-            .members-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-            .section-title {
-                font-size: 1.5rem;
-            }
-            .coop-form {
-                padding: 1.2rem;
-            }
-            .announce-header {
-                flex-wrap: wrap;
-            }
-            .announce-header .title {
-                flex: 1;
-                min-width: 100px;
-            }
-            .container {
-                padding: 0 4%;
-            }
-            .modal-content {
-                max-width: 95vw;
-                max-height: 80vh;
-            }
-            .download-modal-content {
-                max-width: 92vw;
-            }
-            .download-modal-body {
-                padding: 1.5rem 1.2rem 1.4rem;
-            }
+            .banner h1 { font-size: 2.4rem; }
+            .banner h1 i { font-size: 2rem; }
+            .banner p { font-size: 1rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .stat-item .number { font-size: 1.8rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .resource-grid { grid-template-columns: 1fr; }
+            .members-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .section-title { font-size: 1.5rem; }
+            .coop-form { padding: 1.2rem; }
+            .announce-header { flex-wrap: wrap; }
+            .announce-header .title { flex: 1; min-width: 100px; }
+            .container { padding: 0 4%; }
+            .modal-overlay .modal-content { max-width: 95vw; max-height: 80vh; }
+            .download-modal-content { max-width: 92vw; }
+            .download-modal-body { padding: 1.5rem 1.2rem 1.4rem; }
         }
 
         @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.6rem;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.6rem;
-            }
-            .members-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
-            }
-            .banner h1 {
-                font-size: 1.8rem;
-            }
-            .banner {
-                min-height: 260px;
-            }
-            .btn {
-                padding: 8px 20px;
-                font-size: 0.85rem;
-            }
-            .member-card .avatar-wrap {
-                width: 60px;
-                height: 60px;
-            }
-            .download-modal-body .input-wrap input {
-                font-size: 0.95rem;
-                letter-spacing: 4px;
-                padding: 8px 12px;
-            }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+            .members-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .banner h1 { font-size: 1.8rem; }
+            .banner { min-height: 260px; }
+            .btn { padding: 8px 20px; font-size: 0.85rem; }
+            .member-card .avatar-wrap { width: 60px; height: 60px; }
+            .download-modal-body .input-wrap input { font-size: 0.95rem; letter-spacing: 4px; padding: 8px 12px; }
         }
     </style>
 </head>
 <body>
-
     <header>
         <div class="nav">
             <div class="logo">
-                <i class="bi bi-gear"></i> TK 重工
+                <i class="bi bi-gear"></i> TK重工公社
             </div>
             <button class="nav-toggle" id="navToggle" aria-label="导航菜单">
                 <i class="bi bi-list"></i>
@@ -1282,13 +1247,11 @@
     </header>
 
     <main>
-
         <section class="page active" id="page-home">
             <div class="container">
-
                 <div class="banner">
                     <div class="banner-content">
-                        <h1><i class="bi bi-gear"></i> TK 重工</h1>
+                        <h1><i class="bi bi-gear"></i> TK重工公社</h1>
                         <p>我的世界红石科技工会 · 匠心造机械，诚信做交易</p>
                         <div class="btn-group">
                             <a class="btn" data-page="coop"><i class="bi bi-handshake"></i> 加入我们</a>
@@ -1297,25 +1260,25 @@
                     </div>
                 </div>
 
-                <div class="stats-grid">
+                <div class="stats-grid" id="statsGrid">
                     <div class="stat-item">
                         <i class="bi bi-people"></i>
-                        <span class="number" data-count="3">0</span>
+                        <span class="number" data-count="0">0</span>
                         <span class="label">工会成员</span>
                     </div>
                     <div class="stat-item">
                         <i class="bi bi-cpu"></i>
-                        <span class="number" data-count="2">0</span>
+                        <span class="number" data-count="0">0</span>
                         <span class="label">红石机器</span>
                     </div>
                     <div class="stat-item">
                         <i class="bi bi-arrow-left-right"></i>
-                        <span class="number" data-count="2">0</span>
+                        <span class="number trade-value" data-count="0">0</span>
                         <span class="label">累计交易 (万)</span>
                     </div>
                     <div class="stat-item">
                         <i class="bi bi-calendar3"></i>
-                        <span class="number" data-count="2026">0</span>
+                        <span class="number" data-count="0">0</span>
                         <span class="label">成立年份</span>
                     </div>
                 </div>
@@ -1337,7 +1300,6 @@
                         <p>活跃的玩家社区，技术交流、合作共建、活动组织，共同成长。</p>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -1346,33 +1308,22 @@
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-flag"></i> 工会介绍</h2>
                 </div>
-                <div class="section-sub">了解 TK 重工的历史、宗旨与组织</div>
+                <div class="section-sub">了解 TK重工公社 的历史、宗旨与组织</div>
 
                 <div class="about-grid">
-                    <div class="card about-text">
-                        <h2>工会介绍</h2>
-                        <p><strong>TK重工</strong> 成立于2026年，是minecraft服务器中专注于 <strong>红石科技</strong> 与 <strong>物资贸易</strong> 的工会，在此网站提供工会资源下载。我们以技术为核心，汇聚了红石工程师、建筑师与贸易家。</p>
-                        <p>工会名称 "TK" 取自 "Tank37135" 的缩写，寓意 <strong>防御和力量</strong> 的融合。致力于将红石技术应用于游戏生存的各个方面，从自动化生产到防御系统，从资源采集到贸易网络，构建完整的工业生态。</p>
-                        <p><strong>核心理念：</strong> 创新 · 合作 · 诚信 · 卓越。我们相信，通过技术的不断突破和成员的紧密协作，能够在方块世界中创造无限可能。</p>
-                        <p>目前工会拥有 <strong>3</strong> 名成员，已建造 <strong>2</strong> 台红石机器，累计贸易额突破 <strong>2万</strong> 单位物资。</p>
-                        <h2>如何贡献资源</h2>
-                        <ul>
-                            <li>前往加入工会时获取的联系方式</li>
-                            <li>前往加入工会的群聊（未建设）</li>
-                        </ul>
-                    </div>
-                    <div class="about-meta">
+                    <div class="card about-text" id="aboutContent"></div>
+                    <div class="about-meta" id="aboutMeta">
                         <div class="meta-item">
                             <h4>工会宗旨</h4>
-                            <p>以红石科技驱动生存效率，以诚信贸易构建繁荣生态</p>
+                            <p id="aboutPrinciples"></p>
                         </div>
                         <div class="meta-item">
                             <h4>核心成员</h4>
-                            <p>会长 · Tank37135 &nbsp;|&nbsp; 副会长 · Jenooo123</p>
+                            <p id="aboutCoreMembers"></p>
                         </div>
                         <div class="meta-item">
                             <h4>服务器</h4>
-                            <p>创世之境：mccszj.cc:25565</p>
+                            <p id="aboutServer"></p>
                         </div>
                     </div>
                 </div>
@@ -1394,38 +1345,33 @@
                     <h2 class="section-title"><i class="bi bi-person-badge"></i> 成员</h2>
                 </div>
                 <div class="section-sub">工会管理团队与成员</div>
-
-                <div class="members-grid" id="membersGrid">
-                </div>
+                <div class="members-grid" id="membersGrid"></div>
             </div>
         </section>
+
         <section class="page" id="page-announce">
             <div class="container">
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-megaphone"></i> 公告</h2>
                 </div>
                 <div class="section-sub">工会动态 · 活动通知 · 重要信息</div>
-
-                <div class="announce-list" id="announceList">
-                </div>
+                <div class="announce-list" id="announceList"></div>
             </div>
         </section>
+
         <section class="page" id="page-gallery">
             <div class="container">
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-images"></i> 风貌</h2>
                 </div>
                 <div class="section-sub">红石机器 · 建筑作品 · 工会活动</div>
-
                 <div class="gallery-filter" id="galleryFilter">
                     <button class="active" data-filter="all">全部</button>
                     <button data-filter="machine">红石机器</button>
                     <button data-filter="build">建筑作品</button>
                     <button data-filter="activity">工会活动</button>
                 </div>
-
-                <div class="gallery-grid" id="galleryGrid">
-                </div>
+                <div class="gallery-grid" id="galleryGrid"></div>
             </div>
         </section>
 
@@ -1435,9 +1381,7 @@
                     <h2 class="section-title"><i class="bi bi-database"></i> 资源中心</h2>
                 </div>
                 <div class="section-sub">投影原理图·建筑·红石</div>
-
-                <div class="resource-grid" id="resourceGrid">
-                </div>
+                <div class="resource-grid" id="resourceGrid"></div>
             </div>
         </section>
 
@@ -1446,8 +1390,7 @@
                 <div class="title-wrap">
                     <h2 class="section-title"><i class="bi bi-handshake"></i> 招纳贤士</h2>
                 </div>
-                <div class="section-sub">加入 TK 重工，共创未来</div>
-
+                <div class="section-sub">加入 TK重工公社，共创未来</div>
                 <div class="coop-grid">
                     <div>
                         <h3 style="font-size: 1.1rem; color: var(--light); margin-bottom: 1rem;">加入流程</h3>
@@ -1508,13 +1451,13 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
-        <p>TK 重工 · 我的世界红石科技工会 &copy; 2026</p>
+        <p>TK重工公社 · 我的世界红石科技工会 &copy; 2026</p>
     </footer>
 
+    <!-- Image Modal -->
     <div class="modal-overlay" id="imageModal">
         <div class="modal-content" id="modalContent">
             <span class="modal-close" id="modalClose"><i class="bi bi-x"></i></span>
@@ -1523,6 +1466,7 @@
         </div>
     </div>
 
+    <!-- Download Modal -->
     <div class="modal-overlay" id="downloadModal">
         <div class="modal-content download-modal-content">
             <span class="modal-close" id="downloadModalClose"><i class="bi bi-x"></i></span>
@@ -1543,7 +1487,6 @@
     </div>
 
     <div class="toast" id="toast"></div>
-
     <script>
         (function() {
             'use strict';
@@ -1551,75 +1494,73 @@
             // ============================================================
             // 数据
             // ============================================================
-            let members = [], announcements = [], galleryItems = [], resources = [];
+            var members = [],
+                announcements = [],
+                galleryItems = [],
+                resources = [],
+                stats = null,
+                aboutData = null;
 
             // ============================================================
             // DOM 引用
             // ============================================================
+            var navLinks = document.querySelectorAll('.nav-list a');
+            var pages = document.querySelectorAll('.page');
+            var navToggle = document.getElementById('navToggle');
+            var navList = document.getElementById('navList');
+            var toast = document.getElementById('toast');
+            var toastTimer = null;
 
-            const navLinks = document.querySelectorAll('.nav-list a');
-            const pages = document.querySelectorAll('.page');
-            const navToggle = document.getElementById('navToggle');
-            const navList = document.getElementById('navList');
-            const toast = document.getElementById('toast');
-            let toastTimer = null;
+            var modalOverlay = document.getElementById('imageModal');
+            var modalImage = document.getElementById('modalImage');
+            var modalCaption = document.getElementById('modalCaption');
+            var modalClose = document.getElementById('modalClose');
 
-            // 图片放大模态框
-            const modalOverlay = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalCaption = document.getElementById('modalCaption');
-            const modalClose = document.getElementById('modalClose');
+            var downloadModal = document.getElementById('downloadModal');
+            var downloadPassword = document.getElementById('downloadPassword');
+            var downloadError = document.getElementById('downloadError');
+            var downloadConfirmBtn = document.getElementById('downloadConfirmBtn');
+            var downloadCancelBtn = document.getElementById('downloadCancelBtn');
+            var downloadModalClose = document.getElementById('downloadModalClose');
 
-            // 下载验证模态框
-            const downloadModal = document.getElementById('downloadModal');
-            const downloadPassword = document.getElementById('downloadPassword');
-            const downloadError = document.getElementById('downloadError');
-            const downloadConfirmBtn = document.getElementById('downloadConfirmBtn');
-            const downloadCancelBtn = document.getElementById('downloadCancelBtn');
-            const downloadModalClose = document.getElementById('downloadModalClose');
-
-            // 待下载文件信息
-            let pendingDownload = null;
-
-            // 正确口令
-            const CORRECT_PASSWORD = atob('Mjc0NzQ2MA==');
+            var pendingDownload = null;
+            var CORRECT_PASSWORD = atob('Mjc0NzQ2MA==');
 
             // ============================================================
             // 导航切换
             // ============================================================
-
             function switchPage(pageId) {
-                pages.forEach(p => p.classList.remove('active'));
-                const target = document.getElementById('page-' + pageId);
+                pages.forEach(function(p) { p.classList.remove('active'); });
+                var target = document.getElementById('page-' + pageId);
                 if (target) {
                     target.classList.add('active');
                     animatePageCards(target);
                     if (pageId === 'home') animateStats();
                 }
 
-                navLinks.forEach(link => {
+                navLinks.forEach(function(link) {
                     link.classList.toggle('active', link.dataset.page === pageId);
                 });
 
                 navList.classList.remove('open');
-                const icon = navToggle.querySelector('i');
+                var icon = navToggle.querySelector('i');
                 if (icon) icon.className = 'bi-list';
 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            navLinks.forEach(link => {
+            navLinks.forEach(function(link) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const page = this.dataset.page;
+                    var page = this.dataset.page;
                     if (page) switchPage(page);
                 });
             });
 
-            document.querySelectorAll('[data-page]').forEach(el => {
+            document.querySelectorAll('[data-page]').forEach(function(el) {
                 if (el.tagName === 'A' && el.closest('.nav-list')) return;
                 el.addEventListener('click', function(e) {
-                    const page = this.dataset.page;
+                    var page = this.dataset.page;
                     if (page) {
                         e.preventDefault();
                         switchPage(page);
@@ -1628,9 +1569,8 @@
             });
 
             // ============================================================
-            // 汉堡菜单 (带动画)
+            // 汉堡菜单
             // ============================================================
-
             navToggle.addEventListener('click', function() {
                 var wasOpen = navList.classList.contains('open');
                 var isOpen = navList.classList.toggle('open');
@@ -1662,7 +1602,7 @@
             document.addEventListener('click', function(e) {
                 if (!e.target.closest('.nav')) {
                     navList.classList.remove('open');
-                    const icon = navToggle.querySelector('i');
+                    var icon = navToggle.querySelector('i');
                     if (icon) icon.className = 'bi-list';
                 }
             });
@@ -1670,32 +1610,65 @@
             // ============================================================
             // Toast
             // ============================================================
-
             function showToast(message, duration) {
                 duration = duration || 3000;
                 toast.textContent = message;
                 toast.classList.add('show');
                 clearTimeout(toastTimer);
-                toastTimer = setTimeout(() => {
+                toastTimer = setTimeout(function() {
                     toast.classList.remove('show');
                 }, duration);
             }
 
             // ============================================================
-            // 模态框 (图片放大)
+            // 图片模态框 — 修正动画 (rAF 双阶段确保过渡触发)
             // ============================================================
+            var activeGalleryItem = null;
+            var galleryGrid = document.getElementById('galleryGrid');
 
-            function openImageModal(imgSrc, caption) {
+            function openImageModal(imgSrc, caption, clickedEl) {
                 modalImage.src = imgSrc;
                 modalImage.alt = caption || '放大图片';
                 modalCaption.textContent = caption || '';
+                activeGalleryItem = clickedEl;
+
+                // 选中图放大 — 其他下沉 + 背景模糊
+                if (galleryGrid) {
+                    galleryGrid.classList.add('is-blurred');
+                    var items = galleryGrid.querySelectorAll('.gallery-item');
+                    items.forEach(function(item) {
+                        if (item !== clickedEl) {
+                            item.classList.add('is-dimmed');
+                        }
+                    });
+                }
+
+                // Phase 1: 让 overlay 可见（opacity 过渡）
                 modalOverlay.classList.add('active');
+
+                // Phase 2: 下一帧触发 content 缩放过渡
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        // 浏览器已绘制 overlay，content 现在会从 scale(0.9)→scale(1)
+                    });
+                });
+
                 document.body.style.overflow = 'hidden';
             }
 
             function closeImageModal() {
+                // 先移除 active（触发 content scale(1→0.9) + overlay 淡出）
                 modalOverlay.classList.remove('active');
                 document.body.style.overflow = '';
+
+                if (galleryGrid) {
+                    galleryGrid.classList.remove('is-blurred');
+                    var items = galleryGrid.querySelectorAll('.gallery-item');
+                    items.forEach(function(item) {
+                        item.classList.remove('is-dimmed');
+                    });
+                }
+                activeGalleryItem = null;
             }
 
             modalOverlay.addEventListener('click', function(e) {
@@ -1706,20 +1679,28 @@
 
             modalClose.addEventListener('click', closeImageModal);
 
-
+            // ============================================================
+            // 下载模态框 — 同样用 rAF 双阶段
+            // ============================================================
             function resetDownloadModal() {
                 downloadPassword.value = '';
                 downloadPassword.classList.remove('error');
                 downloadError.classList.remove('show');
-                downloadPassword.focus();
             }
 
             function openDownloadModal(filename) {
-                pendingDownload = { filename };
+                pendingDownload = { filename: filename };
                 resetDownloadModal();
                 downloadModal.classList.add('active');
+
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        // content 缩放过渡会在这一帧后触发
+                    });
+                });
+
                 document.body.style.overflow = 'hidden';
-                setTimeout(() => {
+                setTimeout(function() {
                     downloadPassword.focus();
                 }, 300);
             }
@@ -1756,12 +1737,12 @@
             });
 
             function verifyAndDownload() {
-                const input = downloadPassword.value.trim();
+                var input = downloadPassword.value.trim();
                 if (input === CORRECT_PASSWORD) {
                     if (pendingDownload) {
-                        const { filename } = pendingDownload;
-                        const filepath = 'resources/' + filename;
-                        const a = document.createElement('a');
+                        var filename = pendingDownload.filename;
+                        var filepath = 'resources/' + filename;
+                        var a = document.createElement('a');
                         a.href = filepath;
                         a.download = filename;
                         document.body.appendChild(a);
@@ -1781,129 +1762,164 @@
                 }
             }
 
-            function renderMembers() {
-                const grid = document.getElementById('membersGrid');
-                grid.innerHTML = members.map(m => `
-                    <div class="member-card">
-                        <div class="avatar-wrap">
-                            <img src="head/${m.name}.png" 
-                                 alt="${m.name}" 
-                                 loading="lazy"
-                                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect width=%22200%22 height=%22200%22 fill=%22%23393E46%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%2300ADB5%22 font-size=%2236%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${m.name.charAt(0)}%3C/text%3E%3C/svg%3E'">
-                        </div>
-                        <div class="name">${m.name}</div>
-                        <div class="role">${m.role}</div>
-                        <div class="bio">${m.bio}</div>
-                    </div>
-                `).join('');
+            // ============================================================
+            // 渲染函数 (数据驱动)
+            // ============================================================
+            function renderStats(data) {
+                if (!data || !data.stats) return;
+                var s = data.stats;
+                var statNumbers = document.querySelectorAll('#page-home .stat-item .number');
+                if (statNumbers.length >= 4) {
+                    statNumbers[0].setAttribute('data-count', s.members);
+                    statNumbers[0].textContent = '0';
+                    statNumbers[1].setAttribute('data-count', s.machines);
+                    statNumbers[1].textContent = '0';
+                    statNumbers[2].setAttribute('data-count', s.tradeValue);
+                    statNumbers[2].textContent = '0';
+                    statNumbers[3].setAttribute('data-count', s.founded);
+                    statNumbers[3].textContent = '0';
+                }
+                stats = s;
             }
-            // ============================================================
-            // 渲染: 公告
-            // ============================================================
+
+            function renderAbout(data) {
+                if (!data || !data.about) return;
+                var a = data.about;
+                aboutData = a;
+
+                var aboutContent = document.getElementById('aboutContent');
+                if (aboutContent && a.content) {
+                    var html = '';
+                    a.content.forEach(function(para) {
+                        var processed = para.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                        html += '<p>' + processed + '</p>';
+                    });
+                    if (a.contributeGuide && a.contributeGuide.length > 0) {
+                        html += '<h2>如何贡献资源</h2><ul>';
+                        a.contributeGuide.forEach(function(item) {
+                            html += '<li>' + item + '</li>';
+                        });
+                        html += '</ul>';
+                    }
+                    aboutContent.innerHTML = html;
+                }
+
+                var elPrinciples = document.getElementById('aboutPrinciples');
+                if (elPrinciples) elPrinciples.textContent = a.principles || '';
+
+                var elCoreMembers = document.getElementById('aboutCoreMembers');
+                if (elCoreMembers) elCoreMembers.textContent = a.coreMembers || '';
+
+                var elServer = document.getElementById('aboutServer');
+                if (elServer && a.server) {
+                    elServer.innerHTML = a.server.join('<br>');
+                }
+            }
+
+            function renderMembers() {
+                var grid = document.getElementById('membersGrid');
+                grid.innerHTML = members.map(function(m) {
+                    return '<div class="member-card">' +
+                        '<div class="avatar-wrap">' +
+                        '<img src="head/' + m.name + '.png" alt="' + m.name + '" loading="lazy"' +
+                        ' onerror="this.onerror=null; this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect width=%22200%22 height=%22200%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%231a73e8%22 font-size=%2236%22 text-anchor=%22middle%22 dy=%22.3em%22%3E' + m.name.charAt(0) + '%3C/text%3E%3C/svg%3E\'">' +
+                        '</div>' +
+                        '<div class="name">' + m.name + '</div>' +
+                        '<div class="role">' + m.role + '</div>' +
+                        '<div class="bio">' + m.bio + '</div>' +
+                        '</div>';
+                }).join('');
+            }
 
             function renderAnnouncements() {
-                const container = document.getElementById('announceList');
-                container.innerHTML = announcements.map((item, index) => `
-                    <div class="announce-item ${index === 0 ? 'open' : ''}" data-id="${item.id}">
-                        <div class="announce-header">
-                            <span class="title">${item.title}</span>
-                            <span class="tag">${item.tag}</span>
-                            <span class="date"><i class="bi bi-calendar3"></i> ${item.date}</span>
-                            <span class="toggle-icon"><i class="bi bi-chevron-down"></i></span>
-                        </div>
-                        <div class="announce-body">${item.body}</div>
-                    </div>
-                `).join('');
+                var container = document.getElementById('announceList');
+                container.innerHTML = announcements.map(function(item, index) {
+                    return '<div class="announce-item ' + (index === 0 ? 'open' : '') + '">' +
+                        '<div class="announce-header">' +
+                        '<span class="title">' + item.title + '</span>' +
+                        '<span class="tag">' + item.tag + '</span>' +
+                        '<span class="date"><i class="bi bi-calendar3"></i> ' + item.date + '</span>' +
+                        '<span class="toggle-icon"><i class="bi bi-chevron-down"></i></span>' +
+                        '</div>' +
+                        '<div class="announce-body">' + item.body + '</div>' +
+                        '</div>';
+                }).join('');
 
-                container.querySelectorAll('.announce-item').forEach(el => {
+                container.querySelectorAll('.announce-item').forEach(function(el) {
                     el.addEventListener('click', function() {
                         this.classList.toggle('open');
                     });
                 });
             }
 
-
             function renderGallery(filter) {
                 filter = filter || 'all';
-                const grid = document.getElementById('galleryGrid');
-                const filtered = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
+                var grid = document.getElementById('galleryGrid');
+                var filtered = filter === 'all' ? galleryItems : galleryItems.filter(function(item) {
+                    return item.category === filter;
+                });
 
                 if (filtered.length === 0) {
-                    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--color-white-glass);"><div style="font-size:3rem;margin-bottom:0.5rem;opacity:0.3"><i class="bi bi-search"></i></div><div>暂无结果</div></div>';
+                    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted);"><div style="font-size:3rem;margin-bottom:0.5rem;opacity:0.3"><i class="bi bi-search"></i></div><div>暂无结果</div></div>';
                     return;
                 }
-                grid.innerHTML = filtered.map(item => {
-                    const imgUrl = `appearance/${item.id}.png`;
-                    const tagMap = {
-                        machine: '机器',
-                        build: '建筑',
-                        activity: '活动'
-                    };
-                    return `
-                        <div class="gallery-item" data-category="${item.category}" data-img="${imgUrl}" data-title="${item.title}">
-                            <img src="${imgUrl}" 
-                                 alt="${item.title}" 
-                                 loading="lazy"
-                                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect width=%22600%22 height=%22400%22 fill=%22%23393E46%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%2300ADB5%22 font-size=%2224%22 text-anchor=%22middle%22 dy=%22.3em%22%3E%20${item.title}%3C/text%3E%3C/svg%3E'">
-                            <div class="g-tag">${tagMap[item.category] || item.category}</div>
-                            <div class="g-label">${item.title}</div>
-                            <div class="zoom-hint"><i class="bi bi-arrows-expand"></i></div>
-                        </div>
-                    `;
+
+                var tagMap = { machine: '机器', build: '建筑', activity: '活动' };
+
+                grid.innerHTML = filtered.map(function(item) {
+                    var imgUrl = 'appearance/' + item.id + '.png';
+                    var tag = tagMap[item.category] || item.category;
+                    return '<div class="gallery-item" data-category="' + item.category + '" data-img="' + imgUrl + '" data-title="' + item.title + '">' +
+                        '<img src="' + imgUrl + '" alt="' + item.title + '" loading="lazy"' +
+                        ' onerror="this.onerror=null; this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect width=%22600%22 height=%22400%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%231a73e8%22 font-size=%2224%22 text-anchor=%22middle%22 dy=%22.3em%22%3E' + encodeURI(item.title) + '%3C/text%3E%3C/svg%3E\'">' +
+                        '<div class="g-tag">' + tag + '</div>' +
+                        '<div class="g-label">' + item.title + '</div>' +
+                        '<div class="zoom-hint"><i class="bi bi-arrows-expand"></i></div>' +
+                        '</div>';
                 }).join('');
 
-                grid.querySelectorAll('.gallery-item').forEach(el => {
+                grid.querySelectorAll('.gallery-item').forEach(function(el) {
                     el.addEventListener('click', function() {
-                        const imgSrc = this.dataset.img;
-                        const title = this.dataset.title;
+                        var imgSrc = this.dataset.img;
+                        var title = this.dataset.title;
                         if (imgSrc) {
-                            openImageModal(imgSrc, title);
+                            openImageModal(imgSrc, title, this);
                         }
                     });
                 });
             }
 
-            // 风貌筛选
             document.getElementById('galleryFilter').addEventListener('click', function(e) {
-                const btn = e.target.closest('button');
+                var btn = e.target.closest('button');
                 if (!btn) return;
-                const filter = btn.dataset.filter;
-                this.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                var filter = btn.dataset.filter;
+                this.querySelectorAll('button').forEach(function(b) { b.classList.remove('active'); });
                 btn.classList.add('active');
                 renderGallery(filter);
                 animatePageCards(document.getElementById('page-gallery'));
             });
 
-            // ============================================================
-            // 渲染: 资源中心 (修正: 传递正确的 filename 和 filepath)
-            // ============================================================
-
             function renderResources() {
-                const grid = document.getElementById('resourceGrid');
-                grid.innerHTML = resources.map(item => {
-                    return `
-                        <div class="resource-card">
-                            <div class="r-icon"><i class="${item.icon}"></i></div>
-                            <h4>${item.title}</h4>
-                            <p>${item.desc}</p>
-                            <div class="meta">
-                                <span><i class="bi bi-tag"></i> ${item.type}</span>
-                                <span><i class="bi bi-file-earmark"></i> ${item.size}</span>
-                            </div>
-                            <div class="download-wrap">
-                                <button class="btn-download download-btn" data-filename="${item.filename}">
-                                    <i class="bi bi-download"></i> 下载图纸
-                                </button>
-                            </div>
-                        </div>
-                    `;
+                var grid = document.getElementById('resourceGrid');
+                grid.innerHTML = resources.map(function(item) {
+                    return '<div class="resource-card">' +
+                        '<div class="r-icon"><i class="' + item.icon + '"></i></div>' +
+                        '<h4>' + item.title + '</h4>' +
+                        '<p>' + item.desc + '</p>' +
+                        '<div class="meta">' +
+                        '<span><i class="bi bi-tag"></i> ' + item.type + '</span>' +
+                        '<span><i class="bi bi-file-earmark"></i> ' + item.size + '</span>' +
+                        '</div>' +
+                        '<div class="download-wrap">' +
+                        '<button class="btn-download download-btn" data-filename="' + item.filename + '"><i class="bi bi-download"></i> 下载图纸</button>' +
+                        '</div>' +
+                        '</div>';
                 }).join('');
 
-                // 绑定下载按钮事件（带口令验证）
-                grid.querySelectorAll('.download-btn').forEach(btn => {
+                grid.querySelectorAll('.download-btn').forEach(function(btn) {
                     btn.addEventListener('click', function(e) {
                         e.preventDefault();
-                        const fileName = this.dataset.filename;
+                        var fileName = this.dataset.filename;
                         if (fileName) {
                             openDownloadModal(fileName);
                         } else {
@@ -1913,10 +1929,18 @@
                 });
             }
 
+            // ============================================================
+            // 入场动画 (CSS class 驱动，检测 reduced-motion)
+            // ============================================================
             function animatePageCards(pageEl) {
+                if (!pageEl) return;
+                var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (prefersReduced) return;
+
                 var selectors = '.feature-card, .meta-item, .org-node, .member-card, .announce-item, .gallery-item, .resource-card, .step, .about-grid > .card';
                 var items = pageEl.querySelectorAll(selectors);
                 if (!items.length) return;
+
                 items.forEach(function(el, i) {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(16px)';
@@ -1928,32 +1952,50 @@
                 });
             }
 
+            // ============================================================
+            // 统计数字动画 (从 JSON stats 读取)
+            // ============================================================
             function animateStats() {
+                if (!stats) return;
+                var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
                 var grid = document.querySelector('#page-home .stats-grid');
                 if (grid) {
                     var statItems = grid.querySelectorAll('.stat-item');
                     statItems.forEach(function(item, i) {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(14px)';
-                        item.style.transition = 'opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out)';
-                        setTimeout(function() {
+                        if (!prefersReduced) {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(14px)';
+                            item.style.transition = 'opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out)';
+                            setTimeout(function() {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 80 + i * 60);
+                        } else {
                             item.style.opacity = '1';
                             item.style.transform = 'translateY(0)';
-                        }, 80 + i * 60);
+                        }
                     });
                 }
-                const items = document.querySelectorAll('.stat-item .number');
-                items.forEach(el => {
-                    const target = parseInt(el.dataset.count, 10);
+
+                var items = document.querySelectorAll('.stat-item .number');
+                items.forEach(function(el) {
+                    var target = parseInt(el.dataset.count, 10);
                     if (isNaN(target)) return;
-                    const duration = 1200;
-                    const startTime = performance.now();
+
+                    if (prefersReduced) {
+                        el.textContent = target.toLocaleString();
+                        return;
+                    }
+
+                    var duration = 1200;
+                    var startTime = performance.now();
 
                     function update(currentTime) {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 3) * Math.cos(progress * Math.PI * 0.3);
-                        const current = Math.round(eased * target);
+                        var elapsed = currentTime - startTime;
+                        var progress = Math.min(elapsed / duration, 1);
+                        var eased = 1 - Math.pow(1 - progress, 3) * Math.cos(progress * Math.PI * 0.3);
+                        var current = Math.round(eased * target);
                         el.textContent = current.toLocaleString();
                         if (progress < 1) {
                             requestAnimationFrame(update);
@@ -1968,21 +2010,20 @@
             // ============================================================
             // 表单提交
             // ============================================================
-
-            const coopForm = document.getElementById('coopForm');
+            var coopForm = document.getElementById('coopForm');
             coopForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                let valid = true;
-                const fields = [
+                var valid = true;
+                var fields = [
                     { id: 'coopId', msg: '请输入游戏账号 ID' },
                     { id: 'coopServer', msg: '请输入服务器名称' },
                     { id: 'coopAddress', msg: '请输入服务器地址' },
                     { id: 'coopReason', msg: '请填写申请理由' }
                 ];
 
-                fields.forEach(f => {
-                    const input = document.getElementById(f.id);
-                    const group = input.closest('.form-group');
+                fields.forEach(function(f) {
+                    var input = document.getElementById(f.id);
+                    var group = input.closest('.form-group');
                     if (!input.value.trim()) {
                         group.classList.add('error');
                         valid = false;
@@ -1996,33 +2037,31 @@
                     return;
                 }
 
-                const id = document.getElementById('coopId').value.trim();
-                const server = document.getElementById('coopServer').value.trim();
-                const address = document.getElementById('coopAddress').value.trim();
-                const reason = document.getElementById('coopReason').value.trim();
+                var id = document.getElementById('coopId').value.trim();
+                var server = document.getElementById('coopServer').value.trim();
+                var address = document.getElementById('coopAddress').value.trim();
+                var reason = document.getElementById('coopReason').value.trim();
 
-                const subject = 'TK重工入驻申请';
-                const body =
-                    `申请人账号 ID：${id}\n服务器名称：${server}\n服务器地址：${address}\n申请理由：\n${reason}\n\n—— 此邮件由 TK重工 官网自动生成，请审核。`;
-                const mailtoLink =
-                    `mailto:Tank37135@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                var subject = 'TK重工公社入驻申请';
+                var body = '申请人账号 ID：' + id + '\n服务器名称：' + server + '\n服务器地址：' + address + '\n申请理由：\n' + reason + '\n\n—— 此邮件由 TK重工公社 官网自动生成，请审核。';
+                var mailtoLink = 'mailto:Tank37135@outlook.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
-                const win = window.open(mailtoLink, '_blank');
+                var win = window.open(mailtoLink, '_blank');
                 if (win) {
                     showToast('已打开邮件客户端，请发送申请。', 4000);
                 } else {
-                    const fullText = `收件人：Tank37135@outlook.com\n主题：${subject}\n\n${body}`;
-                    navigator.clipboard.writeText(fullText).then(() => {
+                    var fullText = '收件人：Tank37135@outlook.com\n主题：' + subject + '\n\n' + body;
+                    navigator.clipboard.writeText(fullText).then(function() {
                         showToast('申请内容已复制，请手动发送邮件至 Tank37135@outlook.com', 5000);
-                    }).catch(() => {
+                    }).catch(function() {
                         alert('请手动发送邮件至 Tank37135@outlook.com，内容如下：\n\n' + fullText);
                     });
                 }
             });
 
-            coopForm.querySelectorAll('input, textarea').forEach(el => {
+            coopForm.querySelectorAll('input, textarea').forEach(function(el) {
                 el.addEventListener('input', function() {
-                    const group = this.closest('.form-group');
+                    var group = this.closest('.form-group');
                     if (group) group.classList.remove('error');
                 });
             });
@@ -2030,45 +2069,12 @@
             // ============================================================
             // 初始化
             // ============================================================
-
             function init() {
                 renderMembers();
                 renderAnnouncements();
                 renderGallery('all');
                 renderResources();
                 setTimeout(animateStats, 400);
-
-                const hash = window.location.hash.replace('#', '');
-                const validPages = ['home', 'about', 'members', 'announce', 'gallery', 'resources', 'coop'];
-                if (hash && validPages.includes(hash)) {
-                    switchPage(hash);
-                }
-
-                window.addEventListener('hashchange', function() {
-                    const h = window.location.hash.replace('#', '');
-                    if (validPages.includes(h)) {
-                        switchPage(h);
-                    }
-                });
-
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        if (downloadModal.classList.contains('active')) {
-                            closeDownloadModal();
-                        }
-                        if (modalOverlay.classList.contains('active')) {
-                            closeImageModal();
-                        }
-                        navList.classList.remove('open');
-                        const icon = navToggle.querySelector('i');
-                        if (icon) icon.className = 'bi-list';
-                    }
-                });
-            }
-
-            function showLoadError(containerId) {
-                var el = document.getElementById(containerId);
-                if (el) el.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--color-accent-light);"><div style="font-size:3rem;margin-bottom:0.5rem;opacity:0.3"><i class="bi bi-wifi-off"></i></div><div>数据导入失败，请更换网络后重试</div><div style="font-size:0.9rem;color:var(--color-white-glass);margin-top:0.5rem;">或者联系网站管理员</div></div>';
             }
 
             function onReady(fn) {
@@ -2079,19 +2085,53 @@
                 }
             }
 
-            // 从 JSON 加载数据
             onReady(function() {
                 fetch('../../assets/json/tkhi.json')
-                    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                    .then(function(r) {
+                        if (!r.ok) throw new Error('HTTP ' + r.status);
+                        return r.json();
+                    })
                     .then(function(data) {
                         members = data.members || [];
                         announcements = data.announcements || [];
                         galleryItems = data.galleryItems || [];
                         resources = data.resources || [];
+
+                        renderStats(data);
+                        renderAbout(data);
+
                         init();
+
+                        var hash = window.location.hash.replace('#', '');
+                        var validPages = ['home', 'about', 'members', 'announce', 'gallery', 'resources', 'coop'];
+                        if (hash && validPages.indexOf(hash) !== -1) {
+                            switchPage(hash);
+                        }
+
+                        window.addEventListener('hashchange', function() {
+                            var h = window.location.hash.replace('#', '');
+                            if (validPages.indexOf(h) !== -1) {
+                                switchPage(h);
+                            }
+                        });
+
+                        document.addEventListener('keydown', function(e) {
+                            if (e.key === 'Escape') {
+                                if (downloadModal.classList.contains('active')) {
+                                    closeDownloadModal();
+                                }
+                                if (modalOverlay.classList.contains('active')) {
+                                    closeImageModal();
+                                }
+                                navList.classList.remove('open');
+                                var icon = navToggle.querySelector('i');
+                                if (icon) icon.className = 'bi-list';
+                            }
+                        });
                     })
                     .catch(function(e) {
                         console.error('JSON 加载失败:', e);
+                        init();
                     });
             });
 
@@ -2100,14 +2140,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
