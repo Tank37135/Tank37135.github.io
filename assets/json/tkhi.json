@@ -76,7 +76,7 @@
     {
       "id": 1,
       "title": "40核心竹子机",
-      "desc": "状态更新式收割，不抗卸载，含收集",
+      "desc": "状态更新式收割，不抗卸载，含收集·原创",
       "type": "原理图",
       "size": "4kB",
       "icon": "bi-file-text",
@@ -85,7 +85,7 @@
     {
       "id": 2,
       "title": "800FTL珍珠炮",
-      "desc": "1.21+，超远距离传送",
+      "desc": "1.21+，超远距离传送·QQDT1794",
       "type": "原理图",
       "size": "732B",
       "icon": "bi-file-text",
@@ -94,7 +94,7 @@
     {
       "id": 3,
       "title": "公社大楼（复仇者）",
-      "desc": "创世之境公社总部大楼",
+      "desc": "创世之境公社总部大楼·NiteCloak",
       "type": "原理图",
       "size": "17kB",
       "icon": "bi-file-text",
@@ -103,7 +103,7 @@
     {
       "id": 4,
       "title": "16核恐吓刷铁机",
-      "desc": "超高速刷铁机，记得给僵尸命名",
+      "desc": "超高速刷铁机，记得给僵尸命名·原创",
       "type": "原理图",
       "size": "10kB",
       "icon": "bi-file-text",
@@ -112,7 +112,7 @@
     {
       "id": 5,
       "title": "散热器式刷怪塔",
-      "desc": "无法获取经验，高效，不包含分类机",
+      "desc": "无法获取经验，高效，不包含分类机·原创",
       "type": "原理图",
       "size": "6kB",
       "icon": "bi-file-text",
@@ -121,7 +121,7 @@
     {
       "id": 6,
       "title": "21点游戏机，实际是14点",
-      "desc": "也许算轻赌游戏，严禁用于现实货币交易",
+      "desc": "也许算轻赌游戏，严禁用于现实货币交易·RexxStone",
       "type": "原理图",
       "size": "5kB",
       "icon": "bi-file-text",
@@ -130,7 +130,16 @@
     {
       "id": 7,
       "title": "TK重工的一个LOGO，紫色衬线蓝字",
-      "desc": "一个小logo，TKHI字样（英文首字母缩写是这样的）",
+      "desc": "一个小logo，TKHI字样（英文首字母缩写是这样的）·原创",
+      "type": "原理图",
+      "size": "1kB",
+      "icon": "bi-file-text",
+      "filename": "TKHI.litematic"
+    },
+    {
+      "id": 8,
+      "title": "一个星际风格的商店",
+      "desc": "可扩展性很强·Mr_Copey",
       "type": "原理图",
       "size": "1kB",
       "icon": "bi-file-text",
