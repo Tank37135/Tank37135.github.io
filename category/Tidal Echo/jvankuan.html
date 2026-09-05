@@ -26,7 +26,6 @@
             --radius: 20px;
             --transition-smooth: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-fast: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            --navbar-height: 72px;
         }
 
         html {
@@ -84,7 +83,6 @@
             border-bottom: 1px solid rgba(74, 144, 217, 0.06);
             transition: padding 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
             will-change: transform;
-            height: var(--navbar-height);
         }
 
         .navbar.scrolled {
@@ -98,7 +96,6 @@
             align-items: center;
             justify-content: space-between;
             position: relative;
-            height: 100%;
         }
 
         .logo {
@@ -395,7 +392,7 @@
             overflow: hidden;
             isolation: isolate;
             background: linear-gradient(160deg, #DCEAF7 0%, #B8D6ED 40%, #9AC3E3 100%);
-            padding-top: var(--navbar-height);
+            padding-top: 80px;
             box-sizing: border-box;
         }
 
@@ -980,7 +977,7 @@
             .banner {
                 min-height: 500px;
                 height: 100vh;
-                padding-top: var(--navbar-height);
+                padding-top: 76px;
             }
             .banner h1 {
                 font-size: 2.4rem;
@@ -1013,7 +1010,7 @@
             .banner {
                 min-height: 420px;
                 height: 100vh;
-                padding-top: var(--navbar-height);
+                padding-top: 68px;
             }
             .banner h1 {
                 font-size: 1.8rem;
@@ -1183,7 +1180,7 @@
             <ul class="nav-links-desktop">
                 <li><a href="#intro">关于赞助</a></li>
                 <li><a href="#donate">支持我们</a></li>
-                <li><a href="javascript:void(0)" onclick="window.location.href='./';">返回主站</a></li>
+                <li><a href="javascript:void(0)" onclick="window.location.href='/';">返回主站</a></li>
             </ul>
 
             <button class="menu-toggle" id="menuToggle" aria-label="切换导航菜单" aria-expanded="false">
@@ -1198,7 +1195,7 @@
             <ul class="mobile-menu-items">
                 <li><a href="#intro">关于赞助</a></li>
                 <li><a href="#donate">支持我们</a></li>
-                <li><a href="javascript:void(0)" onclick="window.location.href='./';">返回主站</a></li>
+                <li><a href="javascript:void(0)" onclick="window.location.href='/';">返回主站</a></li>
             </ul>
         </div>
     </div>
@@ -1470,7 +1467,7 @@
                 name: 'jenooo123',
                 roles: ['建筑师'],
                 desc: '负责服务器主城的部分建筑的建造，为主城提供好的建议',
-                qrImage: 'images/qr-jenooo.jpg'
+                qrImage: 'images/qr-jenooo.png'
             }, {
                 id: 'qianchuan',
                 name: 'qianchuan',
@@ -1498,7 +1495,7 @@
                     <rect x="90" y="120" width="20" height="20" fill="#4A90D9" rx="2"/>
                     <rect x="120" y="120" width="20" height="20" fill="#4A90D9" rx="2"/>
                     <rect x="60" y="60" width="20" height="20" fill="#4A90D9" rx="2"/>
-                    <text x="100" y="185" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="500" fill="#4A90D9" opacity="0.8">加载错误</text>
+                    <text x="100" y="185" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="500" fill="#4A90D9" opacity="0.8">二维码占位</text>
                 </svg>
             `;
             const svgDataUri = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(placeholderQR);
