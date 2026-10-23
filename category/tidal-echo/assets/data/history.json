@@ -1,0 +1,67 @@
+{
+  "events": [
+    {
+      "id": "history-2026-10-23",
+      "date": "2026-10-23",
+      "title": "新的官网",
+      "summary": "新增了归档页面，修复了内部导航耦合低的问题，新增封禁列表，合并了财务和捐款，提升了静态资源利用率",
+      "type": "milestone"
+    },
+    {
+      "id": "history-2026-10-22",
+      "date": "2026-10-22",
+      "title": "修复了语音不可用的问题",
+      "summary": "骗你的，下午又不知道为什么不能用了，悲~",
+      "type": "maintenance"
+    },
+    {
+      "id": "history-2026-10-21",
+      "date": "2026-10-21",
+      "title": "安装优化mod，预加载地形",
+      "summary": "破机械硬盘保存好慢，26.3的优化确实好些",
+      "type": "maintenance"
+    },
+    {
+      "id": "history-2026-10-20",
+      "date": "2026-10-20",
+      "title": "服务器开机:D",
+      "summary": "买了一大堆二手硬件。组装一台服务器，一次点亮耶,但只有一个子服",
+      "type": "milestone"
+    },
+    {
+      "id": "history-2026-9-10",
+      "date": "2026-9-10",
+      "title": "服务器停机",
+      "summary": "要去大学了，电脑只能关机带着了，对不起qwq",
+      "type": "maintenance"
+    },
+    {
+      "id": "history-2026-09-03",
+      "date": "2026-09-03",
+      "title": "服务器第一笔外部资金流入",
+      "summary": "OHHHH！ohhhh ohhhho hhhh,第一次被回血耶~",
+      "type": "event"
+    },
+    {
+      "id": "history-2026-08-15",
+      "date": "2026-08-15",
+      "title": "简单做了一个服务器官网:D，虽然不知道谁会看",
+      "summary": "精心设计了半天动画，布局还是一般般~~~",
+      "type": "event"
+    },
+    {
+      "id": "history-2026-08-10",
+      "date": "2026-08-10",
+      "title": "服务器变群组服了",
+      "summary": "现在有多个子服玩啦，耶耶耶",
+      "type": "milestone"
+    },
+    {
+      "id": "history-2026-08-06",
+      "date": "2026-08-06",
+      "title": "服务器资源投入使用",
+      "summary": "共一个生存服务器，耍起awa",
+      "type": "milestone"
+    }
+  ]
+}

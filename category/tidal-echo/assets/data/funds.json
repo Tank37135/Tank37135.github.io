@@ -1,0 +1,142 @@
+{
+  "months": [
+    {
+      "id": "2026-10",
+      "label": "2026年10月",
+      "rows": [
+        {
+          "date": "2026-10-15",
+          "source": "蓝宝石HD6450显卡",
+          "amount": -35,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "七彩虹CF-G6-MX H61主板",
+          "amount": -33,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "威刚 DDR3 4G x2",
+          "amount": -44,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "青鸟3散热器",
+          "amount": -17.1,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "E3 1220LV2 CPU",
+          "amount": -25,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "长城200W电源",
+          "amount": -33,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "5层加厚纸盒机箱",
+          "amount": -1.5,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "西部数据蓝盘500G",
+          "amount": -69.65,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "电源线",
+          "amount": -8.97,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "六类千兆网线",
+          "amount": -7.9,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-10-15",
+          "source": "资源返还（折算）",
+          "amount": 768.56,
+          "registrar": "Tank37135",
+          "tag": "虚拟机2手80%折还",
+          "tagClass": "tag-amortization"
+        },
+        {
+          "date": "2026-10-2",
+          "source": "域名续费",
+          "amount": -42,
+          "registrar": "Tank37135",
+          "tag": "实际支出",
+          "tagClass": "tag-expense"
+        }
+      ]
+    },
+    {
+      "id": "2026-09",
+      "label": "2026年9月",
+      "rows": [
+        {
+          "date": "2026-09-23",
+          "source": "樱花隧道",
+          "amount": -30,
+          "registrar": "Tank37135",
+          "tag": "实际支出",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-09-03",
+          "source": "jenooo123 赞助",
+          "amount": 0.52,
+          "registrar": "Tank37135",
+          "tag": "赞助收入",
+          "tagClass": "tag-sponsor"
+        }
+      ]
+    },
+    {
+      "id": "2026-08",
+      "label": "2026年8月",
+      "rows": [
+        {
+          "date": "2026-08-06",
+          "source": "资源摊销（折算）",
+          "amount": -960.7,
+          "registrar": "Tank37135",
+          "tag": "虚拟机资源（4核/12G/64G SSD）按服务市场价折算",
+          "tagClass": "tag-amortization"
+        }
+      ]
+    }
+  ]
+}

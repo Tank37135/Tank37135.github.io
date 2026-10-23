@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>服务器运营 · 潮汐回响</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/shared.css">
+    <link rel="stylesheet" href="../assets/css/pages/operations.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        <i class="fas fa-check-circle" aria-hidden="true"></i>
+        <span id="toastMsg">已复制服务器地址</span>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container site-header__inner">
+            <a class="site-brand" href="../">潮汐回响</a>
+            <nav class="site-nav" aria-label="主导航">
+                <ul>
+                    <li><a href="../">首页</a></li>
+                    <li><a href="../rules/">规则</a></li>
+                    <li><a href="../operations/" aria-current="page">运营</a></li>
+                    <li><a href="../bans/">封禁</a></li>
+                    <li><a href="../archive/">归档</a></li>
+                </ul>
+            </nav>
+            <div class="site-actions">
+                <button class="ip-copy" type="button" data-copy-ip aria-label="复制服务器地址 mc.tank37135.cn">
+                    <i class="fas fa-server" aria-hidden="true"></i>
+                    <span>mc.tank37135.cn</span>
+                    <i class="fas fa-copy" aria-hidden="true"></i>
+                </button>
+                <button class="site-menu-toggle" id="siteMenuToggle" type="button"
+                    aria-label="打开导航菜单" aria-expanded="false" aria-controls="siteMenu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="site-mobile-menu" id="siteMenu" aria-hidden="true" hidden>
+        <button class="site-mobile-menu__backdrop" type="button" data-menu-close aria-label="关闭导航菜单"></button>
+        <div class="site-mobile-menu__panel" role="dialog" aria-modal="true" aria-labelledby="siteMenuTitle">
+            <div class="site-mobile-menu__head">
+                <span class="site-mobile-menu__title" id="siteMenuTitle">导航</span>
+                <button class="site-mobile-menu__close" type="button" data-menu-close aria-label="关闭导航菜单">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <nav class="site-mobile-nav" aria-label="移动端主导航">
+                <ul>
+                    <li><a href="../">首页</a></li>
+                    <li><a href="../rules/">规则</a></li>
+                    <li><a href="../operations/" aria-current="page">运营</a></li>
+                    <li><a href="../bans/">封禁</a></li>
+                    <li><a href="../archive/">归档</a></li>
+                </ul>
+            </nav>
+            <button class="ip-copy" type="button" data-copy-ip aria-label="复制服务器地址 mc.tank37135.cn">
+                <i class="fas fa-server" aria-hidden="true"></i>
+                <span>mc.tank37135.cn</span>
+                <i class="fas fa-copy" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <main id="main">
+        <section class="banner" id="home">
+            <div class="banner-bg" id="bannerBg">
+                <div class="banner-waves" aria-hidden="true">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
+                <div class="banner-glow" aria-hidden="true"></div>
+                <div class="banner-glow" aria-hidden="true"></div>
+            </div>
+            <div class="container banner-content" id="bannerContent">
+                <h1>服务器运营</h1>
+                <p class="banner-sub">收支透明 · 捐赠去向公开</p>
+                <p class="banner-desc">
+                    每笔交易均记录入账，服务器硬件与支持渠道集中公开。<br />
+                    你可以查看累计收支、月度流水和当前配置，也可以支持服务器持续运营。
+                </p>
+                <div class="banner-actions">
+                    <a href="#finance" class="btn btn-primary">
+                        <i class="fas fa-table" aria-hidden="true"></i> 查看收支
+                    </a>
+                    <a href="#support" class="btn btn-outline">
+                        <i class="fas fa-heart" aria-hidden="true"></i> 支持服务器
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <nav class="page-section-nav" aria-label="运营页导航">
+            <div class="container page-section-nav__inner">
+                <a href="#finance">收支</a>
+                <a href="#hardware">配置</a>
+                <a href="#support">捐赠</a>
+            </div>
+        </nav>
+
+        <section class="section" id="finance">
+            <div class="container">
+                <div class="divider" id="dividerFinance"></div>
+                <h2 class="section-title">月度流水</h2>
+                <p class="section-sub">
+                    顶部累计值为服务器运营至今的全局总额。<br />
+                    月份按从新到旧排列，最新月份默认显示。
+                </p>
+
+                <div class="summary-cards" id="summaryCards">
+                    <div class="summary-card">
+                        <div class="label">累计赞助</div>
+                        <div class="value income-color" id="totalIncome">--</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="label">累计回收</div>
+                        <div class="value recovery-color" id="totalRecovery">--</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="label">累计支出</div>
+                        <div class="value expense-color" id="totalExpense">--</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="label">累计余额</div>
+                        <div class="value balance-zero" id="totalNet">--</div>
+                    </div>
+                </div>
+
+                <div class="server-config server-config--finance" id="hardware">
+                    <div class="server-config__head">
+                        <h3 class="server-config__title">服务器配置</h3>
+                        <p class="server-config__note">硬件配置说明，不计入财务收支。</p>
+                    </div>
+                    <div class="specs-table-wrap">
+                        <table class="specs-table">
+                            <caption>潮汐回响当前服务器硬件配置</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">配置项</th>
+                                    <th scope="col">型号</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row">CPU</th><td>E3 1220LV2</td></tr>
+                                <tr><th scope="row">散热器</th><td>青鸟3</td></tr>
+                                <tr><th scope="row">电源</th><td>长城200W</td></tr>
+                                <tr><th scope="row">内存</th><td>威刚4G DDR3*2</td></tr>
+                                <tr><th scope="row">主板</th><td>七彩虹 CF-G6-MX H61</td></tr>
+                                <tr><th scope="row">显卡</th><td>蓝宝石HD6450</td></tr>
+                                <tr><th scope="row">硬盘</th><td>西部数据蓝盘500G</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="finance-container" id="financeContainer">
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-pulse" aria-hidden="true"></i>
+                        <p>正在加载财务数据...</p>
+                    </div>
+                </div>
+
+                <p class="section-footnote">
+                    <i class="fas fa-file-invoice" aria-hidden="true"></i>
+                    每月独立公示 · 数据来源：服主手动如实填写
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="support">
+            <div class="container">
+                <div class="divider" id="dividerSupport"></div>
+                <h2 class="section-title">支持服务器</h2>
+                <p class="section-sub">所有捐赠仅用于服务器运营与维护，不提供影响游戏平衡的特权。</p>
+
+                <div class="support-single">
+                    <div class="support-single__copy">
+                        <p class="support-single__eyebrow">公开捐赠通道</p>
+                        <h3>Tank37135</h3>
+                        <div class="support-roles" aria-label="身份角色">
+                            <span>服务器管理员</span>
+                            <span>建筑师</span>
+                            <span>指令师</span>
+                            <span>编程</span>
+                            <span>硬件管理员</span>
+                        </div>
+                        <p>捐赠将全部用于服务器建设、域名续费与硬件维护。所有支持均为自愿行为。</p>
+                        <p class="support-single__note">
+                            <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                            依照 Minecraft EULA，本服务器不会向捐赠者提供飞行、特殊装备或其他影响平衡的特权。
+                        </p>
+                    </div>
+                    <button class="image-zoom-trigger support-qr" type="button"
+                        aria-label="放大查看 Tank37135 的捐赠二维码" aria-haspopup="dialog">
+                        <img src="../assets/images/qr-tank.jpg" alt="Tank37135 的捐赠二维码" />
+                        <span><i class="fas fa-expand" aria-hidden="true"></i> 点击放大</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="socials">
+                <a href="#" aria-label="Discord"><i class="fab fa-discord" aria-hidden="true"></i></a>
+                <a href="#" aria-label="B站"><i class="fab fa-bilibili" aria-hidden="true"></i></a>
+                <a href="#" aria-label="QQ群"><i class="fab fa-qq" aria-hidden="true"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+            </div>
+            <div class="footer-info">
+                <span><i class="fas fa-server" aria-hidden="true"></i> mc.tank37135.cn</span>
+                <span><i class="fas fa-users" aria-hidden="true"></i> 20 人满配</span>
+                <span>潮汐回响</span>
+            </div>
+            <small>&copy; 2026 潮汐回响 · Tank37135</small>
+        </div>
+    </footer>
+
+    <script src="../assets/js/shared.js" defer></script>
+    <script src="../assets/js/lightbox.js" defer></script>
+    <script src="../assets/js/pages/operations.js" defer></script>
+</body>
+</html>
