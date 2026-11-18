@@ -1,6 +1,53 @@
 {
   "months": [
     {
+      "id": "2026-11",
+      "label": "2026年11月",
+      "rows": [
+        {
+          "date": "2026-11-18",
+          "source": "旧系统盘出售",
+          "amount": 30,
+          "registrar": "Tank37135",
+          "tag": "资源返还",
+          "tagClass": "tag-amortization"
+        },
+        {
+          "date": "2026-11-18",
+          "source": "4g散热硅脂",
+          "amount": -9.9,
+          "registrar": "Tank37135",
+          "tag": "实际支出",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-11-18",
+          "source": "E3 1270v2CPU",
+          "amount": -185,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-11-14",
+          "source": "电风云1号机箱",
+          "amount": -19.89,
+          "registrar": "Tank37135",
+          "tag": "实际支出",
+          "tagClass": "tag-expense"
+        },
+        {
+          "date": "2026-11-14",
+          "source": "128G STAT固态",
+          "amount": -61,
+          "registrar": "Tank37135",
+          "tag": "硬件升级",
+          "tagClass": "tag-expense"
+        }
+        
+      ]
+    },
+    {
       "id": "2026-10",
       "label": "2026年10月",
       "rows": [
