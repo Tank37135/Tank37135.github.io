@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title">
+  <title id="title">Tank37135 个人站</title>
+  <rect width="800" height="500" fill="#f4f9fe" />
+  <g stroke="#c6d8e8" stroke-width="1">
+    <path d="M0 100h800M0 200h800M0 300h800M0 400h800" />
+    <path d="M100 0v500M200 0v500M300 0v500M400 0v500M500 0v500M600 0v500M700 0v500" />
+  </g>
+  <rect x="88" y="88" width="624" height="324" rx="16" fill="#ffffff" stroke="#a6bfd4" stroke-width="2" />
+  <rect x="88" y="88" width="624" height="56" rx="16" fill="#d8e7f5" />
+  <circle cx="120" cy="116" r="7" fill="#3a6a96" />
+  <circle cx="144" cy="116" r="7" fill="#6e8aa2" />
+  <circle cx="168" cy="116" r="7" fill="#a6bfd4" />
+  <text x="176" y="320" font-family="ui-monospace, 'Cascadia Code', Consolas, monospace" font-size="180" font-weight="600" fill="#2f5f8c">{ }</text>
+  <text x="510" y="300" font-family="Manrope, 'Segoe UI', sans-serif" font-size="120" font-weight="700" fill="#1c3145">Aa</text>
+  <rect x="208" y="344" width="240" height="12" rx="6" fill="#c6d8e8" />
+  <rect x="208" y="368" width="160" height="12" rx="6" fill="#c6d8e8" />
+</svg>

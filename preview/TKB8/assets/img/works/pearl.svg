@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title">
+  <title id="title">戴珍珠耳环的少女</title>
+  <rect width="800" height="500" fill="#e9f1f9" />
+  <circle cx="400" cy="250" r="170" fill="#2f4358" />
+  <path d="M250 250c0-90 67-150 150-150s150 60 150 150c0 30-10 58-28 80-20-70-62-110-122-110s-102 40-122 110c-18-22-28-50-28-80z" fill="#3a6a96" />
+  <ellipse cx="400" cy="250" rx="92" ry="112" fill="#d9c3a5" />
+  <path d="M400 138c-50 0-82 34-88 88 18-26 46-42 88-42s70 16 88 42c-6-54-38-88-88-88z" fill="#3a6a96" />
+  <circle cx="400" cy="250" r="6" fill="#2f4358" />
+  <circle cx="356" cy="244" r="6" fill="#2f4358" />
+  <path d="M380 292c12 8 28 8 40 0" fill="none" stroke="#2f4358" stroke-width="5" stroke-linecap="round" />
+  <circle cx="488" cy="320" r="26" fill="#ffffff" stroke="#a6bfd4" stroke-width="4" />
+  <circle cx="480" cy="312" r="7" fill="#e9f1f9" />
+  <circle cx="488" cy="346" r="5" fill="#c9a227" />
+</svg>

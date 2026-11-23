@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title">
+  <title id="title">TK重工</title>
+  <rect width="800" height="500" fill="#f1ece1" />
+  <g stroke="#d8cfc0" stroke-width="1">
+    <path d="M0 100h800M0 200h800M0 300h800M0 400h800" />
+    <path d="M100 0v500M200 0v500M300 0v500M400 0v500M500 0v500M600 0v500M700 0v500" />
+  </g>
+  <g fill="none" stroke="#a3453a" stroke-width="8" stroke-linecap="square">
+    <path d="M120 360h160v-120h180v-80h220" />
+    <path d="M200 440v-80" />
+    <path d="M560 260h140" />
+  </g>
+  <g fill="#2f5f8c">
+    <rect x="104" y="344" width="32" height="32" />
+    <rect x="264" y="224" width="32" height="32" />
+    <rect x="444" y="144" width="32" height="32" />
+    <rect x="184" y="424" width="32" height="32" />
+    <rect x="684" y="244" width="32" height="32" />
+  </g>
+  <circle cx="660" cy="120" r="44" fill="none" stroke="#2f5f8c" stroke-width="8" />
+  <circle cx="660" cy="120" r="14" fill="#a3453a" />
+</svg>
