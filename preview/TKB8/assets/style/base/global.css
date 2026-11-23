@@ -1,0 +1,249 @@
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* Hide the page scrollbar: the page still scrolls by wheel, touch, keys and
+     script, but the track no longer takes width, so locking page scroll for
+     the mobile menu can't shift the layout either. */
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+main {
+  display: block;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+::selection {
+  background: var(--color-brand-soft);
+  color: var(--color-heading);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Container */
+.container {
+  width: min(100% - var(--gutter) * 2, var(--container));
+  margin-inline: auto;
+}
+
+.container--narrow {
+  max-width: var(--measure-prose);
+}
+
+/* Screen reader skip link */
+.skip-link {
+  position: fixed;
+  top: var(--space-200);
+  left: var(--space-200);
+  z-index: var(--z-skip);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-75) var(--space-100);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-raised);
+  color: var(--color-heading);
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
+  font-weight: var(--weight-semibold);
+  transform: translateY(-200%);
+  transition: transform var(--duration-color) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* Shared links */
+.link {
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 0.2em;
+  transition: color var(--duration-color) var(--ease-out),
+    text-decoration-color var(--duration-color) var(--ease-out);
+}
+
+.link:hover {
+  color: var(--color-heading);
+  text-decoration-color: currentColor;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-50);
+  min-height: 44px;
+  color: var(--color-brand);
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
+  font-weight: var(--weight-semibold);
+  transition: color var(--duration-color) var(--ease-out);
+}
+
+.link-arrow .icon {
+  transition: transform var(--duration-color) var(--ease-out);
+}
+
+.link-arrow:hover {
+  color: var(--color-heading);
+}
+
+.link-arrow:hover .icon {
+  transform: translateX(2px);
+}
+
+/* A quiet page entrance; the critical background is painted before this runs. */
+@keyframes page-in {
+  from {
+    opacity: 0.96;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  animation: page-in 320ms var(--ease-out) both;
+}
+
+/* Page entrance: the hero enters once on load, never on scroll. */
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-300));
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-enter > * {
+  animation: enter-up 800ms var(--ease-out) both;
+}
+
+/* Apple-style settles: content stays visible; it only eases into place. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .section__head,
+    .page-header,
+    .works-toolbar,
+    .work-tile__media,
+    .tool-tile__media,
+    .post-row,
+    .about-grid > *,
+    .about-now,
+    .about-contact,
+    .tool-hero,
+    .tool-page .card,
+    .tool-note,
+    .cta-panel,
+    .closing__inner,
+    .tagline__aside,
+    .article,
+    .legal,
+    .error-page {
+      animation: settle-in var(--ease-out) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}
+
+@keyframes settle-in {
+  from {
+    transform: translateY(var(--space-200));
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+.hero-enter > *:nth-child(1) {
+  animation-delay: 40ms;
+}
+
+.hero-enter > *:nth-child(2) {
+  animation-delay: 110ms;
+}
+
+.hero-enter > *:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.hero-enter > *:nth-child(4) {
+  animation-delay: 250ms;
+}
+
+.hero-enter > *:nth-child(5) {
+  animation-delay: 320ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-enter > * {
+    animation: none;
+  }
+
+  body {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

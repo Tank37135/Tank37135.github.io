@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "id": "tools",
+    "title": "在线工具数据",
+    "version": 1,
+    "createdAt": "2026-11-18T09:30:00+08:00",
+    "updatedAt": "2026-11-18T09:30:00+08:00"
+  },
+  "items": [
+    {
+      "id": "tool-screen-recorder",
+      "title": "屏幕录制",
+      "summary": "在浏览器里录制屏幕、窗口或标签页，可选麦克风混音。",
+      "description": "基于 MediaRecorder，录完后直接下载文件，不经过服务器。",
+      "href": "category/tools/screen-recorder/",
+      "icon": "assets/img/icons/video-camera.svg",
+      "iconAlt": "屏幕录制图标",
+      "tags": [
+        "MediaRecorder",
+        "本地处理"
+      ],
+      "status": "online",
+      "statusLabel": "可以使用",
+      "requires": "需要浏览器支持屏幕共享",
+      "order": 1,
+      "createdAt": "2026-11-17T21:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00",
+      "image": "assets/img/tools/recorder.jpg",
+      "imageAlt": "屏幕录制工具界面，包含屏幕预览区、麦克风开关和开始录制按钮"
+    },
+    {
+      "id": "tool-tone-analyzer",
+      "title": "声波探测",
+      "summary": "实时查看麦克风输入的频率、音高和音量。",
+      "description": "用 Web Audio 分析声音，把听到的频率画成频谱，并给出最接近的音名。",
+      "href": "category/tools/tone-analyzer/",
+      "icon": "assets/img/icons/waveform.svg",
+      "iconAlt": "声波探测图标",
+      "tags": [
+        "Web Audio",
+        "实时"
+      ],
+      "status": "online",
+      "statusLabel": "可以使用",
+      "requires": "需要麦克风权限",
+      "order": 2,
+      "createdAt": "2026-11-17T22:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00",
+      "image": "assets/img/tools/analyzer.jpg",
+      "imageAlt": "声波探测工具界面，显示 G4 音名、频率读数与实时频谱"
+    }
+  ]
+}

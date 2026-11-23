@@ -1,0 +1,185 @@
+.article {
+  max-width: var(--measure-prose);
+  margin-inline: auto;
+  padding-block: var(--padt) var(--space-700);
+}
+
+.article-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-200);
+  max-width: var(--measure-prose);
+  margin-inline: auto;
+  padding-block: var(--space-600);
+}
+
+.article-skeleton__title {
+  width: 82%;
+  height: 40px;
+  margin-block: var(--space-100);
+}
+
+.article__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-50);
+  min-height: 44px;
+  margin-bottom: var(--space-400);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
+  font-weight: var(--weight-medium);
+  transition: color var(--duration-color) var(--ease-out);
+}
+
+.article__back:hover {
+  color: var(--color-heading);
+}
+
+.article__title {
+  margin-top: var(--space-200);
+}
+
+.article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-100);
+  margin-top: var(--space-300);
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+  line-height: var(--lh-xs);
+  font-weight: var(--weight-medium);
+}
+
+.article__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-50);
+  margin-top: var(--space-200);
+}
+
+.article__body {
+  margin-top: var(--space-600);
+}
+
+.article__body > * + * {
+  margin-top: var(--space-200);
+}
+
+.article__body p {
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+  text-wrap: pretty;
+}
+
+.article__body h2 {
+  margin-top: var(--space-600);
+  color: var(--color-heading);
+  font-size: var(--text-2xl);
+  line-height: var(--lh-2xl);
+  font-weight: var(--weight-semibold);
+  text-wrap: balance;
+}
+
+.article__body ul,
+.article__body ol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-75);
+  padding-left: var(--space-300);
+  color: var(--color-text);
+  list-style: disc;
+}
+
+.article__body li {
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+}
+
+.article__body blockquote {
+  padding: var(--space-300);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  color: var(--color-heading);
+  font-size: var(--text-lg);
+  line-height: var(--lh-lg);
+  font-weight: var(--weight-medium);
+}
+
+.article__body pre {
+  overflow-x: auto;
+  padding: var(--space-200);
+  border-radius: var(--radius-xl);
+  background: var(--color-code-bg);
+  color: var(--color-code-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
+  tab-size: 2;
+}
+
+.article__body code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
+}
+
+.article__body p code,
+.article__body li code {
+  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand-soft);
+  color: var(--color-heading);
+}
+
+.article__footer {
+  margin-top: var(--space-700);
+  padding-top: var(--space-400);
+  border-top: 1px solid var(--color-border);
+}
+
+.article__nav {
+  display: grid;
+  gap: var(--space-200);
+  margin-top: var(--space-300);
+}
+
+.article__nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-50);
+  padding: var(--space-200);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-raised);
+  transition: border-color var(--duration-color) var(--ease-out),
+    transform var(--duration-move) var(--ease-out);
+}
+
+.article__nav-link:hover {
+  border-color: var(--color-border-strong);
+  transform: translateY(-2px);
+}
+
+.article__nav-label {
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+  line-height: var(--lh-xs);
+  font-weight: var(--weight-medium);
+}
+
+.article__nav-title {
+  color: var(--color-heading);
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+  font-weight: var(--weight-semibold);
+}
+
+@media (min-width: 700px) {
+  .article__nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

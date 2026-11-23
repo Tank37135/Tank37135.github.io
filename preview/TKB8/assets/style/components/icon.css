@@ -1,0 +1,120 @@
+.icon {
+  display: inline-block;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.icon--sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--lg {
+  width: 24px;
+  height: 24px;
+}
+
+.icon--xl {
+  width: 32px;
+  height: 32px;
+}
+
+.icon--menu {
+  --icon: url("../../img/icons/list.svg");
+}
+
+.icon--x {
+  --icon: url("../../img/icons/x.svg");
+}
+
+.icon--sun {
+  --icon: url("../../img/icons/sun.svg");
+}
+
+.icon--moon {
+  --icon: url("../../img/icons/moon.svg");
+}
+
+.icon--arrow-right {
+  --icon: url("../../img/icons/arrow-right.svg");
+}
+
+.icon--arrow-left {
+  --icon: url("../../img/icons/arrow-left.svg");
+}
+
+.icon--arrow-up-right {
+  --icon: url("../../img/icons/arrow-up-right.svg");
+}
+
+.icon--arrow-up {
+  --icon: url("../../img/icons/arrow-up.svg");
+}
+
+.icon--retry {
+  --icon: url("../../img/icons/arrow-counter-clockwise.svg");
+}
+
+.icon--copy {
+  --icon: url("../../img/icons/copy.svg");
+}
+
+.icon--check {
+  --icon: url("../../img/icons/check.svg");
+}
+
+.icon--play {
+  --icon: url("../../img/icons/play.svg");
+}
+
+.icon--pause {
+  --icon: url("../../img/icons/pause.svg");
+}
+
+.icon--stop {
+  --icon: url("../../img/icons/stop.svg");
+}
+
+.icon--download {
+  --icon: url("../../img/icons/download-simple.svg");
+}
+
+.icon--microphone {
+  --icon: url("../../img/icons/microphone.svg");
+}
+
+.icon--waveform {
+  --icon: url("../../img/icons/waveform.svg");
+}
+
+.icon--video {
+  --icon: url("../../img/icons/video-camera.svg");
+}
+
+.icon--monitor {
+  --icon: url("../../img/icons/monitor.svg");
+}
+
+.icon--timer {
+  --icon: url("../../img/icons/timer.svg");
+}
+
+.icon--info {
+  --icon: url("../../img/icons/info.svg");
+}
+
+.icon--warning {
+  --icon: url("../../img/icons/warning-circle.svg");
+}
+
+.icon--caret-right {
+  --icon: url("../../img/icons/caret-right.svg");
+}
+
+.icon--file {
+  --icon: url("../../img/icons/file-text.svg");
+}

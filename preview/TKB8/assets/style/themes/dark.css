@@ -1,0 +1,99 @@
+/* Default grade: a deep indigo ground lit by the four-color pastel palette. */
+:root {
+  color-scheme: dark;
+
+  /* The client's four theme colours. */
+  --theme-1: #b2e8fb;
+  --theme-2: #b4d8ff;
+  --theme-3: #b0b8ff;
+  --theme-4: #b49cf8;
+
+  --color-bg: #0b0a14;
+  --color-surface: #141322;
+  --color-surface-raised: #191827;
+
+  --color-text: #f0eff7;
+  --color-text-muted: #a6a3ba;
+  --color-text-subtle: #8e8aa5;
+  --color-heading: #ffffff;
+
+  --color-primary: var(--theme-1);
+  --color-primary-hover: var(--theme-2);
+  --color-on-primary: #0b0a14;
+  --color-brand: var(--theme-1);
+  --color-brand-soft: rgba(176, 184, 255, 0.16);
+
+  --color-border: #2a2838;
+  --color-border-strong: #3c3950;
+
+  --color-overlay: rgba(11, 10, 20, 0.88);
+  --color-overlay-strong: rgba(11, 10, 20, 0.98);
+  --color-focus: var(--theme-1);
+
+  --color-danger: #ff9a9a;
+  --color-success: var(--theme-1);
+
+  /* Palette application */
+  --hero-gradient: linear-gradient(
+    90deg,
+    var(--theme-1) 0%,
+    var(--theme-2) 34%,
+    var(--theme-3) 67%,
+    var(--theme-4) 100%
+  );
+  --brand-gradient: linear-gradient(
+    90deg,
+    var(--theme-1),
+    var(--theme-2),
+    var(--theme-3),
+    var(--theme-4)
+  );
+  --theme-gradient: linear-gradient(
+    90deg,
+    #b2e8fb,
+    #b4d8ff,
+    #b0b8ff,
+    #b49cf8
+  );
+
+  --color-tagline-muted: #39354d;
+  --tagline-tone-1: var(--theme-1);
+  --tagline-tone-2: var(--theme-2);
+  --tagline-tone-3: var(--theme-3);
+  --tagline-tone-4: var(--theme-4);
+
+  --dot-1: var(--theme-1);
+  --dot-2: var(--theme-2);
+  --dot-3: var(--theme-3);
+  --dot-4: var(--theme-4);
+
+  --archive-post: var(--theme-1);
+  --archive-work: var(--theme-3);
+  --archive-tool: var(--theme-2);
+
+  --cover-bg: var(--color-surface-raised);
+  --cover-ink: var(--theme-3);
+  --cover-meta: var(--color-text-muted);
+
+  --chip-brand-bg: rgba(176, 184, 255, 0.16);
+  --chip-brand-ink: var(--theme-3);
+
+  --theme-ring-border: rgba(178, 232, 251, 0.8);
+  --theme-ring-fill: rgba(178, 232, 251, 0.06);
+  --theme-ring-glow: rgba(178, 232, 251, 0.34);
+  --theme-ring-inner: rgba(178, 232, 251, 0.16);
+
+  --color-code-bg: #000000;
+  --color-code-text: #f0eff7;
+
+  --shadow-card: none;
+  --shadow-float: 0 18px 40px rgba(0, 0, 0, 0.5);
+
+  /* The closing band stays on the inverse ground. */
+  --closing-bg: #07060d;
+  --closing-surface: #141322;
+  --closing-ink: #f0eff7;
+  --closing-muted: #a6a3ba;
+  --closing-line: #2a2838;
+  --closing-accent: var(--theme-1);
+}

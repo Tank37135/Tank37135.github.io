@@ -1,0 +1,559 @@
+{
+  "meta": {
+    "id": "content",
+    "title": "站点文案与配置",
+    "version": 1,
+    "createdAt": "2026-11-18T09:30:00+08:00",
+    "updatedAt": "2026-11-18T09:30:00+08:00"
+  },
+  "site": {
+    "id": "site-tank37135",
+    "title": "Tank37135",
+    "tagline": "记录生活，分享技术",
+    "description": "Tank37135 的个人网站：Web 开发、浏览器工具，以及一台自建的 Minecraft 生存服务器。",
+    "url": "https://tank37135.com",
+    "logo": "assets/img/LOGO/logo-64x64.png",
+    "logoLarge": "assets/img/LOGO/logo-1024x1024.png",
+    "createdAt": "2024-07-08T00:00:00+08:00",
+    "updatedAt": "2026-11-18T09:30:00+08:00"
+  },
+  "navigation": [
+    {
+      "id": "home",
+      "label": "首页",
+      "href": "index.html",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "works",
+      "label": "作品",
+      "href": "category/works/",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "tools",
+      "label": "工具",
+      "href": "category/tools/",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "blog",
+      "label": "博客",
+      "href": "category/blog/",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "archive",
+      "label": "归档",
+      "href": "archive/",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "about",
+      "label": "关于",
+      "href": "about/",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    }
+  ],
+  "footer": {
+    "id": "footer-main",
+    "blurb": "记录生活，分享技术。这里是我的作品、工具，以及一些长期维护的项目。",
+    "createdAt": "2026-11-18T09:30:00+08:00",
+    "updatedAt": "2026-11-18T09:30:00+08:00",
+    "columns": [
+      {
+        "id": "footer-site",
+        "title": "站点",
+        "createdAt": "2026-11-18T09:30:00+08:00",
+        "updatedAt": "2026-11-18T09:30:00+08:00",
+        "links": [
+          {
+            "id": "footer-home",
+            "label": "首页",
+            "href": "index.html",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          },
+          {
+            "id": "footer-works",
+            "label": "作品",
+            "href": "category/works/",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          },
+          {
+            "id": "footer-tools",
+            "label": "工具",
+            "href": "category/tools/",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          },
+          {
+            "id": "footer-blog",
+            "label": "博客",
+            "href": "category/blog/",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          },
+          {
+            "id": "footer-archive",
+            "label": "归档",
+            "href": "archive/",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          },
+          {
+            "id": "footer-about",
+            "label": "关于",
+            "href": "about/",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          }
+        ]
+      },
+      {
+        "id": "footer-projects",
+        "title": "项目",
+        "createdAt": "2026-11-18T09:30:00+08:00",
+        "updatedAt": "2026-11-18T09:30:00+08:00",
+        "links": [
+          {
+            "id": "footer-tidal",
+            "label": "潮汐回响",
+            "href": "category/tidal-echo/",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          },
+          {
+            "id": "footer-tkhi",
+            "label": "TK重工",
+            "href": "category/TKHI/",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          }
+        ]
+      },
+      {
+        "id": "footer-notes",
+        "title": "说明",
+        "createdAt": "2026-11-18T09:30:00+08:00",
+        "updatedAt": "2026-11-18T09:30:00+08:00",
+        "links": [
+          {
+            "id": "footer-privacy",
+            "label": "隐私说明",
+            "href": "privacy.html",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          },
+          {
+            "id": "footer-terms",
+            "label": "使用条款",
+            "href": "terms.html",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          },
+          {
+            "id": "footer-404",
+            "label": "404 页面",
+            "href": "404.html",
+            "createdAt": "2026-11-18T09:30:00+08:00",
+            "updatedAt": "2026-11-18T09:30:00+08:00"
+          }
+        ]
+      }
+    ],
+    "copyright": "© 2024–2026 Tank37135. 保留所有权利。",
+    "note": "由 Tank37135 手工构建。",
+    "server": "mc.tank37135.cn"
+  },
+  "copy": {
+    "common.skip": "跳到主要内容",
+    "common.mainNav": "主导航",
+    "common.mobileNav": "移动端导航",
+    "common.footerNav": "页脚导航",
+    "common.openMenu": "打开导航菜单",
+    "common.closeMenu": "关闭导航菜单",
+    "common.themeLight": "切换到浅色模式",
+    "common.themeDark": "切换到深色模式",
+    "common.loading": "正在加载内容",
+    "common.errorTitle": "内容没能加载",
+    "common.errorBody": "请检查网络连接，或确认站点是通过本地服务器打开的。",
+    "common.retry": "重新加载",
+    "common.empty": "这里还是空的",
+    "common.external": "在新标签页打开",
+    "common.copy": "复制",
+    "common.copied": "已复制到剪贴板",
+    "common.backHome": "回到首页",
+    "common.viewAll": "查看全部",
+    "common.readMore": "阅读全文",
+    "common.minRead": "分钟阅读",
+    "common.published": "发布于",
+    "common.updated": "最后修改",
+    "common.tags": "标签",
+    "common.filters": "筛选",
+    "common.status": "状态",
+    "common.localOnly": "在本地浏览器中运行",
+    "common.notFound": "没有找到这个页面",
+    "common.year": "年份",
+    "common.home": "首页",
+    "common.menuTitle": "导航",
+    "common.copyServer": "复制服务器地址",
+    "common.copyFailed": "复制失败，请手动选择地址",
+    "home.hero.title": "Web 开发者，\nMinecraft 服主。",
+    "home.hero.subtitle": "我是 Tank37135。做网站和浏览器工具，也维护一台自建的 Minecraft 生存服务器。",
+    "home.hero.cta": "查看作品",
+    "home.hero.ctaNote": "看看工具",
+    "home.hero.proof": "3 个站点在运行 · 2 个浏览器工具 · 1 台自建服务器",
+    "home.works.title": "最近在做的作品",
+    "home.works.subtitle": "从 Minecraft 社区站点到 3D 渲染，每个项目都尽量做到能长期维护。",
+    "home.works.cta": "全部作品",
+    "home.tools.title": "在浏览器里就能用的工具",
+    "home.tools.subtitle": "不需要安装，也不需要上传文件。所有处理都在你的设备上完成。",
+    "home.tools.cta": "打开工具页",
+    "home.tagline": "让潮汐继续回响，\n让代码继续生长。",
+    "home.taglineLabel": "一句话",
+    "home.about.title": "一边搭建，一边学习",
+    "home.about.body": [
+      "我是 Tank37135，喜欢把复杂的东西拆开，再用自己的方式装回去。写代码之外，我会做 3D、剪视频，也会维护一个小小的 Minecraft 服务器。",
+      "这个网站是我的长期工程：内容放在 JSON 里，样式和脚本各自只有一个入口，方便慢慢生长。"
+    ],
+    "home.skills.title": "常用技术",
+    "home.posts.title": "最近写下的东西",
+    "home.posts.subtitle": "关于工程化、浏览器 API，以及那些折腾过的服务器。",
+    "home.posts.cta": "全部文章",
+    "home.cta.title": "看完了简介，\n不如看看实际的作品。",
+    "home.cta.body": "作品集里有完整的项目清单，也可以从两个浏览器工具开始。",
+    "works.title": "作品",
+    "works.intro": "一些已经上线或长期维护的项目。每个条目都记录了类型、年份和用到的技术。",
+    "works.filter.all": "全部",
+    "works.filter.web": "Web",
+    "works.filter.minecraft": "Minecraft",
+    "works.filter.3d": "3D",
+    "works.empty": "这个分类下暂时没有作品。",
+    "works.countUnit": "个作品",
+    "works.open": "打开项目",
+    "works.overview": "项目简介",
+    "works.practice": "练习作品",
+    "tools.title": "工具",
+    "tools.intro": "两个在浏览器里直接运行的小工具。它们不会把内容发送到任何服务器。",
+    "tools.privacy": "所有录制与音频分析都在本地完成。关闭页面后，数据不会被保留。",
+    "tools.open": "打开工具",
+    "tools.status.online": "可以使用",
+    "blog.title": "博客",
+    "blog.intro": "关于工程化、浏览器 API 和长期项目的记录。",
+    "blog.empty": "还没有文章。先去作品集看看吧。",
+    "blog.read": "阅读",
+    "blog.back": "返回博客",
+    "blog.notFound": "没有找到这篇文章。它可能已经被移动或删除。",
+    "blog.prev": "上一篇",
+    "blog.next": "下一篇",
+    "about.title": "关于我",
+    "about.intro": "一名还在学习如何把东西做好的人。",
+    "about.body": [
+      "我是 Tank37135，主要写 C++、Java 和 JavaScript。比起追新，我更喜欢把一个东西维护得久一点：加一点功能，修几个问题，然后让它继续运行。",
+      "除了代码，我也做视觉设计、3D 渲染和视频剪辑。这些爱好最后都会回到网站上，变成封面、图标或者一段动效。",
+      "如果你也在做长期项目，欢迎从潮汐回响或者 TK重工找到我。"
+    ],
+    "about.now.title": "现在在做什么",
+    "about.now.items": [
+      {
+        "id": "now-tidal",
+        "title": "维护潮汐回响",
+        "text": "一台自建 Minecraft 生存服务器，负责硬件、规则和日常运营。",
+        "createdAt": "2026-08-01T20:00:00+08:00",
+        "updatedAt": "2026-11-18T09:30:00+08:00"
+      },
+      {
+        "id": "now-site",
+        "title": "重写个人站",
+        "text": "把内容迁移到 JSON，统一样式与脚本入口，方便长期维护。",
+        "createdAt": "2026-11-18T09:30:00+08:00",
+        "updatedAt": "2026-11-18T09:30:00+08:00"
+      },
+      {
+        "id": "now-3d",
+        "title": "练习 3D 与视频",
+        "text": "用 Blender 做材质练习，用 Premiere 和 After Effects 剪片。",
+        "createdAt": "2026-10-19T00:00:00+08:00",
+        "updatedAt": "2026-11-18T09:30:00+08:00"
+      }
+    ],
+    "about.skills.title": "技术与工具",
+    "about.contact.title": "找到我",
+    "about.contact.body": "我常出现在潮汐回响的社区里。想留言的话，可以从服务器页面进入。",
+    "about.contact.cta": "前往潮汐回响",
+    "privacy.title": "隐私说明",
+    "privacy.intro": "这份说明解释这个网站在你浏览时如何处理数据。",
+    "privacy.updated": "最后更新",
+    "privacy.sections": [
+      {
+        "id": "privacy-collect",
+        "title": "这个网站不收集什么",
+        "paragraphs": [
+          "没有统计脚本，没有广告，也没有第三方追踪。页面只在本地保存一项偏好：你选择的明暗主题。",
+          "这项偏好保存在浏览器的 localStorage 里，不会发送到任何服务器。清除站点数据即可删除。"
+        ]
+      },
+      {
+        "id": "privacy-tools",
+        "title": "工具页的数据",
+        "paragraphs": [
+          "屏幕录制和声波探测都在浏览器里运行。录制文件保存在内存中，只有你点击下载时才会写入磁盘；麦克风音频不会被上传或保存。",
+          "工具页不会申请与功能无关的权限，也不会在后台继续录制。"
+        ]
+      },
+      {
+        "id": "privacy-links",
+        "title": "外部链接",
+        "paragraphs": [
+          "站点会链接到潮汐回响、TK重工等子项目。离开本站后，请参考对应站点的说明。"
+        ]
+      },
+      {
+        "id": "privacy-contact",
+        "title": "联系",
+        "paragraphs": [
+          "如果对数据处理有疑问，可以在潮汐回响的社区里找到我。"
+        ]
+      }
+    ],
+    "terms.title": "使用条款",
+    "terms.intro": "使用本站即表示你同意以下约定。",
+    "terms.updated": "最后更新",
+    "terms.sections": [
+      {
+        "id": "terms-content",
+        "title": "内容",
+        "paragraphs": [
+          "本站的文字、图片和代码除非另有说明，均由 Tank37135 创作。转载前请先取得许可。",
+          "子项目中的玩家内容归各自作者所有。"
+        ]
+      },
+      {
+        "id": "terms-tools",
+        "title": "工具",
+        "paragraphs": [
+          "屏幕录制与声波探测按现状提供。请在使用前确认你拥有录制内容的权利，并遵守当地法律。",
+          "工具不提供任何形式的担保。因使用工具造成的损失，由使用者自行承担。"
+        ]
+      },
+      {
+        "id": "terms-links",
+        "title": "外部链接",
+        "paragraphs": [
+          "本站不对第三方站点的内容或可用性负责。"
+        ]
+      },
+      {
+        "id": "terms-changes",
+        "title": "变更",
+        "paragraphs": [
+          "这些条款可能会随站点更新而调整，最后修改时间会显示在页面底部。"
+        ]
+      }
+    ],
+    "error.code": "404",
+    "error.title": "这片潮水暂时退去了",
+    "error.body": "你访问的页面不存在，或者已经被移动。可以回到首页，或者去作品集逛逛。",
+    "error.hint": "错误代码：404_PAGE_NOT_FOUND",
+    "error.home": "回到首页",
+    "error.works": "查看作品",
+    "home.about.mapTitle": "我维护的东西",
+    "works.listTitle": "作品列表",
+    "tools.listTitle": "工具列表",
+    "blog.listTitle": "文章列表",
+    "home.taglineAsideLabel": "近期更新",
+    "home.taglineAsideCta": "查看归档",
+    "archive.title": "归档",
+    "archive.intro": "网站与服务器的变化记录：改版、硬件、作品和文章。",
+    "archive.listTitle": "归档时间轴",
+    "archive.countUnit": "条记录",
+    "archive.empty": "还没有记录。",
+    "common.backToTop": "回到顶部"
+  },
+  "skills": [
+    {
+      "id": "skill-c",
+      "label": "C",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-cpp",
+      "label": "C++",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-java",
+      "label": "Java",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-python",
+      "label": "Python",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-javascript",
+      "label": "JavaScript",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-html",
+      "label": "HTML5",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-css",
+      "label": "CSS3",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-ue5",
+      "label": "Unreal Engine 5",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-blender",
+      "label": "Blender",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-photoshop",
+      "label": "Photoshop",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-premiere",
+      "label": "Premiere Pro",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-aftereffects",
+      "label": "After Effects",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-linux",
+      "label": "Linux",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "skill-git",
+      "label": "Git",
+      "createdAt": "2026-06-01T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    }
+  ],
+  "pages": {
+    "home": {
+      "id": "page-home",
+      "title": "首页",
+      "seoTitle": "Tank37135 | Web 开发者与 Minecraft 服主",
+      "description": "Tank37135 的个人网站：Web 开发、浏览器工具，以及一台自建的 Minecraft 生存服务器。",
+      "createdAt": "2024-07-08T00:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    "works": {
+      "id": "page-works",
+      "title": "作品",
+      "seoTitle": "作品 | Tank37135",
+      "description": "Tank37135 的作品集：潮汐回响、TK重工、3D 练习与这个网站本身。",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    "tools": {
+      "id": "page-tools",
+      "title": "工具",
+      "seoTitle": "工具 | Tank37135",
+      "description": "在浏览器里直接运行的屏幕录制与声波探测工具，所有处理都在本地完成。",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    "blog": {
+      "id": "page-blog",
+      "title": "博客",
+      "seoTitle": "博客 | Tank37135",
+      "description": "关于工程化、浏览器 API 和长期项目的记录。",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    "about": {
+      "id": "page-about",
+      "title": "关于",
+      "seoTitle": "关于 | Tank37135",
+      "description": "关于 Tank37135：全栈学习者、视觉设计爱好者，以及潮汐回响的维护者。",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    "privacy": {
+      "id": "page-privacy",
+      "title": "隐私说明",
+      "seoTitle": "隐私说明 | Tank37135",
+      "description": "这个网站如何处理浏览数据与工具页的本地数据。",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    "terms": {
+      "id": "page-terms",
+      "title": "使用条款",
+      "seoTitle": "使用条款 | Tank37135",
+      "description": "Tank37135 网站的内容、工具与外部链接约定。",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    "archive": {
+      "id": "page-archive",
+      "title": "归档",
+      "seoTitle": "归档 | Tank37135",
+      "description": "Tank37135 网站与服务器的历史：改版、硬件、作品和文章。",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    }
+  },
+  "projectMap": [
+    {
+      "id": "map-tidal",
+      "title": "潮汐回响",
+      "meta": "生存服务器",
+      "href": "category/tidal-echo/",
+      "createdAt": "2026-08-01T20:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "map-tkhi",
+      "title": "TK重工",
+      "meta": "红石社区",
+      "href": "category/TKHI/",
+      "createdAt": "2026-07-16T10:14:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "map-tools",
+      "title": "浏览器工具",
+      "meta": "本地处理",
+      "href": "category/tools/",
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    }
+  ]
+}

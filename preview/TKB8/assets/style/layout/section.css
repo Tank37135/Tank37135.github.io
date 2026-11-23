@@ -1,0 +1,88 @@
+.section {
+  padding-block: var(--padt) var(--padb);
+}
+
+.section--after-header {
+  padding-top: var(--space-600);
+}
+
+.section__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
+  margin-bottom: var(--space-500);
+}
+
+.section__intro {
+  max-width: var(--measure);
+}
+
+.section__desc {
+  max-width: 62ch;
+  margin-top: var(--space-100);
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+
+.page-header {
+  padding-block: var(--padt) var(--space-500);
+}
+
+.page-header__title {
+  max-width: var(--measure);
+}
+
+.page-header__intro {
+  max-width: 62ch;
+  margin-top: var(--space-300);
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.55;
+}
+
+.label {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+@media (min-width: 768px) {
+  .section__head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-600);
+    margin-bottom: var(--space-600);
+  }
+
+  .page-header {
+    padding-block: var(--padt) var(--space-600);
+  }
+}
+
+/* The home page is a stack of screens: the hero alone on the first, one idea per screen below. */
+@media (min-width: 1024px) {
+  body[data-page="home"] main > .section {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100svh - var(--nav-height));
+    justify-content: flex-start;
+  }
+}

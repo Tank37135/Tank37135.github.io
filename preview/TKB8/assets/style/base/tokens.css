@@ -1,0 +1,112 @@
+:root {
+  /* Typefaces */
+  --font-sans: "Manrope", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Consolas,
+    "Liberation Mono", monospace;
+
+  /* Type scale */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+
+  /* Line heights paired with the scale */
+  --lh-xs: 1.125rem;
+  --lh-sm: 1.25rem;
+  --lh-base: 1.5rem;
+  --lh-lg: 1.75rem;
+  --lh-xl: 1.75rem;
+  --lh-2xl: 2rem;
+  --lh-3xl: 2.25rem;
+  --lh-4xl: 2.5rem;
+  --lh-5xl: 1.1;
+  --lh-6xl: 1.04;
+  --lh-7xl: 1.04;
+  --lh-8xl: 1;
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 500;
+  --weight-bold: 600;
+
+  /* Spacing scale */
+  --space-0: 0;
+  --space-25: 2px;
+  --space-50: 4px;
+  --space-75: 8px;
+  --space-100: 12px;
+  --space-200: 16px;
+  --space-300: 24px;
+  --space-400: 32px;
+  --space-500: 40px;
+  --space-600: 48px;
+  --space-700: 64px;
+  --space-800: 80px;
+  --space-900: 96px;
+  --space-1000: 128px;
+
+  /* Radii */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+
+  /* Layout */
+  --container: 1280px;
+  --measure: 680px;
+  --measure-prose: 720px;
+  --gutter: var(--space-300);
+  --nav-height: 56px;
+  --nav-offset: 0px;
+  --padt: var(--space-900);
+  --padb: var(--space-600);
+  --hgap: var(--space-500);
+  --hpadb: var(--space-600);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --duration-color: 300ms;
+  --duration-move: 500ms;
+  --duration-reveal: 700ms;
+
+  /* Layers */
+  --z-nav: 100;
+  --z-menu: 200;
+  --z-toast: 300;
+  --z-skip: 400;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gutter: var(--space-600);
+    --nav-height: 72px;
+    --padt: var(--space-900);
+    --padb: var(--space-600);
+    --hgap: var(--space-500);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: var(--space-800);
+    --padt: 120px;
+    --padb: 72px;
+    --hgap: var(--space-600);
+    --hpadb: var(--space-700);
+  }
+}

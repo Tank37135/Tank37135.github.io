@@ -1,0 +1,99 @@
+.post-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+}
+
+.post-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-100);
+  padding-block: var(--space-400);
+  border-bottom: 1px solid var(--color-border);
+  color: inherit;
+}
+
+.post-row__date {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.post-row__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-75);
+}
+
+.post-row__title {
+  color: var(--color-heading);
+  font-size: var(--text-2xl);
+  line-height: 1.25;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.02em;
+  transition: color var(--duration-color) var(--ease-out);
+}
+
+.post-row:hover .post-row__title {
+  color: var(--color-brand);
+}
+
+.post-row__excerpt {
+  max-width: 56ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+
+.post-row__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-50);
+  margin-top: var(--space-25);
+}
+
+.post-row__side {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-200);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  font-weight: var(--weight-medium);
+}
+
+.post-row__meta {
+  white-space: nowrap;
+}
+
+.post-row__arrow {
+  transition: color var(--duration-color) var(--ease-out),
+    transform var(--duration-color) var(--ease-out);
+}
+
+.post-row:hover .post-row__arrow {
+  color: var(--color-brand);
+  transform: translate(2px, -2px);
+}
+
+@media (min-width: 900px) {
+  .post-row {
+    grid-template-columns: 140px minmax(0, 1fr) auto;
+    column-gap: var(--space-500);
+    align-items: start;
+    padding-block: var(--space-500);
+  }
+
+  .post-row__date {
+    padding-top: var(--space-50);
+  }
+
+  .post-row__side {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-200);
+  }
+}

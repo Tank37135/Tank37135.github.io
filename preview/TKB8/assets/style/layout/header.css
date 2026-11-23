@@ -1,0 +1,52 @@
+/* ========== 导航 ========== */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem 1.5rem;
+  padding: clamp(0.8rem, 2vw, 1.2rem) 0;
+  margin-bottom: clamp(2rem, 6vw, 4rem);
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-heading);
+}
+.nav__logo {
+  width: clamp(28px, 4vw, 36px);
+  height: auto;
+}
+.nav__menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem clamp(0.8rem, 2vw, 1.5rem);
+  list-style: none;
+}
+.nav__menu a {
+  display: inline-block;
+  padding: 0.35em 0.6em;
+  border-radius: 6px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  transition: color 0.2s, background-color 0.2s;
+}
+.nav__menu a:hover,
+.nav__menu a:focus-visible {
+  color: var(--color-heading);
+  background-color: var(--color-bg-hover);
+  outline: none;
+}
+/* 桌面：brand 左、菜单右（小屏自然换行居中） */
+@media screen and (min-width: 768px) {
+  .nav {
+    flex-wrap: nowrap;
+  }
+  .nav__menu ul {
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,342 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: var(--z-nav);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.scroll-progress {
+  position: fixed;
+  top: var(--nav-height);
+  right: 0;
+  left: 0;
+  z-index: calc(var(--z-nav) + 1);
+  height: 2px;
+  background: var(--brand-gradient);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll(root)) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress {
+      animation: scroll-progress linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes scroll-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.nav__theme .icon {
+  animation: theme-spin 500ms var(--ease-out);
+}
+
+@keyframes theme-spin {
+  from {
+    opacity: 0.35;
+    transform: rotate(-90deg) scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-300);
+  width: min(100% - var(--gutter) * 2, var(--container));
+  min-height: var(--nav-height);
+  margin-inline: auto;
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-100);
+  min-height: 44px;
+  color: var(--color-heading);
+  font-size: var(--text-lg);
+  line-height: 1;
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+}
+
+.nav__logo {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
+}
+
+.nav__links {
+  display: none;
+  align-items: center;
+  gap: var(--space-300);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: var(--space-100);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
+  font-weight: var(--weight-medium);
+  transition: color var(--duration-color) var(--ease-out);
+}
+
+.nav__link::after {
+  position: absolute;
+  right: 0;
+  bottom: var(--space-25);
+  left: 0;
+  height: 2px;
+  background: var(--brand-gradient);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-color) var(--ease-out);
+}
+
+.nav__link:hover,
+.nav__link[aria-current="page"] {
+  color: var(--color-heading);
+}
+
+.nav__link:hover::after,
+.nav__link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.nav__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-75);
+}
+
+.nav .nav__cta {
+  display: none;
+  min-height: 44px;
+  padding-inline: var(--space-300);
+  white-space: nowrap;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--duration-color) var(--ease-out),
+    background-color var(--duration-color) var(--ease-out),
+    transform var(--duration-color) var(--ease-out);
+}
+
+.icon-button:hover {
+  background: var(--color-surface);
+  color: var(--color-heading);
+}
+
+.icon-button:active {
+  transform: scale(0.98);
+}
+
+/* Mobile toggle: the two icons crossfade and rotate. */
+.nav__toggle {
+  position: relative;
+}
+
+.nav__toggle .icon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  transition: opacity var(--duration-color) var(--ease-out),
+    transform var(--duration-move) var(--ease-out);
+}
+
+.nav__toggle .icon--x {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.7);
+}
+
+.nav__toggle[aria-expanded="true"] .icon--menu {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.7);
+}
+
+.nav__toggle[aria-expanded="true"] .icon--x {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+/* Full-height menu sheet */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  /* Mirror the header's insets so the close button lands exactly where the
+     hamburger button was — the same spot toggles the menu open and shut. */
+  padding: calc((var(--nav-height) - 44px) / 2) var(--gutter) var(--space-300);
+  background: var(--color-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--duration-color) var(--ease-out),
+    visibility 0s linear var(--duration-color);
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--duration-color) var(--ease-out),
+    visibility 0s linear 0s;
+}
+
+/* The sheet can scroll when the list outgrows the viewport, but nothing
+   inside it ever shows a scrollbar. */
+.mobile-menu,
+.mobile-menu * {
+  scrollbar-width: none;
+}
+
+.mobile-menu::-webkit-scrollbar,
+.mobile-menu *::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-menu__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-300);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-menu__title {
+  color: var(--color-heading);
+  font-size: var(--text-lg);
+  line-height: var(--lh-lg);
+  font-weight: var(--weight-medium);
+}
+
+.mobile-menu__nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  /* The negative margin + padding keep items visually edge-to-edge while
+     giving hover growth and focus rings room; without it they overflow the
+     scrollport and conjure a horizontal scrollbar on hover. */
+  padding-inline: 6px;
+  margin-inline: -6px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.mobile-menu__links {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: var(--space-500);
+}
+
+.mobile-menu__link {
+  display: block;
+  padding-block: var(--space-200);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-heading);
+  font-size: var(--text-3xl);
+  line-height: 1.15;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.02em;
+  opacity: 0;
+  transform: translateY(var(--space-300));
+  transition: opacity var(--duration-color) var(--ease-out),
+    transform var(--duration-move) var(--ease-out);
+  transition-delay: 0ms;
+}
+
+.mobile-menu.is-open .mobile-menu__link {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+
+.mobile-menu__link:last-child {
+  border-bottom: 0;
+}
+
+.mobile-menu__link[aria-current="page"] {
+  color: var(--color-brand);
+}
+
+.mobile-menu__cta {
+  margin-top: var(--space-300);
+}
+
+@media (min-width: 640px) {
+  .mobile-menu__cta {
+    display: none;
+  }
+}
+
+.mobile-menu__foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-75);
+  padding-top: var(--space-300);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--lh-sm);
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .nav__brand {
+    font-size: var(--text-xl);
+  }
+
+  .nav .nav__cta {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav__links {
+    display: flex;
+  }
+
+  .nav__toggle {
+    display: none;
+  }
+}

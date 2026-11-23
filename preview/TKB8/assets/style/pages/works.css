@@ -1,0 +1,208 @@
+.works-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-600) var(--space-400);
+}
+
+.work-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-200);
+  color: inherit;
+  transition: transform var(--duration-move) var(--ease-out);
+}
+
+.work-tile:hover {
+  transform: translateY(-2px);
+}
+
+.work-tile.is-filtered-in {
+  animation: work-filter-in 480ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 50ms);
+}
+
+@keyframes work-filter-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-tile.is-filtered-in {
+    animation: none;
+  }
+}
+
+.work-tile--static:hover {
+  transform: none;
+}
+
+.work-tile__media {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  aspect-ratio: 16 / 10;
+}
+
+.work-tile__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out);
+}
+
+.work-tile:hover .work-tile__media img {
+  transform: scale(1.03);
+}
+
+.work-tile__media--type {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-300);
+  background: var(--cover-bg);
+}
+
+.work-tile__index {
+  color: var(--cover-ink);
+  font-size: var(--text-8xl);
+  line-height: 0.9;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.06em;
+}
+
+.work-tile__type {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-200);
+  color: var(--cover-meta);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  font-weight: var(--weight-medium);
+}
+
+.work-tile__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-75);
+}
+
+.work-tile__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-100);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  font-weight: var(--weight-medium);
+}
+
+.work-tile__title {
+  color: var(--color-heading);
+  font-size: var(--text-2xl);
+  line-height: 1.25;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.02em;
+  transition: color var(--duration-color) var(--ease-out);
+}
+
+.work-tile:hover .work-tile__title {
+  color: var(--color-brand);
+}
+
+.work-tile__text {
+  max-width: 42ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+
+.work-tile__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-200);
+  margin-top: var(--space-75);
+}
+
+.work-tile__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-50);
+}
+
+.work-tile__arrow {
+  color: var(--color-text-muted);
+  transition: color var(--duration-color) var(--ease-out),
+    transform var(--duration-color) var(--ease-out);
+}
+
+.work-tile:hover .work-tile__arrow {
+  color: var(--color-brand);
+  transform: translate(2px, -2px);
+}
+
+.work-tile--static {
+  cursor: default;
+}
+
+.work-tile--static:hover .work-tile__title {
+  color: var(--color-heading);
+}
+
+.work-tile--static:hover .work-tile__arrow {
+  color: var(--color-text-muted);
+  transform: none;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-200);
+  padding: var(--space-600);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-2xl);
+  background: var(--color-surface);
+}
+
+.empty-state__title {
+  color: var(--color-heading);
+  font-size: var(--text-lg);
+  line-height: 1.3;
+  font-weight: var(--weight-medium);
+}
+
+.empty-state__text {
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+
+@media (min-width: 640px) {
+  .works-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .works-grid--home {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 700px) {
+  .works-grid--page {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-700) var(--space-500);
+  }
+}

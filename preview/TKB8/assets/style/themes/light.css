@@ -1,0 +1,99 @@
+/* Light grade: pastel tints on paper, with deeper members of the same four hues for text and actions. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* The client's four theme colours. */
+  --theme-1: #b2e8fb;
+  --theme-2: #b4d8ff;
+  --theme-3: #b0b8ff;
+  --theme-4: #b49cf8;
+
+  --color-bg: #f1f9fe;
+  --color-surface: #e3f0ff;
+  --color-surface-raised: #ffffff;
+
+  --color-text: #121523;
+  --color-text-muted: #4f566b;
+  --color-text-subtle: #5c6478;
+  --color-heading: #0b0a14;
+
+  --color-primary: #5147a6;
+  --color-primary-hover: #6d4cb8;
+  --color-on-primary: #ffffff;
+  --color-brand: #49439b;
+  --color-brand-soft: #e6e3ff;
+
+  --color-border: #c9daea;
+  --color-border-strong: #afc4d8;
+
+  --color-overlay: rgba(241, 249, 254, 0.9);
+  --color-overlay-strong: rgba(241, 249, 254, 0.98);
+  --color-focus: #49439b;
+
+  --color-danger: #a33a30;
+  --color-success: #0e7a98;
+
+  /* Palette application: deep members of the same four hues for contrast on paper. */
+  --hero-gradient: linear-gradient(
+    90deg,
+    #0e7a98 0%,
+    #2f5f9e 34%,
+    #5147a6 67%,
+    #6d4cb8 100%
+  );
+  --brand-gradient: linear-gradient(
+    90deg,
+    #0e7a98,
+    #2f5f9e,
+    #5147a6,
+    #6d4cb8
+  );
+  --theme-gradient: linear-gradient(
+    90deg,
+    #b2e8fb,
+    #b4d8ff,
+    #b0b8ff,
+    #b49cf8
+  );
+
+  --color-tagline-muted: #b8c4d2;
+  --tagline-tone-1: #0e7a98;
+  --tagline-tone-2: #2f5f9e;
+  --tagline-tone-3: #5147a6;
+  --tagline-tone-4: #6d4cb8;
+
+  --dot-1: #0e7a98;
+  --dot-2: #2f5f9e;
+  --dot-3: #5147a6;
+  --dot-4: #6d4cb8;
+
+  --archive-post: #0e7a98;
+  --archive-work: #5147a6;
+  --archive-tool: #2f5f9e;
+
+  --cover-bg: var(--theme-3);
+  --cover-ink: #121523;
+  --cover-meta: #2a2540;
+
+  --chip-brand-bg: var(--theme-3);
+  --chip-brand-ink: #121523;
+
+  --theme-ring-border: rgba(81, 71, 166, 0.55);
+  --theme-ring-fill: rgba(176, 184, 255, 0.1);
+  --theme-ring-glow: rgba(81, 71, 166, 0.28);
+  --theme-ring-inner: rgba(176, 184, 255, 0.2);
+
+  --color-code-bg: #0b0a14;
+  --color-code-text: #f0eff7;
+
+  --shadow-card: none;
+  --shadow-float: 0 18px 40px rgba(11, 10, 20, 0.14);
+
+  /* The closing band stays on the inverse ground. */
+  --closing-bg: #0b0a14;
+  --closing-surface: #141322;
+  --closing-ink: #f0eff7;
+  --closing-muted: #a6a3ba;
+  --closing-line: #2a2838;
+  --closing-accent: var(--theme-1);
+}

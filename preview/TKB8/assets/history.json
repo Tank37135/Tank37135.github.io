@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "id": "history",
+    "title": "站点与服务器历史",
+    "version": 1,
+    "createdAt": "2026-10-12T14:34:32+08:00",
+    "updatedAt": "2026-11-18T12:00:00+08:00"
+  },
+  "items": [
+    {
+      "id": "history-ui-v8",
+      "title": "网站 UI 第 8 版",
+      "summary": "四色主题、全宽导航、真实项目截图、时间轴归档与 Apple 式动效。",
+      "date": "2026-11-18T12:00:00+08:00",
+      "href": "index.html",
+      "createdAt": "2026-11-18T12:00:00+08:00",
+      "updatedAt": "2026-11-18T12:00:00+08:00"
+    },
+    {
+      "id": "history-ui-v7",
+      "title": "网站 UI 第 7 版",
+      "summary": "深色编辑式改版：全宽导航、真实项目截图与四色标语。",
+      "date": "2026-11-18T07:00:00+08:00",
+      "href": null,
+      "createdAt": "2026-11-18T07:00:00+08:00",
+      "updatedAt": "2026-11-18T07:00:00+08:00"
+    },
+    {
+      "id": "history-ui-v6",
+      "title": "网站 UI 第 6 版",
+      "summary": "内容迁移到 assets/ JSON，单入口 CSS 与 JS，工具使用独立资源。",
+      "date": "2026-11-18T00:30:00+08:00",
+      "href": null,
+      "createdAt": "2026-11-18T00:30:00+08:00",
+      "updatedAt": "2026-11-18T00:30:00+08:00"
+    },
+    {
+      "id": "history-tidal-hardware",
+      "title": "潮汐回响硬件更新",
+      "summary": "E3 1220L V2、4GB DDR3 ×2、500GB WD Blue，满载 20 人。",
+      "date": "2026-11-17T18:00:00+08:00",
+      "href": "category/tidal-echo/",
+      "createdAt": "2026-11-17T18:00:00+08:00",
+      "updatedAt": "2026-11-17T18:00:00+08:00"
+    },
+    {
+      "id": "history-home-revision",
+      "title": "首页修改",
+      "summary": "首页版式调整。",
+      "date": "2026-10-23T00:01:29+08:00",
+      "href": null,
+      "createdAt": "2026-10-23T00:01:29+08:00",
+      "updatedAt": "2026-10-23T00:01:29+08:00"
+    },
+    {
+      "id": "history-home-skeleton",
+      "title": "首页基本骨架",
+      "summary": "首页结构、导航与基础版式。",
+      "date": "2026-10-16T10:52:05+08:00",
+      "href": null,
+      "createdAt": "2026-10-16T10:52:05+08:00",
+      "updatedAt": "2026-10-16T10:52:05+08:00"
+    },
+    {
+      "id": "history-404",
+      "title": "404 页面",
+      "summary": "站点自定义 404 页面。",
+      "date": "2026-10-12T16:00:48+08:00",
+      "href": "404.html",
+      "createdAt": "2026-10-12T16:00:48+08:00",
+      "updatedAt": "2026-10-12T16:00:48+08:00"
+    },
+    {
+      "id": "history-architecture",
+      "title": "基本架构搭建",
+      "summary": "个人站的第一次提交：首页、分类与基础样式。",
+      "date": "2026-10-12T14:34:32+08:00",
+      "href": null,
+      "createdAt": "2026-10-12T14:34:32+08:00",
+      "updatedAt": "2026-10-12T14:34:32+08:00"
+    }
+  ]
+}

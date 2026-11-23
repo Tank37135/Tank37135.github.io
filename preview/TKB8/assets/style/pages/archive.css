@@ -1,0 +1,209 @@
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 156px;
+  width: 1px;
+  background: var(--color-border);
+  content: "";
+  transform-origin: top center;
+}
+
+.timeline__item {
+  display: grid;
+  grid-template-columns: 120px 24px minmax(0, 1fr);
+  column-gap: var(--space-300);
+  padding-block: var(--space-400);
+}
+
+.timeline__date {
+  padding-top: var(--space-25);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline__marker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.timeline__dot {
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  margin-top: 5px;
+  border-radius: var(--radius-full);
+  background: var(--dot-1);
+  box-shadow: 0 0 0 4px var(--color-bg);
+}
+
+.timeline__item:nth-child(4n + 2) .timeline__dot {
+  background: var(--dot-2);
+}
+
+.timeline__item:nth-child(4n + 3) .timeline__dot {
+  background: var(--dot-3);
+}
+
+.timeline__item:nth-child(4n + 4) .timeline__dot {
+  background: var(--dot-4);
+}
+
+.timeline__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-75);
+  max-width: 62ch;
+}
+
+.timeline__title {
+  color: var(--color-heading);
+  font-size: var(--text-2xl);
+  line-height: 1.25;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.02em;
+}
+
+.timeline__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-75);
+  color: inherit;
+  transition: color var(--duration-color) var(--ease-out);
+}
+
+.timeline__link:hover {
+  color: var(--color-brand);
+}
+
+.timeline__arrow {
+  color: var(--color-text-muted);
+  transition: color var(--duration-color) var(--ease-out),
+    transform var(--duration-color) var(--ease-out);
+}
+
+.timeline__link:hover .timeline__arrow {
+  color: var(--color-brand);
+  transform: translate(2px, -2px);
+}
+
+.timeline__summary {
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+
+.timeline__empty {
+  padding-block: var(--space-600);
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+
+.timeline__item--skeleton .timeline__date {
+  height: 14px;
+}
+
+.timeline__dot--skeleton {
+  background: var(--color-border);
+  box-shadow: 0 0 0 4px var(--color-bg);
+  animation: skeleton-pulse 1.6s var(--ease-out) infinite;
+}
+
+/* Apple-style: the line draws and each entry settles as it enters the viewport. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .timeline::before {
+      animation: timeline-line linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    .timeline__item {
+      animation: timeline-item var(--ease-out) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@keyframes timeline-line {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes timeline-item {
+  from {
+    transform: translateY(var(--space-200));
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@media (max-width: 699px) {
+  .timeline::before {
+    left: 11px;
+  }
+
+  .timeline__item {
+    grid-template-columns: 24px minmax(0, 1fr);
+    column-gap: var(--space-200);
+    padding-block: var(--space-300);
+  }
+
+  .timeline__date {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  .timeline__marker {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .timeline__body {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .timeline__title {
+    font-size: var(--text-xl);
+  }
+
+  .timeline__dot {
+    margin-top: var(--space-50);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline::before,
+  .timeline__item {
+    animation: none;
+  }
+
+  .timeline__dot--skeleton {
+    animation: none;
+  }
+}

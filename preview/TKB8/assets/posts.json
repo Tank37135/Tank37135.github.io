@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "id": "posts",
+    "title": "文章数据",
+    "version": 1,
+    "createdAt": "2026-11-18T09:30:00+08:00",
+    "updatedAt": "2026-11-18T09:30:00+08:00"
+  },
+  "items": [
+    {
+      "id": "post-json-driven-site",
+      "slug": "json-driven-static-site",
+      "title": "把站点做成数据：一次 JSON 驱动的重构",
+      "excerpt": "为什么我把所有文案、作品和工具都挪进 JSON，并且只保留一个 CSS 入口和一个 JS 入口。",
+      "tags": ["工程化", "静态站点"],
+      "publishedAt": "2026-11-18T09:00:00+08:00",
+      "readingTime": 6,
+      "body": [
+        {
+          "type": "p",
+          "text": "这次重构的起点很简单：页面越来越多，文案散落在 HTML 里，改一句话要翻好几个文件。"
+        },
+        {
+          "type": "h2",
+          "text": "一个入口，两个文件"
+        },
+        {
+          "type": "p",
+          "text": "所有页面只引入 assets/main.css 和 assets/main.js。main.css 通过 @import 把基础样式、布局、组件和页面样式串起来；main.js 负责加载数据、渲染导航和页脚，再按页面类型挂载对应的模块。"
+        },
+        {
+          "type": "p",
+          "text": "这样做的好处不是少写几行代码，而是修改路径变短了。换主题色只改 tokens，改导航只改一处，加页面只需要新增一个渲染模块。"
+        },
+        {
+          "type": "h2",
+          "text": "内容放在 JSON 里"
+        },
+        {
+          "type": "p",
+          "text": "根目录下的 content.json、works.json、tools.json 和 posts.json 分别保存站点文案、作品、工具和文章。每条记录都有 id、标题、创建时间和最后修改时间，方便以后做后台或者迁移。"
+        },
+        {
+          "type": "p",
+          "text": "代价是首屏要等一次 fetch。为了不让页面空白，加载时先显示与真实布局一致的骨架屏；失败时给出具体的错误信息和重试按钮。"
+        },
+        {
+          "type": "quote",
+          "text": "工程化不是把简单的东西复杂化，而是让下一次修改更容易。"
+        },
+        {
+          "type": "h2",
+          "text": "还没有做完的部分"
+        },
+        {
+          "type": "p",
+          "text": "现在数据是手工维护的 JSON，下一步可能会加一个本地编辑器，或者用构建脚本在发布前校验字段。"
+        },
+        {
+          "type": "p",
+          "text": "如果你也在维护一个长期的小站，可以试试把内容抽出来。它不会让网站变快，但会让它活得更久。"
+        }
+      ],
+      "createdAt": "2026-11-18T09:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "post-media-recorder",
+      "slug": "media-recorder-screen-capture",
+      "title": "用 MediaRecorder 在浏览器里录屏",
+      "excerpt": "getDisplayMedia 加上 MediaRecorder，足够做一个不上传文件的小型录屏工具。",
+      "tags": ["Web API", "工具"],
+      "publishedAt": "2026-11-17T21:30:00+08:00",
+      "readingTime": 5,
+      "body": [
+        {
+          "type": "p",
+          "text": "浏览器原生的录屏能力由两部分组成：getDisplayMedia 拿到屏幕流，MediaRecorder 把流编码成文件。"
+        },
+        {
+          "type": "h2",
+          "text": "拿到屏幕流"
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "const stream = await navigator.mediaDevices.getDisplayMedia({\n  video: { frameRate: 30 },\n  audio: true\n});"
+        },
+        {
+          "type": "p",
+          "text": "浏览器会弹出选择器，让用户决定共享整个屏幕、某个窗口还是某个标签页。用户随时可以点停止共享，所以必须监听视频轨道的 ended 事件。"
+        },
+        {
+          "type": "h2",
+          "text": "混合麦克风"
+        },
+        {
+          "type": "p",
+          "text": "如果同时需要系统声音和麦克风，可以先用 AudioContext 把两路音频汇到一个 MediaStreamDestination，再把它的音轨和屏幕视频轨组合成新的流。"
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "const ctx = new AudioContext();\nconst dest = ctx.createMediaStreamDestination();\nctx.createMediaStreamSource(displayStream).connect(dest);\nctx.createMediaStreamSource(micStream).connect(dest);\n\nconst mixed = new MediaStream([\n  ...displayStream.getVideoTracks(),\n  ...dest.stream.getAudioTracks()\n]);"
+        },
+        {
+          "type": "h2",
+          "text": "编码与下载"
+        },
+        {
+          "type": "p",
+          "text": "MediaRecorder 支持的具体格式因浏览器而异。先用 isTypeSupported 挑一个可用的 MIME 类型，录制结束后把分片拼成 Blob，生成下载链接。"
+        },
+        {
+          "type": "p",
+          "text": "我的工具页把整个流程放在本地，文件不会离开浏览器。这也是做这类工具最舒服的地方：没有后端，就没有上传和存储的问题。"
+        },
+        {
+          "type": "quote",
+          "text": "先检查能力，再申请权限，最后才启动录制。顺序错了，错误提示就会变得很难解释。"
+        }
+      ],
+      "createdAt": "2026-11-17T21:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    },
+    {
+      "id": "post-old-hardware-server",
+      "slug": "old-hardware-minecraft-server",
+      "title": "旧硬件也能跑 Minecraft 服务器",
+      "excerpt": "一台 E3 1220L V2、4GB 内存的小机器，如何撑起一个二十人的原版生存服。",
+      "tags": ["Minecraft", "运维"],
+      "publishedAt": "2026-11-10T19:00:00+08:00",
+      "readingTime": 7,
+      "body": [
+        {
+          "type": "p",
+          "text": "潮汐回响跑在一台很旧的机器上：E3 1220L V2、两条 4GB DDR3、一块 500GB 的西部数据蓝盘。它不快，但足够稳定。"
+        },
+        {
+          "type": "h2",
+          "text": "先确定边界"
+        },
+        {
+          "type": "p",
+          "text": "满载二十人、原版生存、少量辅助模组，是这台机器能接受的边界。与其追求更多插件，不如先把视距、模拟距离和备份策略调好。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "视距控制在 8 到 10 个区块",
+            "模拟距离不超过 6",
+            "每天固定时间备份存档",
+            "用 systemd 或计划任务保证崩溃后自动重启"
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "备份比优化更重要"
+        },
+        {
+          "type": "p",
+          "text": "旧硬盘的故障率不低。与其花时间榨性能，不如把自动备份做扎实：本地一份、异机一份，保留最近七天的版本。"
+        },
+        {
+          "type": "h2",
+          "text": "什么时候该升级"
+        },
+        {
+          "type": "p",
+          "text": "当 TPS 长期低于 18，或者内存频繁触发 GC，就该考虑升级了。先加内存，再换 CPU，最后才是硬盘。"
+        },
+        {
+          "type": "p",
+          "text": "这台机器的意义不是性能，而是让一个小社区有一个固定的地方。硬件会老，存档和人的记忆不会。"
+        }
+      ],
+      "createdAt": "2026-11-10T19:00:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    }
+  ]
+}

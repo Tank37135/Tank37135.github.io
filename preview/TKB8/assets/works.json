@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "id": "works",
+    "title": "作品数据",
+    "version": 1,
+    "createdAt": "2026-11-18T09:30:00+08:00",
+    "updatedAt": "2026-11-18T09:30:00+08:00"
+  },
+  "items": [
+    {
+      "id": "work-tidal-echo",
+      "title": "潮汐回响",
+      "category": [
+        "web",
+        "minecraft"
+      ],
+      "categoryLabel": "Web · Minecraft",
+      "summary": "一个 Minecraft 原版生存服务器的完整社区站点。",
+      "description": "从服务器规则、运营记录、封禁查询到归档，所有页面围绕一个小型 SMP 社区的实际需要组织。",
+      "year": "2026",
+      "tags": [
+        "Minecraft",
+        "静态站点",
+        "社区运营"
+      ],
+      "href": "category/tidal-echo/",
+      "image": "assets/img/works/tidal-echo.jpg",
+      "imageAlt": "潮汐回响站点首页，浅蓝波浪背景与服务器名称",
+      "featured": true,
+      "order": 1,
+      "createdAt": "2026-08-01T20:00:00+08:00",
+      "updatedAt": "2026-11-17T18:00:00+08:00"
+    },
+    {
+      "id": "work-tkhi",
+      "title": "TK重工",
+      "category": [
+        "web",
+        "minecraft"
+      ],
+      "categoryLabel": "Web · Minecraft",
+      "summary": "红石科技与物资交易公社的社区主页。",
+      "description": "展示红石机器设计、建筑作品和可下载的资源，服务一个长期运行的红石玩家社群。",
+      "year": "2026",
+      "tags": [
+        "Minecraft",
+        "红石",
+        "社区"
+      ],
+      "href": "category/TKHI/",
+      "image": "assets/img/works/tkhi.jpg",
+      "imageAlt": "TK重工站点首页，蓝色标志与红石科技公社标题",
+      "featured": true,
+      "order": 2,
+      "createdAt": "2026-07-16T10:14:00+08:00",
+      "updatedAt": "2026-11-10T20:00:00+08:00"
+    },
+    {
+      "id": "work-pearl-earring",
+      "title": "戴珍珠耳环的少女",
+      "category": [
+        "3d"
+      ],
+      "categoryLabel": "3D · Blender",
+      "summary": "用 Blender 复刻的一次 3D 练习。",
+      "description": "新手阶段的临摹作品，重点练习布料、皮肤与珍珠材质的还原。",
+      "year": "2026",
+      "tags": [
+        "Blender",
+        "3D",
+        "练习"
+      ],
+      "href": null,
+      "image": null,
+      "imageAlt": null,
+      "featured": true,
+      "order": 3,
+      "createdAt": "2026-10-19T00:00:00+08:00",
+      "updatedAt": "2026-10-19T00:00:00+08:00"
+    },
+    {
+      "id": "work-personal-site",
+      "title": "Tank37135 个人站",
+      "category": [
+        "web"
+      ],
+      "categoryLabel": "Web · 本站",
+      "summary": "以 JSON 为内容源、单入口 CSS 与 JS 的静态个人站。",
+      "description": "所有文案、作品、工具和文章都保存在根目录的 JSON 文件里，页面只引入一个样式入口和一个脚本入口。",
+      "year": "2026",
+      "tags": [
+        "静态站点",
+        "JSON",
+        "工程化"
+      ],
+      "href": "index.html",
+      "image": "assets/img/works/personal-site.jpg",
+      "imageAlt": "Tank37135 个人站首页，深色背景与声波探测工具截图",
+      "featured": false,
+      "order": 4,
+      "createdAt": "2026-11-18T09:30:00+08:00",
+      "updatedAt": "2026-11-18T09:30:00+08:00"
+    }
+  ]
+}
