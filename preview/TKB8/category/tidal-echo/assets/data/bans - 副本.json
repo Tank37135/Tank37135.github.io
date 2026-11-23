@@ -1,0 +1,92 @@
+{
+  "records": [
+    {
+      "id": "ban-demo-001",
+      "playerId": "Demo_Steve",
+      "bannedAt": "2026-10-21T20:15:00+08:00",
+      "unbanAt": null,
+      "status": "active",
+      "banTypes": ["login_restriction", "inventory_clear"],
+      "unbanType": null,
+      "reason": "使用外部辅助程序破坏生存公平性",
+      "operator": "Tank37135"
+    },
+    {
+      "id": "ban-demo-002",
+      "playerId": "Demo_Alex",
+      "bannedAt": "2026-10-18T10:30:00+08:00",
+      "unbanAt": "2026-11-17T10:30:00+08:00",
+      "status": "active",
+      "banTypes": ["login_restriction"],
+      "unbanType": null,
+      "reason": "恶意破坏公共设施",
+      "operator": "Tank37135"
+    },
+    {
+      "id": "ban-demo-003",
+      "playerId": "Demo_Builder",
+      "bannedAt": "2026-10-12T18:40:00+08:00",
+      "unbanAt": "2026-10-15T18:40:00+08:00",
+      "status": "lifted",
+      "banTypes": ["warning"],
+      "unbanType": "appeal_success",
+      "reason": "公共频道争执并发布攻击性言论",
+      "operator": "Tank37135"
+    },
+    {
+      "id": "ban-demo-004",
+      "playerId": "Demo_Redstone",
+      "bannedAt": "2026-10-05T09:20:00+08:00",
+      "unbanAt": "2026-10-06T09:20:00+08:00",
+      "status": "lifted",
+      "banTypes": ["inventory_clear", "warning"],
+      "unbanType": "time_reached",
+      "reason": "利用红石漏洞刷取物品",
+      "operator": "Tank37135"
+    },
+    {
+      "id": "ban-demo-005",
+      "playerId": "Demo_Explorer",
+      "bannedAt": "2026-09-29T21:05:00+08:00",
+      "unbanAt": null,
+      "status": "active",
+      "banTypes": ["login_restriction"],
+      "unbanType": null,
+      "reason": "持续使用自动挖矿脚本",
+      "operator": "Tank37135"
+    },
+    {
+      "id": "ban-demo-006",
+      "playerId": "Demo_Creeper",
+      "bannedAt": "2026-09-20T14:10:00+08:00",
+      "unbanAt": "2026-09-21T20:00:00+08:00",
+      "status": "lifted",
+      "banTypes": ["warning"],
+      "unbanType": "appeal_success",
+      "reason": "偷窃他人物品且拒绝归还",
+      "operator": "Tank37135"
+    },
+    {
+      "id": "ban-demo-007",
+      "playerId": "Demo_River",
+      "bannedAt": "2026-09-12T16:25:00+08:00",
+      "unbanAt": "2026-12-12T16:25:00+08:00",
+      "status": "active",
+      "banTypes": ["login_restriction"],
+      "unbanType": null,
+      "reason": "恶意刷屏并骚扰其他玩家",
+      "operator": "Tank37135"
+    },
+    {
+      "id": "ban-demo-008",
+      "playerId": "Demo_Moss",
+      "bannedAt": "2026-08-30T11:00:00+08:00",
+      "unbanAt": "2026-09-02T11:00:00+08:00",
+      "status": "lifted",
+      "banTypes": ["login_restriction"],
+      "unbanType": "time_reached",
+      "reason": "多次无视公共区域建造规范",
+      "operator": "Tank37135"
+    }
+  ]
+}

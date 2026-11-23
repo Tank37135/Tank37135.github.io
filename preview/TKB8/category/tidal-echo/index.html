@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>潮汐回响服务器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/shared.css">
+    <link rel="stylesheet" href="assets/css/pages/home.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        <i class="fas fa-check-circle" aria-hidden="true"></i>
+        <span id="toastMsg">已复制服务器地址</span>
+    </div>
+
+    <header class="site-header" id="siteHeader">
+        <div class="container site-header__inner">
+            <a class="site-brand" href="./">潮汐回响</a>
+            <nav class="site-nav" aria-label="主导航">
+                <ul>
+                    <li><a href="./" aria-current="page">首页</a></li>
+                    <li><a href="rules/">规则</a></li>
+                    <li><a href="operations/">运营</a></li>
+                    <li><a href="bans/">封禁</a></li>
+                    <li><a href="archive/">归档</a></li>
+                </ul>
+            </nav>
+            <div class="site-actions">
+                <button class="ip-copy" type="button" data-copy-ip aria-label="复制服务器地址 mc.tank37135.cn">
+                    <i class="fas fa-server" aria-hidden="true"></i>
+                    <span>mc.tank37135.cn</span>
+                    <i class="fas fa-copy" aria-hidden="true"></i>
+                </button>
+                <button class="site-menu-toggle" id="siteMenuToggle" type="button"
+                    aria-label="打开导航菜单" aria-expanded="false" aria-controls="siteMenu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="site-mobile-menu" id="siteMenu" aria-hidden="true" hidden>
+        <button class="site-mobile-menu__backdrop" type="button" data-menu-close aria-label="关闭导航菜单"></button>
+        <div class="site-mobile-menu__panel" role="dialog" aria-modal="true" aria-labelledby="siteMenuTitle">
+            <div class="site-mobile-menu__head">
+                <span class="site-mobile-menu__title" id="siteMenuTitle">导航</span>
+                <button class="site-mobile-menu__close" type="button" data-menu-close aria-label="关闭导航菜单">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <nav class="site-mobile-nav" aria-label="移动端主导航">
+                <ul>
+                    <li><a href="./" aria-current="page">首页</a></li>
+                    <li><a href="rules/">规则</a></li>
+                    <li><a href="operations/">运营</a></li>
+                    <li><a href="bans/">封禁</a></li>
+                    <li><a href="archive/">归档</a></li>
+                </ul>
+            </nav>
+            <button class="ip-copy" type="button" data-copy-ip aria-label="复制服务器地址 mc.tank37135.cn">
+                <i class="fas fa-server" aria-hidden="true"></i>
+                <span>mc.tank37135.cn</span>
+                <i class="fas fa-copy" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <main id="main">
+    <section class="banner" id="home">
+        <div class="banner-bg" id="bannerBg">
+            <div class="banner-waves" aria-hidden="true">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+            <div class="banner-glow" aria-hidden="true"></div>
+            <div class="banner-glow" aria-hidden="true"></div>
+        </div>
+        <div class="container banner-content" id="bannerContent">
+            <h1>潮汐回响</h1>
+            <p class="banner-sub">生存 · SMP · 公益服务器</p>
+            <p class="banner-desc">
+                一个温暖而纯粹的 Minecraft 生存服务器，在潮汐的律动中，与朋友们一起建造、冒险、创造，最后留下回响。
+            </p>
+            <div class="banner-actions">
+                <a href="#intro" class="btn btn-primary">
+                    <i class="fas fa-ship" aria-hidden="true"></i> 了解潮汐
+                </a>
+                <a href="#downloads" class="btn btn-outline">
+                    <i class="fas fa-download" aria-hidden="true"></i> 资源下载
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="intro">
+        <div class="container">
+            <div class="divider" id="dividerIntro"></div>
+            <h2 class="section-title">关于潮汐回响</h2>
+            <p class="section-sub">一个以生存与SMP为核心的初创服务器，营造轻松友好的社区氛围。</p>
+            <div class="intro-card" id="introCard">
+                <p>
+                    <span class="highlight">潮汐回响</span> 是一个面向 <span class="highlight">原版生存</span> 的 Minecraft 生存服务器，核心玩法为 <span class="highlight">纯净生存</span> 。我们追求小而美的社区体验，满载人数设定为 <span class="highlight">20 人</span>，由于资金问题，服务器配置不高，但会缓慢升级。
+                </p>
+                <p>
+                    在这里，没有复杂的插件堆砌，没有沉重的经济系统，只有最纯粹的建造、探险与协作。我们欢迎每一位热爱生存的玩家，无论你是建筑党、红石佬，还是初入世界的新手，还是PVP大佬，还是PVP大佬，还是PVP大佬，都能在这片潮汐之地找到属于自己的节奏。
+                </p>
+                <div class="intro-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="20">0</span>
+                        <span class="stat-label">满载人数</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="26.3">0</span>
+                        <span class="stat-label">游戏版本</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" style="font-size:1.8rem;">✦</span>
+                        <span class="stat-label">初级服务器</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" style="font-size:1.6rem;">生存</span>
+                        <span class="stat-label">核心玩法</span>
+                    </div>
+                </div>
+            </div>
+            <div class="notice-stack" aria-label="服务器公告">
+                <!-- <div class="notice notice--info" role="note" aria-labelledby="noticeInfoTitle">
+                    <span class="notice__icon"><i class="fas fa-circle-info" aria-hidden="true"></i></span>
+                    <div class="notice__content">
+                        <h3 class="notice__title" id="noticeInfoTitle">社区公告</h3>
+                        <p>欢迎加入潮汐回响。首次进入服务器前，请先<a href="rules/">阅读玩家规则</a>。</p>
+                    </div>
+                </div> -->
+                <div class="notice notice--warning" role="note" aria-labelledby="noticeWarningTitle">
+                    <span class="notice__icon"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i></span>
+                    <div class="notice__content">
+                        <h3 class="notice__title" id="noticeWarningTitle">分享提醒</h3>
+                        <p>服务器依据内网穿透协议，暂时不对外公开招人，未商量入服的新玩家，追加封号，待隧道迁移后解除</p>
+                    </div>
+                </div>
+                <div class="notice notice--danger" role="note" aria-labelledby="noticeDangerTitle">
+                    <span class="notice__icon"><i class="fas fa-exclamation-circle" aria-hidden="true"></i></span>
+                    <div class="notice__content">
+                        <h3 class="notice__title" id="noticeDangerTitle">安全提醒</h3>
+                        <p>建议各玩家周日至周四的晚上11点30分前断开，方便在这破校园网关闭前保存数据，6点才连上网awa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="server-config">
+        <div class="container">
+            <div class="divider" id="dividerServer"></div>
+            <h2 class="section-title">服务器配置</h2>
+            <p class="section-sub">当前硬件清单。受运营预算限制，配置以稳定运行为主，并会按需逐步升级。</p>
+            <div class="server-config">
+                <div class="server-config__head">
+                    <h3 class="server-config__title">硬件配置</h3>
+                    <p class="server-config__note">以下信息用于说明服务器当前运行环境。</p>
+                </div>
+                <div class="specs-table-wrap">
+                    <table class="specs-table">
+                        <caption>潮汐回响服务器硬件配置</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">配置项</th>
+                                <th scope="col">型号</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">CPU</th><td>E3 1220LV2</td></tr>
+                            <tr><th scope="row">散热器</th><td>青鸟3</td></tr>
+                            <tr><th scope="row">电源</th><td>长城200W</td></tr>
+                            <tr><th scope="row">内存</th><td>威刚4G DDR3*2</td></tr>
+                            <tr><th scope="row">主板</th><td>七彩虹 CF-G6-MX H61</td></tr>
+                            <tr><th scope="row">显卡</th><td>蓝宝石HD6450</td></tr>
+                            <tr><th scope="row">硬盘</th><td>西部数据蓝盘500G</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="features" style="padding-top: 20px;">
+        <div class="container">
+            <div class="divider" id="dividerFeatures"></div>
+            <h2 class="section-title">功能与规则</h2>
+            <p class="section-sub">服务器提供的基础功能与社区守则，让每一位玩家都能安心享受游戏。</p>
+            <div class="feature-grid" id="featureGrid">
+                <div class="feature-item">
+                    <span class="icon"><i class="fas fa-compass" aria-hidden="true"></i></span>
+                    <h3>生存体验</h3>
+                    <p>原汁原味的生存模式，搭配一些辅助mod，保留冒险的纯粹乐趣。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon"><i class="fas fa-handshake" aria-hidden="true"></i></span>
+                    <h3>社区规则</h3>
+                    <p>友善交流，禁止破坏、恶意偷窃与恶意PvP，共同维护和谐环境。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon"><i class="fas fa-clock" aria-hidden="true"></i></span>
+                    <h3>稳定运营</h3>
+                    <p>7×17.5 小时稳定运行，定期备份存档，保障玩家劳动成果。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon"><i class="fas fa-users" aria-hidden="true"></i></span>
+                    <h3>新手引导</h3>
+                    <p>老玩家热心带新，社区内设有问答频道，帮助新手快速融入。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="gallery">
+        <div class="container">
+            <div class="divider" id="dividerGallery"></div>
+            <h2 class="section-title">潮汐掠影</h2>
+            <p class="section-sub">暂时没有画廊呢</p>
+            <!-- <div class="gallery" id="galleryGrid">
+                <div class="gallery-item" data-lightbox>
+                    <button class="image-zoom-trigger" type="button" aria-label="放大查看出生点图片" aria-haspopup="dialog">
+                        <img src="assets/images/img-chushengdian.png" alt="出生点" loading="lazy" />
+                    </button>
+                    <div class="caption">来自qianchuan设计的出生点</div>
+                </div>
+                <div class="gallery-item" data-lightbox>
+                    <button class="image-zoom-trigger" type="button" aria-label="放大查看反应堆图片" aria-haspopup="dialog">
+                        <img src="assets/images/img-fanyingdui.png" alt="反应堆" loading="lazy" />
+                    </button>
+                    <div class="caption">谁遗落的人造太阳</div>
+                </div>
+                <div class="gallery-item" data-lightbox>
+                    <button class="image-zoom-trigger" type="button" aria-label="放大查看飞机图片" aria-haspopup="dialog">
+                        <img src="assets/images/img-feiji.png" alt="飞机" loading="lazy" />
+                    </button>
+                    <div class="caption">将要远航的飞机</div>
+                </div>
+                <div class="gallery-item" data-lightbox>
+                    <button class="image-zoom-trigger" type="button" aria-label="放大查看潜艇图片" aria-haspopup="dialog">
+                        <img src="assets/images/img-qianting.png" alt="潜艇" loading="lazy" />
+                    </button>
+                    <div class="caption">不小心捡到的潜艇</div>
+                </div>
+            </div> -->
+            <p style="text-align:center; margin-top: 24px; color: var(--text-muted); font-size:0.9rem;">
+                <i class="fas fa-camera" style="margin-right:6px;" aria-hidden="true"></i> 更多画廊请关注社区动态
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="downloads">
+        <div class="container">
+            <div class="divider" id="dividerDownloads"></div>
+            <h2 class="section-title">资源下载</h2>
+            <p class="section-sub">推荐的光影、材质包等资源，提升你的潮汐之旅体验。</p>
+            <div class="download-grid" id="downloadGrid">
+                <div class="download-card">
+                    <span class="icon"><i class="fa-brands fa-java" aria-hidden="true"></i></span>
+                    <h4>JAVA</h4>
+                    <p>高版本的JAVA是运行Minecraft的必要条件</p>
+                    <a href="https://www.oracle.com/cn/java/technologies/downloads/" class="btn-sm" role="button" target="_blank" rel="noopener noreferrer">前往</a>
+                </div>
+                <div class="download-card">
+                    <span class="icon"><i class="fas fa-palette" aria-hidden="true"></i></span>
+                    <h4>材质包</h4>
+                    <p>前往BBSMC下载心怡的资源包</p>
+                    <a href="https://bbsmc.net/resourcepacks" class="btn-sm" role="button" target="_blank" rel="noopener noreferrer">前往</a>
+                </div>
+                <div class="download-card">
+                    <span class="icon"><i class="fas fa-sun" aria-hidden="true"></i></span>
+                    <h4>光影</h4>
+                    <p>前往BBSMC下载心怡的光影包</p>
+                    <a href="https://bbsmc.net/shaders" class="btn-sm" role="button" target="_blank" rel="noopener noreferrer">前往</a>
+                </div>
+                <div class="download-card">
+                    <span class="icon"><i class="fas fa-cubes" aria-hidden="true"></i></span>
+                    <h4>辅助模组</h4>
+                    <p>前往Modrinth下载所需的mod</p>
+                    <a href="https://modrinth.com/discover/mods" class="btn-sm" role="button" target="_blank" rel="noopener noreferrer">前往</a>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top: 28px; color: var(--text-muted); font-size:0.9rem;">
+                <i class="fas fa-info-circle" style="color: var(--primary-light);" aria-hidden="true"></i>
+                资源均为社区推荐，请根据自身喜好选用。
+            </p>
+        </div>
+    </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="socials">
+                <a href="#" aria-label="Discord"><i class="fab fa-discord" aria-hidden="true"></i></a>
+                <a href="#" aria-label="B站"><i class="fab fa-bilibili" aria-hidden="true"></i></a>
+                <a href="#" aria-label="QQ群"><i class="fab fa-qq" aria-hidden="true"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+            </div>
+            <div class="footer-info">
+                <span><i class="fas fa-server" aria-hidden="true"></i> mc.tank37135.cn</span>
+                <span><i class="fas fa-users" aria-hidden="true"></i> 20 人满配</span>
+                <span><i class="fas fa-water" aria-hidden="true"></i> 潮汐回响</span>
+            </div>
+            <small>
+                &copy; 2026 潮汐回响 · Tank37135
+            </small>
+        </div>
+    </footer>
+
+    <script src="assets/js/shared.js" defer></script>
+    <script src="assets/js/lightbox.js" defer></script>
+    <script src="assets/js/pages/home.js" defer></script>
+</body>
+</html>

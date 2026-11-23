@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0a14">
+  <script data-theme-boot>
+    (function () {
+      try {
+        var t = localStorage.getItem("tank37135-theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = t;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", t === "light" ? "#f1f9fe" : "#0b0a14");
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html { background: #0b0a14; }
+    html[data-theme="light"] { background: #f1f9fe; }
+  </style>
+  <title>博客 | Tank37135</title>
+  <meta name="description" content="关于工程化、浏览器 API 和长期项目的记录。">
+  <meta name="author" content="Tank37135">
+  <link rel="canonical" href="https://tank37135.com/category/blog/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tank37135">
+  <meta property="og:title" content="博客 | Tank37135">
+  <meta property="og:description" content="关于工程化、浏览器 API 和长期项目的记录。">
+  <meta property="og:url" content="https://tank37135.com/category/blog/">
+  <meta property="og:image" content="https://tank37135.com/assets/img/LOGO/logo-1024x1024.png">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../../assets/img/LOGO/logo-128x128.png">
+  <link rel="stylesheet" href="../../assets/main.css">
+</head>
+
+<body data-page="blog" data-section="blog">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header id="site-header"></header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-header container">
+      <h1 class="heading-1 page-header__title" data-copy="blog.title"></h1>
+      <p class="page-header__intro" data-copy="blog.intro"></p>
+    </section>
+
+    <section class="section section--after-header container" aria-label="文章列表">
+      <h2 class="visually-hidden" data-copy="blog.listTitle"></h2>
+      <div class="post-list" id="blog-list" data-skeleton="post:3" aria-busy="true"></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script type="module" src="../../assets/main.js"></script>
+</body>
+
+</html>

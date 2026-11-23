@@ -1,1 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0a14">
+  <script data-theme-boot>
+    (function () {
+      try {
+        var t = localStorage.getItem("tank37135-theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = t;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", t === "light" ? "#f1f9fe" : "#0b0a14");
+      } catch (e) { }
+    })();
+  </script>
+  <style>
+    html {
+      background: #0b0a14;
+    }
+
+    html[data-theme="light"] {
+      background: #f1f9fe;
+    }
+  </style>
+  <title>Tank37135 | Web 开发者与 Minecraft 服主</title>
+  <meta name="description" content="Tank37135 的个人网站：Web 开发、浏览器工具，以及一台自建的 Minecraft 生存服务器。">
+  <meta name="keywords" content="Tank37135, Web 开发, 浏览器工具, Minecraft, 服务器, 作品集">
+  <meta name="author" content="Tank37135">
+  <link rel="canonical" href="https://tank37135.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tank37135">
+  <meta property="og:title" content="Tank37135 | Web 开发者与 Minecraft 服主">
+  <meta property="og:description" content="Web 开发、浏览器工具，以及一台自建的 Minecraft 生存服务器。">
+  <meta property="og:url" content="https://tank37135.com/">
+  <meta property="og:image" content="https://tank37135.com/assets/img/works/personal-site.jpg">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="900">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/img/LOGO/logo-128x128.png">
+  <link rel="preload" href="assets/fonts/manrope-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/main.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Tank37135",
+      "url": "https://tank37135.com/",
+      "description": "Web 开发者、视觉设计爱好者，潮汐回响与 TK重工的维护者。",
+      "knowsAbout": ["Web 开发", "C++", "Java", "JavaScript", "Minecraft", "Blender"]
+    }
+  </script>
+</head>
+
+<body data-page="home" data-section="home">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header id="site-header"></header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero__content hero-enter">
+        <h1 class="heading-1 hero__title" id="hero-title" data-copy="home.hero.title"></h1>
+        <p class="hero__subtitle" data-copy="home.hero.subtitle"></p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="category/works/" data-copy="home.hero.cta"></a>
+          <a class="link-arrow" href="category/tools/">
+            <span data-copy="home.hero.ctaNote"></span>
+            <span class="icon icon--arrow-right" aria-hidden="true"></span>
+          </a>
+        </div>
+        <p class="hero__proof" data-copy="home.hero.proof"></p>
+      </div>
+
+      <div class="hero__visual">
+        <figure class="app-frame">
+          <div class="app-frame__bar" aria-hidden="true">
+            <span class="app-frame__dot"></span>
+            <span class="app-frame__dot"></span>
+            <span class="app-frame__dot"></span>
+            <span class="app-frame__path">tank37135.com/tools/tone-analyzer/</span>
+          </div>
+          <img class="app-frame__image" src="assets/img/tools/analyzer.jpg" alt="声波探测工具界面，显示实时频谱、音名 G4 与频率读数"
+            width="1280" height="800" loading="eager" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="home-works-title">
+      <div class="section__head">
+        <div class="section__intro">
+          <h2 class="heading-2" id="home-works-title" data-copy="home.works.title"></h2>
+          <p class="section__desc" data-copy="home.works.subtitle"></p>
+        </div>
+        <a class="link-arrow" href="category/works/">
+          <span data-copy="home.works.cta"></span>
+          <span class="icon icon--arrow-right" aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="works-grid works-grid--home" id="home-works" data-skeleton="work:3" aria-busy="true"></div>
+    </section>
+
+    <section class="section container" aria-labelledby="home-tools-title">
+      <div class="section__head">
+        <div class="section__intro">
+          <h2 class="heading-2" id="home-tools-title" data-copy="home.tools.title"></h2>
+          <p class="section__desc" data-copy="home.tools.subtitle"></p>
+        </div>
+        <a class="link-arrow" href="category/tools/">
+          <span data-copy="home.tools.cta"></span>
+          <span class="icon icon--arrow-right" aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="tools-grid" id="home-tools" data-skeleton="tool:2" aria-busy="true"></div>
+    </section>
+
+    <section class="tagline container" aria-labelledby="tagline-title">
+      <div class="tagline__statement">
+        <h2 class="visually-hidden" id="tagline-title" data-copy="home.taglineLabel"></h2>
+        <p class="tagline__text" id="tagline-text" data-copy="home.tagline"></p>
+      </div>
+
+      <aside class="tagline__aside" aria-labelledby="tagline-aside-title">
+        <div class="tagline__aside-head">
+          <p class="tagline__aside-title" id="tagline-aside-title" data-copy="home.taglineAsideLabel"></p>
+          <p class="tagline__aside-meta" id="home-archive-count"></p>
+        </div>
+        <div class="tagline-archive" id="home-archive"></div>
+        <a class="link-arrow" href="archive/">
+          <span data-copy="home.taglineAsideCta"></span>
+          <span class="icon icon--arrow-right" aria-hidden="true"></span>
+        </a>
+      </aside>
+    </section>
+
+    <section class="section container" aria-labelledby="home-about-title">
+      <div class="about-grid">
+        <div>
+          <h2 class="heading-2" id="home-about-title" data-copy="home.about.title"></h2>
+          <div class="about-copy body-3" data-copy-list="home.about.body"></div>
+        </div>
+        <aside class="about-aside">
+          <div class="project-map">
+            <p class="project-map__title" data-copy="home.about.mapTitle"></p>
+            <div class="project-map__list" id="project-map"></div>
+          </div>
+          <div>
+            <p class="about-aside__title" data-copy="home.skills.title"></p>
+            <div class="chip-list" data-list="skills"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="home-posts-title">
+      <div class="section__head">
+        <div class="section__intro">
+          <h2 class="heading-2" id="home-posts-title" data-copy="home.posts.title"></h2>
+          <p class="section__desc" data-copy="home.posts.subtitle"></p>
+        </div>
+        <a class="link-arrow" href="category/blog/">
+          <span data-copy="home.posts.cta"></span>
+          <span class="icon icon--arrow-right" aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="post-list" id="home-posts" data-skeleton="post:3" aria-busy="true"></div>
+    </section>
+  </main>
+
+  <section class="closing">
+    <div class="container closing__inner">
+      <h2 class="heading-2 closing__title" data-copy="home.cta.title"></h2>
+      <p class="closing__text" data-copy="home.cta.body"></p>
+      <div class="closing__actions">
+        <a class="btn btn--primary" href="category/works/" data-copy="home.hero.cta"></a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+  <script type="module" src="assets/main.js"></script>
+</body>
+
+</html>

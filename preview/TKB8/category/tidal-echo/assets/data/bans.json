@@ -1,0 +1,37 @@
+{
+  "records": [
+    {
+      "id": "ban-demo-001",
+      "playerId": "防止有人好奇",
+      "bannedAt": "2026-10-21T20:15:00+08:00",
+      "unbanAt": null,
+      "status": "active",
+      "banTypes": ["login_restriction", "inventory_clear"],
+      "unbanType": null,
+      "reason": "使用外部辅助程序破坏生存公平性并且抢了服主的猪脚饭",
+      "operator": "Tank37135"
+    },
+    {
+      "id": "ban-demo-002",
+      "playerId": "防止有人好奇",
+      "bannedAt": "2026-10-18T10:30:00+08:00",
+      "unbanAt": "2099-11-17T10:30:00+08:00",
+      "status": "active",
+      "banTypes": ["login_restriction"],
+      "unbanType": null,
+      "reason": "恶意破坏公共设施并且偷吃了服主的清蒸大闸蟹",
+      "operator": "Tank37135"
+    },
+    {
+      "id": "ban-demo-003",
+      "playerId": "防止有人好奇",
+      "bannedAt": "2026-10-12T18:40:00+08:00",
+      "unbanAt": "2026-10-12T18:40:00+08:00",
+      "status": "lifted",
+      "banTypes": ["warning"],
+      "unbanType": "appeal_success",
+      "reason": "使用矿透，试图偷吃服主的白米饭",
+      "operator": "Tank37135"
+    }
+  ]
+}

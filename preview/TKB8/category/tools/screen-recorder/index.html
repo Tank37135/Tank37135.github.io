@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0a14">
+  <script data-theme-boot>
+    (function () {
+      try {
+        var t = localStorage.getItem("tank37135-theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = t;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", t === "light" ? "#f1f9fe" : "#0b0a14");
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html { background: #0b0a14; }
+    html[data-theme="light"] { background: #f1f9fe; }
+  </style>
+  <title>屏幕录制 | Tank37135 工具</title>
+  <meta name="description" content="在浏览器里录制屏幕、窗口或标签页，可选麦克风混音，文件直接下载，不经过服务器。">
+  <meta name="author" content="Tank37135">
+  <link rel="canonical" href="https://tank37135.com/category/tools/screen-recorder/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tank37135">
+  <meta property="og:title" content="屏幕录制 | Tank37135 工具">
+  <meta property="og:description" content="在浏览器里录制屏幕、窗口或标签页，文件直接下载，不经过服务器。">
+  <meta property="og:image" content="https://tank37135.com/assets/img/LOGO/logo-1024x1024.png">
+  <link rel="icon" href="../../../favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../../../assets/img/LOGO/logo-128x128.png">
+  <link rel="stylesheet" href="../../../assets/main.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+
+<body data-page="tool" data-static data-section="tools">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header id="site-header"></header>
+
+  <main id="main" tabindex="-1" class="container tool-page">
+    <a class="article__back" href="../">
+      <span class="icon icon--arrow-left" aria-hidden="true"></span>
+      <span>返回工具</span>
+    </a>
+
+    <header class="tool-hero">
+      <h1 class="heading-2">屏幕录制</h1>
+      <p class="tool-lead">录制整个屏幕、某个窗口或浏览器标签页。可以选择混入麦克风，录完直接下载，文件不会上传。</p>
+    </header>
+
+    <section class="recorder card" aria-labelledby="recorder-title">
+      <h2 class="visually-hidden" id="recorder-title">录制控制台</h2>
+
+      <div class="recorder__stage">
+        <video id="preview" class="recorder__preview" autoplay muted playsinline aria-label="屏幕预览"></video>
+        <video id="playback" class="recorder__playback" controls playsinline hidden
+          aria-label="录制结果预览"></video>
+        <div class="recorder__placeholder" id="placeholder">
+          <span class="icon icon--monitor icon--xl" aria-hidden="true"></span>
+          <p>点击「开始录制」，选择要共享的内容。</p>
+        </div>
+        <div class="recorder__badge" id="badge" hidden>
+          <span class="recorder__dot" aria-hidden="true"></span>
+          <span id="badgeText">录制中</span>
+        </div>
+      </div>
+
+      <div class="recorder__panel">
+        <div class="recorder__top">
+          <p class="recorder__status" id="status" role="status" aria-live="polite">准备就绪</p>
+          <p class="recorder__timer" id="timer" aria-label="录制时长">00:00</p>
+        </div>
+
+        <div class="recorder__options">
+          <label class="toggle">
+            <input type="checkbox" id="micToggle" checked>
+            <span class="toggle__track" aria-hidden="true"></span>
+            <span>录制麦克风</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="audioToggle" checked>
+            <span class="toggle__track" aria-hidden="true"></span>
+            <span>录制系统声音</span>
+          </label>
+        </div>
+
+        <div class="recorder__actions">
+          <button class="btn btn--primary" id="startBtn" type="button">
+            <span class="icon icon--play" aria-hidden="true"></span>
+            <span>开始录制</span>
+          </button>
+          <button class="btn btn--secondary" id="pauseBtn" type="button" hidden>
+            <span class="icon icon--pause" aria-hidden="true"></span>
+            <span>暂停</span>
+          </button>
+          <button class="btn btn--danger" id="stopBtn" type="button" hidden>
+            <span class="icon icon--stop" aria-hidden="true"></span>
+            <span>停止</span>
+          </button>
+        </div>
+
+        <div class="recorder__result" id="result" hidden>
+          <div class="recorder__download">
+            <span class="caption-1" id="fileMeta"></span>
+            <a class="btn btn--primary" id="downloadBtn" download>
+              <span class="icon icon--download" aria-hidden="true"></span>
+              <span>下载录像</span>
+            </a>
+          </div>
+        </div>
+
+        <p class="recorder__note">
+          <span class="icon icon--info" aria-hidden="true"></span>
+          <span>所有录制都在本地完成。关闭页面后，未下载的录像不会保留。</span>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script type="module" src="../../../assets/main.js"></script>
+  <script type="module" src="assets/app.js"></script>
+</body>
+
+</html>

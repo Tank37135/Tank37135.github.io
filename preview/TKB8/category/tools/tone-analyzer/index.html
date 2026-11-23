@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0a14">
+  <script data-theme-boot>
+    (function () {
+      try {
+        var t = localStorage.getItem("tank37135-theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = t;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", t === "light" ? "#f1f9fe" : "#0b0a14");
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html { background: #0b0a14; }
+    html[data-theme="light"] { background: #f1f9fe; }
+  </style>
+  <title>声波探测 | Tank37135 工具</title>
+  <meta name="description" content="用麦克风实时查看声音的频率、音高与音量，所有分析都在浏览器本地完成。">
+  <meta name="author" content="Tank37135">
+  <link rel="canonical" href="https://tank37135.com/category/tools/tone-analyzer/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tank37135">
+  <meta property="og:title" content="声波探测 | Tank37135 工具">
+  <meta property="og:description" content="用麦克风实时查看声音的频率、音高与音量，所有分析都在浏览器本地完成。">
+  <meta property="og:image" content="https://tank37135.com/assets/img/LOGO/logo-1024x1024.png">
+  <link rel="icon" href="../../../favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../../../assets/img/LOGO/logo-128x128.png">
+  <link rel="stylesheet" href="../../../assets/main.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+
+<body data-page="tool" data-static data-section="tools">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header id="site-header"></header>
+
+  <main id="main" tabindex="-1" class="container tool-page">
+    <a class="article__back" href="../">
+      <span class="icon icon--arrow-left" aria-hidden="true"></span>
+      <span>返回工具</span>
+    </a>
+
+    <header class="tool-hero">
+      <h1 class="heading-2">声波探测</h1>
+      <p class="tool-lead">打开麦克风，实时查看声音的频谱、最接近的音名和输入电平。不会录音，也不会保存任何音频。</p>
+    </header>
+
+    <section class="analyzer card" aria-labelledby="analyzer-title">
+      <h2 class="visually-hidden" id="analyzer-title">音频分析面板</h2>
+
+      <div class="analyzer__readout">
+        <div class="analyzer__note">
+          <span class="analyzer__note-value is-empty" id="noteValue">· · ·</span>
+          <span class="analyzer__note-label">最接近的音名</span>
+        </div>
+
+        <div class="analyzer__numbers">
+          <div class="analyzer__stat">
+            <span class="analyzer__stat-value" id="freqValue">—</span>
+            <span class="analyzer__stat-unit">Hz</span>
+            <span class="analyzer__stat-label">主频率</span>
+          </div>
+          <div class="analyzer__stat">
+            <span class="analyzer__stat-value" id="centsValue">—</span>
+            <span class="analyzer__stat-unit">音分</span>
+            <span class="analyzer__stat-label">音准偏差</span>
+          </div>
+          <div class="analyzer__stat">
+            <span class="analyzer__stat-value" id="levelValue">—</span>
+            <span class="analyzer__stat-unit">dBFS</span>
+            <span class="analyzer__stat-label">输入电平</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="analyzer__actions">
+        <button class="btn btn--primary" id="startBtn" type="button">
+          <span class="icon icon--microphone" aria-hidden="true"></span>
+          <span>开始监听</span>
+        </button>
+        <button class="btn btn--danger" id="stopBtn" type="button" hidden>
+          <span class="icon icon--stop" aria-hidden="true"></span>
+          <span>停止</span>
+        </button>
+        <p class="analyzer__status" id="status" role="status" aria-live="polite">麦克风未开启</p>
+      </div>
+
+      <div class="analyzer__canvas-wrap">
+        <canvas id="spectrum" class="analyzer__canvas" width="800" height="280" role="img"
+          aria-label="实时音频频谱，横轴为频率，纵轴为响度"></canvas>
+      </div>
+
+      <div class="analyzer__meter" aria-hidden="true">
+        <span class="analyzer__meter-fill" id="levelBar"></span>
+      </div>
+
+      <p class="analyzer__note-line">
+        <span class="icon icon--info" aria-hidden="true"></span>
+        <span>音频只在浏览器内实时分析，不会上传或保存。</span>
+      </p>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script type="module" src="../../../assets/main.js"></script>
+  <script type="module" src="assets/app.js"></script>
+</body>
+
+</html>

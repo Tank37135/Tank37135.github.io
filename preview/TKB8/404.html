@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0a14">
+  <script data-theme-boot>
+    (function () {
+      try {
+        var t = localStorage.getItem("tank37135-theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = t;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", t === "light" ? "#f1f9fe" : "#0b0a14");
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html { background: #0b0a14; }
+    html[data-theme="light"] { background: #f1f9fe; }
+  </style>
+  <meta name="robots" content="noindex">
+  <title>404 | Tank37135</title>
+  <meta name="description" content="你访问的页面不存在。">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body data-page="error">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header id="site-header"></header>
+
+  <main id="main" tabindex="-1" class="container">
+    <div class="error-page">
+      <p class="error-page__code" data-copy="error.code"></p>
+      <h1 class="heading-2 error-page__title" data-copy="error.title"></h1>
+      <p class="error-page__text body-3" data-copy="error.body"></p>
+      <p class="caption-5" data-copy="error.hint"></p>
+      <div class="error-page__actions">
+        <a class="btn btn--primary" href="/" data-copy="error.home"></a>
+        <a class="btn btn--secondary" href="/category/works/" data-copy="error.works"></a>
+      </div>
+      <svg class="error-page__art" viewBox="0 0 520 160" fill="none" stroke="currentColor" stroke-width="2"
+        aria-hidden="true">
+        <path d="M0 40c43-30 87-30 130 0s87 30 130 0 87-30 130 0 87 30 130 0" />
+        <path d="M0 85c43-30 87-30 130 0s87 30 130 0 87-30 130 0 87 30 130 0" />
+        <path d="M0 130c43-30 87-30 130 0s87 30 130 0 87-30 130 0 87 30 130 0" />
+      </svg>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script type="module" src="/assets/main.js"></script>
+</body>
+
+</html>

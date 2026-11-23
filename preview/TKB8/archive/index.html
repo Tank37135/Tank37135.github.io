@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b0a14">
+  <script data-theme-boot>
+    (function () {
+      try {
+        var t = localStorage.getItem("tank37135-theme");
+        if (t !== "light" && t !== "dark") {
+          t = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+        document.documentElement.dataset.theme = t;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", t === "light" ? "#f1f9fe" : "#0b0a14");
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html { background: #0b0a14; }
+    html[data-theme="light"] { background: #f1f9fe; }
+  </style>
+  <title>归档 | Tank37135</title>
+  <meta name="description" content="Tank37135 网站与服务器的历史：改版、硬件、作品和文章。">
+  <meta name="author" content="Tank37135">
+  <link rel="canonical" href="https://tank37135.com/archive/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tank37135">
+  <meta property="og:title" content="归档 | Tank37135">
+  <meta property="og:description" content="Tank37135 网站与服务器的历史：改版、硬件、作品和文章。">
+  <meta property="og:url" content="https://tank37135.com/archive/">
+  <meta property="og:image" content="https://tank37135.com/assets/img/works/personal-site.jpg">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="900">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../assets/img/LOGO/logo-128x128.png">
+  <link rel="stylesheet" href="../assets/main.css">
+</head>
+
+<body data-page="archive" data-section="archive">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header id="site-header"></header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-header container">
+      <h1 class="heading-1 page-header__title" data-copy="archive.title"></h1>
+      <p class="page-header__intro" data-copy="archive.intro"></p>
+    </section>
+
+    <section class="section section--after-header container" aria-label="归档时间轴">
+      <h2 class="visually-hidden" data-copy="archive.listTitle"></h2>
+      <ol class="timeline" id="archive-timeline" data-skeleton="archive:4" aria-busy="true"></ol>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script type="module" src="../assets/main.js"></script>
+</body>
+
+</html>
